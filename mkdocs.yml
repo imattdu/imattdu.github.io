@@ -2,7 +2,7 @@ site_name: matt
 site_description: matt note
 site_author: matt
 site_url: https://imatt.top
-# strict: false
+strict: false
 
 # Repository
 repo_name: 'imattdu/imattdu.github.io'
@@ -10,37 +10,46 @@ repo_url: 'https://github.com/imattdu/imattdu.github.io'
 edit_uri: 'https://imatt.top/edit-landing/?ref='
 
 # Copyright
-copyright: 'Copyright &copy; 2021 - 2022 Note'
+copyright: 'Copyright &copy; 2021 - 2022 Matt Note'
 
 theme:
   name: material
   language: zh
   icon:
     repo: fontawesome/brands/github
+  favicon: images/favicon.ico
+  palette:
+    primary: white  
   features:
     - navigation.instant
     - navigation.tabs
+    # 自动隐藏
+    - header.autohide
+    # 返回顶部
+    - navigation.top
       
 plugins:
   - search
 
 extra:
-  disqus: 'OI-Wiki'
+  disqus: 'imattdu'
+  generator: false
+  social:
+    - icon: fontawesome/brands/docker
+      link: https://www.docker.com/
 
 nav:
-  - 简介:
+  - 基础:
     - Getting Started: index.md
-    - 关于本项目: intro/about.md
-    - 如何参与: intro/htc.md
+    - go: 00go/0base/0安装.md
+    - tool: 09tool/app.md
     - 格式手册: intro/format.md
     - F.A.Q.: intro/faq.md
     - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
     - 镜像站列表: intro/mirrors.md
     - 致谢: intro/thanks.md
-  - 比赛相关:
-    - 比赛相关简介: contest/index.md
-    - 赛事:
-      - OI 赛事与赛制: contest/oi.md
-      - ICPC/CCPC 赛事与赛制: contest/icpc.md
+  - 算法:
+    - 基础:
+      - 基础算法: 10algorithm/base/0基础算法.md
 
 
