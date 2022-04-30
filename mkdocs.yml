@@ -1,0 +1,46 @@
+site_name: matt
+site_description: matt note
+site_author: matt
+site_url: https://imatt.top
+# strict: false
+
+# Repository
+repo_name: 'imattdu/imattdu.github.io'
+repo_url: 'https://github.com/imattdu/imattdu.github.io'
+edit_uri: 'https://imatt.top/edit-landing/?ref='
+
+# Copyright
+copyright: 'Copyright &copy; 2021 - 2022 Note'
+
+theme:
+  name: material
+  language: zh
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.tabs
+      
+plugins:
+  - search
+
+extra:
+  disqus: 'OI-Wiki'
+
+nav:
+  - 简介:
+    - Getting Started: index.md
+    - 关于本项目: intro/about.md
+    - 如何参与: intro/htc.md
+    - 格式手册: intro/format.md
+    - F.A.Q.: intro/faq.md
+    - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
+    - 镜像站列表: intro/mirrors.md
+    - 致谢: intro/thanks.md
+  - 比赛相关:
+    - 比赛相关简介: contest/index.md
+    - 赛事:
+      - OI 赛事与赛制: contest/oi.md
+      - ICPC/CCPC 赛事与赛制: contest/icpc.md
+
+
