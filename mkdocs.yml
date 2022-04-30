@@ -7,7 +7,7 @@ strict: false
 # Repository
 repo_name: 'imattdu/imattdu.github.io'
 repo_url: 'https://github.com/imattdu/imattdu.github.io'
-edit_uri: 'https://imatt.top/edit-landing/?ref='
+edit_uri: 'edit/master/docs/'
 
 # Copyright
 copyright: 'Copyright &copy; 2021 - 2022 Matt Note'
@@ -36,8 +36,14 @@ extra:
   generator: false
   social:
     - icon: fontawesome/brands/docker
-      link: https://www.docker.com/
-
+      link: https://www.docker.com/   
+# 内容选项卡
+markdown_extensions:
+  - meta
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
 nav:
   - 基础:
     - Getting Started: index.md
@@ -51,5 +57,8 @@ nav:
   - 算法:
     - 基础:
       - 基础算法: 10algorithm/base/0基础算法.md
+      - 数据结构: 10algorithm/base/1数据结构.md
+      - 搜索与图论: 10algorithm/base/2搜索与图论.md
+      - 数学: 10algorithm/base/3数学.md
 
 
