@@ -1,4 +1,4 @@
-site_name: matt
+site_name: Matt
 site_description: matt note
 site_author: matt
 site_url: https://imatt.top
@@ -15,21 +15,32 @@ copyright: 'Copyright &copy; 2021 - 2022 Matt Note'
 theme:
   name: material
   language: zh
+  custom_dir: overrides
   icon:
     repo: fontawesome/brands/github
+  logo: images/matt.png
   favicon: images/favicon.ico
   palette:
     primary: white  
   features:
+    # 实时加载
     - navigation.instant
+    # tabs
     - navigation.tabs
     # 自动隐藏
-    - header.autohide
+    # - header.autohide
     # 返回顶部
     - navigation.top
-      
+    # 代码注释
+    - content.code.annotate
+    - search.highlight
+    - search.suggest
+    # 搜索共享
+    - search.share
 plugins:
-  - search
+  - search:
+      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+
 
 extra:
   disqus: 'imattdu'
@@ -43,17 +54,28 @@ markdown_extensions:
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.tabbed:
-      alternate_style: true 
+      alternate_style: true
+  # 代码高亮配置
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences  
+
 nav:
   - 基础:
     - Getting Started: index.md
-    - go: 00go/0base/0安装.md
-    - tool: 09tool/app.md
-    - 格式手册: intro/format.md
-    - F.A.Q.: intro/faq.md
-    - 用 Docker 部署 OI Wiki: intro/docker-deploy.md
-    - 镜像站列表: intro/mirrors.md
-    - 致谢: intro/thanks.md
+    - go:
+      - base:
+        - 安装: 00go/0base/0安装.md
+        - 基础: 00go/0base/1基础.md
+        - 常用数据结构: 00go/0base/2常用数据结构.md
+        - 函数: 00go/0base/3函数.md
+    - tool:
+      - mac:
+        - 基本使用: 09tool/1mac/0基本使用.md
+        - 常用软件: 09tool/1mac/1常用软件.md
+        - iterm2美化: 09tool/1mac/2iterm2美化.md
   - 算法:
     - 基础:
       - 基础算法: 10algorithm/base/0基础算法.md
@@ -61,4 +83,7 @@ nav:
       - 搜索与图论: 10algorithm/base/2搜索与图论.md
       - 数学: 10algorithm/base/3数学.md
 
+
+extra_css:
+  - stylesheets/extra.css
 
