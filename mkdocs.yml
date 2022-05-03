@@ -86,6 +86,18 @@ nav:
       - 数据结构: 10algorithm/base/1数据结构.md
       - 搜索与图论: 10algorithm/base/2搜索与图论.md
       - 数学: 10algorithm/base/3数学.md
+  - web:
+    - frame:
+      - gin:
+        - base: 23frame/gin/base.md
+  - micro:
+    - mq:
+      - kafka:
+        - 概述: 33mq/0kafka/0概述.md
+        - 安装: 33mq/0kafka/1安装.md
+    - mw:
+      - zookeeper:
+        - zookeeper学习: 34mw/zookeeper/zookeeper学习.md         
 
 
 extra_css:

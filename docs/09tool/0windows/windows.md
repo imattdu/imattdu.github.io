@@ -1,33 +1,12 @@
-+++
-title = "常用软件"
-date = 2022-01-20T17:25:20+08:00
-featured = false
-comment = true
-toc = true
-reward = true
-weight = 9
-categories = [
-  "tool"
-]
-tags = [
-]
-series = [
-]
-images = []
-aliases = [
-]
 
-+++
-
-file使用
 
 <!--more-->
 
 font-family: JetBrains Mono; 
 
-# word
-
 ## word
+
+### word
 
 **删除Word分页符**
 
@@ -35,17 +14,17 @@ font-family: JetBrains Mono;
 
 ![](https://pic3.zhimg.com/v2-86fa42baaf8eaeea15f09b29f6534366_b.webp)
 
-## Typora
+### Typora
 
 Mo Dark
 
-## sublime
+### sublime
 
-### 安装pac
+#### 安装pac
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20201221220711.png)
 
-### 插件
+#### 插件
 
 convert to utf-8
 
@@ -67,7 +46,7 @@ chinese :中文
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210519134436.png)
 
-### 更改插件目录的位置
+#### 更改插件目录的位置
 
  原目录删除，在安装目录下建立Data文件夹即可。
 
@@ -85,9 +64,9 @@ DD9AF44B 99C49590 D2DBDEE1 75860FD2
 8C8BB2AD B2ECE5A4 EFC08AF2 25A9B864
 ```
 
-# img
+## img
 
-## fscapture
+### fscapture
 
 ```bash
 FastStone Capture(FSCapture) 注册码
@@ -110,7 +89,7 @@ CODE:XPNMF-ISDYF-LCSED-BPATU
 
 [中文官网](
 
-## 图床
+### 图床
 
 推荐[picgo](https://github.com/Molunerfinn/PicGo)
 
@@ -118,19 +97,19 @@ CODE:XPNMF-ISDYF-LCSED-BPATU
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210725023612.png)
 
-# 视频
+## 视频
 
-## OBS-STUDIO
+### OBS-STUDIO
 
-### 安装
+#### 安装
 
 [官网](https://obsproject.com/zh-tw)
 
 从官网下载， next 安装即可
 
-### 配置
+#### 配置
 
-#### 显示键盘鼠标
+##### 显示键盘鼠标
 
 [插件官网](https://obsproject.com/forum/resources/categories/obs-studio-plugins.6/)
 
@@ -158,17 +137,17 @@ CODE:XPNMF-ISDYF-LCSED-BPATU
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210524192441.png)
 
-#### 关闭麦克风
+##### 关闭麦克风
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210524193130.png)
 
-### 使用
+#### 使用
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210524193011.png)
 
-# file
+## file
 
-## IDM
+### IDM
 
 idm 6.38
 
@@ -178,17 +157,17 @@ idm 6.38
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210130103430.png)
 
-## iqbit
+### iqbit
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/202110060951046.png)
 
 执行图中xx.exe安装，（跳过）安装完成后关闭，将crack中所有得文件（**不是crack文件夹**）复制到iqbit安装目录下
 
-## 7zip
+### 7zip
 
-### 解压压缩
+解压压缩
 
-## **pdf相关**
+### **pdf**
 
 adobe edge 阅读pdf 都会部分解析失败 
 
@@ -196,25 +175,23 @@ xodo复制内容时会多选
 
 谷歌浏览器是正确的
 
-## else
-
-## utools
+### utools
 
 内网穿透
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210331110807.png)
 
-# net
+## net
 
-## switchhost
+### switchhost
 
 [官网](https://github.com/oldj/SwitchHosts/releases)
 
-# bash
+## bash
 
-## cygwin 64
+### cygwin 64
 
-### 安装
+#### 安装
 
 http://www.cygwin.com/
 
@@ -276,7 +253,7 @@ gcc-core、gcc-g++、make、gdb、binutils
 
 点击下一步安装即可。
 
-### 检验
+#### 检验
 
 检查是否安装成功
 
@@ -284,7 +261,7 @@ gcc-core、gcc-g++、make、gdb、binutils
 cygcheck -c cygwin
 ```
 
-### 添加右键
+#### 添加右键
 
 **Step 2 准备启动脚本**
 
@@ -321,17 +298,17 @@ then
 fi
 ```
 
-### jetBrains使用cygwin
+#### **jetBrains使用cygwin**
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210320213501.png)
 
-### 窗口最大化
+#### 窗口最大化
 
 应用属性中选择
 
-# 数据库
+## 数据库
 
-## pdman
+### pdman
 
 数据库建模工具
 

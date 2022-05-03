@@ -1,28 +1,4 @@
-+++
-title = "jetbrain快捷键"
-date = 2022-01-20T17:25:20+08:00
-featured = true
-comment = true
-toc = true
-reward = true
-weight = 9
-categories = [
-  "tool"
-]
-tags = [
-]
-series = [
-]
-images = [
-]
-aliases = [
-]
 
-+++
-
-jetbrain 快捷键
-
-<!--more-->
 
 
 

@@ -1,4 +1,4 @@
-# 安装
+## 安装
 
 
 
@@ -10,13 +10,13 @@
 
 
 
-# 配置
+## 配置
 
 
 
 
 
-## IDEA配置
+
 
 ### 常规配置
 
@@ -120,7 +120,7 @@
 
 ### **注释**
 
-类的注释
+#### 类的注释
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210108161320.png)
 
@@ -135,7 +135,7 @@
 */
 ```
 
-方法的注释
+#### 方法的注释
 
 
 
@@ -169,7 +169,7 @@ groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s
 
 
 
-### **注释顶格**
+#### **注释顶格**
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210109161331.png)
 
@@ -299,25 +299,25 @@ help ->Edit Custom VM Options
 
 
 
-# 使用
+## 使用
 
-## IDEA
+### IDEA
 
-### 打开一个项目
+#### 打开一个项目
 
 
 
 对于maven项目我们打开选择pom.xml即可
 
-## 常规使用
 
-### 如何重启
+
+#### 如何重启
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210319231913.png)
 
 
 
-## pycharm如何创建一个项目
+### pycharm如何创建一个项目
 
 
 
@@ -377,15 +377,13 @@ help ->Edit Custom VM Options
 
 
 
-## goland
 
 
 
-### 配置
 
 
 
-![](https://raw.githubusercontent.com/imattdu/img/main/img/20210521103340.png)
+### clion
 
 
 
@@ -393,69 +391,7 @@ help ->Edit Custom VM Options
 
 
 
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/20210521103319.png)
-
-
-
-
-
-### 使用goland创建项目
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/20210521103117.png)
-
-
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/20210521103217.png)
-
-
-
-
-
-
-
-
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/20210521103908.png)
-
-
-
-
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/20210521103926.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## clion
-
-
-
-
-
-
-
-### 如何 多个main函数
+#### 如何 多个main函数
 
 **CMakeLists.txt**
 
@@ -492,23 +428,7 @@ endforeach ()
 
 
 
-
-
-
-
-
-
-
-
-# clion
-
-
-
-## 常用配置
-
-
-
-### 导入bits/stdc++.h出错
+#### 导入bits/stdc++.h出错
 
 
 
