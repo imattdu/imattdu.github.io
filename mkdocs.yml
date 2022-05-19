@@ -75,11 +75,31 @@ nav:
         - 基础: 00go/0base/1基础.md
         - 常用数据结构: 00go/0base/2常用数据结构.md
         - 函数: 00go/0base/3函数.md
-    - tool:
-      - mac:
-        - 基本使用: 09tool/1mac/0基本使用.md
-        - 常用软件: 09tool/1mac/1常用软件.md
-        - iterm2美化: 09tool/1mac/2iterm2美化.md
+      - concurrent:
+        - groutine: 00go/1concurrent/0groutine.md
+        - runtime: 00go/1concurrent/1runtime.md
+        - channel: 00go/1concurrent/2channel.md
+        - 定时器: 00go/1concurrent/3定时器.md
+        - select: 00go/1concurrent/4select.md
+        - lock: 00go/1concurrent/5lock.md
+        - sync: 00go/1concurrent/6sync.md
+        - atomic: 00go/1concurrent/7atomic.md
+      - lib:
+        - string: 00go/2lib/0string.md
+        - time: 00go/2lib/1time.md
+        - flag: 00go/2lib/2flag.md
+        - log: 00go/2lib/3log.md
+        - io: 00go/2lib/4io.md
+        - 反射: 00go/2lib/9反射.md
+  - 工具:
+    - mac:
+      - 基本使用: 09tool/1mac/0基本使用.md
+      - 常用软件: 09tool/1mac/1常用软件.md
+      - iterm2美化: 09tool/1mac/2iterm2美化.md
+    - dev:
+      - git: 09tool/3dev/git.md
+      - jetBrains: 09tool/3dev/jetBrains.md
+      - jetBrains_快捷键: 09tool/3dev/jetBrains_快捷键.md  
   - 算法:
     - 基础:
       - 基础算法: 10algorithm/base/0基础算法.md
@@ -89,7 +109,7 @@ nav:
   - web:
     - gin:
       - base: 23frame/gin/base.md
-  - mw:
+  - 中间件:
     - kafka:
       - 概述: 33mq/0kafka/0概述.md
       - 安装: 33mq/0kafka/1安装.md

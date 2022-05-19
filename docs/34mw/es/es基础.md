@@ -541,6 +541,26 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 
 
+
+
+字段名：任意填写，下面指定许多属性，例如：title、subtitle、images、price
+
+
+
+String 类型，又分两种： text：可分词 keyword：不可分词，数据会作为完整字段进行匹配
+
+Numerical：数值类型，
+
+​		分两类 基本数据类型：long、integer、short、byte、double、float、half_float 
+
+​		浮点数的高精度类型：scaled_float
+
+Date：日期类型
+
+Array：数组类型
+
+Object：对象
+
 ```sh
 # post
 
@@ -612,7 +632,11 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 #### 查看某个索引下全部文档
 
+"query"：这里的 query 代表一个查询对象，里面可以有不同的查询属性  
 
+"match_all"：查询类型，例如：match_all(代表查询所有)， match，term ， range 等等 
+
+{查询条件}：查询条件会根据类型的不同，写法也有差异
 
 ```sh
 # get
@@ -629,9 +653,38 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 
 
-#### 匹配查询
 
 
+```sh
+{
+     "took【查询花费时间，单位毫秒】" : 1116,
+     "timed_out【是否超时】" : false,
+     "_shards【分片信息】" : {
+         "total【总数】" : 1,
+         "successful【成功】" : 1,
+         "skipped【忽略】" : 0,
+         "failed【失败】" : 0
+     },
+     "hits【搜索命中结果】" : {
+         "total"【搜索条件匹配的文档总数】: {
+             "value"【总命中计数的值】: 3,
+             "relation"【计数规则】: "eq" # eq 表示计数准确， gte 表示计数不准确
+         },
+         "max_score【匹配度分值】" : 1.0,
+         "hits【命中结果集合】" : []
+     }
+}
+```
+
+
+
+
+
+#### 字段匹配查询
+
+单字段
+
+**match 匹配类型查询，会把查询条件进行分词，然后进行查询，多个词条之间是 or 的关系**
 
 ```sh
 # get
@@ -649,9 +702,7 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 }
 ```
 
-
-
-#### 多字段匹配
+多字段匹配
 
 
 
@@ -678,7 +729,7 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 #### 关键字精准查询
 
-
+单关键字
 
 ```sh
 # get
@@ -698,7 +749,7 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 
 
-#### 多关键字精准查询
+多关键字精准查询
 
 
 
@@ -726,7 +777,7 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 #### 指定查询字段
 
-
+_source
 
 ```sh
 # get
@@ -751,7 +802,13 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 
 
-#### 指定查询字段  include
+include
+
+
+
+includes：来指定想要显示的字段 
+
+excludes：来指定不想要显示的字段
 
 
 
@@ -783,7 +840,7 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 #### 多个条件组合
 
-
+`bool`把各种其它查询通过`must`（必须 ）、`must_not`（必须不）、`should`（应该）的方 式进行组合
 
 
 
@@ -828,6 +885,15 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 #### 范围查询
 
+| 操作符 | 说明 |
+| :----: | :--: |
+|   gt   |  >   |
+|  gte   |  >=  |
+|   lt   |  <   |
+|  lte   |  <=  |
+
+
+
 
 
 ```sh
@@ -860,7 +926,7 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 #### 模糊查询
 
-
+fuzziness：编辑距离
 
 ```sh
 # get
@@ -872,7 +938,10 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
     "query": {
         "fuzzy": {
             "name": {
-                "value": "t51"
+                "value": "t51",
+                // 也可以不写
+                "fuzziness": 2
+             
             }
         }
     }
@@ -881,9 +950,9 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 
 
-#### 单字段排序
+#### 排序
 
-
+单字段排序
 
 ```sh
 # get
@@ -909,9 +978,7 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 }
 ```
 
-
-
-#### 多字段排序
+多字段排序
 
 
 
@@ -946,9 +1013,19 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 
 
-#### 高亮查询
+#### **高亮查询**
 
 
+
+pre_tags：前置标签 
+
+ post_tags：后置标签 
+
+ fields：需要高亮的字段 
+
+title：这里声明 title 字段需要高亮，后面可以为这个字段设置特有配置，也可以空
+
+注意：高亮的字段需要在查询的字段中，如下面的name字段
 
 ```sh
 # get
@@ -979,6 +1056,12 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 
 #### 分页查询
+
+
+
+from：当前页的起始索引，默认从 0 开始。 from = (pageNum - 1) * size 
+
+size：每页显示多少条
 
 ```sh
 # get
@@ -1013,7 +1096,11 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 #### 聚合查询
 
+max,min,sum,avg
 
+cardinality:对某个字段的值进行去重之后再取总数
+
+stats:对某个字段一次性返回 count，max，min，avg 和 sum 五个指标
 
 ```sh
 # get
@@ -1034,7 +1121,7 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 
 ```
 
-11
+
 ```sh
 # get
 
@@ -1074,5 +1161,48 @@ yellow open   t3    3sS8FYGOSfKTN_TN6qZ_9w   1   1          1            1      
 }
 
 
+```
+
+
+
+
+
+
+
+```json
+{
+    "took": 25,
+    "timed_out": false,
+    "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 7,
+            "relation": "eq"
+        },
+        "max_score": null,
+        "hits": []
+    },
+    "aggregations": {
+        "age_groupby": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+                {
+                    "key": 12,
+                    "doc_count": 6
+                },
+                {
+                    "key": 1,
+                    "doc_count": 1
+                }
+            ]
+        }
+    }
+}
 ```
 
