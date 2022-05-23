@@ -40,6 +40,10 @@ theme:
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+  - git-revision-date-localized:
+      type: iso_datetime
+      fallback_to_build_date: true
+      enable_creation_date: false    
 
 
 extra:
@@ -71,10 +75,12 @@ nav:
     - Getting Started: index.md
     - go:
       - base:
-        - 安装: 00go/0base/0安装.md
-        - 基础: 00go/0base/1基础.md
-        - 常用数据结构: 00go/0base/2常用数据结构.md
-        - 函数: 00go/0base/3函数.md
+        - 安装: 00go/0base/0setup.md
+        - 基础: 00go/0base/1base.md
+        - 常用数据结构: 00go/0base/2data_structure.md
+        - 函数: 00go/0base/3func.md
+        - 结构体: 00go/0base/4struct.md
+        - 错误: 00go/0base/7error.md
       - concurrent:
         - groutine: 00go/1concurrent/0groutine.md
         - runtime: 00go/1concurrent/1runtime.md
@@ -91,6 +97,15 @@ nav:
         - log: 00go/2lib/3log.md
         - io: 00go/2lib/4io.md
         - 反射: 00go/2lib/9反射.md
+    - cpp:
+      - 基础: 02cpp/1base.md
+      - 字符串: 02cpp/2string.md
+      - 数组: 02cpp/3array.md
+      - 逻辑: 02cpp/4if.md
+      - 循环: 02cpp/5while.md
+      - 函数: 02cpp/6func.md
+      - 类: 02cpp/7class.md
+         
   - 工具:
     - mac:
       - 基本使用: 09tool/1mac/0基本使用.md

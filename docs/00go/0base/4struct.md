@@ -582,7 +582,39 @@ func main() {
 
 
 
+## 其他
 
 
 
+
+
+### 反引字段
+
+
+
+```go
+type User struct {
+	Id   int64  `json:"id"`
+	Name string `json:"name"`
+	Age  int64  `json:"age"`
+	// omitempty 如果不设置这个字段就不会输出
+	// 不加omitempty，如果不设置这个字段也会输出默认值
+	H string `json:"h,omitempty"`
+}
+```
+
+
+
+
+
+
+
+
+
+get: 得到，获得
+select：选择
+find：强调找的结果。
+search：强调找的过程。
+
+我用一句话让你明白区别。先SEARCH，再FIND(OUT），再SELECT，最后GET
 
