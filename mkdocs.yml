@@ -1,5 +1,5 @@
-site_name: Matt
-site_description: matt note
+site_name: mattのnote
+site_description: mattのnote
 site_author: matt
 site_url: https://imatt.top
 strict: false
@@ -10,7 +10,7 @@ repo_url: 'https://github.com/imattdu/imattdu.github.io'
 edit_uri: 'edit/master/docs/'
 
 # Copyright
-copyright: 'Copyright &copy; 2021 - 2022 Matt Note'
+copyright: 'Copyright &copy; 2021 - 2022 mattのnote'
 
 theme:
   name: material
@@ -51,7 +51,9 @@ extra:
   generator: false
   social:
     - icon: fontawesome/brands/docker
-      link: https://www.docker.com/   
+      link: https://www.docker.com/
+    - icon: fontawesome/brands/github
+      link: https://github.com/imattdu  
 # 内容选项卡
 markdown_extensions:
   - meta
@@ -121,6 +123,7 @@ nav:
       - 数据结构: 10algorithm/base/1数据结构.md
       - 搜索与图论: 10algorithm/base/2搜索与图论.md
       - 数学: 10algorithm/base/3数学.md
+      - 数学: 10algorithm/base/4dp.md
   - web:
     - gin:
       - base: 23frame/gin/base.md
