@@ -192,7 +192,7 @@ int main() {
 
 
 
-a b c d
+a b c dddd
 
 求abc最大值
 
