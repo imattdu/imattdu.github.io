@@ -45,6 +45,28 @@ redis-cli shutdown
 
 
 
+### linux安装
+
+
+
+
+
+```sh
+yum install gcc
+
+gcc --version
+
+
+
+
+```
+
+
+
+
+
+
+
 
 
 ## 配置

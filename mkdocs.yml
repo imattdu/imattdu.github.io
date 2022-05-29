@@ -123,11 +123,14 @@ nav:
       - 数据结构: 10algorithm/base/1数据结构.md
       - 搜索与图论: 10algorithm/base/2搜索与图论.md
       - 数学: 10algorithm/base/3数学.md
-      - 数学: 10algorithm/base/4dp.md
+      - dp: 10algorithm/base/4dp.md
   - web:
     - gin:
       - base: 23frame/gin/base.md
   - 中间件:
+    - redis:
+      - 安装: 34mw/0redis/0setup.md
+      - 基础: 34mw/0redis/1base.md
     - kafka:
       - 概述: 33mq/0kafka/0概述.md
       - 安装: 33mq/0kafka/1安装.md
