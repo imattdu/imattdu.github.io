@@ -107,6 +107,12 @@ nav:
       - 循环: 02cpp/5while.md
       - 函数: 02cpp/6func.md
       - 类: 02cpp/7class.md
+      - stl:
+        - init: 02cpp/1stl/0init.md
+        - stl: 02cpp/1stl/1stl.md
+    - python:
+      - python: 03python/python.md
+      - 字符串: 03python/flask.md    
          
   - 工具:
     - mac:

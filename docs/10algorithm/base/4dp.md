@@ -421,40 +421,90 @@ f[i][j] = max(f[i - 1][j], f[i - 1][j]) + a[i][j];
 
 
 
-最长上升子序列
-
-f[i] : 以i结尾的子序列
 
 
 
-倒数第二个分类
 
- 0 ... i-1
 
-```cpp
-f[i] = max(f[j])    j < i && a[j] < a[i]   j=0,1,2,.....i-1
+
+
+
+
+
+### 最长公共子序列
+
+给定两个长度分别为 N 和 M 的字符串 A 和 B，求既是 A 的子序列又是 B 的子序列的字符串长度最长是多少。
+
+#### 输入格式
+
+第一行包含两个整数 N 和 M。
+
+第二行包含一个长度为 N 的字符串，表示字符串 A。
+
+第三行包含一个长度为 M 的字符串，表示字符串 B。
+
+字符串均由小写字母构成。
+
+#### 输出格式
+
+输出一个整数，表示最大长度。
+
+#### 数据范围
+
+1≤N,M≤1000
+
+#### 输入样例：
+
+```
+4 5
+acbd
+abedc
+```
+
+#### 输出样例：
+
+```
+3
 ```
 
 
 
 
 
-
-
-
-
-
-
-
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202205302021741.png)
 
 
 
 
 
 ```cpp
-min{f[i][k] + f[k+1][j] + s[j] - s[i - 1]}
-k= i -> j-1
+#include <iostream>
+
+using namespace std;
+const int N = 1010;
+int f[N][N], n, m;
+string a, b;
+
+int main() {
+    scanf("%d %d", &n, &m);
+    cin >> a >> b;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            f[i][j] = max(f[i -1][j], f[i][j - 1]);
+            if (a[i - 1] == b[j - 1]){
+                f[i][j] = max(f[i][j], f[i - 1][j - 1] + 1);
+            }
+        }
+    }
+    
+    cout << f[n][m];
+    return 0;
+}
 ```
+
+
+
+
 
 
 
@@ -512,6 +562,15 @@ k= i -> j-1
 
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/202205300227884.png)
+
+
+
+
+
+```cpp
+min{f[i][k] + f[k+1][j] + s[j] - s[i - 1]}
+k= i -> j-1
+```
 
 
 
