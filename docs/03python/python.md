@@ -4,6 +4,50 @@
 
 
 
+## 安装
+
+
+
+### mac-安装
+
+**直接官网下载即可**
+
+官网
+
+```sh
+/usr/local/bin
+/Library/Frameworks/Python.framework/Versions/3.10/bin/python3
+
+
+ln -s -f /usr/local/bin/python3 /usr/local/bin/python
+```
+
+
+
+
+
+
+
+不要使用brew安装 
+
+1 需要在配置文件中进行配置环境变量
+
+2..pycharm会无法识别
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### **安装**
@@ -1361,7 +1405,7 @@ pip国内的一些镜像
 
 > [global]
 >
-> index-url = https://pypi.tuna.tsinghua.edu.cn/simple12
+> index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 
 **Windows:**
 

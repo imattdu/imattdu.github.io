@@ -4,11 +4,23 @@
 
 下一步下一步安装即可，安装时选择要安装的组件，注意存储位置
 
+在 `Settings/Preferences... -> Plugins` 内手动添加第三方插件仓库地址：`https://plugins.zhile.io` 搜索：IDE Eval Reset 插件进行安装。
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202205302122582.png)
 
 
 
 
 
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202205302123775.png)
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202205302124178.png)
 
 ## 配置
 

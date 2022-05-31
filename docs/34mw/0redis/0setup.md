@@ -14,6 +14,30 @@ brew install redis
 
 
 
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202205310300731.png)
+
+
+
+
+
+
+
+ 
+
+```sh
+make PREFIX=/usr/local/redis install
+```
+
+这里多了一个关键字 **`PREFIX=`** 这个关键字的作用是编译的时候用于指定程序存放的路径。比如我们现在就是指定了redis必须存放在/usr/local/redis目录。假设不添加该关键字Linux会将可执行文件存放在/usr/local/bin目录，
+
+库文件会存放在/usr/local/lib目录。配置文件会存放在/usr/local/etc目录。其他的资源文件会存放在usr/local/share目录。这里指定号目录也方便后续的卸载，后续直接rm -rf /usr/local/redis 即可删除redis。
+
+
+
+
+
+会告诉你配置文件目录
+
 ### 启动
 
 启动服务端
