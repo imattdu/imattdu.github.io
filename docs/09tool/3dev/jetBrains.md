@@ -1,4 +1,4 @@
-## 安装
+安装
 
 
 
@@ -311,9 +311,7 @@ help ->Edit Custom VM Options
 
 
 
-## 使用
-
-### IDEA
+## IDEA
 
 #### 打开一个项目
 
@@ -326,6 +324,24 @@ help ->Edit Custom VM Options
 #### 如何重启
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210319231913.png)
+
+
+
+
+
+springboot中的pom.xml 加载失败
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202206051716579.png)
+
+
+
+
+
+
 
 
 

@@ -423,6 +423,58 @@ f[i][j] = max(f[i - 1][j], f[i - 1][j]) + a[i][j];
 
 
 
+```cpp
+#include <iostream>
+
+using namespace std;
+const int N = 510, INF = 0x3f3f3f3f;
+int n, f[N][N], a[N][N];
+
+int main() {
+    cin >> n;
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= i; j++) {
+            cin >> a[i][j];
+        }
+    }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 0; j <= i + 1; j++) {
+            f[i][j] = -INF;
+        }
+    }
+
+
+    f[1][1] = a[1][1];
+    for (int i = 2; i <= n; i++) {
+        for (int j = 1; j <= i; j++) {
+            f[i][j] = max(f[i -1][j - 1], f[i - 1][j]) + a[i][j];
+        }
+    }
+    int res = -INF;
+    for (int i = 1; i <= n; i++) {
+        res = max(res, f[n][i]);
+    }
+    cout << res;
+    return 0;
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -555,12 +607,6 @@ int main() {
 
 
 
-
-
-
-
-
-
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/202205300227884.png)
 
 
@@ -606,6 +652,58 @@ int main() {
     return 0;
 }
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+```txt
+1 <= xxx1yyy <= abcdefg
+
+
+1.xxx=000 ~ abc-1, yyy=000~999  abc * 1000
+
+2.xxx = abc
+
+2.1 d < 1 abc1yyy > abc0efg 0
+2.2 d = 1 yyy = 000 ~ efg efg+1
+2.3 d > 1 yyy = 000 ~ 999 1000
+
+
+  
+  
+  
+```
+
+
+
+
+
+```txt
+
+
+
+f[i,j] i列
+j:行数二进制 10010
+
+
+```
+
+
+
+
+
+
+
+
 
 
 

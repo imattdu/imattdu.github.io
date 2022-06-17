@@ -204,3 +204,185 @@ PX：key的超时毫秒数，与EX互斥
 
 行数据库：把几条数据存在一行
 
+
+
+
+
+
+
+
+
+
+
+订阅管道c1
+
+```sh
+subscribe c1
+```
+
+在管道c1发布消息
+
+```sh
+publish c1 1
+```
+
+
+
+
+
+
+
+
+
+bit
+
+0 1 2 3 4 5 ....
+
+
+
+
+
+
+
+
+
+```sh
+setbit b1 1 1
+```
+
+
+
+```sh
+getbit b1 1
+
+
+
+bitcount b1 1 2 BITE
+
+bitcount b1 1 2 BIT
+```
+
+
+
+
+
+
+
+
+
+```sh
+127.0.0.1:6379> pfadd h1 1 2 3 1
+(integer) 1
+127.0.0.1:6379> pfcount h1
+(integer) 3
+```
+
+
+
+
+
+
+
+
+
+mac：关闭vpn
+
+
+
+
+
+
+
+xsd fetch 
+
+
+
+
+
+
+
+
+
+
+
+multi exec
+
+乐观锁：库存遗留问题
+
+因为版本号不一致所以不能改
+
+
+
+
+
+开启aof
+
+
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202206121117316.png)
+
+
+
+
+
+修复aof文件
+
+```sh
+redis-check-aof --fix appendonly.aof
+```
+
+
+
+
+
+setup 
+
+base
+
+source
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202206162348952.png)
+
+
+
+
+
+info replication
+
+
+
+
+
+
+
+```sh
+redis-cli -p 6379
+```
+
+
+
+
+
+
+
+```sh
+slaveof 127.0.0.1 6379
+
+
+
+
+```
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202206162352350.png)
