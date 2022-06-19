@@ -375,10 +375,6 @@ redis-cli -p 6379
 
 ```sh
 slaveof 127.0.0.1 6379
-
-
-
-
 ```
 
 
@@ -386,3 +382,92 @@ slaveof 127.0.0.1 6379
 
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/202206162352350.png)
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202206181700708.png)
+
+
+
+
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202206181703435.png)
+
+
+
+
+
+
+
+
+
+
+
+```sh
+replica-priority 100
+```
+
+
+
+
+
+
+
+代理：代理作为入口
+
+
+
+无中心化：任一一台服务器都可以作为入口
+
+
+
+
+
+i
+
+
+
+
+
+```sh
+[OK] All 16384 slots covered.
+```
+
+
+
+
+
+任何一个节点均可以
+
+```sh
+redis-cli -c -p 6379
+```
+
+
+
+
+
+
+
+
+
+```sh
+cluster nodes
+```
+
+
+
+
+
+
+
+
+
+
+
