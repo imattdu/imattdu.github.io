@@ -1,4 +1,12 @@
-安装
+## 安装
+
+### 方式一
+
+#### 适用
+
+<=2021.2
+
+#### 具体步骤
 
 
 
@@ -110,7 +118,7 @@
 
 
 
-### Git配置
+#### Git配置
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210108153027.png)
 
@@ -122,7 +130,7 @@
 
 
 
-### maven配置
+#### maven配置
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210108153447.png)
 
@@ -130,9 +138,9 @@
 
 
 
-### **注释**
+#### **注释**
 
-#### 类的注释
+##### 类的注释
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210108161320.png)
 
@@ -147,7 +155,7 @@
 */
 ```
 
-#### 方法的注释
+##### 方法的注释
 
 
 
@@ -181,7 +189,7 @@ groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s
 
 
 
-#### **注释顶格**
+##### **注释顶格**
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210109161331.png)
 
@@ -189,7 +197,7 @@ groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s
 
 
 
-### 取消自动更新
+#### 取消自动更新
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210108153327.png)
 
@@ -197,7 +205,7 @@ groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s
 
 
 
-### 终端配置
+#### 终端配置
 
 
 
@@ -205,7 +213,7 @@ groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s
 
 
 
-### 插件
+#### 插件
 
 
 
@@ -215,7 +223,7 @@ groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s
 
 
 
-### 关闭拼写检查
+#### 关闭拼写检查
 
 **Spelling**
 
@@ -227,13 +235,13 @@ groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s
 
 
 
-### spring
+#### spring
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210108162349.png)
 
 
 
-复制到idea中的文件需要重构项目否则无法访问404
+#### 复制到idea中的文件需要重构项目否则无法访问404
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210108175428.png)
 
@@ -241,7 +249,7 @@ groovyScript("def result=''; def params=\"${_1}\".replaceAll('[\\\\[|\\\\]|\\\\s
 
 
 
-### junit无法从控制台输入
+#### junit无法从控制台输入
 
 ```
 help ->Edit Custom VM Options
@@ -251,7 +259,7 @@ help ->Edit Custom VM Options
 
 
 
-### **properties文件乱码**
+#### **properties文件乱码**
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210501112734.png)
 
@@ -267,11 +275,11 @@ help ->Edit Custom VM Options
 
 
 
-## pycharm配置
+### pycharm配置
 
 
 
-### pycharm取消波浪线提示
+#### pycharm取消波浪线提示
 
 
 
@@ -311,7 +319,9 @@ help ->Edit Custom VM Options
 
 
 
-## IDEA
+## 使用
+
+### IDEA
 
 #### 打开一个项目
 
@@ -341,11 +351,13 @@ springboot中的pom.xml 加载失败
 
 
 
+### pycharm
 
 
 
 
-### pycharm如何创建一个项目
+
+#### pycharm如何创建一个项目
 
 
 
@@ -390,16 +402,6 @@ springboot中的pom.xml 加载失败
 
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210320210538.png)
-
-
-
-
-
-
-
-**压缩包引入到IDEA，help->reset**
-
-**auto -> reset**
 
 
 

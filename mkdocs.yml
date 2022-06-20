@@ -137,6 +137,9 @@ nav:
     - redis:
       - 安装: 34mw/0redis/0setup.md
       - 基础: 34mw/0redis/1base.md
+      - 提高: 34mw/0redis/2advanced.md
+      - 源码: 34mw/0redis/3source.md
+      - API: 34mw/0redis/4api.md
     - kafka:
       - 概述: 33mq/0kafka/0概述.md
       - 安装: 33mq/0kafka/1安装.md
