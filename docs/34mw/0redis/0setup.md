@@ -1,6 +1,26 @@
+
+
+
+
+
+
+
+
 ## 安装
 
-### 安装
+
+
+
+
+### 注意
+
+可参考官网安装
+
+https://redis.io/docs/getting-started/
+
+
+
+### mac安装
 
 
 
@@ -20,11 +40,32 @@ brew install redis
 
 
 
+### linux安装
 
+
+
+#### 依赖gcc环境
+
+```sh
+ yum install gcc-c++
+ 
+ gcc --version
+```
+
+#### 基础
+
+官网下载 -> 解压 -> 进入解压后的目录
 
  
 
+
+
+#### 编译安装
+
 ```sh
+make
+
+
 make PREFIX=/usr/local/redis install
 ```
 
@@ -36,11 +77,11 @@ make PREFIX=/usr/local/redis install
 
 
 
-会告诉你配置文件目录
+## 使用
 
-### 启动
 
-启动服务端
+
+### 启动服务端
 
 ```sh
 //方式一：使用brew帮助我们启动软件
@@ -51,12 +92,14 @@ redis-server /opt/homebrew/etc/redis.conf
 
 
 
-启动客户端
+### 启动客户端
 
 ```sh
 redis-cli -h 127.0.0.1 -p 6379
 
 redis-cli
+
+redis-cli -p 6379
 ```
 
 ### 关闭
@@ -67,22 +110,11 @@ redis-cli shutdown
 
 
 
-
-
-### linux安装
-
-
-
-
+### 测试
 
 ```sh
-yum install gcc
-
-gcc --version
-
-
-
-
+redis-cli
+ping
 ```
 
 
@@ -97,7 +129,169 @@ gcc --version
 
 
 
+### 配置后台启动
+
+
+
+daemonize no改成yes
+
+
+
 ```sh
 daemonize yes
 ```
+
+
+
+
+
+
+
+### include
+
+导入一个文件
+
+```sh
+include /opt/homebrew/etc/redis.conf
+```
+
+
+
+### 网络配置
+
+#### bind
+
+默认情况bind=127.0.0.1只能接受本机的访问请求
+
+不写的情况下，无限制接受任何ip地址的访问
+
+如果开启了protected-mode，那么在没有设定bind ip且没有设密码的情况下，Redis只允许接受本机的响应
+
+
+
+
+
+### protected-mode
+
+
+
+保护模式，推荐设置为false
+
+
+
+
+
+### port
+
+端口号
+
+
+
+
+
+### tcp-backlog
+
+
+
+设置tcp的backlog，backlog其实是一个连接队列，backlog队列总和=未完成三次握手队列 + 已经完成三次握手队列。
+
+
+
+在高并发环境下你需要一个高backlog值来避免慢客户端连接问题。
+
+
+
+注意Linux内核会将这个值减小到/proc/sys/net/core/somaxconn的值（128），所以需要确认增大/proc/sys/net/core/somaxconn和/proc/sys/net/ipv4/tcp_max_syn_backlog（128）两个值来达到想要的效果
+
+
+
+
+
+#### timeout
+
+一个空闲的客户端维持多少秒会关闭，0表示关闭该功能。即永不关闭。
+
+
+
+
+
+#### tcp-keepalive
+
+对访问客户端的一种心跳检测，每个n秒检测一次。
+
+单位为秒，如果设置为0，则不会进行Keepalive检测，建议设置成60 
+
+
+
+
+
+
+
+### 通用
+
+
+
+#### daemonize
+
+是否为后台进程，设置为yes
+
+守护进程，后台启动
+
+
+
+
+
+#### pidfile
+
+存放pid文件的位置，每个实例会产生一个不同的pid文件
+
+
+
+```sh
+pidfile /var/run/redis_6379.pid
+```
+
+
+
+#### loglevel
+
+
+
+指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为**notice**
+
+四个级别根据使用阶段来选择，生产环境选择notice 或者warning
+
+
+
+
+
+#### logfile
+
+日志文件名称
+
+
+
+#### datasource
+
+设定库的数量 默认16，默认数据库为0，可以使用SELECT <dbid>命令在连接上指定数据库id
+
+
+
+
+
+
+
+### 权限
+
+#### 密码
+
+
+
+```sh
+requirepass 123456
+```
+
+### limit
+
+
 

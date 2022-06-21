@@ -95,3 +95,26 @@ a
 
 
 
+
+
+
+
+
+
+
+
+```sh
+127.0.0.1:6379> acl list
+1) "user default on nopass ~* &* +@all"
+```
+
+
+
+
+
+
+
+```sh
+ acl setuser matt
+```
+
