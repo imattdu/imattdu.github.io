@@ -40,7 +40,7 @@ brew install redis
 
 
 
-### linux安装
+### linux安装 todo
 
 
 
@@ -171,7 +171,7 @@ include /opt/homebrew/etc/redis.conf
 
 
 
-### protected-mode
+#### protected-mode
 
 
 
@@ -181,7 +181,7 @@ include /opt/homebrew/etc/redis.conf
 
 
 
-### port
+#### port
 
 端口号
 
@@ -189,7 +189,7 @@ include /opt/homebrew/etc/redis.conf
 
 
 
-### tcp-backlog
+#### tcp-backlog
 
 
 
@@ -271,7 +271,7 @@ pidfile /var/run/redis_6379.pid
 
 
 
-#### datasource
+#### database
 
 设定库的数量 默认16，默认数据库为0，可以使用SELECT <dbid>命令在连接上指定数据库id
 
@@ -294,4 +294,83 @@ requirepass 123456
 ### limit
 
 
+
+
+
+####  maxclients
+
+设置redis同时可以与多少个客户端进行连接,默认为10000个
+
+
+
+
+
+如果达到了此限制，redis则会拒绝新的连接请求，并且向这些连接请求方发出“max number of clients reached”以作回应。
+
+
+
+
+
+#### maxmemory
+
+
+
+最大内存
+
+
+
+
+
+
+
+#### maxmemory-policy
+
+淘汰规则
+
+volatile-lru：使用LRU算法移除key，只对设置了过期时间的键；（最近最少使用）
+
+ allkeys-lru：在所有集合key中，使用LRU算法移除key
+
+volatile-random：在过期集合中移除随机的key，只对设置了过期时间的键
+
+ allkeys-random：在所有集合key中，移除随机的key
+
+volatile-ttl：移除那些TTL值最小的key，即那些最近要过期的key
+
+noeviction：不进行移除。针对写操作，只是返回错误信息
+
+
+
+
+
+
+
+#### maxmemory-samples
+
+
+
+
+
+设置样本数量，LRU算法和最小TTL算法都并非是精确的算法，而是估算值，所以你可以设置样本的大小，redis默认会检查这么多个key并选择其中LRU的那个。
+
+一般设置3到7的数字，数值越小样本越不准确，但性能消耗越小。
+
+
+
+
+
+
+
+
+
+
+
+```sh
+# 1k => 1000 bytes
+# 1kb => 1024 bytes
+# 1m => 1000000 bytes
+# 1mb => 1024*1024 bytes
+# 1g => 1000000000 bytes
+# 1gb => 1024*1024*1024 bytes
+```
 
