@@ -36,6 +36,14 @@ brew install redis
 
 
 
+配置文件
+
+/opt/homebrew/etc/redis.conf
+
+
+
+
+
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/202205310300731.png)
 
 
