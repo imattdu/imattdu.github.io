@@ -141,7 +141,7 @@ ping
 
 
 
-daemonize no改成yes
+1.daemonize no改成yes
 
 
 
@@ -149,7 +149,7 @@ daemonize no改成yes
 daemonize yes
 ```
 
-
+2.注释掉bind
 
 
 
