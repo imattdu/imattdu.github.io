@@ -429,6 +429,586 @@ unwatch 取消对key的监视
 
 
 
+
+
+
+
+
+
+
+
+
+
+## 持久化
+
+### rdb
+
+
+
+
+
+#### what
+
+在指定的时间间隔内将内存中的数据集快照写入磁盘， 也就是行话讲的Snapshot快照，它恢复时是将快照文件直接读到内存里
+
+
+
+
+
+#### source
+
+
+
+##### fork todo
+
+Redis会单独创建（fork）一个子进程来进行持久化，会先将数据写入到 一个临时文件中，待持久化过程都结束了，再用这个临时文件替换上次持久化好的文件。
+
+
+
+ 整个过程中，主进程是不进行任何IO操作的，这就确保了极高的性能 如果需要进行大规模数据的恢复，且对于数据恢复的完整性不是非常敏感，那RDB方式要比AOF方式更加的高效。**RDB**的缺点是最后一次持久化后的数据可能丢失。
+
+
+
+
+
+
+
+#### config
+
+
+
+##### 指定文件位置
+
+redis.conf
+
+```sh
+dir /opt/homebrew/var/db/redis/
+```
+
+##### 配置触发策略
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202207091120910.png)
+
+
+
+不设置save指令，或者给save传入空字符串
+
+
+
+
+
+###### 手动触发
+
+
+
+save ：save时只管保存，其它不管，全部阻塞。手动保存。不建议。
+
+bgsave：Redis会在后台异步进行快照操作，快照同时还可以响应客户端请求。
+
+
+
+
+
+##### stop-writes-on-bgsave-error
+
+
+
+当Redis无法写入磁盘的话，直接关掉Redis的写操作。推荐yes.
+
+
+
+
+
+##### rdbcompression 
+
+使用压缩算法 , LZF
+
+
+
+##### rdbchecksum 检查完整性
+
+
+
+
+
+
+
+#### 优点缺点
+
+
+
+##### 优点
+
+l 节省磁盘空间
+
+l 恢复速度快
+
+
+
+##### 缺点
+
+
+
+虽然Redis在fork时使用了**写时拷贝技术**,但是如果数据庞大时还是比较消耗性能。
+
+在备份周期在一定间隔时间做一次备份，所以如果Redis意外down掉的话，就会丢失最后一次快照后的所有修改。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### aof
+
+
+
+#### what
+
+
+
+以**日志**的形式来记录每个写操作（增量保存），将Redis执行过的所有写指令记录下来(**读操作不记录**)， **只许追加文件但不可以改写文件**，redis启动之初会读取该文件重新构建数据，
+
+
+
+
+
+换言之，redis 重启的话就根据日志文件的内容将写指令从前到后执行一次以完成数据的恢复工作
+
+
+
+
+
+#### source
+
+##### 如何同步
+
+- 客户端的请求写命令会被append追加到AOF缓冲区内；
+- AOF缓冲区根据AOF持久化策略[always,everysec,no]将操作sync同步到磁盘的AOF文件中；
+- AOF文件大小超过重写策略或手动重写时，会对AOF文件rewrite重写，压缩AOF文件容量
+- Redis服务重启时，会重新load加载AOF文件中的写操作达到数据恢复的目的
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202207091601939.png)
+
+
+
+
+
+
+
+##### 压缩
+
+###### what
+
+AOF采用文件追加方式，文件会越来越大为避免出现此种情况，新增了重写机制, 当AOF文件的大小超过所设定的阈值时，Redis就会启动AOF文件的内容压缩， 只保留可以恢复数据的最小指令集.可以使用命令bgrewriteaof
+
+
+
+AOF文件持续增长而过大时，会fork出一条新进程来将文件重写(也是先写临时文件最后再rename)，redis4.0版本后的重写，是指上就是把rdb 的快照，以二级制的形式附在新的aof头部，作为已有的历史数据，替换掉原来的流水账操作。
+
+
+
+
+
+###### source
+
+
+
+- bgrewriteaof触发重写，判断是否当前有bgsave或bgrewriteaof在运行，如果有，则等待该命令结束后再继续执行。
+- 主进程fork出子进程执行重写操作，保证主进程不会阻塞。
+- 子进程遍历redis内存中数据到临时文件，客户端的写请求同时写入aof_buf缓冲区和aof_rewrite_buf重写缓冲区保证原AOF文件完整以及新AOF文件生成期间的新的数据修改动作不会丢失。
+- 1).子进程写完新的AOF文件后，向主进程发信号，父进程更新统计信息。2).主进程把aof_rewrite_buf中的数据写入到新的AOF文件。
+- 使用新的AOF文件覆盖旧的AOF文件，完成AOF重写。
+
+
+
+
+
+###### config
+
+**写配置**
+
+如果 no-appendfsync-on-rewrite=yes ,不写入aof文件只写入缓存，用户请求不会阻塞，但是在这段时间如果宕机会丢失这段时间的缓存数据。（降低数据安全性，提高性能）
+
+​    如果 no-appendfsync-on-rewrite=no, 还是会把数据往磁盘里刷，但是遇到重写操作，可能会发生阻塞。（数据安全，但是性能降低）
+
+触发机制，何时重写
+
+
+
+
+
+
+
+**触发策略配置**
+
+Redis会记录上次重写时的AOF大小，默认配置是当AOF文件大小是上次rewrite后大小的一倍且文件大于64M时触发
+
+重写虽然可以节约大量磁盘空间，减少恢复时间。但是每次重写还是有一定的负担的，因此设定Redis要满足一定条件才会进行重写。 
+
+auto-aof-rewrite-percentage：设置重写的基准值，文件达到100%时开始重写（文件是原来重写后文件的2倍时触发）
+
+auto-aof-rewrite-min-size：设置重写的基准值，最小文件64MB。达到这个值开始重写。
+
+例如：文件达到70MB开始重写，降到50MB，下次什么时候开始重写？100MB
+
+系统载入时或者上次重写完毕时，Redis会记录此时AOF大小，设为base_size,
+
+
+
+如果Redis的AOF当前大小>= base_size +base_size*100% (默认)且当前大小>=64mb(默认)的情况下，Redis会对AOF进行重写。 
+
+
+
+
+
+
+
+
+
+#### config
+
+
+
+###### 开启配置
+
+可以在redis.conf中配置文件名称，默认为 appendonly.aof
+
+AOF文件的保存路径，同RDB的路径一致。
+
+
+
+默认aof不开启，如果aof,rdb同时开启，则使用aof
+
+
+
+
+
+###### 同步频率配置
+
+appendfsync always
+
+始终同步，每次Redis的写入都会立刻记入日志；性能较差但数据完整性比较好
+
+appendfsync everysec
+
+每秒同步，每秒记入日志一次，如果宕机，本秒的数据可能丢失。
+
+appendfsync no
+
+redis不主动进行同步，把同步时机交给操作系统。
+
+
+
+
+
+#### use
+
+###### 恢复
+
+正常恢复
+
+- 修改默认的appendonly no，改为yes
+- 将有数据的aof文件复制一份保存到对应目录(查看目录：config get dir)
+- 恢复：重启redis然后重新加载
+
+
+
+异常恢复
+
+- 修改默认的appendonly no，改为yes
+- 如遇到AOF文件损坏，通过/usr/local/bin/redis-check-aof--fix appendonly.aof进行修复
+- 备份被写坏的AOF文件
+- 恢复：重启redis，然后重新加载
+
+
+
+
+
+#### summary
+
+
+
+##### advantages
+
+- 备份机制更稳健，丢失数据概率更低。
+
+
+
+##### disadvantages
+
+
+
+- 比起RDB占用更多的磁盘空间。
+- 恢复备份速度要慢。
+- 每次读写都同步的话，有一定的性能压力。
+
+
+
+
+
+
+
+
+
+## 主从复制
+
+
+
+
+
+### what
+
+读写分离，master写，复制到slaver, slaver进行读
+
+
+
+
+
+### use
+
+#### 基础
+
+##### 配置
+
+
+
+从单机中的redis.conf复制一份redis.conf
+
+
+
+新建redis6379.conf,redis6380.conf,redis6381.conf
+
+填入如下内容，修改**pidfile,port,dbfilename**
+
+```sh
+include /opt/homebrew/etc/myredis/redis.conf
+pidfile "/var/run/redis_6379.pid"
+port 6379
+dbfilename dump6379.rdb
+```
+
+##### 启动
+
+启动三台redis服务器
+
+```sh
+❯ redis-server ./redis6379.conf
+❯ redis-server ./redis6380.conf
+❯ redis-server ./redis6381.conf
+```
+
+
+
+##### 查看
+
+```sh
+127.0.0.1:6379> info replication
+# Replication
+role:master
+connected_slaves:0
+master_failover_state:no-failover
+master_replid:08f03d154f528b0980ccb908bff473e966a19509
+master_replid2:0000000000000000000000000000000000000000
+master_repl_offset:0
+second_repl_offset:-1
+repl_backlog_active:0
+repl_backlog_size:1048576
+repl_backlog_first_byte_offset:0
+repl_backlog_histlen:0
+```
+
+
+
+##### 从机配置 主机不配置
+
+6380,6381配置
+
+```sh
+slaveof 127.0.0.1 6379
+```
+
+
+
+##### 注意
+
+从机写数据就会报错
+
+```sh
+127.0.0.1:6381> set 1 1
+(error) READONLY You can't write against a read only replica.
+```
+
+主机挂掉重启即可
+
+从机重启需要重新配置slaveof 127.0.0.1 6379，也可以写在配置文件中
+
+
+
+
+
+#### 常见的三种主从模式
+
+
+
+##### 一主二从
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202207122357675.png)
+
+
+
+
+
+##### 薪火相传
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202207122359620.png)
+
+
+
+
+
+降低了master复制时的写压力
+
+主机挂掉 从机仍然是从机
+
+
+
+##### 反客为主
+
+
+
+基于薪火相传
+
+当一个master宕机后，后面的slave可以立刻升为master，其后面的slave不用做任何修改。
+
+
+
+使用如下命令
+
+```sh
+slaveof no one 
+```
+
+
+
+
+
+
+
+#### 哨兵模式
+
+
+
+##### what
+
+**反客为主的自动版**，能够后台监控主机是否故障，如果故障了根据投票数自动将从库转换为主库
+
+
+
+##### use
+
+
+
+使用一主二仆， master:6379, slaver:6380,6381
+
+
+
+配置文件下新建sentinel.conf
+
+```sh
+sentinel monitor mymaster 127.0.0.1 6379 1
+```
+
+
+
+启动哨兵
+
+```sh
+redis-sentinel  ./sentinel.conf 
+```
+
+
+
+
+
+
+
+选举规则
+
+1
+
+master挂掉，则根据下列条件从slaver中选举一个master
+
+优先级在redis.conf中默认：slave-priority 100，值越小优先级越高
+
+偏移量是指获得原主机数据最全的
+
+每个redis实例启动后都会随机生成一个40位的runid
+
+
+
+2sentine向原主服务的从服务发送slaveof命令，发送复制数据
+
+
+
+3.如果一个master已经下线又重新上线，sentinel会向其发送slaveof命令，让其成为新主的从
+
+
+
+
+
+
+
+### source
+
+#### 复制原理
+
+
+
+
+
+- Slave启动成功连接到master后会发送一个sync命令
+- Master接到命令启动后台的存盘进程，同时收集所有接收到的用于修改数据集命令， 在后台进程执行完毕之后，master将传送整个数据文件到slave,以完成一次完全同步
+- 全量复制：而slave服务在接收到数据库文件数据后，将其存盘并加载到内存中。
+- 增量复制：Master继续将新的所有收集到的修改命令依次传给slave,完成同步
+- 但是只要是重新连接master,一次完全同步（全量复制)将被自动执行
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 集群
+
+
+
+
+
 查看集群信息
 
  ```sh
