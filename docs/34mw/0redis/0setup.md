@@ -153,7 +153,7 @@ daemonize yes
 
 
 
-
+3.protected-mode设置为false
 
 ### include
 

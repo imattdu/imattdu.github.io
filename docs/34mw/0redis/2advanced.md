@@ -316,10 +316,6 @@ Redis事务是一个单独的隔离操作：事务中所有命令都会序列化
 
 
 
-
-
-
-
 ### multi exec discard
 
 
@@ -424,12 +420,6 @@ unwatch 取消对key的监视
 Ø 不保证原子性 
 
 事务中如果有一条命令执行失败，其后的命令仍然会被执行，没有回滚 
-
-
-
-
-
-
 
 
 
@@ -554,18 +544,6 @@ l 恢复速度快
 虽然Redis在fork时使用了**写时拷贝技术**,但是如果数据庞大时还是比较消耗性能。
 
 在备份周期在一定间隔时间做一次备份，所以如果Redis意外down掉的话，就会丢失最后一次快照后的所有修改。
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1005,11 +983,106 @@ master挂掉，则根据下列条件从slaver中选举一个master
 
 ## 集群
 
+### what
+
+Redis 集群实现了对Redis的水平扩容，即启动N个redis节点，将整个数据库分布存储在这N个节点中，每个节点存储总数据的1/N。
+
+
+
+Redis 集群通过分区（partition）来提供一定程度的可用性（availability）： 即使集群中有一部分节点失效或者无法进行通讯， 集群也可以继续处理命令请求。
 
 
 
 
-查看集群信息
+
+### how
+
+#### 搭建
+
+##### 删除持计化文件
+
+查看redis.conf配置文件持久化文件目录
+
+```sh
+dir /opt/homebrew/var/db/redis/
+```
+
+删除持久化文件
+
+
+
+##### 新建如下配置文件
+
+在如下目录新建redis6379.conf
+
+redis6379.conf redis6380.conf redis6381.conf redis6389.conf redis6390.conf redis6391.conf
+
+```sh
+/opt/homebrew/etc/myredis/cluster
+```
+
+cluster-enabled yes  打开集群模式
+
+cluster-config-file nodes-6379.conf 设定节点配置文件名
+
+cluster-node-timeout 15000  设定节点失联时间，超过该时间（毫秒），集群自动进行主从切换。
+
+
+
+```sh
+include /opt/homebrew/etc/myredis/redis.conf
+port 6379
+pidfile "/var/run/redis_6379.pid"
+
+dbfilename "dump6379.rdb"
+logfile "/opt/homebrew/var/db/redis/redis_cluster/logs/redis_err_6379.log"
+
+
+cluster-enabled yes
+cluster-config-file nodes-6379.conf
+cluster-node-timeout 15000
+```
+
+##### 启动服务端
+
+启动6台redis,
+
+启动可能会报错，需要新建日志所在的目录
+
+```sh
+❯ redis-server ./redis6379.conf
+❯ redis-server ./redis6380.conf
+❯ redis-server ./redis6381.conf
+❯ redis-server ./redis6389.conf
+❯ redis-server ./redis6390.conf
+❯ redis-server ./redis6391.conf
+```
+
+
+
+##### 合体 
+
+不要使用127.0.0.1,使用真实ip192.168.199.222
+
+```sh
+redis-cli --cluster create --cluster-replicas 1 192.168.199.222:6379 192.168.199.222:6380 192.168.199.222:6381 192.168.199.222:6389 192.168.199.222:6390 192.168.199.222:6391
+```
+
+
+
+##### 启动客户端
+
+```sh
+redis-cli -c -p 6379
+```
+
+
+
+#### 基础使用
+
+
+
+##### 查看集群信息
 
  ```sh
  cluster nodes
@@ -1023,17 +1096,41 @@ master挂掉，则根据下列条件从slaver中选举一个master
 
 
 
+#### slots
+
+
+
+
+
+一个 Redis 集群包含 16384 个插槽（hash slot）， 数据库中的每个键都属于这 16384 个插槽的其中一个， 
+
+集群使用公式 CRC16(key) % 16384 来计算键 key 属于哪个槽， 其中 CRC16(key) 语句用于计算键 key 的 CRC16 校验和 。
+
+集群中的每个节点负责处理一部分插槽。 举个例子， 如果一个集群可以有主节点， 其中：
+
+节点 A 负责处理 0 号至 5460 号插槽。
+
+节点 B 负责处理 5461 号至 10922 号插槽。
+
+节点 C 负责处理 10923 号至 16383 号插槽。
+
+
+
+
+
+#### set mset
+
+
+
+不在一个slot下的键值，是不能使用mget,mset等多键操作。
+
+可以通过{}来定义组的概念，从而使key中{}内相同内容的键值对放到一个slot中去。
+
 ```sh
 127.0.0.1:6379> set s1 1
 -> Redirected to slot [15224] located at 192.168.199.222:6381
 OK
 ```
-
-
-
-
-
-
 
 
 
@@ -1046,27 +1143,88 @@ OK
 
 
 
-只能看自己槽位 别的看不到
+
+
+#### 其他操作
 
 
 
-
+判断某个key在哪个槽位
 
 ```sh
-127.0.0.1:6380> cluster nodes
-2fcb1f4118c3ba1d0f00cc0e859e812fae552942 192.168.199.222:6379@16379 master,fail - 1655622346443 1655622343385 1 disconnected
-73d2f2aa22351cb220cb4d70da9ddcbcf0066e40 192.168.199.222:6381@16381 master - 0 1655622363871 3 connected 10923-16383
-2a7c5c0eb6a9d43298245584f1c1fad4420b3aaf 192.168.199.222:6390@16390 slave 73d2f2aa22351cb220cb4d70da9ddcbcf0066e40 0 1655622364000 3 connected
-23b19e64cf536fdffc11b7748e01d9b232f30045 192.168.199.222:6391@16391 master - 0 1655622364903 7 connected 0-5460
-282398ec24fbcf9743a50d8389dcc536c2dee6a0 192.168.199.222:6389@16389 slave 6511a15d81a488b8e776f73e655d27bd36004e5c 0 1655622365933 2 connected
-6511a15d81a488b8e776f73e655d27bd36004e5c 192.168.199.222:6380@16380 myself,master - 0 1655622362000 2 connected 5461-10922
+cluster keyslot s1
+```
+
+
+
+统计15345槽位有几个key
+
+```sh
+cluster countkeysinslot 15345
+```
+
+
+
+返回槽位2843 2 个key
+
+```sh
+192.168.199.222:6379> cluster getkeysinslot 2843 2
+1) "s2"
 ```
 
 
 
 
 
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202206191509291.png)
+
+
+### 故障恢复
+
+
+
+如果某一段插槽的主从都挂掉，而cluster-require-full-coverage 为yes ，那么 ，整个集群都挂掉
+
+如果某一段插槽的主从都挂掉，而cluster-require-full-coverage 为no ，那么，该插槽数据全都不能使用，也无法存储。
+
+redis.conf中的参数 cluster-require-full-coverage
+
+
+
+
+
+
+
+### summary
+
+
+
+#### advange
+
+
+
+实现扩容
+
+分摊压力
+
+#### disadvange
+
+多键操作是不被支持的 
+
+多键的Redis事务是不被支持的。lua脚本不被支持
+
+由于集群方案出现较晚，很多公司已经采用了其他的集群方案，而代理或者客户端分片的方案想要迁移至redis cluster，需要整体迁移而不是逐步过渡，复杂度较大。
+
+
+
+
+
+### api
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202207142318046.png)
 
 
 
@@ -1076,7 +1234,117 @@ OK
 
 
 
-分布式锁
+
+
+
+
+## redis应用问题
+
+
+
+
+
+### 缓存穿透
+
+
+
+#### 问题描述
+
+key 对应的数据缓存中没有，数据库中也没有
+
+用户利用这些漏洞攻击 从而压垮数据库
+
+
+
+
+
+#### 解决方案
+
+
+
+1.对空值缓存：如果一个查询返回的数据为空（不管是数据是否不存在），我们仍然把这个空结果（null）进行缓存，设置空结果的过期时间会很短，最长不超过五分钟
+
+2.设置可访问的名单（白名单）：
+
+使用bitmaps类型定义一个可以访问的名单，名单id作为bitmaps的偏移量，每次访问和bitmap里面的id进行比较，如果访问id不在bitmaps里面，进行拦截，不允许访问。
+
+3.采用布隆过滤器：(布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的二进制向量(位图)和一系列随机映射函数（哈希函数）。
+
+布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查询时间都远远超过一般的算法，缺点是有一定的误识别率和删除困难。)
+
+将所有可能存在的数据哈希到一个足够大的bitmaps中，一个一定不存在的数据会被 这个bitmaps拦截掉，从而避免了对底层存储系统的查询压力。
+
+4.进行实时监控：当发现Redis的命中率开始急速降低，需要排查访问对象和访问的数据，和运维人员配合，可以设置黑名单限制服务
+
+
+
+
+
+
+
+
+
+### 缓存击穿
+
+
+
+
+
+某个key对应的数据过期，此时若有大量并发请求过来，这些请求发现缓存过期一般都会从后端DB加载数据并回设到缓存，这个时候大并发的请求可能会瞬间把后端DB压垮。
+
+
+
+
+
+#### 解决方案
+
+
+
+1.对应热门数据，过期之前调整过期时长
+
+
+
+2.使用锁
+
+
+
+2.1就是在缓存失效的时候（判断拿出来的值为空），不是立即去load db。
+
+2.2先使用缓存工具的某些带成功操作返回值的操作（比如Redis的SETNX）
+
+​	去set一个mutex key
+
+2.3当操作返回成功时，再进行load db的操作，并回设缓存,最后删除mutex key；
+
+2.4当操作返回失败，证明有线程在load db，当前线程睡眠一段时间再重试整个get缓存的方法。
+
+
+
+
+
+### 缓存雪崩
+
+
+
+key对应的数据存在，但在redis中过期，此时若有大量并发请求过来，这些请求发现缓存过期一般都会从后端DB加载数据并回设到缓存，这个时候大并发的请求可能会瞬间把后端DB压垮。
+
+**缓存雪崩与缓存击穿的区别在于这里针对很多key缓存，前者则是某一个key**
+
+
+
+
+
+#### 解决方案
+
+1.设置过期时间增加一个随机值
+
+2.使用锁
+
+
+
+
+
+### 分布式锁
 
 
 
@@ -1101,23 +1369,4 @@ a
 
 
 
-
-
-
-
-
-```sh
-127.0.0.1:6379> acl list
-1) "user default on nopass ~* &* +@all"
-```
-
-
-
-
-
-
-
-```sh
- acl setuser matt
-```
 
