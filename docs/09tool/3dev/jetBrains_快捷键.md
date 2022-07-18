@@ -71,8 +71,7 @@ CTRL+ALT+B: 查看类的实现
 |        command+鼠标悬停，点击         |    查看方法说明，进入方法     |
 |                                       |                               |
 |         command + shift + +/-         |      展开/折叠 所有方法       |
-|     command + option + shifit + -     |         折叠当前方法          |
-|         command + option + +          |         展开当前方法          |
+|     command + option  + +/-     |         折叠当前方法          |
 
 
 
