@@ -1,6 +1,6 @@
-# sql介绍
+## sql介绍
 
-## sql分类
+### sql分类
 
 SQL语言在功能上主要分为如下3大类:
 
@@ -27,13 +27,13 @@ SELECT**是**SQL**语言的基础，最为重要。
 
 因为查询语句使用的非常的频繁，所以很多人把查询语句单拎出来一类:DQL(数据查询语言)。
 
-还有单独将 COMMIT 、 ROLLBACK 取出来称为TCL (Transaction Control Language，事务控制语 言)。
+还有单独将 COMMIT 、 ROLLBACK 取出来称为TCL (Transaction Control Language，事务控制语言)。
 
 
 
 
 
-## 规范
+### 规范
 
 
 
@@ -67,11 +67,25 @@ SQL 关键字、函数名、绑定变量等都大写
 
 
 
-# 基础操作
+## 基础操作
 
 
 
-## 基础查询
+
+
+### 导入
+
+
+
+
+
+```mysql
+source xxx.sql
+```
+
+
+
+### 基础查询
 
 
 
@@ -359,14 +373,6 @@ xor 异或
 
 
 
-
-
-
-
-
-
-
-
 | 运算符 |   作用   |
 | :----: | :------: |
 |   &    |  按位与  |
@@ -399,10 +405,6 @@ select *
 from `user`
 order by id desc, name desc
 ```
-
-
-
-
 
 
 
@@ -493,15 +495,7 @@ WHERE a.a1 > b.a1
 
 
 
-
-
-
-
-
-
 ### c99
-
-
 
 
 
@@ -514,8 +508,6 @@ ON a.id = b.id
 INNER JOIN C c
 ON c.id = b.id
 ```
-
-
 
 
 
@@ -657,5 +649,467 @@ select 字段列表
 from A表 right join B表
 on 关联条件
 where 从表关联字段 is null and 等其他子句
+```
+
+
+
+
+
+
+
+
+
+## 聚合函数
+
+
+
+
+
+
+
+### 函数介绍
+
+
+
+#### AVG SUM
+
+可以对数值型数据使用AVG 和 SUM 函数
+
+
+
+
+
+#### MIN MAX
+
+可以对任意数据类型的数据使用 MIN 和 MAX 函数。
+
+
+
+#### COUNT
+
+COUNT(*)返回表中记录总数，适用于任意数据类型。
+
+COUNT(expr) 返回expr不为空的记录总数。
+
+
+
+
+
+问题：用count(*)，count(1)，count(列名)谁好呢?
+
+对于MyISAM引擎的表是没有区别的。这种引擎内部有一计数器在维护着行数。 Innodb引擎的表用count(*),count(1)直接读行数，复杂度是O(n)，因为innodb真的要去数一遍。但好 于具体的count(列名)。 
+
+
+
+问题：能不能使用count(列名)替换count(*)? *
+
+不要使用 count(列名)来替代 count(*) ， count(*) 是 SQL92 定义的标准统计行数的语法，跟数 据库无关，跟 NULL 和非 NULL 无关。 说明：count(*)会统计值为 NULL 的行，而 count(列名)不会统计此列为 NULL 值的行。
+
+
+
+
+
+
+
+### GROUP BY
+
+
+
+
+
+```sql
+SELECT id, `name`, SUM(id)
+FROM user
+where age > 18
+GROUP BY id, name
+```
+
+**在SELECT列表中所有未包含在组函数中的列都应该包含在 GROUP BY子句中**
+
+
+
+```sql
+SELECT id, `name`, SUM(id)
+FROM user
+where age > 18
+GROUP BY id, name WITH ROLLUP
+```
+
+WITH ROLLUP:所有记录求聚合,
+
+当使用ROLLUP时，不能同时使用ORDER BY子句进行结果排序，即ROLLUP和ORDER BY是互相排斥 的。
+
+
+
+
+
+### HAVING
+
+
+
+having 需要和group by搭配使用
+
+
+
+```sql
+SELECT `name` ,max(id)
+FROM `user`
+GROUP BY name
+HAVING max(ID) > 1
+```
+
+
+
+
+
+区别1：WHERE 可以直接使用表中的字段作为筛选条件，但不能使用分组中的计算函数作为筛选
+
+区别2：如果需要通过连接从关联表中获取需要的数据，WHERE 是先筛选后连接，而 HAVING 是先连接 后筛选。
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 子查询
+
+
+
+
+
+### 单行子查询
+
+
+
+#### operator
+
+
+
+| op   | meaning  |
+| ---- | -------- |
+| =    | 等于     |
+| >    | 大于     |
+| >=   | 大于等于 |
+| <    | 小于     |
+| <=   | 小于等于 |
+| <>   | 不等于   |
+
+
+
+
+
+
+
+#### 案例
+
+##### 返回公司工资最少的员工的last_name,job_id和salary
+
+```sql
+SELECT last_name, job_ib, salary
+FROM employees
+WHERE salary = (
+	SELECT MIN(salary)
+  FROM employees
+)
+AND employee_id NOT IN (174, 141)
+```
+
+##### 查询与141号或174号员工的manager_id和department_id相同的其他员工的employee_id， manager_id，department_id
+
+
+
+不成对比较
+
+```sql
+SELECT employee_id, manager_id, department_id
+FROM employees
+WHERE manager_id in (
+	SELECT manager_id
+  FROM employees
+  WHERE employee_id IN (174, 141)
+)
+AND department_id IN (
+	SELECT department_id 
+  FROM employees
+  WHERE employee_id IN (174, 141)
+)
+AND employee_id NOT IN (174, 141)
+```
+
+
+
+
+
+#### case 子查询
+
+显式员工的employee_id,last_name和location。其中，若员工department_id与location_id为1800 的department_id相同，则location为’Canada’，其余则为’USA’。
+
+
+
+```sql
+SELECT employee_id, last_name, (
+	CASE department_id
+  WHEN (
+  	SELECT department_id
+    FROM departments
+    WHERE location_id = 1800
+    THEN 'Canada' 
+    ELSE 'USA' 
+    END
+  ) 
+) location
+FROM employees
+```
+
+
+
+
+
+
+
+
+
+#### 注意事项
+
+如果子查询返回空则主查询也没数据
+
+多行子查询使用单行比较符
+
+
+
+
+
+
+
+
+
+### 多行子查询
+
+
+
+
+
+#### 操作符
+
+| op   | meaning 含义                                             |
+| ---- | -------------------------------------------------------- |
+| IN   | 任意一个                                                 |
+| ANY  | 需要和单行比较操作符一起使用，和子查询返回的某一个值比较 |
+| ALL  | 需要和单行比较操作符一起使用，和子查询返回的所有值比较   |
+| SOME | 实际上是ANY的别名，作用相同，一般常使用ANY               |
+
+
+
+
+
+
+
+#### 案例
+
+##### 返回其它job_id中比job_id为'IT_PROG'部门**任一**工资低的员工的员工号、姓名、job_id 以及salary
+
+
+
+```sql
+SELECT employee_id, last_name, job_id, salary
+FROM employee
+WHERE salary < ANY (
+	SELECT salary
+  FROM employees
+  WHERE job_id = 'IT_PROG'
+)
+```
+
+
+
+
+
+返回其它job_id中比job_id为'IT_PROG'部门**所有**工资低的员工的员工号、姓名、job_id 以及salary
+
+
+
+```sql
+SELECT employee_id, last_name, job_id, salary
+FROM employee
+WHERE salary < ALL (
+	SELECT salary
+  FROM employees
+  WHERE job_id = 'IT_PROG'
+)
+```
+
+
+
+
+
+##### 查询平均工资最低的部门id
+
+
+
+
+
+方式一
+
+
+
+```sql
+SELECT department_id
+FROM employee
+GROUP BY department_id
+HAVING AVG(salary) = (
+	SELECT MIN(avg_sal)
+  FROM (
+  	SELECT department_id, AVG(salary) avg_sal
+    FROM employees
+    GROUP BY department_id
+  ) dept_avg_sal
+)
+```
+
+
+
+##### 方式二 <= ALL
+
+
+
+```sql
+SELECT department_id
+FROM employee
+GROUP BY department_id
+HAVING AVG(salary) <= ALL (
+	SELECT avg_sal
+  FROM (
+  	SELECT department_id, AVG(salary) avg_sal
+    FROM employees
+    GROUP BY department_id
+  ) dept_avg_sal
+)
+```
+
+
+
+
+
+
+
+
+
+### 关联查询
+
+
+
+
+
+#### definition/define 定义
+
+
+
+关联子查询：每执行一次外部查询，子查询需要重新计算一次
+
+
+
+
+
+#### 基础案例
+
+
+
+##### 查询员工中工资大于本部门平均工资的员工的last_name,salary和其department_id
+
+
+
+
+
+相关子查询
+
+```sql
+SELECT last_name, salary, department_id
+FROM employees emp_out
+WHERE salary > (
+	SELECT AVG(salary)
+  FROM employee
+  WHERE department_id = emp_out.deparment_id
+)
+```
+
+from子查询
+
+```sql
+SELECT e1.last_name, e1.salary, e1.department_id
+FROM employees e1, (
+  SELECT deaparment_id, AVG(salary) avg_sal_dept
+  FROM employeees
+  GROUP BY deparment_id
+) e2
+WHERE e1.department_id = e2.department_id
+AND e1.salary > e2.avg_sal_dept
+```
+
+
+
+
+
+order by 子查询
+
+查询员工的id,salary,按照department_name 排序
+
+
+
+```sql
+SELECT employee_id, salary
+FROM employee e
+ORDER BY (
+	SELECT department_name
+  FROM departments d
+  where e.department_id = d.department_id
+)
+```
+
+
+
+
+
+
+
+#### exists
+
+##### what
+
+EXISTS
+
+存在则不继续查找了，并返回TRUE
+
+
+
+NOT EXISTS
+
+存在则不继续查找了，并返回TRUE
+
+
+
+
+
+##### how
+
+查询公司管理者的employee_id，last_name，job_id，department_id信息
+
+
+
+```sql
+SELECT employee_id, last_name, department_id
+FROM employees e1
+WHERE EXISTS (
+  SELECT *
+  FROM employee e2
+  WHERE e1.manager_id = e2.employee_id
+)
+
 ```
 
