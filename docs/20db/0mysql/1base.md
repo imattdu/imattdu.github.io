@@ -776,8 +776,6 @@ HAVING max(ID) > 1
 
 
 
-
-
 ## 子查询
 
 
@@ -816,7 +814,7 @@ SELECT last_name, job_ib, salary
 FROM employees
 WHERE salary = (
 	SELECT MIN(salary)
-  FROM employees
+  FROM employees 
 )
 AND employee_id NOT IN (174, 141)
 ```
@@ -856,10 +854,10 @@ AND employee_id NOT IN (174, 141)
 ```sql
 SELECT employee_id, last_name, (
 	CASE department_id
-  WHEN (
-  	SELECT department_id
+  WHEN 
+  	(SELECT department_id
     FROM departments
-    WHERE location_id = 1800
+    WHERE location_id = 1800)
     THEN 'Canada' 
     ELSE 'USA' 
     END

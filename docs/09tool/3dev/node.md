@@ -29,8 +29,10 @@ npm config set prefix /Users/matt/workspace/nodeModules
 
 
 
+
+
 ```sh
-npm config get prefix /opt/homebrew
+npm install -g cnpm
 ```
 
 
@@ -40,6 +42,20 @@ npm config get prefix /opt/homebrew
 
 
 ```sh
-npm install -g cnpm
+npm config list //查看基本配置 
+npm config list -l //查看所有配置
+
+
+npm config get prefix
+```
+
+
+
+
+
+
+
+```sh
+npm config set registry https://registry.npmmirror.com
 ```
 

@@ -134,6 +134,7 @@ nav:
     - mysql:
       - 安装: 20db/0mysql/0setup.md
       - 基础使用: 20db/0mysql/1base.md
+      - 基础使用: 20db/0mysql/2advanced.md
   - web:
     - gin:
       - base: 23frame/gin/base.md

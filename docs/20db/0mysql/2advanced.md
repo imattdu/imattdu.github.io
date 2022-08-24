@@ -202,6 +202,134 @@ TRUNCATE TABLE `user`
 
 
 
+
+
+### 整数
+
+
+
+#### base
+
+整数类型一共有 5 种，包括 TINYINT、SMALLINT、MEDIUMINT、INT（INTEGER）和 BIGINT。
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202207230912167.png)
+
+
+
+
+
+#### 宽度
+
+
+
+```sql
+CREATE TABLE t31(
+	id int(8) UNSIGNED ZEROFILL 
+)
+```
+
+宽度是8,当输入的字符不足8位时会使用0填充，超过8位也不影响
+
+二者存储空间和宽度无关
+
+
+
+**如果没有负数可以使用**
+
+**UNSIGNED**
+
+
+
+
+
+
+
+### 小数
+
+
+
+不推荐使用浮点数
+
+
+
+#### 浮点数
+
+##### base
+
+
+
+ MySQL支持的浮点数类型，分别是 FLOAT、DOUBLE、REAL。
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202207230924054.png)
+
+
+
+REAL默认就是 DOUBLE。如果你把 SQL 模式设定为启用“ REAL_AS_FLOAT ”，那 么，MySQL 就认为 REAL 是 FLOAT。
+
+
+
+```sql
+SET sql_mode = “REAL_AS_FLOAT”;
+```
+
+
+
+MySQL 存储浮点数的格式为： 符号(S) 、 尾数(M) 和 阶码(E) 。因此，无论有没有符号，MySQL 的浮 点数都会存储表示符号的部分。因此， 所谓的无符号数取值范围，其实就是有符号数取值范围大于等于 零的部分。
+
+
+
+##### 精度说明
+
+
+
+FLOAT(M,D) 或 DOUBLE(M,D) 。这里，M称为 精度 ，D称为 标度 。(M,D)中 M=整数位+小数 位，D=小数位。 D<=M<=255，0<=D<=30。
+
+
+
+1.四舍五入后整数超过给定的范围则报错
+
+2.小数超过则不报错，删除多余的小数位并保存
+
+
+
+##### 为什么浮点数表示的不精准
+
+**如 果尾数不是 0 或 5（比如 9.624），你就无法用一个二进制数来精确表达。进而，就只好在取值允许的范 围内进行四舍五入**
+
+
+
+
+
+#### 定点数
+
+
+
+##### base
+
+**DECIMAL(M,D),DEC,NUMERIC      M+2字节       有效范围由M和D决定**
+
+DECIMAL(M,D) ,M被称为精度，D被称为标度。0<=M<=65， 0<=D<=30，如果不指定默认为DECIMAL(10,0)。
+
+定点数在MySQL内部是以 字符串 的形式进行存储，这就决定了它一定是精准的。
+
+
+
+如果插入的数据超过了定点数指定的范围也四舍五入处理
+
+
+
+##### 定点数 浮点数 区别
+
+浮点数：表示的范围大，但是不精准
+
+定点数：范围小但是精准
+
+
+
 ### 日期时间
 
 
@@ -281,8 +409,6 @@ YEAR类型用来表示年份，在所有的日期时间类型中所占用的存�
 8字节
 
 在格式上 为DATE类型和TIME类型的组合，可以表示为 YYYY-MM-DD HH:MM:SS ，其中YYYY表示年份，MM表示月 份，DD表示日期，HH表示小时，MM表示分钟，SS表示秒。
-
-
 
 
 
@@ -424,3 +550,86 @@ MyISAM 数据存储引擎和数据列：MyISAM数据表，最好使用固定长�
 text不允许默认值
 
 而且text和blob类型的数据删除后容易导致 “空洞”，使得文件碎片比较多，所以频繁使用的表不建议包含TEXT类型字段，建议单独分出去，单独用 一个表。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+```sql
+CREATE TABLE t1(
+	id int NOT NULL,
+	`name` VARCHAR(255)
+)
+
+ALTER TABLE t1 
+MODIFY id INT;
+
+INSERT INTO t1(`name`)
+VALUES ('matt')
+
+SELECT * FROM t1;
+```
+
+
+
+
+
+
+
+
+
+
+
+```sql
+SHOW TABLES
+
+DROP TABLE t2;
+
+CREATE TABLE t2(
+	id int UNIQUE,
+	`name` VARCHAR(255)
+)
+
+CREATE TABLE t2(
+	id int UNIQUE KEY,
+	`name` VARCHAR(255)
+)
+
+CREATE TABLE t2(
+	id int,
+	`name` VARCHAR(255)
+)
+
+ALTER TABLE t2
+ADD UNIQUE(id)
+
+ALTER TABLE t2 
+MODIFY id INT;
+
+INSERT INTO t2(id, `name`)
+VALUES 
+	(2, 'matt'),
+	(3, 'matt')
+SELECT * FROM t2;
+
+SHOW INDEX FROM t2;
+
+ALTER TABLE t2
+DROP INDEX id;
+
+```
+
+
+
