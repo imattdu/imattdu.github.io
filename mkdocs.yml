@@ -45,8 +45,8 @@ plugins:
       fallback_to_build_date: true
       enable_creation_date: false     
   - git-committers:
-      repository: imattdu/imattdu.github.io
-      token: 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  
+      repository: 'imattdu/imattdu.github.io'
+      token: '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' 
   - git-authors        
 
 
