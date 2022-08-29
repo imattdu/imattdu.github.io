@@ -1,0 +1,4648 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="mattのnote">
+      
+      
+        <meta name="author" content="matt">
+      
+      
+        <link rel="canonical" href="https://imatt.top/34mw/0redis/2advanced/">
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-8.2.12">
+    
+    
+      
+        <title>提高 - mattのnote</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.27ad92d8.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.cc9b2e1e.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="mattのnote" class="md-header__button md-logo" aria-label="mattのnote" data-md-component="logo">
+      
+  <img src="../../../images/matt.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mattのnote
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              提高
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/imattdu/imattdu.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    imattdu/imattdu.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        基础
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../09tool/1mac/0%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="md-tabs__link">
+        工具
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../10algorithm/base/0%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="md-tabs__link">
+        算法
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../20db/0mysql/0setup/" class="md-tabs__link">
+        db
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../23frame/gin/base/" class="md-tabs__link">
+        web
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../0setup/" class="md-tabs__link md-tabs__link--active">
+        中间件
+      </a>
+    </li>
+  
+
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="mattのnote" class="md-nav__button md-logo" aria-label="mattのnote" data-md-component="logo">
+      
+  <img src="../../../images/matt.png" alt="logo">
+
+    </a>
+    mattのnote
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/imattdu/imattdu.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    imattdu/imattdu.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="基础" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2" type="checkbox" id="__nav_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2">
+          go
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="go" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          go
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_1" type="checkbox" id="__nav_1_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_1">
+          base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="base" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/0base/0setup/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/0base/1base/" class="md-nav__link">
+        基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/0base/2data_structure/" class="md-nav__link">
+        常用数据结构
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/0base/3func/" class="md-nav__link">
+        函数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/0base/4struct/" class="md-nav__link">
+        结构体
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/0base/7error/" class="md-nav__link">
+        错误
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_2" type="checkbox" id="__nav_1_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_2">
+          concurrent
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="concurrent" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          concurrent
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/1concurrent/0groutine/" class="md-nav__link">
+        groutine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/1concurrent/1runtime/" class="md-nav__link">
+        runtime
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/1concurrent/2channel/" class="md-nav__link">
+        channel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/1concurrent/3%E5%AE%9A%E6%97%B6%E5%99%A8/" class="md-nav__link">
+        定时器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/1concurrent/4select/" class="md-nav__link">
+        select
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/1concurrent/5lock/" class="md-nav__link">
+        lock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/1concurrent/6sync/" class="md-nav__link">
+        sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/1concurrent/7atomic/" class="md-nav__link">
+        atomic
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_3" type="checkbox" id="__nav_1_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_3">
+          lib
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="lib" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          lib
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/2lib/0string/" class="md-nav__link">
+        string
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/2lib/1time/" class="md-nav__link">
+        time
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/2lib/2flag/" class="md-nav__link">
+        flag
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/2lib/3log/" class="md-nav__link">
+        log
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/2lib/4io/" class="md-nav__link">
+        io
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../00go/2lib/9%E5%8F%8D%E5%B0%84/" class="md-nav__link">
+        反射
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3" type="checkbox" id="__nav_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_3">
+          cpp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="cpp" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          cpp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02cpp/1base/" class="md-nav__link">
+        基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02cpp/2string/" class="md-nav__link">
+        字符串
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02cpp/3array/" class="md-nav__link">
+        数组
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02cpp/4if/" class="md-nav__link">
+        逻辑
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02cpp/5while/" class="md-nav__link">
+        循环
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02cpp/6func/" class="md-nav__link">
+        函数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02cpp/7class/" class="md-nav__link">
+        类
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3_8" type="checkbox" id="__nav_1_3_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_3_8">
+          stl
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="stl" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_3_8">
+          <span class="md-nav__icon md-icon"></span>
+          stl
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02cpp/1stl/0init/" class="md-nav__link">
+        init
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../02cpp/1stl/1stl/" class="md-nav__link">
+        stl
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4">
+          python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="python" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03python/python/" class="md-nav__link">
+        python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../03python/flask/" class="md-nav__link">
+        字符串
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          工具
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="工具" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          工具
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          mac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="mac" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          mac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09tool/1mac/0%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+        基本使用
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09tool/1mac/1%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6/" class="md-nav__link">
+        常用软件
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09tool/1mac/2iterm2%E7%BE%8E%E5%8C%96/" class="md-nav__link">
+        iterm2美化
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          dev
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="dev" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          dev
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09tool/3dev/git/" class="md-nav__link">
+        git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09tool/3dev/jetBrains/" class="md-nav__link">
+        jetBrains
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../09tool/3dev/jetBrains_%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="md-nav__link">
+        jetBrains_快捷键
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          算法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="算法" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="基础" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10algorithm/base/0%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        基础算法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10algorithm/base/1%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        数据结构
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10algorithm/base/2%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%9B%BE%E8%AE%BA/" class="md-nav__link">
+        搜索与图论
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10algorithm/base/3%E6%95%B0%E5%AD%A6/" class="md-nav__link">
+        数学
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../10algorithm/base/4dp/" class="md-nav__link">
+        dp
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          db
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="db" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          db
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          mysql
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="mysql" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          mysql
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20db/0mysql/0setup/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20db/0mysql/1base/" class="md-nav__link">
+        基础使用
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20db/0mysql/2advanced/" class="md-nav__link">
+        高级
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../20db/0mysql/%E8%A7%86%E5%9B%BE/" class="md-nav__link">
+        视图
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          web
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="web" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          web
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          gin
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="gin" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          gin
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../23frame/gin/base/" class="md-nav__link">
+        base
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          中间件
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="中间件" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          中间件
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_1">
+          redis
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="redis" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          redis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0setup/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1base/" class="md-nav__link">
+        基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          提高
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        提高
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    发布订阅
+  </a>
+  
+    <nav class="md-nav" aria-label="发布订阅">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis" class="md-nav__link">
+    redis发布订阅
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    新数据类型
+  </a>
+  
+    <nav class="md-nav" aria-label="新数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bitmaps" class="md-nav__link">
+    bitmaps
+  </a>
+  
+    <nav class="md-nav" aria-label="bitmaps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    命令
+  </a>
+  
+    <nav class="md-nav" aria-label="命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setbit" class="md-nav__link">
+    setbit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getbit" class="md-nav__link">
+    getbit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bitcount" class="md-nav__link">
+    bitcount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bitop" class="md-nav__link">
+    bitop
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hyperloglog" class="md-nav__link">
+    HyperLogLog
+  </a>
+  
+    <nav class="md-nav" aria-label="HyperLogLog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    优势
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    命令
+  </a>
+  
+    <nav class="md-nav" aria-label="命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pfadd" class="md-nav__link">
+    pfadd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pfcount" class="md-nav__link">
+    pfcount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pfmerge" class="md-nav__link">
+    pfmerge
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geospatial" class="md-nav__link">
+    Geospatial
+  </a>
+  
+    <nav class="md-nav" aria-label="Geospatial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    命令
+  </a>
+  
+    <nav class="md-nav" aria-label="命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geoadd" class="md-nav__link">
+    geoadd 添加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geopos" class="md-nav__link">
+    geopos 定位
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geodist" class="md-nav__link">
+    geodist 获取俩个位置的直线距离
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#georadius" class="md-nav__link">
+    georadius 给定经纬度为中心 找到一定半径内的元素
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_1" class="md-nav__link">
+    redis 事务
+  </a>
+  
+    <nav class="md-nav" aria-label="redis 事务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redis_2" class="md-nav__link">
+    redis事务定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-exec-discard" class="md-nav__link">
+    multi exec discard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    如果发生错误
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    锁
+  </a>
+  
+    <nav class="md-nav" aria-label="锁">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    悲观锁
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    乐观锁
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#watch-unwatch" class="md-nav__link">
+    watch unwatch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_3" class="md-nav__link">
+    redis事务特性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    持久化
+  </a>
+  
+    <nav class="md-nav" aria-label="持久化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rdb" class="md-nav__link">
+    rdb
+  </a>
+  
+    <nav class="md-nav" aria-label="rdb">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source" class="md-nav__link">
+    source
+  </a>
+  
+    <nav class="md-nav" aria-label="source">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fork-todo" class="md-nav__link">
+    fork todo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    config
+  </a>
+  
+    <nav class="md-nav" aria-label="config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    指定文件位置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    配置触发策略
+  </a>
+  
+    <nav class="md-nav" aria-label="配置触发策略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    手动触发
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop-writes-on-bgsave-error" class="md-nav__link">
+    stop-writes-on-bgsave-error
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rdbcompression" class="md-nav__link">
+    rdbcompression
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rdbchecksum" class="md-nav__link">
+    rdbchecksum 检查完整性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    优点缺点
+  </a>
+  
+    <nav class="md-nav" aria-label="优点缺点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    优点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    缺点
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aof" class="md-nav__link">
+    aof
+  </a>
+  
+    <nav class="md-nav" aria-label="aof">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_1" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source_1" class="md-nav__link">
+    source
+  </a>
+  
+    <nav class="md-nav" aria-label="source">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    如何同步
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    压缩
+  </a>
+  
+    <nav class="md-nav" aria-label="压缩">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_2" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source_2" class="md-nav__link">
+    source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config_1" class="md-nav__link">
+    config
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config_2" class="md-nav__link">
+    config
+  </a>
+  
+    <nav class="md-nav" aria-label="config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    开启配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    同步频率配置
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use" class="md-nav__link">
+    use
+  </a>
+  
+    <nav class="md-nav" aria-label="use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    恢复
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    summary
+  </a>
+  
+    <nav class="md-nav" aria-label="summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages" class="md-nav__link">
+    advantages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages" class="md-nav__link">
+    disadvantages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    主从复制
+  </a>
+  
+    <nav class="md-nav" aria-label="主从复制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_3" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use_1" class="md-nav__link">
+    use
+  </a>
+  
+    <nav class="md-nav" aria-label="use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    基础
+  </a>
+  
+    <nav class="md-nav" aria-label="基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    启动
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    查看
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    从机配置 主机不配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    注意
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    常见的三种主从模式
+  </a>
+  
+    <nav class="md-nav" aria-label="常见的三种主从模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    一主二从
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    薪火相传
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    反客为主
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    哨兵模式
+  </a>
+  
+    <nav class="md-nav" aria-label="哨兵模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_4" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use_2" class="md-nav__link">
+    use
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source_3" class="md-nav__link">
+    source
+  </a>
+  
+    <nav class="md-nav" aria-label="source">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    复制原理
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    集群
+  </a>
+  
+    <nav class="md-nav" aria-label="集群">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_5" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how" class="md-nav__link">
+    how
+  </a>
+  
+    <nav class="md-nav" aria-label="how">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    搭建
+  </a>
+  
+    <nav class="md-nav" aria-label="搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    删除持计化文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    新建如下配置文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    启动服务端
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    合体
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    启动客户端
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    基础使用
+  </a>
+  
+    <nav class="md-nav" aria-label="基础使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    查看集群信息
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    slots
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-mset" class="md-nav__link">
+    set mset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    其他操作
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    故障恢复
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_1" class="md-nav__link">
+    summary
+  </a>
+  
+    <nav class="md-nav" aria-label="summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advange" class="md-nav__link">
+    advange
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvange" class="md-nav__link">
+    disadvange
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    api
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_4" class="md-nav__link">
+    redis应用问题
+  </a>
+  
+    <nav class="md-nav" aria-label="redis应用问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    缓存穿透
+  </a>
+  
+    <nav class="md-nav" aria-label="缓存穿透">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    问题描述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    解决方案
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    缓存击穿
+  </a>
+  
+    <nav class="md-nav" aria-label="缓存击穿">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    解决方案
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    缓存雪崩
+  </a>
+  
+    <nav class="md-nav" aria-label="缓存雪崩">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    解决方案
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    分布式锁
+  </a>
+  
+    <nav class="md-nav" aria-label="分布式锁">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    基础
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_59" class="md-nav__link">
+    进阶 ： 设置超时时间
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_60" class="md-nav__link">
+    进阶 ： 校验锁的内容
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_61" class="md-nav__link">
+    进阶 ：校验、删除 需要原子性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3source/" class="md-nav__link">
+        源码
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4api/" class="md-nav__link">
+        API
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          kafka
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="kafka" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          kafka
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../33mq/0kafka/0%E6%A6%82%E8%BF%B0/" class="md-nav__link">
+        概述
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../33mq/0kafka/1%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          zookeeper
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="zookeeper" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          zookeeper
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zookeeper/zookeeper学习.md" class="md-nav__link">
+        zookeeper学习
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_4" type="checkbox" id="__nav_6_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_4">
+          es
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="es" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          es
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../es/es基础.md" class="md-nav__link">
+        基础
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    发布订阅
+  </a>
+  
+    <nav class="md-nav" aria-label="发布订阅">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis" class="md-nav__link">
+    redis发布订阅
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    新数据类型
+  </a>
+  
+    <nav class="md-nav" aria-label="新数据类型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bitmaps" class="md-nav__link">
+    bitmaps
+  </a>
+  
+    <nav class="md-nav" aria-label="bitmaps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    命令
+  </a>
+  
+    <nav class="md-nav" aria-label="命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setbit" class="md-nav__link">
+    setbit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getbit" class="md-nav__link">
+    getbit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bitcount" class="md-nav__link">
+    bitcount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bitop" class="md-nav__link">
+    bitop
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hyperloglog" class="md-nav__link">
+    HyperLogLog
+  </a>
+  
+    <nav class="md-nav" aria-label="HyperLogLog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    优势
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    命令
+  </a>
+  
+    <nav class="md-nav" aria-label="命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pfadd" class="md-nav__link">
+    pfadd
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pfcount" class="md-nav__link">
+    pfcount
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pfmerge" class="md-nav__link">
+    pfmerge
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geospatial" class="md-nav__link">
+    Geospatial
+  </a>
+  
+    <nav class="md-nav" aria-label="Geospatial">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    命令
+  </a>
+  
+    <nav class="md-nav" aria-label="命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geoadd" class="md-nav__link">
+    geoadd 添加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geopos" class="md-nav__link">
+    geopos 定位
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#geodist" class="md-nav__link">
+    geodist 获取俩个位置的直线距离
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#georadius" class="md-nav__link">
+    georadius 给定经纬度为中心 找到一定半径内的元素
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_1" class="md-nav__link">
+    redis 事务
+  </a>
+  
+    <nav class="md-nav" aria-label="redis 事务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#redis_2" class="md-nav__link">
+    redis事务定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-exec-discard" class="md-nav__link">
+    multi exec discard
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    如果发生错误
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    锁
+  </a>
+  
+    <nav class="md-nav" aria-label="锁">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    悲观锁
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    乐观锁
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#watch-unwatch" class="md-nav__link">
+    watch unwatch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redis_3" class="md-nav__link">
+    redis事务特性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    持久化
+  </a>
+  
+    <nav class="md-nav" aria-label="持久化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rdb" class="md-nav__link">
+    rdb
+  </a>
+  
+    <nav class="md-nav" aria-label="rdb">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source" class="md-nav__link">
+    source
+  </a>
+  
+    <nav class="md-nav" aria-label="source">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fork-todo" class="md-nav__link">
+    fork todo
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    config
+  </a>
+  
+    <nav class="md-nav" aria-label="config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    指定文件位置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    配置触发策略
+  </a>
+  
+    <nav class="md-nav" aria-label="配置触发策略">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    手动触发
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stop-writes-on-bgsave-error" class="md-nav__link">
+    stop-writes-on-bgsave-error
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rdbcompression" class="md-nav__link">
+    rdbcompression
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rdbchecksum" class="md-nav__link">
+    rdbchecksum 检查完整性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    优点缺点
+  </a>
+  
+    <nav class="md-nav" aria-label="优点缺点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    优点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    缺点
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aof" class="md-nav__link">
+    aof
+  </a>
+  
+    <nav class="md-nav" aria-label="aof">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_1" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source_1" class="md-nav__link">
+    source
+  </a>
+  
+    <nav class="md-nav" aria-label="source">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    如何同步
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    压缩
+  </a>
+  
+    <nav class="md-nav" aria-label="压缩">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_2" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source_2" class="md-nav__link">
+    source
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config_1" class="md-nav__link">
+    config
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config_2" class="md-nav__link">
+    config
+  </a>
+  
+    <nav class="md-nav" aria-label="config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    开启配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    同步频率配置
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use" class="md-nav__link">
+    use
+  </a>
+  
+    <nav class="md-nav" aria-label="use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    恢复
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    summary
+  </a>
+  
+    <nav class="md-nav" aria-label="summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advantages" class="md-nav__link">
+    advantages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvantages" class="md-nav__link">
+    disadvantages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    主从复制
+  </a>
+  
+    <nav class="md-nav" aria-label="主从复制">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_3" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use_1" class="md-nav__link">
+    use
+  </a>
+  
+    <nav class="md-nav" aria-label="use">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    基础
+  </a>
+  
+    <nav class="md-nav" aria-label="基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    启动
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    查看
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    从机配置 主机不配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    注意
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    常见的三种主从模式
+  </a>
+  
+    <nav class="md-nav" aria-label="常见的三种主从模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    一主二从
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    薪火相传
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    反客为主
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    哨兵模式
+  </a>
+  
+    <nav class="md-nav" aria-label="哨兵模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_4" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use_2" class="md-nav__link">
+    use
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source_3" class="md-nav__link">
+    source
+  </a>
+  
+    <nav class="md-nav" aria-label="source">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    复制原理
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    集群
+  </a>
+  
+    <nav class="md-nav" aria-label="集群">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_5" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how" class="md-nav__link">
+    how
+  </a>
+  
+    <nav class="md-nav" aria-label="how">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    搭建
+  </a>
+  
+    <nav class="md-nav" aria-label="搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    删除持计化文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    新建如下配置文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    启动服务端
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    合体
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    启动客户端
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    基础使用
+  </a>
+  
+    <nav class="md-nav" aria-label="基础使用">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    查看集群信息
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slots" class="md-nav__link">
+    slots
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-mset" class="md-nav__link">
+    set mset
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    其他操作
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    故障恢复
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary_1" class="md-nav__link">
+    summary
+  </a>
+  
+    <nav class="md-nav" aria-label="summary">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advange" class="md-nav__link">
+    advange
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disadvange" class="md-nav__link">
+    disadvange
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    api
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redis_4" class="md-nav__link">
+    redis应用问题
+  </a>
+  
+    <nav class="md-nav" aria-label="redis应用问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    缓存穿透
+  </a>
+  
+    <nav class="md-nav" aria-label="缓存穿透">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    问题描述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    解决方案
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    缓存击穿
+  </a>
+  
+    <nav class="md-nav" aria-label="缓存击穿">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    解决方案
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    缓存雪崩
+  </a>
+  
+    <nav class="md-nav" aria-label="缓存雪崩">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    解决方案
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    分布式锁
+  </a>
+  
+    <nav class="md-nav" aria-label="分布式锁">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    基础
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_59" class="md-nav__link">
+    进阶 ： 设置超时时间
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_60" class="md-nav__link">
+    进阶 ： 校验锁的内容
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_61" class="md-nav__link">
+    进阶 ：校验、删除 需要原子性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+  
+                
+  <a href="https://github.com/imattdu/imattdu.github.io/edit/master/docs/34mw/0redis/2advanced.md" title="编辑此页" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+  <h1>提高</h1>
+
+<h2 id="_1">发布订阅</h2>
+<h3 id="_2">概述</h3>
+<p>发布者:：发送消息</p>
+<p>订阅者：接收信息</p>
+<h3 id="redis">redis发布订阅</h3>
+<p>订阅管道c1</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>subscribe c1
+</code></pre></div>
+<p>在管道c1发布消息</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>publish c1 <span class="m">1</span>
+</code></pre></div>
+<h2 id="_3">新数据类型</h2>
+<h3 id="bitmaps">bitmaps</h3>
+<p>存储01组成的数组</p>
+<h4 id="_4">命令</h4>
+<h5 id="setbit">setbit</h5>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202206282336522.png" /></p>
+<p>offset从0开始</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>setbit b1 <span class="m">0</span> <span class="m">0</span>
+</code></pre></div>
+<h5 id="getbit">getbit</h5>
+<p>getbit key offset</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>getbit b1 <span class="m">0</span>
+</code></pre></div>
+<h5 id="bitcount">bitcount</h5>
+<p>bitcount key start end</p>
+<p>start,end 均包含 start-&gt;end之间1的个数</p>
+<p>-1：最后一位</p>
+<p>-2：倒数第二位</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>bitcount b1 <span class="m">0</span> <span class="m">3</span>
+</code></pre></div>
+<h5 id="bitop">bitop</h5>
+<p>bitop and(or/not/xor)  destkey k1 k2 k3 ....</p>
+<p>and：&amp;&amp;</p>
+<p>or：或者</p>
+<p>not：非</p>
+<p>xor:异或</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>bitop and b3 b1 b2
+</code></pre></div>
+<h3 id="hyperloglog">HyperLogLog</h3>
+<h4 id="_5">概述</h4>
+<p>统计某个key 不重复元素的个数</p>
+<h4 id="_6">优势</h4>
+<p>并不会存储输入的元素，而是根据输入元素计算基数</p>
+<p>HyperLogLog只需要12KB 就可以计算 2e64不同元素的基数</p>
+<p>{1, 2, 3, 3, 4, 5} </p>
+<p>基数集</p>
+<p>{1, 2, 3, 4, 5}</p>
+<p>基数</p>
+<p>5</p>
+<h4 id="_7">命令</h4>
+<h5 id="pfadd">pfadd</h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pfadd key v1 v2 ....
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>pfadd p1 <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+</code></pre></div>
+<h5 id="pfcount">pfcount</h5>
+<p>计算多个key的基数</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pfcount k1 k2 k3 ....
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>pfcount p1
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>pfcount p1 p2
+</code></pre></div>
+<h5 id="pfmerge">pfmerge</h5>
+<p>将多个key进行合并</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pfmerge destkey k1 k2 k3
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>pfmerge p3 p2 p1
+</code></pre></div>
+<h3 id="geospatial">Geospatial</h3>
+<h4 id="_8">概述</h4>
+<p>经纬度</p>
+<h4 id="_9">命令</h4>
+<h5 id="geoadd">geoadd 添加</h5>
+<p>有效的经度从 -180 度到 180 度。有效的纬度从 -85.05112878 度到 85.05112878 度。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>geoadd key 经度 纬度 成员 <span class="o">[</span>经度 纬度 成员<span class="o">]</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>geoadd g1 <span class="m">1</span> <span class="m">1</span> a1
+</code></pre></div>
+<h5 id="geopos">geopos 定位</h5>
+<p>获取指定成员的经度 纬度</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>geopos key member <span class="o">[</span>member ...<span class="o">]</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="m">127</span>.0.0.1:6379&gt; geopos g1 a1
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="m">1</span><span class="o">)</span> <span class="m">1</span><span class="o">)</span> <span class="s2">&quot;0.99999994039535522&quot;</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>   <span class="m">2</span><span class="o">)</span> <span class="s2">&quot;0.99999945914297683&quot;</span>
+</code></pre></div>
+<h5 id="geodist">geodist 获取俩个位置的直线距离</h5>
+<p>m 表示单位为米[默认值]。</p>
+<p>km 表示单位为千米。</p>
+<p>mi 表示单位为英里。</p>
+<p>ft 表示单位为英尺。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>geodist key member1 member2 <span class="o">[</span>m <span class="p">|</span> km <span class="p">|</span> ft <span class="p">|</span> mi<span class="o">]</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>geodist g1 a1 a2 m
+</code></pre></div>
+<h5 id="georadius">georadius 给定经纬度为中心 找到一定半径内的元素</h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>georadius key 经度 纬度 radius m <span class="p">|</span> km <span class="p">|</span> ft <span class="p">|</span> mi
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>georadius g1 <span class="m">1</span> <span class="m">1</span> <span class="m">1000</span> km
+</code></pre></div>
+<h2 id="redis_1">redis 事务</h2>
+<h3 id="redis_2">redis事务定义</h3>
+<p>Redis事务是一个单独的隔离操作：事务中所有命令都会序列化、按顺序的执行。事务执行过程中，不会被可他客户端发送的命令打断。</p>
+<h3 id="multi-exec-discard">multi exec discard</h3>
+<p>从输入Multi命令开始，输入的命令都会依次进入命令队列中，但不会执行，直到输入Exec后，Redis会将之前的命令队列中的命令依次执行。</p>
+<p>组队的过程中可以通过discard来放弃组队。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="m">127</span>.0.0.1:6379&gt; multi
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>OK
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="m">127</span>.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">set</span> <span class="m">1</span> <span class="m">1</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>QUEUED
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="m">127</span>.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">set</span> <span class="m">2</span> <span class="m">2</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>QUEUED
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="m">127</span>.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">exec</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="m">1</span><span class="o">)</span> OK
+<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="m">2</span><span class="o">)</span> OK
+<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="m">127</span>.0.0.1:6379&gt;
+</code></pre></div>
+<h3 id="_10">如果发生错误</h3>
+<p>组队中某个命令出现了报告错误，执行时整个的所有队列都会被取消。</p>
+<p>如果执行阶段某个命令报出了错误，则只有报错的命令不会被执行，而其他的命令都会执行，不会回滚。</p>
+<h3 id="_11">锁</h3>
+<h4 id="_12">悲观锁</h4>
+<p><strong>悲观锁(Pessimistic Lock)</strong>, 顾名思义，就是很悲观，每次去拿数据的时候都认为别人会修改，所以每次在拿数据的时候都会上锁，这样别人想拿这个数据就会block直到它拿到锁</p>
+<h4 id="_13">乐观锁</h4>
+<p><strong>乐观锁(Optimistic Lock),</strong> 顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。<strong>乐观锁适用于多读的应用类型，这样可以提高吞吐量</strong>。Redis就是利用这种check-and-set机制实现事务的。</p>
+<h3 id="watch-unwatch">watch unwatch</h3>
+<p>在执行multi之前，先执行watch key1 [key2],可以监视一个(或多个) key ，如果在事务<strong>执行之前这个(</strong><strong>或这些) key</strong> <strong>被其他命令所改动，那么事务将被打断。</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="m">127</span>.0.0.1:6379&gt; watch <span class="m">1</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>OK
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="m">127</span>.0.0.1:6379&gt; multi
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>OK
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="m">127</span>.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">set</span> <span class="m">1</span> <span class="m">1</span>
+<a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>QUEUED
+<a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="m">127</span>.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">exec</span>
+<a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="o">(</span>nil<span class="o">)</span>
+<a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="m">127</span>.0.0.1:6379&gt;
+</code></pre></div>
+<p>unwatch 取消对key的监视</p>
+<h3 id="redis_3">redis事务特性</h3>
+<p>Ø 单独的隔离操作 </p>
+<p>事务中的所有命令都会序列化、按顺序地执行。事务在执行的过程中，不会被其他客户端发送来的命令请求所打断。 </p>
+<p>Ø 没有隔离级别的概念 </p>
+<p>队列中的命令没有提交之前都不会实际被执行，因为事务提交前任何指令都不会被实际执行</p>
+<p>Ø 不保证原子性 </p>
+<p>事务中如果有一条命令执行失败，其后的命令仍然会被执行，没有回滚 </p>
+<h2 id="_14">持久化</h2>
+<h3 id="rdb">rdb</h3>
+<h4 id="what">what</h4>
+<p>在指定的时间间隔内将内存中的数据集快照写入磁盘， 也就是行话讲的Snapshot快照，它恢复时是将快照文件直接读到内存里</p>
+<h4 id="source">source</h4>
+<h5 id="fork-todo">fork todo</h5>
+<p>Redis会单独创建（fork）一个子进程来进行持久化，会先将数据写入到 一个临时文件中，待持久化过程都结束了，再用这个临时文件替换上次持久化好的文件。</p>
+<p>整个过程中，主进程是不进行任何IO操作的，这就确保了极高的性能 如果需要进行大规模数据的恢复，且对于数据恢复的完整性不是非常敏感，那RDB方式要比AOF方式更加的高效。<strong>RDB</strong>的缺点是最后一次持久化后的数据可能丢失。</p>
+<h4 id="config">config</h4>
+<h5 id="_15">指定文件位置</h5>
+<p>redis.conf</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>dir /opt/homebrew/var/db/redis/
+</code></pre></div>
+<h5 id="_16">配置触发策略</h5>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202207091120910.png" /></p>
+<p>不设置save指令，或者给save传入空字符串</p>
+<h6 id="_17">手动触发</h6>
+<p>save ：save时只管保存，其它不管，全部阻塞。手动保存。不建议。</p>
+<p>bgsave：Redis会在后台异步进行快照操作，快照同时还可以响应客户端请求。</p>
+<h5 id="stop-writes-on-bgsave-error">stop-writes-on-bgsave-error</h5>
+<p>当Redis无法写入磁盘的话，直接关掉Redis的写操作。推荐yes.</p>
+<h5 id="rdbcompression">rdbcompression</h5>
+<p>使用压缩算法 , LZF</p>
+<h5 id="rdbchecksum">rdbchecksum 检查完整性</h5>
+<h4 id="_18">优点缺点</h4>
+<h5 id="_19">优点</h5>
+<p>l 节省磁盘空间</p>
+<p>l 恢复速度快</p>
+<h5 id="_20">缺点</h5>
+<p>虽然Redis在fork时使用了<strong>写时拷贝技术</strong>,但是如果数据庞大时还是比较消耗性能。</p>
+<p>在备份周期在一定间隔时间做一次备份，所以如果Redis意外down掉的话，就会丢失最后一次快照后的所有修改。</p>
+<h3 id="aof">aof</h3>
+<h4 id="what_1">what</h4>
+<p>以<strong>日志</strong>的形式来记录每个写操作（增量保存），将Redis执行过的所有写指令记录下来(<strong>读操作不记录</strong>)， <strong>只许追加文件但不可以改写文件</strong>，redis启动之初会读取该文件重新构建数据，</p>
+<p>换言之，redis 重启的话就根据日志文件的内容将写指令从前到后执行一次以完成数据的恢复工作</p>
+<h4 id="source_1">source</h4>
+<h5 id="_21">如何同步</h5>
+<ul>
+<li>客户端的请求写命令会被append追加到AOF缓冲区内；</li>
+<li>AOF缓冲区根据AOF持久化策略[always,everysec,no]将操作sync同步到磁盘的AOF文件中；</li>
+<li>AOF文件大小超过重写策略或手动重写时，会对AOF文件rewrite重写，压缩AOF文件容量</li>
+<li>Redis服务重启时，会重新load加载AOF文件中的写操作达到数据恢复的目的</li>
+</ul>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202207091601939.png" /></p>
+<h5 id="_22">压缩</h5>
+<h6 id="what_2">what</h6>
+<p>AOF采用文件追加方式，文件会越来越大为避免出现此种情况，新增了重写机制, 当AOF文件的大小超过所设定的阈值时，Redis就会启动AOF文件的内容压缩， 只保留可以恢复数据的最小指令集.可以使用命令bgrewriteaof</p>
+<p>AOF文件持续增长而过大时，会fork出一条新进程来将文件重写(也是先写临时文件最后再rename)，redis4.0版本后的重写，是指上就是把rdb 的快照，以二级制的形式附在新的aof头部，作为已有的历史数据，替换掉原来的流水账操作。</p>
+<h6 id="source_2">source</h6>
+<ul>
+<li>bgrewriteaof触发重写，判断是否当前有bgsave或bgrewriteaof在运行，如果有，则等待该命令结束后再继续执行。</li>
+<li>主进程fork出子进程执行重写操作，保证主进程不会阻塞。</li>
+<li>子进程遍历redis内存中数据到临时文件，客户端的写请求同时写入aof_buf缓冲区和aof_rewrite_buf重写缓冲区保证原AOF文件完整以及新AOF文件生成期间的新的数据修改动作不会丢失。</li>
+<li>1).子进程写完新的AOF文件后，向主进程发信号，父进程更新统计信息。2).主进程把aof_rewrite_buf中的数据写入到新的AOF文件。</li>
+<li>使用新的AOF文件覆盖旧的AOF文件，完成AOF重写。</li>
+</ul>
+<h6 id="config_1">config</h6>
+<p><strong>写配置</strong></p>
+<p>如果 no-appendfsync-on-rewrite=yes ,不写入aof文件只写入缓存，用户请求不会阻塞，但是在这段时间如果宕机会丢失这段时间的缓存数据。（降低数据安全性，提高性能）</p>
+<p>​    如果 no-appendfsync-on-rewrite=no, 还是会把数据往磁盘里刷，但是遇到重写操作，可能会发生阻塞。（数据安全，但是性能降低）</p>
+<p>触发机制，何时重写</p>
+<p><strong>触发策略配置</strong></p>
+<p>Redis会记录上次重写时的AOF大小，默认配置是当AOF文件大小是上次rewrite后大小的一倍且文件大于64M时触发</p>
+<p>重写虽然可以节约大量磁盘空间，减少恢复时间。但是每次重写还是有一定的负担的，因此设定Redis要满足一定条件才会进行重写。 </p>
+<p>auto-aof-rewrite-percentage：设置重写的基准值，文件达到100%时开始重写（文件是原来重写后文件的2倍时触发）</p>
+<p>auto-aof-rewrite-min-size：设置重写的基准值，最小文件64MB。达到这个值开始重写。</p>
+<p>例如：文件达到70MB开始重写，降到50MB，下次什么时候开始重写？100MB</p>
+<p>系统载入时或者上次重写完毕时，Redis会记录此时AOF大小，设为base_size,</p>
+<p>如果Redis的AOF当前大小&gt;= base_size +base_size*100% (默认)且当前大小&gt;=64mb(默认)的情况下，Redis会对AOF进行重写。 </p>
+<h4 id="config_2">config</h4>
+<h6 id="_23">开启配置</h6>
+<p>可以在redis.conf中配置文件名称，默认为 appendonly.aof</p>
+<p>AOF文件的保存路径，同RDB的路径一致。</p>
+<p>默认aof不开启，如果aof,rdb同时开启，则使用aof</p>
+<h6 id="_24">同步频率配置</h6>
+<p>appendfsync always</p>
+<p>始终同步，每次Redis的写入都会立刻记入日志；性能较差但数据完整性比较好</p>
+<p>appendfsync everysec</p>
+<p>每秒同步，每秒记入日志一次，如果宕机，本秒的数据可能丢失。</p>
+<p>appendfsync no</p>
+<p>redis不主动进行同步，把同步时机交给操作系统。</p>
+<h4 id="use">use</h4>
+<h6 id="_25">恢复</h6>
+<p>正常恢复</p>
+<ul>
+<li>修改默认的appendonly no，改为yes</li>
+<li>将有数据的aof文件复制一份保存到对应目录(查看目录：config get dir)</li>
+<li>恢复：重启redis然后重新加载</li>
+</ul>
+<p>异常恢复</p>
+<ul>
+<li>修改默认的appendonly no，改为yes</li>
+<li>如遇到AOF文件损坏，通过/usr/local/bin/redis-check-aof--fix appendonly.aof进行修复</li>
+<li>备份被写坏的AOF文件</li>
+<li>恢复：重启redis，然后重新加载</li>
+</ul>
+<h4 id="summary">summary</h4>
+<h5 id="advantages">advantages</h5>
+<ul>
+<li>备份机制更稳健，丢失数据概率更低。</li>
+</ul>
+<h5 id="disadvantages">disadvantages</h5>
+<ul>
+<li>比起RDB占用更多的磁盘空间。</li>
+<li>恢复备份速度要慢。</li>
+<li>每次读写都同步的话，有一定的性能压力。</li>
+</ul>
+<h2 id="_26">主从复制</h2>
+<h3 id="what_3">what</h3>
+<p>读写分离，master写，复制到slaver, slaver进行读</p>
+<h3 id="use_1">use</h3>
+<h4 id="_27">基础</h4>
+<h5 id="_28">配置</h5>
+<p>从单机中的redis.conf复制一份redis.conf</p>
+<p>新建redis6379.conf,redis6380.conf,redis6381.conf</p>
+<p>填入如下内容，修改<strong>pidfile,port,dbfilename</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>include /opt/homebrew/etc/myredis/redis.conf
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>pidfile <span class="s2">&quot;/var/run/redis_6379.pid&quot;</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>port <span class="m">6379</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>dbfilename dump6379.rdb
+</code></pre></div>
+<h5 id="_29">启动</h5>
+<p>启动三台redis服务器</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>❯ redis-server ./redis6379.conf
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>❯ redis-server ./redis6380.conf
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>❯ redis-server ./redis6381.conf
+</code></pre></div>
+<h5 id="_30">查看</h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="m">127</span>.0.0.1:6379&gt; info replication
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1"># Replication</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>role:master
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>connected_slaves:0
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>master_failover_state:no-failover
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>master_replid:08f03d154f528b0980ccb908bff473e966a19509
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>master_replid2:0000000000000000000000000000000000000000
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>master_repl_offset:0
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>second_repl_offset:-1
+<a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>repl_backlog_active:0
+<a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>repl_backlog_size:1048576
+<a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>repl_backlog_first_byte_offset:0
+<a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>repl_backlog_histlen:0
+</code></pre></div>
+<h5 id="_31">从机配置 主机不配置</h5>
+<p>6380,6381配置</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>slaveof <span class="m">127</span>.0.0.1 <span class="m">6379</span>
+</code></pre></div>
+<h5 id="_32">注意</h5>
+<p>从机写数据就会报错</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="m">127</span>.0.0.1:6381&gt; <span class="nb">set</span> <span class="m">1</span> <span class="m">1</span>
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="o">(</span>error<span class="o">)</span> READONLY You can<span class="err">&#39;</span>t write against a <span class="nb">read</span> only replica.
+</code></pre></div>
+<p>主机挂掉重启即可</p>
+<p>从机重启需要重新配置slaveof 127.0.0.1 6379，也可以写在配置文件中</p>
+<h4 id="_33">常见的三种主从模式</h4>
+<h5 id="_34">一主二从</h5>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202207122357675.png" /></p>
+<h5 id="_35">薪火相传</h5>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202207122359620.png" /></p>
+<p>降低了master复制时的写压力</p>
+<p>主机挂掉 从机仍然是从机</p>
+<h5 id="_36">反客为主</h5>
+<p>基于薪火相传</p>
+<p>当一个master宕机后，后面的slave可以立刻升为master，其后面的slave不用做任何修改。</p>
+<p>使用如下命令</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>slaveof no one 
+</code></pre></div>
+<h4 id="_37">哨兵模式</h4>
+<h5 id="what_4">what</h5>
+<p><strong>反客为主的自动版</strong>，能够后台监控主机是否故障，如果故障了根据投票数自动将从库转换为主库</p>
+<h5 id="use_2">use</h5>
+<p>使用一主二仆， master:6379, slaver:6380,6381</p>
+<p>配置文件下新建sentinel.conf</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>sentinel monitor mymaster <span class="m">127</span>.0.0.1 <span class="m">6379</span> <span class="m">1</span>
+</code></pre></div>
+<p>启动哨兵</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>redis-sentinel  ./sentinel.conf 
+</code></pre></div>
+<p>选举规则</p>
+<p>1</p>
+<p>master挂掉，则根据下列条件从slaver中选举一个master</p>
+<p>优先级在redis.conf中默认：slave-priority 100，值越小优先级越高</p>
+<p>偏移量是指获得原主机数据最全的</p>
+<p>每个redis实例启动后都会随机生成一个40位的runid</p>
+<p>2sentine向原主服务的从服务发送slaveof命令，发送复制数据</p>
+<p>3.如果一个master已经下线又重新上线，sentinel会向其发送slaveof命令，让其成为新主的从</p>
+<h3 id="source_3">source</h3>
+<h4 id="_38">复制原理</h4>
+<ul>
+<li>Slave启动成功连接到master后会发送一个sync命令</li>
+<li>Master接到命令启动后台的存盘进程，同时收集所有接收到的用于修改数据集命令， 在后台进程执行完毕之后，master将传送整个数据文件到slave,以完成一次完全同步</li>
+<li>全量复制：而slave服务在接收到数据库文件数据后，将其存盘并加载到内存中。</li>
+<li>增量复制：Master继续将新的所有收集到的修改命令依次传给slave,完成同步</li>
+<li>但是只要是重新连接master,一次完全同步（全量复制)将被自动执行</li>
+</ul>
+<h2 id="_39">集群</h2>
+<h3 id="what_5">what</h3>
+<p>Redis 集群实现了对Redis的水平扩容，即启动N个redis节点，将整个数据库分布存储在这N个节点中，每个节点存储总数据的1/N。</p>
+<p>Redis 集群通过分区（partition）来提供一定程度的可用性（availability）： 即使集群中有一部分节点失效或者无法进行通讯， 集群也可以继续处理命令请求。</p>
+<h3 id="how">how</h3>
+<h4 id="_40">搭建</h4>
+<h5 id="_41">删除持计化文件</h5>
+<p>查看redis.conf配置文件持久化文件目录</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>dir /opt/homebrew/var/db/redis/
+</code></pre></div>
+<p>删除持久化文件</p>
+<h5 id="_42">新建如下配置文件</h5>
+<p>在如下目录新建redis6379.conf</p>
+<p>redis6379.conf redis6380.conf redis6381.conf redis6389.conf redis6390.conf redis6391.conf</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>/opt/homebrew/etc/myredis/cluster
+</code></pre></div>
+<p>cluster-enabled yes  打开集群模式</p>
+<p>cluster-config-file nodes-6379.conf 设定节点配置文件名</p>
+<p>cluster-node-timeout 15000  设定节点失联时间，超过该时间（毫秒），集群自动进行主从切换。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>include /opt/homebrew/etc/myredis/redis.conf
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>port <span class="m">6379</span>
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>pidfile <span class="s2">&quot;/var/run/redis_6379.pid&quot;</span>
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>dbfilename <span class="s2">&quot;dump6379.rdb&quot;</span>
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>logfile <span class="s2">&quot;/opt/homebrew/var/db/redis/redis_cluster/logs/redis_err_6379.log&quot;</span>
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>cluster-enabled yes
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>cluster-config-file nodes-6379.conf
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>cluster-node-timeout <span class="m">15000</span>
+</code></pre></div>
+<h5 id="_43">启动服务端</h5>
+<p>启动6台redis,</p>
+<p>启动可能会报错，需要新建日志所在的目录</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>❯ redis-server ./redis6379.conf
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>❯ redis-server ./redis6380.conf
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>❯ redis-server ./redis6381.conf
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>❯ redis-server ./redis6389.conf
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>❯ redis-server ./redis6390.conf
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>❯ redis-server ./redis6391.conf
+</code></pre></div>
+<h5 id="_44">合体</h5>
+<p>不要使用127.0.0.1,使用真实ip192.168.199.222</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>redis-cli --cluster create --cluster-replicas <span class="m">1</span> <span class="m">192</span>.168.199.222:6379 <span class="m">192</span>.168.199.222:6380 <span class="m">192</span>.168.199.222:6381 <span class="m">192</span>.168.199.222:6389 <span class="m">192</span>.168.199.222:6390 <span class="m">192</span>.168.199.222:6391
+</code></pre></div>
+<h5 id="_45">启动客户端</h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>redis-cli -c -p <span class="m">6379</span>
+</code></pre></div>
+<h4 id="_46">基础使用</h4>
+<h5 id="_47">查看集群信息</h5>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>cluster nodes
+</code></pre></div>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202206191121531.png" /></p>
+<h4 id="slots">slots</h4>
+<p>一个 Redis 集群包含 16384 个插槽（hash slot）， 数据库中的每个键都属于这 16384 个插槽的其中一个， </p>
+<p>集群使用公式 CRC16(key) % 16384 来计算键 key 属于哪个槽， 其中 CRC16(key) 语句用于计算键 key 的 CRC16 校验和 。</p>
+<p>集群中的每个节点负责处理一部分插槽。 举个例子， 如果一个集群可以有主节点， 其中：</p>
+<p>节点 A 负责处理 0 号至 5460 号插槽。</p>
+<p>节点 B 负责处理 5461 号至 10922 号插槽。</p>
+<p>节点 C 负责处理 10923 号至 16383 号插槽。</p>
+<h4 id="set-mset">set mset</h4>
+<p>不在一个slot下的键值，是不能使用mget,mset等多键操作。</p>
+<p>可以通过{}来定义组的概念，从而使key中{}内相同内容的键值对放到一个slot中去。</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="m">127</span>.0.0.1:6379&gt; <span class="nb">set</span> s1 <span class="m">1</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>-&gt; Redirected to slot <span class="o">[</span><span class="m">15224</span><span class="o">]</span> located at <span class="m">192</span>.168.199.222:6381
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>OK
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="m">192</span>.168.199.222:6381&gt; mset name<span class="o">{</span>user<span class="o">}</span> matt age<span class="o">{</span>user<span class="o">}</span> <span class="m">12</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>-&gt; Redirected to slot <span class="o">[</span><span class="m">5474</span><span class="o">]</span> located at <span class="m">192</span>.168.199.222:6380
+</code></pre></div>
+<h4 id="_48">其他操作</h4>
+<p>判断某个key在哪个槽位</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>cluster keyslot s1
+</code></pre></div>
+<p>统计15345槽位有几个key</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>cluster countkeysinslot <span class="m">15345</span>
+</code></pre></div>
+<p>返回槽位2843 2 个key</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="m">192</span>.168.199.222:6379&gt; cluster getkeysinslot <span class="m">2843</span> <span class="m">2</span>
+<a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="m">1</span><span class="o">)</span> <span class="s2">&quot;s2&quot;</span>
+</code></pre></div>
+<h3 id="_49">故障恢复</h3>
+<p>如果某一段插槽的主从都挂掉，而cluster-require-full-coverage 为yes ，那么 ，整个集群都挂掉</p>
+<p>如果某一段插槽的主从都挂掉，而cluster-require-full-coverage 为no ，那么，该插槽数据全都不能使用，也无法存储。</p>
+<p>redis.conf中的参数 cluster-require-full-coverage</p>
+<h3 id="summary_1">summary</h3>
+<h4 id="advange">advange</h4>
+<p>实现扩容</p>
+<p>分摊压力</p>
+<h4 id="disadvange">disadvange</h4>
+<p>多键操作是不被支持的 </p>
+<p>多键的Redis事务是不被支持的。lua脚本不被支持</p>
+<p>由于集群方案出现较晚，很多公司已经采用了其他的集群方案，而代理或者客户端分片的方案想要迁移至redis cluster，需要整体迁移而不是逐步过渡，复杂度较大。</p>
+<h3 id="api">api</h3>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202207142318046.png" /></p>
+<h2 id="redis_4">redis应用问题</h2>
+<h3 id="_50">缓存穿透</h3>
+<h4 id="_51">问题描述</h4>
+<p>key 对应的数据缓存中没有，数据库中也没有</p>
+<p>用户利用这些漏洞攻击 从而压垮数据库</p>
+<h4 id="_52">解决方案</h4>
+<p>1.对空值缓存：如果一个查询返回的数据为空（不管是数据是否不存在），我们仍然把这个空结果（null）进行缓存，设置空结果的过期时间会很短，最长不超过五分钟</p>
+<p>2.设置可访问的名单（白名单）：</p>
+<p>使用bitmaps类型定义一个可以访问的名单，名单id作为bitmaps的偏移量，每次访问和bitmap里面的id进行比较，如果访问id不在bitmaps里面，进行拦截，不允许访问。</p>
+<p>3.采用布隆过滤器：(布隆过滤器（Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的二进制向量(位图)和一系列随机映射函数（哈希函数）。</p>
+<p>布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查询时间都远远超过一般的算法，缺点是有一定的误识别率和删除困难。)</p>
+<p>将所有可能存在的数据哈希到一个足够大的bitmaps中，一个一定不存在的数据会被 这个bitmaps拦截掉，从而避免了对底层存储系统的查询压力。</p>
+<p>4.进行实时监控：当发现Redis的命中率开始急速降低，需要排查访问对象和访问的数据，和运维人员配合，可以设置黑名单限制服务</p>
+<h3 id="_53">缓存击穿</h3>
+<p>某个key对应的数据过期，此时若有大量并发请求过来，这些请求发现缓存过期一般都会从后端DB加载数据并回设到缓存，这个时候大并发的请求可能会瞬间把后端DB压垮。</p>
+<h4 id="_54">解决方案</h4>
+<p>1.对应热门数据，过期之前调整过期时长</p>
+<p>2.使用锁</p>
+<p>2.1就是在缓存失效的时候（判断拿出来的值为空），不是立即去load db。</p>
+<p>2.2先使用缓存工具的某些带成功操作返回值的操作（比如Redis的SETNX）</p>
+<p>​   去set一个mutex key</p>
+<p>2.3当操作返回成功时，再进行load db的操作，并回设缓存,最后删除mutex key；</p>
+<p>2.4当操作返回失败，证明有线程在load db，当前线程睡眠一段时间再重试整个get缓存的方法。</p>
+<h3 id="_55">缓存雪崩</h3>
+<p>key对应的数据存在，但在redis中过期，此时若有大量并发请求过来，这些请求发现缓存过期一般都会从后端DB加载数据并回设到缓存，这个时候大并发的请求可能会瞬间把后端DB压垮。</p>
+<p><strong>缓存雪崩与缓存击穿的区别在于这里针对很多key缓存，前者则是某一个key</strong></p>
+<h4 id="_56">解决方案</h4>
+<p>1.设置过期时间增加一个随机值</p>
+<p>2.使用锁</p>
+<h3 id="_57">分布式锁</h3>
+<p>为真个系统提供全局唯一的锁，具有院子性</p>
+<p>a</p>
+<p>1 获取锁</p>
+<p>3 释放锁</p>
+<p>2 卡注</p>
+<p>2执行 释放锁 会把别的线程的锁释放</p>
+<h4 id="_58">基础</h4>
+<p>1.使用setnx</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nb">set</span> k1 <span class="m">1</span> nx ex <span class="m">3</span>
+</code></pre></div>
+<p>ex 3 : 3s</p>
+<p>px 3:3ms</p>
+<p>2如果获取锁成功，处理，释放锁</p>
+<p>3.其他客户端重试</p>
+<p>如果一个线程阻塞，挂掉没有删除锁，其他用户就获取不到锁了</p>
+<h4 id="_59">进阶 ： 设置超时时间</h4>
+<h4 id="_60">进阶 ： 校验锁的内容</h4>
+<p>防止删除错锁</p>
+<p>1.a1没有删除锁，但是过期了，</p>
+<p>2.a2获取到锁， 测试a1把锁删除了，其实就是把a1把a2的锁删除了，此时a2就可能出问题</p>
+<p>可以设置锁的内容，删除锁之前判断一下锁的内容</p>
+<h4 id="_61">进阶 ：校验、删除 需要原子性</h4>
+<p>可以使用lua脚本</p>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 19, 2022</span>
+      
+        <br>
+        创建日期:
+        <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">June 20, 2022</span>
+      
+    
+  </small>
+</div>
+
+              
+
+<script src="https://giscus.app/client.js"
+        data-repo="imattdu/imattdu.github.io"
+        data-repo-id="R_kgDOHQylZg"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOHQylZs4CO3wc"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="页脚">
+      
+        
+        <a href="../1base/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 基础" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              基础
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../3source/" class="md-footer__link md-footer__link--next" aria-label="下一页: 源码" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              源码
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021 - 2022 mattのnote
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://www.docker.com/" target="_blank" rel="noopener" title="www.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/imattdu" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share"], "search": "../../../assets/javascripts/workers/search.2a1c317c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ed9748b7.min.js"></script>
+      
+    
+  </body>
+</html>
