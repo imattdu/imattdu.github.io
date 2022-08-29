@@ -41,8 +41,8 @@ plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
   - git-revision-date-localized:
-      type: iso_datetime
-      fallback_to_build_date: true
+      type: iso_date
+      fallback_to_build_date: false
       enable_creation_date: false     
   - git-committers:
       repository: imattdu/imattdu.github.io
