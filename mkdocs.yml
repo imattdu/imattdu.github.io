@@ -40,10 +40,17 @@ theme:
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+  # - git-revision-date-localized:
+  #     type: iso_datetime
+  #     fallback_to_build_date: true
+  #     enable_creation_date: false
   - git-revision-date-localized:
-      type: iso_datetime
-      fallback_to_build_date: true
-      enable_creation_date: false    
+      type: date
+      enable_creation_date: true      
+  - git-committers:
+      repository: imattdu/imattdu.github.io
+      # token: !ENV GH_TOKEN      
+  - git-authors        
 
 
 extra:
@@ -134,7 +141,8 @@ nav:
     - mysql:
       - 安装: 20db/0mysql/0setup.md
       - 基础使用: 20db/0mysql/1base.md
-      - 基础使用: 20db/0mysql/2advanced.md
+      - 高级: 20db/0mysql/2advanced.md
+      - 视图: 20db/0mysql/视图.md
   - web:
     - gin:
       - base: 23frame/gin/base.md
