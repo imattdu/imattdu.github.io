@@ -40,16 +40,13 @@ theme:
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
-  # - git-revision-date-localized:
-  #     type: iso_datetime
-  #     fallback_to_build_date: true
-  #     enable_creation_date: false
   - git-revision-date-localized:
-      type: date
-      enable_creation_date: true      
+      type: iso_datetime
+      fallback_to_build_date: true
+      enable_creation_date: false     
   - git-committers:
       repository: imattdu/imattdu.github.io
-      # token: !ENV GH_TOKEN      
+      token: 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  
   - git-authors        
 
 
