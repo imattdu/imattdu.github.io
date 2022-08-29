@@ -46,7 +46,7 @@ plugins:
       enable_creation_date: false     
   - git-committers:
       repository: imattdu/imattdu.github.io
-      token: !ENV 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 
+      token: !ENV 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
   - git-authors        
 
 
