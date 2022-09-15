@@ -136,11 +136,13 @@ nav:
       - dp: 10algorithm/base/4dp.md
   - db:
     - mysql:
-      - 安装: 20db/0mysql/0setup.md
+      - 安装: 20db/00mysql-基础/0setup.md
       - 基础使用: 20db/0mysql/1base.md
       - 高级: 20db/0mysql/2advanced.md
       - 视图: 20db/0mysql/视图.md
-      - 数据类型: 20db/0mysql/12-数据类型.md
+      - 10-创建表和管理表: 20db/00mysql-基础/10-创建表和管理表.md
+      - 11-数据增删改: 20db/00mysql-基础/11-数据增删改.md
+      - 12-数据类型: 20db/00mysql-基础/12-数据类型.md
   - web:
     - gin:
       - base: 23frame/gin/base.md
