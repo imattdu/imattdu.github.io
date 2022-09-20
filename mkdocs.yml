@@ -143,6 +143,7 @@ nav:
       - 12-数据类型: 20db/00mysql-基础/12-数据类型.md
       - 13-约束: 20db/00mysql-基础/13-约束.md
       - 14-视图: 20db/00mysql-基础/14-视图.md
+      - 15-存储过程和函数: 20db/00mysql-基础/15-存储过程和函数.md
   - web:
     - gin:
       - base: 23frame/gin/base.md
