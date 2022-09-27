@@ -118,7 +118,7 @@ nav:
       - python: 03python/python.md
       - 字符串: 03python/flask.md    
          
-  - 工具:
+  - tool:
     - mac:
       - 基本使用: 09tool/1mac/0基本使用.md
       - 常用软件: 09tool/1mac/1常用软件.md
@@ -147,7 +147,7 @@ nav:
   - web:
     - gin:
       - base: 23frame/gin/base.md
-  - 组件:
+  - component:
     - redis:
       - 安装: 34mw/0redis/0setup.md
       - 基础: 34mw/0redis/1base.md
@@ -155,11 +155,11 @@ nav:
       - 源码: 34mw/0redis/3source.md
       - API: 34mw/0redis/4api.md
     - kafka:
-      - 概述: 33mq/0kafka/0-概述.md
-      - 安装: 33mq/0kafka/1-安装.md
-      - 终端操作: 33mq/0kafka/2-终端操作.md
-      - 原理: 33mq/0kafka/3-原理.md
-      - api: 33mq/0kafka/4-api.md
+      - 概述: 33mq/0-kafka/0-概述.md
+      - 安装: 33mq/0-kafka/1-安装.md
+      - 终端操作: 33mq/0-kafka/2-终端操作.md
+      - 原理: 33mq/0-kafka/3-原理.md
+      - api: 33mq/0-kafka/4-api.md
     - zookeeper:
       - zookeeper学习: 34mw/zookeeper/zookeeper学习.md
     - es:
