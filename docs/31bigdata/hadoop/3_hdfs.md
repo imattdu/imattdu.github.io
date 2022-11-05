@@ -441,7 +441,9 @@ path:
 
 
 
-（1）客户端通过 Distributed FileSystem 模块向 NameNode 请求上传文件，NameNode 检查目标文件是否已存在，父目录是否存在。 （2）NameNode 返回是否可以上传。 
+（1）客户端通过 Distributed FileSystem 模块向 NameNode 请求上传文件，NameNode 检查目标文件是否已存在，父目录是否存在。 
+
+（2）NameNode 返回是否可以上传。 
 
 （3）客户端请求第一个 Block 上传到哪几个 DataNode 服务器上。 （4）NameNode 返回 3 个 DataNode 节点，分别为 dn1、dn2、dn3。 
 
@@ -557,7 +559,7 @@ Edits ：日志
 
 ### Fsimage 和 Edits 解析
 
-
+/opt/module/hadoop-3.1.3/data/dfs/name/current
 
 
 
@@ -594,7 +596,7 @@ cd /opt/module/hadoop-3.1.3/data/dfs/name/current
 
 
 ```sh
-hdfs oiv -p XML -i fsimage_0000000000000008685 -o /opt/module/hadoop-3.1.3/fsimage.xml
+hdfs oiv -p XML -i fsimage_0000000000000009738 -o /opt/module/hadoop-3.1.3/fsimage.xml
 ```
 
 
@@ -752,6 +754,14 @@ DN 扫描自己节点块信息列表的时间，默认 6 小时
 
 
 
+
+
+
+
+
+
+
+
 ### 6.3 掉线时限参数设置
 
 
@@ -778,4 +788,12 @@ TimeOut = 2 * dfs.namenode.heartbeat.recheck-interval + 10 * dfs.heartbeat.inter
      <value>3</value>
 </property>
 ```
+
+
+
+
+
+
+
+
 
