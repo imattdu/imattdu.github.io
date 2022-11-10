@@ -413,12 +413,95 @@ springboot中的pom.xml 加载失败
 
 
 
-### clion
+## clion
 
 
 
 
 
+
+
+
+
+
+
+
+### 配置
+
+#### 配置cpp环境
+
+
+
+##### 1.安装command line tools
+
+```sh
+xcode-select --install 
+```
+
+
+
+卸载
+
+```sh
+xcode-select --print-path
+
+
+
+rm -rvf xxx
+```
+
+
+
+
+
+##### 2.安装gcc 
+
+**使用默认clang 无法使用bits/stdc++.h**
+
+
+
+```sh
+brew install gcc
+
+
+
+/opt/homebrew/Cellar/gcc/12.2.0/bin/gcc-12
+/opt/homebrew/Cellar/gcc/12.2.0/bin/g++-12
+
+
+-D CMAKE_CXX_COMPILER=/opt/homebrew/Cellar/gcc/12.2.0/bin/g++-12
+```
+
+
+
+##### 3.替换clang
+
+
+
+
+
+```sh
+alias gcc='gcc-12'
+alias cc='gcc-12'
+alias g++='g++-12'
+alias c++='c++-12'
+```
+
+
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202203261935470.png)
+
+
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202203261936379.png)
 
 
 #### 如何 多个main函数
@@ -441,48 +524,3 @@ endforeach ()
 ```
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/2021/12/23/20211223014018.png)
-
-
-
-
-
-
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/2021/12/23/20211223014406.png)
-
-
-
-
-
-
-
-#### 导入bits/stdc++.h出错
-
-
-
-
-
-```sh
-brew install gcc
-
-
-
-/opt/homebrew/Cellar/gcc/11.2.0_3/bin/gcc-11
-/opt/homebrew/Cellar/gcc/11.2.0_3/bin/g++-11
-
-
--D CMAKE_CXX_COMPILER=/opt/homebrew/Cellar/gcc/11.2.0_3/bin/g++-11
-```
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202203261935470.png)
-
-
-
-
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202203261936379.png)
-
