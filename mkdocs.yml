@@ -48,7 +48,7 @@ plugins:
       separator: '[\s\u200b\-]'
       # jieba_dict_user: user_dict.txt
   - git-revision-date-localized:
-      type: iso_date
+      type: date
       fallback_to_build_date: false
       enable_creation_date: false     
   # 贡献者
