@@ -38,10 +38,14 @@ theme:
     - search.suggest
     # 搜索共享
     - search.share
+    # 根据目录更新url
+    - navigation.tracking
+    # 导航跟随
+    - toc.follow
 plugins:
   - search:
-      separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
-      #separator: '[\s\u200b\-]'
+      # separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+      separator: '[\s\u200b\-]'
       # jieba_dict_user: user_dict.txt
   - git-revision-date-localized:
       type: iso_date
@@ -49,8 +53,8 @@ plugins:
       enable_creation_date: false     
   # 贡献者
   - git-committers:
-      repository: imattdu/imattdu.github.io
-      branch: master
+      repository: squidfunk/mkdocs-material
+      branch: main
   # 所有者    
   - git-authors        
 
