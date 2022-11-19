@@ -17,6 +17,7 @@ theme:
   language: zh
   custom_dir: overrides
   icon:
+    edit: material/file-edit-outline
     repo: fontawesome/brands/github
   logo: images/matt.png
   favicon: images/favicon.ico
@@ -40,13 +41,17 @@ theme:
 plugins:
   - search:
       separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
+      #separator: '[\s\u200b\-]'
+      # jieba_dict_user: user_dict.txt
   - git-revision-date-localized:
       type: iso_date
       fallback_to_build_date: false
       enable_creation_date: false     
+  # 贡献者
   - git-committers:
       repository: imattdu/imattdu.github.io
-      token: !ENV GH_TOKEN
+      branch: master
+  # 所有者    
   - git-authors        
 
 
@@ -77,7 +82,7 @@ markdown_extensions:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
 nav:
-  - 基础:
+  - base:
     - Getting Started: index.md
     - go:
       - base:
@@ -116,8 +121,7 @@ nav:
         - stl: 02cpp/1stl/1stl.md
     - python:
       - python: 03python/python.md
-      - 字符串: 03python/flask.md    
-         
+      - 字符串: 03python/flask.md             
   - tool:
     - mac:
       - 基本使用: 09tool/1mac/0基本使用.md
@@ -127,7 +131,10 @@ nav:
       - git: 09tool/3dev/git.md
       - jetBrains: 09tool/3dev/jetBrains.md
       - jetBrains_快捷键: 09tool/3dev/jetBrains_快捷键.md  
-  - 算法:
+  - cs:
+    - index:
+      - index: cs.md
+  - algorithm:
     - 基础:
       - 基础算法: 10algorithm/base/0基础算法.md
       - 数据结构: 10algorithm/base/1数据结构.md
@@ -164,6 +171,9 @@ nav:
       - zookeeper学习: 34mw/zookeeper/zookeeper学习.md
     - es:
       - 基础: 34mw/es/es基础.md
+  - ms:
+    - index:
+      - index: ms.md
   - question:
     - question: 
       - 99question/question.md
