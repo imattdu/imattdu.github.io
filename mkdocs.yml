@@ -185,3 +185,9 @@ nav:
 extra_css:
   - stylesheets/extra.css
 
+markdown_extensions:
+  - md_in_html
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true  
+
