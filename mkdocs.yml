@@ -127,14 +127,17 @@ nav:
       - python: python/python.md
       - 字符串: python/flask.md             
   - tool:
+    - linux:
+      - centos安装: tool/linux/centos安装.md
+      - 常用软件安装: tool/linux/常用软件安装.md
     - mac:
-      - 基本使用: tool/1mac/0基本使用.md
-      - 常用软件: tool/1mac/1常用软件.md
-      - iterm2美化: tool/1mac/2iterm2美化.md
+      - 基本使用: tool/mac/0基本使用.md
+      - 常用软件: tool/mac/1常用软件.md
+      - iterm2美化: tool/mac/2iterm2美化.md
     - dev:
-      - git: tool/3dev/git.md
-      - jetBrains: tool/3dev/jetBrains.md
-      - jetBrains_快捷键: tool/3dev/jetBrains_快捷键.md  
+      - git: tool/dev/git.md
+      - jetBrains: tool/dev/jetBrains.md
+      - jetBrains_快捷键: tool/dev/jetBrains_快捷键.md  
   - cs:
     - index:
       - index: cs.md
@@ -178,6 +181,13 @@ nav:
   - ms:
     - index:
       - index: ms.md
+  - bigdata:
+    - hadoop:
+      - overview: bigdata/hadoop/overview.md
+      - quickstart: bigdata/hadoop/quickstart.md
+      - hdfs: bigdata/hadoop/hdfs.md
+      - mapreduce: bigdata/hadoop/mapreduce.md
+      - a: bigdata/hadoop/a.txt
   - question:
     - question: 
       - question/question.md

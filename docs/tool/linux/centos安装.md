@@ -6,15 +6,7 @@
 
 
 
-
-
-
-
-
-
 [centos 7 镜像](http://mirrors.aliyun.com/centos/7/isos/x86_64/)
-
-
 
 
 
@@ -22,11 +14,7 @@
 
 镜像介绍 各种格式
 
-
-
 虚拟机默认安装即可
-
-
 
 虚拟化
 
@@ -40,9 +28,9 @@
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210803013950.png)
 
-# 安装centos
+## 安装centos
 
-
+### 基础
 
 
 
@@ -60,7 +48,7 @@
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20201223165627.png)
 
-
+### 处理器 内存
 
 **2个处理器、每个处理器一个核心数量**
 
@@ -80,7 +68,7 @@
 
 
 
-
+### 网络
 
 
 
@@ -88,7 +76,7 @@
 
 
 
-
+### 磁盘
 
 
 
@@ -124,6 +112,8 @@
 
 
 
+### 虚拟机设置
+
 
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20201223170218.png)
@@ -135,6 +125,8 @@
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20201223170315.png)
 
 
+
+### 开机
 
 开机回车
 
@@ -176,7 +168,7 @@
 
 
 
-
+### 分区
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210803000832.png)
 
@@ -202,11 +194,7 @@ swap分区设置，文件系统为“swap”,Swap:内存不足有硬盘替换
 
 修改主机名
 
-
-
 开始安装，设置Root密码即可等待安装完成
-
-
 
 
 
@@ -236,19 +224,13 @@ swap分区设置，文件系统为“swap”,Swap:内存不足有硬盘替换
 
 
 
+## 网络
 
-
-
-
-
-
-
-
-# 网络
+### 介绍
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210802195541.png)
 
-## 设置NAT
+### 设置NAT
 
 
 
@@ -256,7 +238,7 @@ swap分区设置，文件系统为“swap”,Swap:内存不足有硬盘替换
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210803003602.png)
 
-### 1.设置主机虚拟网络v8
+#### 设置主机虚拟网络v8
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210131174231.png)
 
@@ -282,7 +264,7 @@ swap分区设置，文件系统为“swap”,Swap:内存不足有硬盘替换
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210803003327.png)
 
-### 2.设置虚拟机网络
+#### 设置虚拟机网络
 
 
 
@@ -306,7 +288,7 @@ swap分区设置，文件系统为“swap”,Swap:内存不足有硬盘替换
 
 
 
-### 3.设置centos网络
+#### 设置centos网络
 
 
 
@@ -377,7 +359,7 @@ ONBOOT=no
 
 
 
-### 4.重启网络或者重启
+#### 重启网络或者重启
 
 推荐重启即可
 
@@ -401,7 +383,7 @@ systemctl restart network
 
 
 
-# 防火墙
+## 防火墙
 
 查看防火墙状态
 
@@ -425,13 +407,13 @@ systemctl disable firewalld.service
 
 
 
-# 设置主机名称
+## 设置主机名称
 
 ```go
 vim /etc/hostname
 ```
 
-# 主机ip映射
+## 主机ip映射
 
 主机名和ip映射
 
@@ -447,9 +429,9 @@ vim /etc/hosts
 
 
 
-# 创建非root用户
+## 创建非root用户
 
-## 创建matt用户
+### 创建matt用户
 
 
 
@@ -459,7 +441,7 @@ useradd matt
 passwd matt
 ```
 
-## 为matt用户添加sudo权限
+### 为matt用户添加sudo权限
 
 修改/etc/sudoers 文件，在%wheel 这行下面添加一行，如下所示：
 
@@ -475,7 +457,7 @@ vim /etc/sudoers
 matt    ALL=(ALL)       NOPASSWD:ALL
 ```
 
-## 创建软件安装目录
+### 创建软件安装目录
 
 
 
@@ -485,7 +467,7 @@ mkdir /opt/software
 mkdir /opt/module
 ```
 
-## 修改创建的文件的用户和用户组为matt
+### 修改创建的文件的用户和用户组为matt
 
 
 
@@ -497,7 +479,7 @@ chown -R matt:matt /opt/module
 
 
 
-验证
+### 验证
 
 ```go
 ll
@@ -505,7 +487,7 @@ ll
 
 
 
-# 虚拟机克隆
+## 虚拟机克隆
 
 在网络配置好在克隆记得一定要关机下
 
@@ -539,7 +521,7 @@ ll
 
 
 
-# 安装ssh
+## 安装ssh
 
 检查是否安装ssh
 
@@ -604,7 +586,7 @@ ssh-copy-id -i id_rsa.pub root@192.168.96.128
 
 
 
-# 虚拟机扩容
+## 虚拟机扩容
 
 ### 查看本机磁盘环境
 

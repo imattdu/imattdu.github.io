@@ -1,31 +1,23 @@
-# 1概述
+## what
 
-## 1.1hadoop是什么
-
-
+### what hadoop
 
 分布式基础架构
 
 主要解决，海量数据的存储和海量数据的分析计算问题。
 
-3.1.3   
+**3.1.3**
 
 http://hadoop.apache.org/
 
 
 
-## 1.2优势
-
-
-
-
+### advantage
 
 1.高可靠性：Hadoop底层维护多个数据副本，所以即使Hadoop某个计算元
 素或存储故障，也不会导致数据的丢失。
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210811145502.png)
-
-
 
 
 
@@ -44,15 +36,11 @@ http://hadoop.apache.org/
 
 4.高容错性：能够自动将失败的任务重新分配。
 
-
-
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210811145652.png)
 
 
 
-
-
-## 1.3hadoop组成
+### framework
 
 
 
@@ -68,32 +56,24 @@ http://hadoop.apache.org/
 
 
 
-### 1hdfs
+#### hdfs 
+
+分布式文件系统
 
 
 
 1.NameNode（nn）：存储文件的元数据，如文件名，文件目录结构，文件属性（生成时间、副本数、
 文件权限），以及每个文件的块列表和块所在的DataNode等。
 
-
-
-
-
 2.DataNode(dn)：在本地文件系统存储文件块数据，以及块数据的校验和。
-
-
-
-
 
 3.Secondary NameNode(2nn)：每隔一段时间对NameNode元数据备份。
 
 
 
+#### yarn
 
-
-
-
-### 2.yarn
+资源管理者
 
 ResourceManager（RM）：整个集群资源（内存、CPU等）的老大
 
@@ -111,9 +91,7 @@ Container：容器，相当一台独立的服务器，里面封装了任务运�
 
 
 
-### 3.mapreduce
-
-
+#### mapreduce
 
 MapReduce 将计算过程分为两个阶段：Map 和 Reduce
 1）Map 阶段并行处理输入数据
@@ -129,7 +107,7 @@ MapReduce 将计算过程分为两个阶段：Map 和 Reduce
 
 
 
-### 1.3.4 三者关系
+#### 三者关系
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210812003241.png)
 
@@ -137,21 +115,24 @@ MapReduce 将计算过程分为两个阶段：Map 和 Reduce
 
 
 
-# 2.hadoop环境搭建
+## install
 
 
 
-## 1.虚拟机下安装centos
+### install centos
 
-参考 /note/Ⅰ_linux/Linux安装和基本配置.md
-
-[centos 安装](https://github.com/imattdu/note/blob/main/%E2%85%A0_linux/Linux%E5%AE%89%E8%A3%85%E5%92%8C%E5%9F%BA%E6%9C%AC%E9%85%8D%E7%BD%AE.md#%E5%AE%89%E8%A3%85centos)
+参考安装centos7.5(4g+50g)
 
 
 
-安装centos、设置网络、关闭防火墙设置主机名、安装常见软件包(安装epel-release,jdk,gcc,g++)、设置主机名ip映射、创建matt用户，创建软件目录，修改文件所有者，安装jdk,虚拟机克隆等。
+安装centos、设置网络、关闭防火墙设置主机名、安装常见软件包(安装epel-release,jdk,gcc,g++)、设置主机名ip映射、创建matt用户并配置**sudo**，创建软件目录，修改文件所有者，安装jdk,虚拟机克隆等。
 
+如果是最小化安装则需要安装net-tool,vim
 
+```shell
+yum install -y net-tools 
+yum install -y vim
+```
 
 matt05
 
@@ -161,30 +142,25 @@ matt07
 
 
 
-## 2.单机安装hadoop
+### 单机安装hadoop
 
-
-
-
-
-### 用 XShell 文件传输工具将 hadoop-3.1.3.tar.gz 导入到 opt 目录下面的 software文件夹下面
-
-
+hadoop-3.1.3.tar.gz
 
 ```go
 tar -zxvf hadoop-3.1.3.tar.gz -C /opt/module/
 
-
 hadoop version
 ```
 
-### 编写配置path
+#### 配置
+
+##### 编写配置path
 
 ```go
 sudo vim /etc/profile.d/my_env.sh
 ```
 
-### 配置path
+##### 配置path
 
 ```go
 #HADOOP_HOME
@@ -193,27 +169,19 @@ export PATH=$PATH:$HADOOP_HOME/bin
 export PATH=$PATH:$HADOOP_HOME/sbin
 ```
 
-### 配置生效
+##### 配置生效
 
 ```go
 source /etc/profile
 ```
 
-### 验证
+#### 验证
 
 ```go
 hadoop version
 ```
 
-### **目录结构**
-
-
-
-
-
-
-
-
+#### 目录结构
 
 - bin 目录:存放对 Hadoop 相关服务(hdfs，yarn，mapred)进行操作的脚本 
 - etc 目录:Hadoop 的配置文件目录，存放 Hadoop 的配置文件
@@ -223,19 +191,17 @@ hadoop version
 
 
 
-
-
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210803084344.png)
 
 
 
 
 
-# 3.hadoop运行模式
+### hadoop运行模式
 
 
 
-## 3.1三种模式
+#### 三种模式
 
 
 
@@ -253,11 +219,7 @@ Hadoop 运行模式包括:本地模式、伪分布式模式以及完全分布式
 
 
 
-## 3.2本地模式使用
-
-
-
-
+#### 本地模式使用
 
 在hadoop安装目录下
 
@@ -285,8 +247,6 @@ a d
 hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount wcinput wcoutput
 ```
 
-
-
 查看结果
 
 ```go
@@ -295,9 +255,9 @@ cat wcoutput/part-r-00000
 
 
 
-# 4.完全分布式
+### 完全分布式安装
 
-## 4.1操作步骤
+#### 流程
 
 1. 准备 3 台客户机(关闭防火墙、静态 IP、主机名称)
 2. 安装 JDK
@@ -309,25 +269,19 @@ cat wcoutput/part-r-00000
 8. 配置ssh
 9. 群起并测试集群
 
+#### 文件传输
 
+##### scp
 
-## 4.2文件传输
-
-
-
-### scp
-
-#### 概念
+###### 概念
 
 scp 可以实现服务器与服务器之间的数据拷贝。
 
-#### 语法
+###### 语法
 
 scp -r $pdir/$fname $user@$host:$pdir/$fname
 
 命令 递归 要拷贝的文件路径/名称 目的地用户@主机:目的地路径/名称
-
-
 
 可以指定目标位置的文件名也可以不指定
 
@@ -341,15 +295,15 @@ scp -r /opt/software/aa.txt matt@123.56.135.43:/matt/opt/software
 scp -r /opt/module/jdk1.8.0_212 matt@192.168.96.132:/opt/module
 ```
 
-### **rsync** 远程同步工具
+##### rsync 远程同步工具
 
-#### 优点
+###### what
 
 rsync 主要用于备份和镜像。具有速度快、避免复制相同内容和支持符号链接的优点。 rsync 和 scp 区别:用 rsync 做文件的复制要比 scp 的速度快，rsync 只对差异文件做更新。scp 是把所有文件都复制过去。
 
 
 
-#### 语法
+###### how
 
 ```go
 rsync -av $pdir/$fname $user@$host:$pdir/$fname
@@ -366,28 +320,26 @@ a --archive  ：归档模式，表示递归传输并保持文件属性。等同�
 
 
 
-#### 例子
-
 ```go
 rsync -av /home/matt/hello.txt matt@192.168.96.135:/home/matt
 ```
 
 
 
-### xsync分发集群脚本
+##### xsync分发集群脚本
 
 底层使用rxync
 
 
 
-#### 进入当前家目录的bin目录下
+###### 进入当前家目录的bin目录下
 
 ```go
 cd ~/bin
 vim xsync
 ```
 
-#### 编写脚本
+###### 编写脚本
 
 **记得修改ip**
 
@@ -425,17 +377,13 @@ do
 done
 ```
 
-#### 赋予执行权限
+###### 添加执行权限
 
 ```go
 chmod u+x xsync
 ```
 
-#### 判断当前用户家目录，是否在path下，如果没有则需要添加
-
-
-
-
+###### 配置环境
 
 ```go
 echo $PATH
@@ -447,9 +395,7 @@ echo $PATH
 vim /etc/profile.d/my_env.sh
 ```
 
-
-
-#### 脚本复制到bin目录下
+###### 脚本复制到bin目录下
 
 使用sudo需要使用全路径。不要使用相对路径
 
@@ -459,7 +405,7 @@ sudo cp /home/matt/bin/xsync /bin
 
 
 
-#### 分发脚本环境变量生效
+###### 分发脚本环境变量生效
 
 ```sh
 sudo xsync /home/matt/bin/xsync /bin/xsync /etc/profile.d/my_env.sh
@@ -471,9 +417,7 @@ sudo xsync /home/matt/bin/xsync /bin/xsync /etc/profile.d/my_env.sh
 source /etc/profile
 ```
 
-
-
-### ssh
+#### ssh
 
 ssh 用户名@ip
 
@@ -481,7 +425,7 @@ ssh 用户名@ip
 ssh root@123.56.135.43
 ```
 
-### 免密登录
+##### 免密登录
 
 
 
@@ -491,7 +435,7 @@ cd ~/.ssh
 ls -a
 ```
 
-#### 生成公钥私钥
+###### 生成公钥私钥
 
 ```go
 ssh-keygen -t rsa
@@ -501,13 +445,13 @@ ssh-keygen -t rsa
 
 
 
-#### 将公钥拷贝到要免密登录的目标机器上
+###### 将公钥拷贝到要免密登录的目标机器上
 
 ```go
 ssh-copy-id -i id_rsa.pub matt@192.168.96.128
 ```
 
-#### .ssh 目录下的文件解释
+###### .ssh 目录下的文件解释
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210812194239.png)
 
@@ -533,11 +477,11 @@ ssh-copy-id -i id_rsa.pub matt@192.168.96.128
 
 
 
-## 4.3集群部署
+#### 集群部署
 
 
 
-### 集群规划
+集群规划
 
 NameNode和SecondaryNameNode不要安装在同一台服务器
 
@@ -549,27 +493,27 @@ ResourceManager也很消耗内存，不要和NameNode、SecondaryNameNode配置�
 
 
 
-### 配置文件说明
+#### 配置文件说明
 
 Hadoop 配置文件分两类:默认配置文件和自定义配置文件，只有用户想修改某一默认配置值时，才需要修改自定义配置文件，更改相应属性值。
 
 
 
-#### 默认配置文件
+##### 默认配置文件
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210812195628.png)
 
 
 
-#### 自定义配置文件
+##### 自定义配置文件
 
 **core-site.xml**、**hdfs-site.xml**、**yarn-site.xml**、**mapred-site.xml** 四个配置文件存放在 $HADOOP_HOME/etc/hadoop 这个路径上，用户可以根据项目需求重新进行修改配置。
 
 
 
-### 配置集群
+#### 配置集群
 
-#### 1.核心配置文件-matt05
+##### 1.核心配置文件-matt05
 
 配置 core-site.xml
 
@@ -578,8 +522,6 @@ Hadoop 配置文件分两类:默认配置文件和自定义配置文件，只有
 ```cpp
 vim core-site.xml
 ```
-
-
 
 
 
@@ -605,7 +547,7 @@ vim core-site.xml
 </configuration>
 ```
 
-#### 2.HDFS 配置文件-matt05
+##### 2.HDFS 配置文件-matt05
 
 配置 hdfs-site.xml
 
@@ -632,7 +574,7 @@ vim hdfs-site.xml
 </configuration>
 ```
 
-#### 3.YARN 配置文件-matt05
+##### 3.YARN 配置文件-matt05
 
 
 
@@ -661,13 +603,11 @@ vim yarn-site.xml
 </configuration>
 ```
 
-#### 4.MapReduce 配置文件-matt05
+##### 4.MapReduce 配置文件-matt05
 
 ```go
 vim mapred-site.xml
 ```
-
-
 
 
 
@@ -683,7 +623,7 @@ vim mapred-site.xml
 </configuration>
 ```
 
-#### 分发配置文件
+##### 分发配置文件
 
 
 
@@ -693,11 +633,9 @@ xsync /opt/module/hadoop-3.1.3/etc/hadoop/
 
 
 
+#### 群起
 
-
-### 群起
-
-#### 配置workers
+##### 配置workers
 
 ```go
 vim /opt/module/hadoop-3.1.3/etc/hadoop/workers
@@ -711,9 +649,7 @@ matt06
 matt07
 ```
 
-分发配置文件
-
-
+##### 分发配置文件
 
 ```go
 xsync /opt/module/hadoop-3.1.3/etc
@@ -721,41 +657,43 @@ xsync /opt/module/hadoop-3.1.3/etc
 
 #### 启动集群
 
-##### 1.如果集群是第一次启动，需要在 matt05 节点格式化 NameNode(**注意:格式化 NameNode，会产生新的集群 id，导致 NameNode 和 DataNode 的集群 id 不一致，集群找 不到已往数据。如果集群在运行过程中报错，需要重新格式化 NameNode 的话，一定要先停 止 namenode 和 datanode 程，并且要删除所有机器的 data 和 logs 目录，然后再进行格式化。**)
+##### 格式化
 
-
+1.如果集群是第一次启动，需要在 matt05 节点格式化 NameNode(注意:格式化 NameNode，会产生新的集群 id，导致 NameNode 和 DataNode 的集群 id 不一致，集群找 不到已往数据。如果集群在运行过程中报错，需要重新格式化 NameNode 的话，一定要先停 止 namenode 和 datanode 程，并且要删除所有机器的 data 和 logs 目录，然后再进行格式化。)
 
 ```go
 hdfs namenode -format
 ```
 
-
-
-##### 2.启动hdfs
-
-
+##### 启动hdfs
 
 ```go
 sbin/start-dfs.sh
 ```
 
-##### 3.在配置了 **ResourceManager** 的节点(**matt06**)启动 YARN
+##### 启动yarn
+
+在配置了 **ResourceManager** 的节点(**matt06**)启动 YARN
 
 **yarn:必须在matt06开启关闭**
-
-
 
 ```go
 sbin/start-yarn.sh
 ```
 
-##### 4.Web 端查看 HDFS 的 NameNode
+##### 验证
+
+###### web
+
+Web 端查看 HDFS 的 NameNode
 
 (a)浏览器中输入:http://matt05:9870
 
 (b)查看 HDFS 上存储的数据信息 
 
-##### 5.Web 端查看 YARN 的 ResourceManager
+
+
+Web 端查看 YARN 的 ResourceManager
 
 (a)浏览器中输入:http://matt06:8088
 
@@ -763,7 +701,7 @@ sbin/start-yarn.sh
 
 
 
-### 测试配置是否成功
+###### 测试配置是否成功
 
 创建文件夹并上传
 
@@ -815,9 +753,7 @@ hadoop jar /opt/module/hadoop-3.1.3/share/hadoop/mapreduce/hadoop-mapreduce-exam
 
 
 
-
-
-### 配置历史服务器
+#### 配置历史服务器
 
 可以查看历史运行情况
 
@@ -844,7 +780,7 @@ vim mapred-site.xml
 
 
 
-#### 分发配置
+##### 分发配置
 
 ```go
 xsync $HADOOP_HOME/etc/hadoop/mapred-site.xml
@@ -852,9 +788,7 @@ xsync $HADOOP_HOME/etc/hadoop/mapred-site.xml
 
 
 
-
-
-#### matt05启动历史服务器
+##### matt05启动历史服务器
 
 $HADOOP_HOME/bin
 
@@ -862,7 +796,7 @@ $HADOOP_HOME/bin
 [matt@matt05 bin]$ mapred --daemon start historyserver
 ```
 
-#### 测试
+##### 测试
 
 ```go
 jps
@@ -870,7 +804,7 @@ jps
 
 
 
-### 日志聚集
+#### 日志聚集
 
 日志聚集概念：应用运行完成以后，将程序运行日志信息上传到 HDFS 系统上。
 
@@ -882,19 +816,11 @@ jps
 
 
 
-
-
-
-
-
-
-#### 编写配置文件matt05
+##### 编写配置文件matt05
 
 ```go
 vim yarn-site.xml
 ```
-
-
 
 
 
@@ -918,13 +844,17 @@ vim yarn-site.xml
 
 
 
-#### 分发配置文件
+##### 分发配置文件
 
 ```go
 xsync $HADOOP_HOME/etc/hadoop/yarn-site.xml
 ```
 
-#### 关闭 NodeManager 、ResourceManager 和 HistoryServer
+
+
+
+
+##### 关闭 NodeManager 、ResourceManager 和 HistoryServer
 
 ```go
 # matt06服务器
@@ -942,23 +872,17 @@ mapred --daemon stop historyserver
 mapred --daemon start historyserver
 ```
 
-#### 删除 HDFS 上已经存在的输出文件
+#### 
 
 
 
-```go
-hadoop fs -rm -r /output
-```
 
-#### 执行wordcount程序
 
-```go
-hadoop jar /opt/module/hadoop-3.1.3/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount /input /output
-```
 
-## 启动
 
-### 整体
+## how
+
+### 整体启动
 
 #### 整体启动/停止 HDFS
 
@@ -980,8 +904,6 @@ start-yarn.sh/stop-yarn.sh
 hdfs --daemon start/stop namenode/datanode/secondarynamenode
 ```
 
-
-
 #### 启动/停止 YARN
 
 ```go
@@ -990,13 +912,13 @@ yarn --daemon start/stop resourcemanager/nodemanager
 
 
 
-# **matt用户下启动**
+matt用户下启动
 
 
 
-## 脚本
+### 启动脚本
 
-### myhadoop.sh
+myhadoop.sh
 
 
 
@@ -1046,36 +968,10 @@ case $1 in
 esac
 ```
 
-
-
-
+#### 添加权限
 
 ```go
 chmod 777 myhadoop.sh
-```
-
-
-
-
-
-#### 赋予执行权限
-
-```go
-chmod 777 xsync
-```
-
-#### 判断当前用户家目录，是否在path下，如果没有则需要添加
-
-
-
-```go
-echo $PATH
-```
-
-
-
-```go
-vim /etc/profile.d/my_env.sh
 ```
 
 
@@ -1088,15 +984,13 @@ vim /etc/profile.d/my_env.sh
 sudo cp /home/matt/bin/xsync /bin
 ```
 
-
-
-#### 分发脚本环境变量生效
+#### 分发脚本
 
 ```sh
 sudo xsync /home/matt/bin/xsync /bin/xsync /etc/profile.d/my_env.sh
 ```
 
-
+#### 环境变量生效
 
 ```go
 source /etc/profile
@@ -1126,8 +1020,6 @@ done
 
 
 
-
-
 ```go
 chmod 777 jpsall
 ```
@@ -1138,7 +1030,7 @@ chmod 777 jpsall
 
 
 
-## 常用端口号 
+### 常用端口号 
 
 
 
@@ -1164,9 +1056,9 @@ chmod 777 jpsall
 
 
 
-## 时间同步
+### 时间同步
 
-### 需求
+#### 需求
 
 
 
@@ -1187,9 +1079,9 @@ chmod 777 jpsall
 
 
 
-### 具体步骤
+#### config
 
-#### 查看所有节点 ntpd 服务状态和开机自启动状态
+##### 查看所有节点 ntpd 服务状态和开机自启动状态
 
 ```go
 sudo su root
@@ -1203,15 +1095,13 @@ systemctl start ntpd
 systemctl is-enabled ntpd
 ```
 
-
-
-#### 修改 hadoop102 的 ntp.conf 配置文件
+##### 修改 hadoop102 的 ntp.conf 配置文件
 
 ```go
 vim /etc/ntp.conf
 ```
 
-#### 修改 1（授权 192.168.96.0-192.168.10.255 网段上的所有机器可以从这台机器上查
+##### 修改 1（授权 192.168.96.0-192.168.10.255 网段上的所有机器可以从这台机器上查
 
 询和同步时间）
 
@@ -1219,7 +1109,7 @@ vim /etc/ntp.conf
 estrict 192.168.96.0 mask 255.255.255.0 nomodify notrap
 ```
 
-#### 修改 2（集群在局域网中，不使用其他互联网上的时间）
+##### 修改 2（集群在局域网中，不使用其他互联网上的时间）
 
 ```go
 #server 0.centos.pool.ntp.org iburst
@@ -1230,7 +1120,7 @@ estrict 192.168.96.0 mask 255.255.255.0 nomodify notrap
 
 
 
-#### 添加 3（当该节点丢失网络连接，依然可以采用本地时间作为时间服务器为集群中
+##### 添加 3（当该节点丢失网络连接，依然可以采用本地时间作为时间服务器为集群中
 
 的其他节点提供时间同步）
 
@@ -1243,7 +1133,7 @@ fudge 127.127.1.0 stratum 10
 
 
 
-#### 修改 matt05 的/etc/sysconfig/ntpd 文件
+##### 修改 matt05 的/etc/sysconfig/ntpd 文件
 
 
 
@@ -1253,7 +1143,7 @@ fudge 127.127.1.0 stratum 10
 vim /etc/sysconfig/ntpd
 ```
 
-#### 增加内容如下（让硬件时间与系统时间一起同步）
+##### 增加内容如下（让硬件时间与系统时间一起同步）
 
 ```go
 SYNC_HWCLOCK=yes
@@ -1261,11 +1151,7 @@ SYNC_HWCLOCK=yes
 
 
 
-
-
 ##### 重新启动 ntpd 服务
-
-
 
 ```go
 systemctl start ntpd
@@ -1273,9 +1159,7 @@ systemctl start ntpd
 systemctl enable ntpd
 ```
 
-#### **其他机器配置**root用户下
-
-##### 关闭所有节点上 ntp 服务和自启动
+##### **其他机器配置**root用户下关闭所有节点上 ntp 服务和自启动
 
 
 
@@ -1323,10 +1207,6 @@ date
 
 
 
-多台服务器
-
-
-
 文件块大小：128m
 
 上限是128m 如果是1kb的文件那么剩余的空间还可以为其他文件存储
@@ -1334,6 +1214,12 @@ date
 
 
 
+
+## 问题
+
+
+
+### 版本不一致
 
 
 
@@ -1380,12 +1266,6 @@ hdfs namenode -format
 sbin/start-dfs.sh
 ```
 
-
-
-
-
-
-
 http://matt05:9870/
 
 
@@ -1394,7 +1274,7 @@ http://matt05:9870/
 
 
 
-## 5常见错误
+### 其他错误
 
 
 
@@ -1409,10 +1289,6 @@ INFO client.RMProxy: Connecting to ResourceManager at hadoop108/192.168.10.108:8
 ```java
 java.net.UnknownHostException: hadoop102: hadoop102 at java.net.InetAddress.getLocalHost(InetAddress.java:1475) at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(Job Submitter.java:146) at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1290) at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1287) at java.security.AccessController.doPrivileged(Native Method) at javax.security.auth.Subject.doAs(Subject.java:415)
 ```
-
-
-
-
 
  解决办法： 
 
