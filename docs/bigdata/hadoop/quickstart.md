@@ -127,6 +127,8 @@ MapReduce 将计算过程分为两个阶段：Map 和 Reduce
 
 安装centos、设置网络、关闭防火墙设置主机名、安装常见软件包(安装epel-release,jdk,gcc,g++)、设置主机名ip映射、创建matt用户并配置**sudo**，创建软件目录，修改文件所有者，安装jdk,虚拟机克隆等。
 
+
+
 如果是最小化安装则需要安装net-tool,vim
 
 ```shell
@@ -143,6 +145,10 @@ matt07
 
 
 ### 单机安装hadoop
+
+#### 安装
+
+解压
 
 hadoop-3.1.3.tar.gz
 
@@ -871,8 +877,6 @@ mapred --daemon stop historyserver
 ./start-yarn.sh
 mapred --daemon start historyserver
 ```
-
-#### 
 
 
 

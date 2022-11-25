@@ -187,7 +187,6 @@ nav:
       - quickstart: bigdata/hadoop/quickstart.md
       - hdfs: bigdata/hadoop/hdfs.md
       - mapreduce: bigdata/hadoop/mapreduce.md
-      - a: bigdata/hadoop/a.txt
   - question:
     - question: 
       - question/question.md
