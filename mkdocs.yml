@@ -51,10 +51,6 @@ plugins:
       type: iso_date
       fallback_to_build_date: false
       enable_creation_date: false     
-  # 贡献者
-  - git-committers:
-      repository: imattdu/imattdu.github.io
-      branch: master
   # 所有者    
   - git-authors        
 
@@ -187,7 +183,6 @@ nav:
       - quickstart: bigdata/hadoop/quickstart.md
       - hdfs: bigdata/hadoop/hdfs.md
       - mapreduce: bigdata/hadoop/mapreduce.md
-      - a: bigdata/hadoop/a.txt
   - question:
     - question: 
       - question/question.md
