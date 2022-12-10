@@ -2,55 +2,45 @@
 
 
 
-## 1.概述
+## overview
 
-### 概述
+### what
 
-hdfs:分布式 + 文件系统
+hdfs:分布式文件系统
 
+### ad disad
 
-
-### 优缺点
-
-#### 优点:
+#### ad
 
 高容错性：副本
 
-适合处理大数据
+适合处理大数据:可处理数据规模大
 
-#### 缺点：
+#### disad
 
 不适合低延时数据访问
 
 无法高效的对大量小文件进行存储：存储大量小文件的话，它会占用NameNode大量的内存来存储文件目录和 块信息
 
-
-
 不支持并发写入、文件随机修改：一个文件只能有一个写，不允许多个线程同时写，仅支持数据的追加 不支持修改
 
-### 架构
+### framework
 
-
-
-#### 1）NameNode（nn）：就是Master，它
-
-是一个主管、管理者。
+1.NameNode（nn）：就是Master，它是一个主管、管理者。
 （1）管理HDFS的名称空间；
 （2）配置副本策略；(有几个副本)
 （3）管理数据块（Block）映射信息；
 （4）处理客户端读写请求。
 
-#### 2）DataNode：就是Slave。NameNode
 
-下达命令，DataNode执行实际的操作。
+
+2.DataNode：就是Slave。NameNode下达命令，DataNode执行实际的操作。
 （1）存储实际的数据块；
 （2）执行数据块的读/写操作。
 
 
 
-
-
-#### 3）Client：就是客户端。
+3.Client：就是客户端。
 
 （1）文件切分。文件上传HDFS的时候，Client将文件切分成一个一个的Block，然后进行上传；
 
@@ -63,12 +53,8 @@ hdfs:分布式 + 文件系统
 
 
 
-
-
-#### 4）Secondary NameNode：并非NameNode的热备。当NameNode挂掉的时候，它并不
-
-能马上替换NameNode并提供服务。
-（1）辅助NameNode，分担其工作量，比如定期合并Fsimage（镜像）和Edits（编辑日志），并推送给NameNode ；
+4.Secondary NameNode：并非NameNode的热备。当NameNode挂掉的时候，它并不能马上替换NameNode并提供服务。
+（1）辅助NameNode，分担其工作量，比如定期合并Fsimage（镜像）和Edits（编辑日志），并推送给NameNode；
 （2）在紧急情况下，可辅助恢复NameNode。
 
 
@@ -93,11 +79,7 @@ hdfs:分布式 + 文件系统
 
 文件块大小是上限
 
-
-
 如果小于128mb的文件 那么文件是100mb 那么占100mb
-
-
 
 
 
@@ -111,17 +93,15 @@ hdfs:分布式 + 文件系统
 
 
 
-## 2.shell
+## shell
+
+### help
 
 
-
-### **帮助命令**
 
 ```bash
 hadoop fs -help rm
 ```
-
-
 
 
 
@@ -135,19 +115,9 @@ hadoop fs -mkdir /sanguo
 
 
 
-
-
 ### 剪切
 
-```go
-hadoop fs -moveFromLocal ./shuguo.txt /sanguo
-```
 
-![](https://raw.githubusercontent.com/imattdu/img/main/img/20210805233816.png)
-
-
-
-**习惯**
 
 ```bash
 hadoop fs -mv /sanguo/wuguo.txt /
@@ -155,21 +125,7 @@ hadoop fs -mv /sanguo/wuguo.txt /
 
 
 
-
-
-
-
 ### 拷贝
-
-```go
-hadoop fs -copyFromLocal ./weiguo.txt /sanguo
-```
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/20210805234848.png)
-
-
-
-**习惯**
 
 ```bash
 hadoop fs -cp /sanguo/shuguo.txt /sanguo/jingguo
@@ -177,9 +133,7 @@ hadoop fs -cp /sanguo/shuguo.txt /sanguo/jingguo
 
 
 
-
-
-### 上传
+### 上传 put
 
 ```go
 hadoop fs -put wuguo.txt /sanguo
@@ -187,9 +141,7 @@ hadoop fs -put wuguo.txt /sanguo
 
 
 
-
-
-### 下载
+### 下载 get
 
 ```go
 hadoop fs -get /xiyou/test1 ./
@@ -204,16 +156,6 @@ hadoop fs -rm /sanguo/shuguo.txt
 # 递归删除
 hadoop fs -rm -r /sanguo/shuguo.txt
 ```
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -237,8 +179,6 @@ drwx------   - matt supergroup          0 2021-08-05 00:21 /tmp
 2021-08-06 00:02:01,065 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
 caocao
 ```
-
-
 
 
 
@@ -290,12 +230,6 @@ hadoop fs -chgrp matt /sanguo/weiguo.txt
 
 
 
-
-
-
-
-
-
 ### 查看文件大小
 
 ```go
@@ -336,11 +270,11 @@ hadoop fs -setrep 10 /sanguo
 
 
 
-## 3.api
+## api
 
-### 安装
+### install
 
-#### 解压
+解压
 
 如果win10要使用还需要安装依赖库
 
@@ -415,7 +349,7 @@ path:
 
 ### api
 
-可以参考 https://github.com/imattdu/studyhdfs
+可以参考 https://github.com/imattdu/stu-hdfs
 
 
 
@@ -423,11 +357,9 @@ path:
 
 
 
-## 4.hdfs读写流程
+## hdfs读写流程
 
-
-
-### 4.1写数据流程
+### 写数据流程
 
 
 
@@ -441,19 +373,21 @@ path:
 
 
 
-（1）客户端通过 Distributed FileSystem 模块向 NameNode 请求上传文件，NameNode 检查目标文件是否已存在，父目录是否存在。 
+1.客户端通过 Distributed FileSystem 模块向 NameNode 请求上传文件，NameNode 检查目标文件是否已存在，父目录是否存在。 
 
-（2）NameNode 返回是否可以上传。 
+2.NameNode 返回是否可以上传。 
 
-（3）客户端请求第一个 Block 上传到哪几个 DataNode 服务器上。 （4）NameNode 返回 3 个 DataNode 节点，分别为 dn1、dn2、dn3。 
+3.客户端请求第一个 Block 上传到哪几个 DataNode 服务器上。 
 
-（5）客户端通过 FSDataOutputStream 模块请求 dn1 上传数据，dn1 收到请求会继续调用 dn2，然后 dn2 调用 dn3，将这个通信管道建立完成。 
+4.NameNode 返回 3 个 DataNode 节点，分别为 dn1、dn2、dn3。 
 
-（6）dn1、dn2、dn3 逐级应答客户端。 
+5.客户端通过 FSDataOutputStream 模块请求 dn1 上传数据，dn1 收到请求会继续调用 dn2，然后 dn2 调用 dn3，将这个通信管道建立完成。 
 
-（7）客户端开始往 dn1 上传第一个 Block（先从磁盘读取数据放到一个本地内存缓存）， 以 Packet 为单位，dn1 收到一个 Packet 就会传给 dn2，dn2 传给 dn3；dn1 每传一个 packet 会放入一个应答队列等待应答。 
+6.dn1、dn2、dn3 逐级应答客户端。 
 
-（8）当一个 Block 传输完成之后，客户端再次请求 NameNode 上传第二个 Block 的服务 器。（重复执行 3-7 步）。
+7.客户端开始往 dn1 上传第一个 Block（先从磁盘读取数据放到一个本地内存缓存）， 以 Packet 为单位，dn1 收到一个 Packet 就会传给 dn2，dn2 传给 dn3；dn1 每传一个 packet 会放入一个应答队列等待应答。 
+
+8.当一个 Block 传输完成之后，客户端再次请求 NameNode 上传第二个 Block 的服务 器。（重复执行 3-7 步）。
 
 
 
@@ -485,31 +419,31 @@ path:
 
 
 
-### 4.2读数据
+### 读数据
 
 
 
-#### 4.2.1 具体流程
+#### 具体流程
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/2021/12/12/20211212142533.png)
 
 
 
-（1）客户端通过 DistributedFileSystem 向 NameNode 请求下载文件，NameNode 通过查询元数据，找到文件块所在的 DataNode 地址。 
+1.客户端通过 DistributedFileSystem 向 NameNode 请求下载文件，NameNode 通过查询元数据，找到文件块所在的 DataNode 地址。 
 
-（2）挑选一台 DataNode（就近原则，然后随机）服务器，请求读取数据。 
+2.挑选一台 DataNode（就近原则，然后随机）服务器，请求读取数据。 
 
-（3）DataNode 开始传输数据给客户端（从磁盘里面读取数据输入流，以 Packet 为单位 来做校验）。 
+3.DataNode 开始传输数据给客户端（从磁盘里面读取数据输入流，以 Packet 为单位 来做校验）。 
 
-（4）客户端以 Packet 为单位接收，先在本地缓存，然后写入目标文件。
-
-
+4.客户端以 Packet 为单位接收，先在本地缓存，然后写入目标文件。
 
 
 
 
 
-## 5.NameNode 和 SecondaryNameNode
+
+
+## NameNode 和 SecondaryNameNode
 
 
 
@@ -523,7 +457,7 @@ path:
 
 
 
-1）第一阶段：NameNode 启动 
+1.第一阶段：NameNode 启动 
 
 （1）第一次启动 NameNode 格式化后，创建 Fsimage 和 Edits 文件。如果不是第一次启动，直接加载编辑日志和镜像文件到内存。 
 
@@ -539,7 +473,7 @@ Edits ：日志
 
 
 
-2）第二阶段：Secondary NameNode 工作 
+2.第二阶段：Secondary NameNode 工作 
 
 （1）Secondary NameNode 询问 NameNode 是否需要 CheckPoint。直接带回 NameNode 是否检查结果。 
 
@@ -547,7 +481,11 @@ Edits ：日志
 
 （3）NameNode 滚动正在写的 Edits 日志。 
 
-（4）将滚动前的编辑日志和镜像文件拷贝到 Secondary NameNode。 （5）Secondary NameNode 加载编辑日志和镜像文件到内存，并合并。 （6）生成新的镜像文件 fsimage.chkpoint。 
+（4）将滚动前的编辑日志和镜像文件拷贝到 Secondary NameNode。 
+
+（5）Secondary NameNode 加载编辑日志和镜像文件到内存，并合并。 
+
+（6）生成新的镜像文件 fsimage.chkpoint。 
 
 （7）拷贝 fsimage.chkpoint 到 NameNode。 
 
@@ -569,7 +507,7 @@ Edits ：日志
 
 
 
-（1）Fsimage文件：HDFS文件系统元数据的一个永久性的检查点，其中包含HDFS文件系统的所有目 录和文件inode的序列化信息。 fsimage_0000000000000000000 fsimage_0000000000000000000.md5 seen_txid VERSION 
+（1）Fsimage文件：HDFS文件系统元数据的一个永久性的检查点，其中包含HDFS文件系统的所有目录和文件inode的序列化信息。 fsimage_0000000000000000000 fsimage_0000000000000000000.md5 seen_txid VERSION 
 
 （2）Edits文件：存放HDFS文件系统的所有更新操作的路径，文件系统客户端执行的所有写操作首先 会被记录到Edits文件中。 
 
@@ -641,10 +579,6 @@ sz fsimage.xml
 
 
 
-
-
-
-
 2）一分钟检查一次操作次数，当操作次数达到 1 百万时，SecondaryNameNode 执行一次。
 
 
@@ -668,11 +602,11 @@ sz fsimage.xml
 
 
 
-## 6.datanode
+## datanode
 
 
 
-### 6.1 datanode 工作机制
+### datanode 工作机制
 
 
 
@@ -686,9 +620,9 @@ sz fsimage.xml
 
 
 
-（1）一个数据块在 DataNode 上以文件形式存储在磁盘上，包括两个文件，一个是数据 本身，一个是元数据包括数据块的长度，块数据的校验和，以及时间戳。 
+1.一个数据块在 DataNode 上以文件形式存储在磁盘上，包括两个文件，一个是数据 本身，一个是元数据包括数据块的长度，块数据的校验和，以及时间戳。 
 
-（2）DataNode 启动后向 NameNode 注册，通过后，周期性（6 小时）的向 NameNode 上 报所有的块信息。
+2.DataNode 启动后向 NameNode 注册，通过后，周期性（6 小时）的向 NameNode 上 报所有的块信息。
 
 
 
@@ -718,13 +652,13 @@ DN 扫描自己节点块信息列表的时间，默认 6 小时
 </property>
 ```
 
-（3）心跳是每 3 秒一次，心跳返回结果带有 NameNode 给该 DataNode 的命令如复制块 数据到另一台机器，或删除某个数据块。如果超过 10 分钟没有收到某个 DataNode 的心跳， 则认为该节点不可用。 
+3.心跳是每 3 秒一次，心跳返回结果带有 NameNode 给该 DataNode 的命令如复制块 数据到另一台机器，或删除某个数据块。如果超过 10 分钟没有收到某个 DataNode 的心跳， 则认为该节点不可用。 
 
-（4）集群运行中可以安全加入和退出一些机器。
+4.集群运行中可以安全加入和退出一些机器。
 
 
 
-### 6.2数据校验
+### 数据校验
 
 **保证数据完整性**
 
@@ -732,15 +666,15 @@ DN 扫描自己节点块信息列表的时间，默认 6 小时
 
 如下是 DataNode 节点保证数据完整性的方法。 
 
-（1）当 DataNode 读取 Block 的时候，它会计算 CheckSum。 
+1.当 DataNode 读取 Block 的时候，它会计算 CheckSum。 
 
-（2）如果计算后的 CheckSum，与 Block 创建时值不一样，说明 Block 已经损坏。 
+2.如果计算后的 CheckSum，与 Block 创建时值不一样，说明 Block 已经损坏。 
 
-（3）Client 读取其他 DataNode 上的 Block。 
+3.Client 读取其他 DataNode 上的 Block。 
 
-（4）常见的校验算法 crc（32），md5（128），sha1（160） 
+4.常见的校验算法 crc（32），md5（128），sha1（160） 
 
-（5）DataNode 在其文件创建后周期验证 CheckSum。
+5.DataNode 在其文件创建后周期验证 CheckSum。
 
 
 
@@ -762,7 +696,7 @@ DN 扫描自己节点块信息列表的时间，默认 6 小时
 
 
 
-### 6.3 掉线时限参数设置
+### 掉线时限参数设置
 
 
 

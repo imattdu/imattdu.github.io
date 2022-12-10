@@ -188,7 +188,6 @@ nav:
       - hdfs: bigdata/hadoop/hdfs.md
       - mapreduce: bigdata/hadoop/mapreduce.md
       - a: bigdata/hadoop/a.txt
-      - b: a.pdf
   - question:
     - question: 
       - question/question.md
