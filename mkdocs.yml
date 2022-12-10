@@ -53,8 +53,8 @@ plugins:
       enable_creation_date: false     
   # 贡献者
   - git-committers:
-      repository: squidfunk/mkdocs-material
-      branch: main
+      repository: imattdu/imattdu.github.io
+      branch: master
   # 所有者    
   - git-authors        
 
@@ -188,6 +188,7 @@ nav:
       - hdfs: bigdata/hadoop/hdfs.md
       - mapreduce: bigdata/hadoop/mapreduce.md
       - a: bigdata/hadoop/a.txt
+      - b: a.pdf
   - question:
     - question: 
       - question/question.md
