@@ -209,3 +209,57 @@ setMinPauseBetweenCheckpoints
 
 
 
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202212171420271.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202212171539214.png)
+
+
+
+
+
+
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202212171543338.png)
+
+
+
+
+
+
+
+```
+# 保持链接
+
+nc -lk 777
+
+
+
+--host localhost --port 777
+```
+
+
+
+
+
+
+
+
+
+
+

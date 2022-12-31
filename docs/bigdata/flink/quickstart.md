@@ -140,10 +140,6 @@ com.matt.wc.StreamWordCount
 
 
 
-
-
-
-
 #### 修改文件所有者
 
 
@@ -177,9 +173,7 @@ https://blog.csdn.net/qq_26129413/article/details/109675386
 
 
 ```sh
-tar -zxvf flink-1.10.1-bin-scala_2.12.tgz -C /opt/module
-
-
+tar -zxvf flink-1.13.0-bin-scala_2.12.tgz -C /opt/module
 ```
 
 
@@ -194,13 +188,7 @@ tar -zxvf flink-1.10.1-bin-scala_2.12.tgz -C /opt/module
 jobmanager.rpc.address: localhost
 ```
 
-##### 修改 /conf/slaves 文件
-
-
-
-```sh
-vim slaves
-```
+##### 修改 /conf/workers 文件
 
 从机机器列表
 
@@ -215,11 +203,7 @@ matt06
 matt07
 ```
 
-
-
-
-
-如果是集群安装需要把*flink-1.10.1*同步到其他机器
+如果是集群安装需要把*flink*同步到其他机器
 
 
 
@@ -240,24 +224,39 @@ stop-cluster.sh
 
 
 
-
-
 #### 提交任务
 
 可以通过命令行提交也可以ui进行提交
 
-
+-m ip
 
 ```sh
-./flink run -c com.matt.wc.StreamWordCount –p 2
-FlinkTutorial-1.0-SNAPSHOT-jar-with-dependencies.jar --host lcoalhost –port 777
+./bin/flink run -c com.matt.wc.StreamWordCount -p 1 stu-flink-1.0-SNAPSHOT.jar --host localhost --port 777
 ```
-
-
 
 http://localhost:8081/#/overview
 
 
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202212241450389.png)
+
+
+
+
+
+
+
+```sh
+❯ ./bin/flink list
+Waiting for response...
+------------------ Running/Restarting Jobs -------------------
+24.12.2022 15:11:40 : a21e498f6c313c5be5941d45aaef4ed1 : Flink Streaming Job (RUNNING)
+--------------------------------------------------------------
+No scheduled jobs.
+❯ ./bin/flink cancel a21e498f6c313c5be5941d45aaef4ed1
+Cancelling job a21e498f6c313c5be5941d45aaef4ed1.
+Cancelled job a21e498f6c313c5be5941d45aaef4ed1.
+```
 
 
 
@@ -274,6 +273,18 @@ http://localhost:8081/#/overview
 
 
 ## 运行架构
+
+
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202212251601292.png)
+
+
+
+
 
 
 
@@ -345,6 +356,14 @@ http://localhost:8081/#/overview
 
 
 
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202212251612766.png)
+
+
+
+
+
+
+
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/202203092328874.png)
 
 
@@ -404,6 +423,14 @@ http://localhost:8081/#/overview
 
 
 ### 并行度
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202212282224443.png)
+
+
+
+
 
 
 
@@ -605,6 +632,21 @@ Flink 采用了一种称为任务链的优化技术，可以在特定条件下�
 
 
 
+
+
+
+
+
+
+
+
+
+```java
+// 禁用算子链 当前算子不和前后算子合并
+.map(word -> Tuple2.of(word, 1L)).disableChaining();
+// 从当前算子开始新链
+.map(word -> Tuple2.of(word, 1L)).startNewChain()
+```
 
 
 

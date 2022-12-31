@@ -158,22 +158,16 @@ nav:
     - gin:
       - base: frame/gin/base.md
   - component:
-    - redis:
-      - 安装: mw/0redis/0setup.md
-      - 基础: mw/0redis/1base.md
-      - 提高: mw/0redis/2advanced.md
-      - 源码: mw/0redis/3source.md
-      - API: mw/0redis/4api.md
     - kafka:
-      - 概述: mq/0-kafka/0-概述.md
-      - 安装: mq/0-kafka/1-安装.md
-      - 终端操作: mq/0-kafka/2-终端操作.md
-      - 原理: mq/0-kafka/3-原理.md
-      - api: mq/0-kafka/4-api.md
+      - 概述: component/kafka/overview.md
+      - 安装: component/kafka/install.md
+      - 终端操作: component/kafka/client.md
+      - 原理: component/kafka/source.md
+      - api: component/kafka/api.md
     - zookeeper:
-      - zookeeper学习: mw/zookeeper/zookeeper学习.md
+      - zookeeper学习: component/zookeeper/zookeeper学习.md
     - es:
-      - 基础: mw/es/es基础.md
+      - 基础: component/es/es基础.md
   - ms:
     - index:
       - index: ms.md
