@@ -164,10 +164,10 @@ nav:
       - 终端操作: component/kafka/client.md
       - 原理: component/kafka/source.md
       - api: component/kafka/api.md
-    - zookeeper:
-      - zookeeper学习: component/zookeeper/zookeeper学习.md
+    - zk:
+      - zk: component/zookeeper/zookeeper学习.md
     - es:
-      - 基础: component/es/es基础.md
+      - quickstart: component/es/quickstart.md
   - ms:
     - index:
       - index: ms.md
