@@ -86,21 +86,21 @@ nav:
     - Getting Started: index.md
     - go:
       - base:
-        - 安装: go/0base/0setup.md
-        - 基础: go/0base/1base.md
-        - 常用数据结构: go/0base/2data_structure.md
-        - 函数: go/0base/3func.md
-        - 结构体: go/0base/4struct.md
-        - 错误: go/0base/7error.md
+        - 安装: base/go/0base/0setup.md
+        - 基础: base/go/0base/1base.md
+        - 常用数据结构: base/go/0base/2data_structure.md
+        - 函数: base/go/0base/3func.md
+        - 结构体: base/go/0base/4struct.md
+        - 错误: base/go/0base/7error.md
       - concurrent:
-        - groutine: go/1concurrent/0groutine.md
-        - runtime: go/1concurrent/1runtime.md
-        - channel: go/1concurrent/2channel.md
-        - 定时器: go/1concurrent/3定时器.md
-        - select: go/1concurrent/4select.md
-        - lock: go/1concurrent/5lock.md
+        - groutine: base/go/1concurrent/0groutine.md
+        - runtime: base/go/1concurrent/1runtime.md
+        - channel: base/go/1concurrent/2channel.md
+        - 定时器: base/go/1concurrent/3定时器.md
+        - select: base/go/1concurrent/4select.md
+        - lock: base/go/1concurrent/5lock.md
         - sync: go/1concurrent/6sync.md
-        - atomic: go/1concurrent/7atomic.md
+        - atomic: base/go/1concurrent/7atomic.md
       - lib:
         - string: go/2lib/0string.md
         - time: go/2lib/1time.md
@@ -120,30 +120,30 @@ nav:
         - init: cpp/1stl/0init.md
         - stl: cpp/1stl/1stl.md
     - python:
-      - python: python/python.md
-      - 字符串: python/flask.md             
-  - tool:
+      - python: base/python/python.md
+      - flask: base/python/flask.md             
+  - util:
     - linux:
-      - centos安装: tool/linux/centos安装.md
-      - 常用软件安装: tool/linux/常用软件安装.md
+      - centos安装: util/linux/centos安装.md
+      - 常用软件安装: util/linux/常用软件安装.md
     - mac:
-      - 基本使用: tool/mac/0基本使用.md
-      - 常用软件: tool/mac/1常用软件.md
-      - iterm2美化: tool/mac/2iterm2美化.md
+      - 基本使用: util/mac/0基本使用.md
+      - app: util/mac/app.md
+      - iterm2: util/mac/iterm2.md
     - dev:
-      - git: tool/dev/git.md
-      - jetBrains: tool/dev/jetBrains.md
-      - jetBrains_快捷键: tool/dev/jetBrains_快捷键.md  
+      - git: util/dev/git.md
+      - jetBrains: util/dev/jetBrains.md
+      - jetBrains_快捷键: util/dev/jetBrains_快捷键.md  
   - cs:
     - index:
       - index: cs.md
-  - algorithm:
+  - algo:
     - 基础:
-      - 基础算法: algorithm/base/0基础算法.md
-      - 数据结构: algorithm/base/1数据结构.md
-      - 搜索与图论: algorithm/base/2搜索与图论.md
-      - 数学: algorithm/base/3数学.md
-      - dp: algorithm/base/4dp.md
+      - 基础算法: algo/base/0基础算法.md
+      - 数据结构: algo/base/1数据结构.md
+      - 搜索与图论: algo/base/2搜索与图论.md
+      - 数学: algo/base/3数学.md
+      - dp: algo/base/4dp.md
   - db:
     - mysql:
       - 安装: db/00mysql-基础/0-init.md
@@ -156,21 +156,16 @@ nav:
       - 15-存储过程和函数: db/00mysql-基础/15-存储过程和函数.md
   - web:
     - gin:
-      - base: frame/gin/base.md
-  - component:
-    - kafka:
-      - 概述: component/kafka/overview.md
-      - 安装: component/kafka/install.md
-      - 终端操作: component/kafka/client.md
-      - 原理: component/kafka/source.md
-      - api: component/kafka/api.md
-    - zk:
-      - zk: component/zookeeper/zookeeper学习.md
-    - es:
-      - quickstart: component/es/quickstart.md
-  - ms:
+      - base: web/gin/base.md
+  - microservices:
     - index:
       - index: ms.md
+  - mq:
+    - kafka:
+      - overview: mq/kafka/overview.md
+      - install: mq/kafka/install.md
+      - api: mq/kafka/api.md
+      - client: mq/kafka/client.md   
   - bigdata:
     - hadoop:
       - overview: bigdata/hadoop/overview.md

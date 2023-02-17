@@ -1,5 +1,14 @@
 
 
+
+
+
+## dev
+
+
+
+
+
 ### brew
 
 #### 安装
@@ -78,75 +87,41 @@ brew info git
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## dev
-
-### typora
-
-
-
-图片无法识别
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202206051723849.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### dbeaver
 
+**版本: 22.3.4.202301312050 ue**
 
+1.打开软件包先安装jdk 
 
-1.先安装jdk 
-
-2.安装dbeaver
+2.安装dbeaver, 不要关闭
 
 3.输入key 
 
 
 
+
+
 解决xxx已损坏,无法打开,你应该将它移到废纸篓
 
-1.
+方式1
 
+```sh
 sudo spctl --master-disable
+```
+
+
 
 先打开 系统偏好设置 -> 安全与隐私 -> 通用 选项卡，检查是否已经启用了 任何来源 选项。如果没有启用，先点击左下角的小黄锁图标解锁，然后选中任何来源。
-
-
 
 现在打开软件 如果不行看2
 
 
 
-2.
+方式2
 
+```sh
 sudo xattr -rd com.apple.quarantine /Applications/DBeaverUltimate.app
+```
 
 再打开软件看一下
 
@@ -162,11 +137,26 @@ sudo xattr -rd com.apple.quarantine /Applications/Navicat\ Premium.app
 
 
 
-### redis-redis desktop manager
+### redis desktop manager
 
 安装即可
 
-## life
+## os
+
+
+
+
+
+### office
+
+先安装app 在安装破解包
+
+
+
+1. 下载完成后打开Microsoft office 2021镜像包，双击【Microsoft Office for mac.pkg】进行安装
+2. 安装完成后回到office2021破解版镜像包，请双击打开office2021激活工具
+
+
 
 
 
@@ -186,25 +176,7 @@ sudo xattr -rd com.apple.quarantine /Applications/Paste.app
 
 
 
-### office
 
-先安装app 在安装破解包
-
-
-
-
-
-### xmind
-
-```
-sudo xattr -rd com.apple.quarantine /Applications/XMind.app
-```
-
-### tencent lemon 
-
-[下载地址](https://lemon.qq.com/)
-
-清理工具，官网下载默认安装即可, free
 
 ### Rectangle
 
@@ -216,23 +188,49 @@ sudo xattr -rd com.apple.quarantine /Applications/XMind.app
 
 
 
-### The Unarchiver
-
-free
 
 
 
 
 
-### clearview X
-
-阅读器
-
-Version 3.0.4
 
 
 
-### Downie 4  
+
+
+
+
+
+
+
+
+
+
+## word
+
+
+
+
+
+### typora
+
+
+
+
+
+
+
+
+
+## img
+
+
+
+
+
+### omi录屏专家
+
+### 视屏下载-Downie 4  
 
 安装即可
 
@@ -240,23 +238,65 @@ V4.6.8
 
 
 
-### omi录屏专家
 
+
+
+
+
+## file
+
+
+
+
+
+### xmind
+
+```
+sudo xattr -rd com.apple.quarantine /Applications/XMind.app
+```
+
+
+
+
+
+### 压缩-The Unarchiver
+
+free
+
+
+
+### tencent lemon 
+
+[下载地址](https://lemon.qq.com/)
+
+清理工具，官网下载默认安装即可, free
 
 
 
 
 ### pdfreaderpro
 
-版本2.8.22.1 (2.8.22.1)
+pdf编辑阅读 版本2.8.22.1 (2.8.22.1)
 
 安装即可
 
+打开下载好的安装包，拖动【pdf reader pro】到应用程序中安装即可
+
+### clearview X
+
+阅读器
+
+**Version 3.0.4**
+
+一步一步安装即可
 
 
 
 
 
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202302172043146.png)
 
-todo
+
+
+拖到右侧安装即可
 
