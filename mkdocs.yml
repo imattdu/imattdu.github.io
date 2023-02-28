@@ -10,7 +10,7 @@ repo_url: 'https://github.com/imattdu/imattdu.github.io'
 edit_uri: 'edit/master/docs/'
 
 # Copyright
-copyright: 'Copyright &copy; 2021 - 2022 mattのnote'
+copyright: 'Copyright &copy; 2021 - 2023 mattのnote'
 
 theme:
   name: material
@@ -172,6 +172,10 @@ nav:
       - quickstart: bigdata/hadoop/quickstart.md
       - hdfs: bigdata/hadoop/hdfs.md
       - mapreduce: bigdata/hadoop/mapreduce.md
+    - flink:
+      - overview: bigdata/flink/overview.md
+      - quickstart: bigdata/flink/quickstart.md
+      - t: bigdata/flink/t.md
   - question:
     - question: 
       - question/question.md

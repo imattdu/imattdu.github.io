@@ -34,6 +34,22 @@ test
 
 
 
+乱序 水位线
+
+[0,9)
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202302240013151.png)
+
+
+
+
+
+
+
 
 
 
@@ -1483,4 +1499,51 @@ public class WindowTest3_EventTimeWindow {
 }
 
 ```
+
+
+
+
+
+
+
+1.先计算一个近似延迟
+
+
+
+
+
+2.前面都失效测输出流
+
+
+
+
+
+**读取nc 一定要把并发度设置为1**
+
+
+
+
+
+```sq
+SELECT t1.NAME, @cont_day := CASE 
+		WHEN @last_uid = t1.NAME
+		AND DATEDIFF(t1.login_date, @last_ot) = 1 THEN @cont_day + 1
+		WHEN @last_uid = t1.NAME
+		AND DATEDIFF(t1.login_date, @last_ot) < 1 THEN @cont_day + 0
+		ELSE 1
+	END AS days, @last_uid := t1.NAME
+	, @last_ot := t1.login_date, t1.login_date
+FROM (
+	SELECT *
+	FROM t_login
+	ORDER BY NAME, login_date
+) t1, (
+		SELECT @last_uid := '', @last_ot := ''
+			, @cont_day := 0
+	) t2
+```
+
+
+
+
 
