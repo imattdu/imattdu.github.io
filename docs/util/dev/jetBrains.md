@@ -151,7 +151,8 @@
 ```
 /** 
 @author matt 
-@create ${YEAR}-${MONTH}-${DAY} ${TIME} 
+@date ${YEAR}-${MONTH}-${DAY} ${TIME}
+@desc xxx
 */
 ```
 
@@ -173,7 +174,7 @@
 
 ```
 **
- * 功能：
+ * @desc xxx
  * @author matt
  * @date $date$
 $param$
