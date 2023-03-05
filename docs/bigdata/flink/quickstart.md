@@ -1,10 +1,16 @@
 
 
-## 快速开始
+## helloword
 
 
 
-### 2.1 pom.xml
+### wc
+
+1.新建maven项目
+
+
+
+2.编写pom.xml
 
 
 
@@ -16,113 +22,107 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.matt</groupId>
-    <artifactId>study-flink</artifactId>
+    <artifactId>stu-flink</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <flink.version>1.13.0</flink.version>
+        <java.version>1.8</java.version>
+        <scala.binary.version>2.12</scala.binary.version>
+        <slf4j.version>1.7.30</slf4j.version>
     </properties>
 
-
     <dependencies>
+        <!-- flink 使用到scala 组件-->
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-java</artifactId>
-            <version>1.10.1</version>
+            <version>${flink.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-streaming-java_2.12</artifactId>
-            <version>1.10.1</version>
+            <artifactId>flink-streaming-java_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
         </dependency>
-
-        <!--flink-kafak client -->
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-kafka-0.11_2.12</artifactId>
-            <version>1.10.1</version>
+            <artifactId>flink-clients_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
         </dependency>
 
 
-        <!-- https://mvnrepository.com/artifact/org.apache.bahir/flink-connector-redis
--->
+        <!-- 日志 -->
         <dependency>
-            <groupId>org.apache.bahir</groupId>
-            <artifactId>flink-connector-redis_2.11</artifactId>
-            <version>1.0</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
-
-        <!--ES-->
         <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-elasticsearch6_2.12</artifactId>
-            <version>1.10.1</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
-
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.44</version>
-        </dependency>
-
-        <!--rocksdb-->
-        <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-statebackend-rocksdb_2.12</artifactId>
-            <version>1.10.1</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-to-slf4j</artifactId>
+            <version>2.14.0</version>
         </dependency>
 
     </dependencies>
 
+    <build>
+        <plugins>
+            <!--打包工具-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
 ```
 
 
 
-### 2.2批处理wordcount
+3.编写日志配置文件
 
+log4j.properties
 
-
-com.matt.wc.WordCount
-
-
-
-
-
-输出结构
-
-```sh
-(are,1)
-(tks,1)
-(how,1)
-(fink,1)
-(spark,1)
-(you,1)
-(matt,1)
-(hello,3)
+```properties
+log4j.rootLogger=error, stdout
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
 ```
 
 
 
-### 2.3 流处理
-
-
-
-com.matt.wc.StreamWordCount
-
-
-
-
-
-
+运行时参数指定
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/202203100130741.png)
 
 
 
+4.具体代码
 
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202303052323889.png)
 
 
 

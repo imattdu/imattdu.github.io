@@ -8,21 +8,18 @@
 
 ### 是什么
 
-
-
 Apache Flink 是一个框架和分布式处理引擎，用于对无界和有界数据流进行状态计算
 
 
 
 ### 特点
 
-
-
-- 支持事件时间(event-time)和处理时间(processing-time) 语义
-- 精确一次(exactly-once)的状态一致性保证
-- 低延迟，每秒处理数百万个事件，毫秒级延迟
-- 与众多常用存储系统的连接
-- 高可用，动态扩展，实现7*24小时全天候运行
+- 高吞吐和低延迟。每秒处理数百万个事件，毫秒级延迟
+- 结果的准确性。Flink 提供了事件时间(event-time)和处理时间(processing-time) 语义。对于乱序事件流，事件时间语义仍然能提供一致且准确的结果。
+- 精确一次(exactly-once)的状态一致性保证。
+- 可以连接到最常用的存储系统，如 Apache Kafka、Apache Cassandra、Elasticsearch、JDBC、Kinesis 和(分布式)文件系统，如 HDFS 和 S3。
+- 高可用。本身高可用的设置，加上与K8s，YARN和Mesos的紧密集成，再加上从故障中快速恢复和动态扩展任务的能力，Flink 能做到以极少的停机时间 7×24 全天候运行。
+- 能够更新应用程序代码并将作业(jobs)迁移到不同的 Flink 集群，而不会丢失应用程序的状态。
 
 
 
@@ -32,212 +29,14 @@ Apache Flink 是一个框架和分布式处理引擎，用于对无界和有界�
 
 数据模型
 
--  spark 采用 RDD 模型，spark streaming 的 DStream 实际上也就是一组组小批
+-  Spark 底层数据模型是弹性分布式数据集(RDD)，Spark Streaming 进行微批处理的底层 接口 DStream，实际上处理的也是一组组小批数据 RDD 的集合
 
-  数据 RDD 的集合
-
--  flink 基本数据模型是数据流，以及事件(Event)序列
-
-
+-  Flink 的基本数据模型是数据流(DataFlow)，以及事件(Event)序列
 
 运行时架构
 
--   spark 是批计算，将 DAG 划分为不同的 stage，一个完成后才可以计算下一个
--   flink 是标准的流执行模式，一个事件在一个节点处理完后可以直接发往下一个节点进行处理
-
-
-
-
-
-
-
-
-
-
-
-
-
-迟到的数据放入侧边流
-
-
-
- 8-9
-
-数据产生8-9 处理的时候9:01
-
-
-
-
-
-
-
-
-
-85763421
-
-
-
-俩个通可以同时存在
-
-
-
-[1,5] 1 2 4 3 5
-
-[6,10] 6 7 8
-
-t=3
-
-8 来了关【1-5】的窗
-
-
-
-
-
-
-
-wm传递：最小的值
-
-
-
-
-
-
-
-
-
-
-
-
-
-在并行度不为1的时候：
-
-下以上游分区woater mark最小值
-
-
-
-
-
-
-
-
-
-状态保存在本地内存中， 检查点 taskmanager
-
-
-
-
-
-
-
-
-
-```sh
-state.backend: filesystem
-```
-
-
-
-
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202202250048678.png)
-
-
-
-
-
-检查点 a b 时间还没到检查点a, 正在处理1
-
-
-
-1 2会被丢弃 
-
-
-
-
-
-**黄1 蓝1**
-
-
-
-
-
-
-
-1 2 3 4 保存1 5 6
-
-
-
-// 前一次保存结束 到下一次保存开始
-
-setMinPauseBetweenCheckpoints
-
-可能检查点到了但是没超过这个数字 也不保存
-
-
-
-
-
-
-
-
-
-端到端：输入源头 flink
-
-
-
-
-
-
-
-幂等写入：最终一致性
-
-
-
-
-
-5 10 15 5 10 15
-
-5保存
-
-
-
-
-
-预写日志(WAL):往外部系统写入并不能保证事务
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202212171420271.png)
-
-
-
-
-
-
-
-
-
-
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202212171539214.png)
-
-
-
-
-
-
-
-
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202212171543338.png)
-
-
+-   Spark 是批计算，将 任务对应的DAG 划分为不同的 阶段stage，一个完成后经过 shuffle 再进行下一阶段的计算
+-   Flink 是标准的流式执行模式，一个事件在一个节点处理完后可以直接发往下一个节点进行处理
 
 
 
@@ -245,12 +44,7 @@ setMinPauseBetweenCheckpoints
 
 ```
 # 保持链接
-
 nc -lk 777
-
-
-
---host localhost --port 777
 ```
 
 
@@ -259,7 +53,13 @@ nc -lk 777
 
 
 
+无界数据
+
+数据是源源不断产生
 
 
 
+有界数据
+
+有明确定义数据的开始和结束
 
