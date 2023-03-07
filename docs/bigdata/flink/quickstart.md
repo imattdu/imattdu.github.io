@@ -142,10 +142,6 @@ log4j.appender.stdout.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
 
 #### 修改文件所有者
 
-
-
-
-
 ```sh
 # 查看当前用户
 whoami
@@ -168,19 +164,15 @@ https://blog.csdn.net/qq_26129413/article/details/109675386
 
 
 
-#### 解压
-
-
+#### 下载解压
 
 ```sh
 tar -zxvf flink-1.13.0-bin-scala_2.12.tgz -C /opt/module
 ```
 
-
-
 #### 配置
 
-##### 修改 flink/conf/flink-conf.yaml 文件
+##### 修改 flink/conf/flink-conf.yaml 文件 jobmanager
 
 如果是单机安装默认即可，集群安装配置某台主机
 
@@ -188,7 +180,9 @@ tar -zxvf flink-1.13.0-bin-scala_2.12.tgz -C /opt/module
 jobmanager.rpc.address: localhost
 ```
 
-##### 修改 /conf/workers 文件
+
+
+##### 修改 /conf/workers 文件 taskmanager
 
 从机机器列表
 
@@ -207,9 +201,22 @@ matt07
 
 
 
+
+
+##### 其他配置
+
+- jobmanager.memory.process.size:对JobManager进程可使用到的全部内存进行配置，包括 JVM 元空间和其他开销，默认为 1600M，可以根据集群规模进行适当调整。
+- taskmanager.memory.process.size:对TaskManager进程可使用到的全部内存进行配置，包括 JVM 元空间和其他开销，默认为 1600M，可以根据集群规模进行适当调整。
+- taskmanager.numberOfTaskSlots:对每个TaskManager能够分配的Slot数量进行配置，默认为 1，可根据 TaskManager 所在的机器能够供给 Flink 的 CPU 数量决定。所谓Slot 就是 TaskManager 中具体运行一个任务所分配的计算资源。
+-  parallelism.default:Flink任务执行的默认并行度，优先级低于代码中进行的并行度配置和任务提交交时使用参数指定的并行度数量。
+
+
+
 #### 启动
 
+在jobmanger机器上进行启动
 
+bin
 
 ```sh
 start-cluster.sh
@@ -220,19 +227,42 @@ stop-cluster.sh
 
 
 
-
-
-
-
 #### 提交任务
 
-可以通过命令行提交也可以ui进行提交
+依赖的jar 包也打进去
 
--m ip
-
-```sh
-./bin/flink run -c com.matt.wc.StreamWordCount -p 1 stu-flink-1.0-SNAPSHOT.jar --host localhost --port 777
+``` xml
+<build>
+        <plugins>
+            <!--打包工具-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 ```
+
+
+
+
+
+##### ui 提交
 
 http://localhost:8081/#/overview
 
@@ -241,6 +271,12 @@ http://localhost:8081/#/overview
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/202212241450389.png)
 
 
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202303062325420.png)
 
 
 
@@ -260,6 +296,99 @@ Cancelled job a21e498f6c313c5be5941d45aaef4ed1.
 
 
 
+##### 命令行提交
+
+可以通过命令行提交也可以ui进行提交
+
+-m ip
+
+```sh
+./bin/flink run -c com.matt.wc.StreamWordCount -p 1 stu-flink-1.0-SNAPSHOT.jar --host localhost --port 777
+```
+
+
+
+### 部署模式
+
+#### 会话模式
+
+启动一个flink集群 ，提交作业， 所有作业公用一个集群
+
+
+
+#### 单作业模式
+
+由客户端运行 应用程序，然后启动集群，作业被交给 JobManager，进而分发给 TaskManager 执行。作业完成后，集群就会关闭，所有资源也会释放。
+
+
+
+Flink 本身无法直接这样运行，所以单作业模式一般需要借助一些资源管理框架来启动集群，比如 YARN、Kubernetes。
+
+
+
+#### 应用模式
+
+不需要客户端，直接把应用提交到 JobManger 上运行我们需要为每一个提交的应用单独启动一个 JobManager，也就是创建一个集群。这个 JobManager 只为执行这一个应用而存在，执行结束之后 JobManager 也就关闭了。
+
+
+
+
+
+### 独立模式部署
+
+#### 会话模式
+
+先启动集群会提交作业
+
+
+
+#### 单作业模式
+
+Flink 本身无法直接以单作业方式启动集群，一般需要借助一些资 源管理平台。所以 Flink 的独立(Standalone)集群并不支持单作业模式部署。
+
+
+
+
+
+#### 应用模式部署
+
+
+
+应用模式下不会提前创建集群，所以不能调用 start-cluster.sh 脚本。我们可以使用同样在 bin 目录下的 standalone-job.sh 来创建一个 JobManager。
+
+
+
+具体步骤如下:
+
+(1)进入到 Flink 的安装路径下，将应用程序的 jar 包放到 lib/目录下。
+
+```
+cp ./FlinkTutorial-1.0-SNAPSHOT.jar lib/
+```
+
+(2)执行以下命令，启动 JobManager。
+
+```
+./bin/standalone-job.sh start --job-classname com.atguigu.wc.StreamWordCount
+```
+
+这里我们直接指定作业入口类，脚本会到 lib 目录扫所有的 jar 包。
+
+
+
+ (3)同样是使用 bin 目录下的脚本，启动 TaskManager。
+
+``` 
+./bin/taskmanager.sh start
+```
+
+(4)如果希望停掉集群，同样可以使用脚本，命令如下。
+
+``` 
+./bin/standalone-job.sh stop
+./bin/taskmanager.sh stop
+```
+
 
 
 ### **TODO yarn/k8s部署**
@@ -278,8 +407,6 @@ Cancelled job a21e498f6c313c5be5941d45aaef4ed1.
 
 
 
-
-
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/202212251601292.png)
 
 
@@ -288,65 +415,71 @@ Cancelled job a21e498f6c313c5be5941d45aaef4ed1.
 
 
 
-
-
-### Flink运行时的组件
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202203092318256.png)
+### 构成
 
 
 
 
 
+#### JobManager
 
-
-
-
-#### 作业管理器(JobManager）
-
-
-
-- 控制一个应用程序执行的主进程，也就是说，每个应用程序都会被一个不同的 JobManager 所控制执行。
-- JobManager 会先接收到要执行的应用程序，这个应用程序会包括:作业图 (JobGraph)、逻辑数据流图(logical dataflow graph)和打包了所有的类、 库和其它资源的JAR包。
-- JobManager 会把JobGraph转换成一个物理层面的数据流图，这个图被叫做 “执行图”(ExecutionGraph)，包含了所有可以并发执行的任务。
-- JobManager 会向资源管理器(ResourceManager)请求执行任务必要的资源， 也就是任务管理器(TaskManager)上的插槽(slot)。一旦它获取到了足够的 资源，就会将执行图分发到真正运行它们的TaskManager上。而在运行过程中， JobManager会负责所有需要中央协调的操作，比如说检查点(checkpoints) 的协调。
+JobManager 是一个 Flink 集群中任务管理和调度的核心，是控制应用执行的主进程。每个应用都应该被唯一的 JobManager 所控制执行。当然，在高可用(HA)的场景下可能会出现多个 JobManager;这时只有一个是正在运行的领导节点(leader)，其他都是备用节点(standby)。
 
 
 
 
 
+##### JobMaster
 
+在作业提交时，JobMaster 会先接收到要执行的应用。这里所说“应用”一般是客户端提交 交来的，包括:Jar 包，数据流图(dataflow graph)，和作业图(JobGraph)。
 
-#### 任务管理器(TaskManager）
-
-
-
-- Flink中的工作进程。通常在Flink中会有多个TaskManager运行，每一 个TaskManager都包含了一定数量的插槽（slots）。插槽的数量限制 了TaskManager能够执行的任务数量。 
-- 启动之后，TaskManager会向资源管理器注册它的插槽；收到资源管理 器的指令后，TaskManager就会将一个或者多个插槽提供给 JobManager调用。JobManager就可以向插槽分配任务（tasks）来 执行了。 
-- 在执行过程中，一个TaskManager可以跟其它运行同一应用程序的 TaskManager交换数据。
+JobMaster 会把 JobGraph 转换成一个物理层面的数据流图，这个图被叫作“执行图” (ExecutionGraph)，它包含了所有可以并发执行的任务。JobMaster 会向资源管理器 (ResourceManager)发出请求，申请执行任务必要的资源。一旦它获取到了足够的资源，就会将执行图分发到真正运行它们的 TaskManager 上。
 
 
 
-#### 资源管理器（ResourceManager）
-
-​		主要负责管理任务管理器（TaskManager）的插槽（slot），TaskManger 插槽是 Flink 中 定义的处理资源单元。Flink 为不同的环境和资源管理工具提供了不同资源管理器，比如 YARN、Mesos、K8s，以及 standalone 部署。当 JobManager 申请插槽资源时，ResourceManager 会将有空闲插槽的 TaskManager 分配给 JobManager。如果 ResourceManager 没有足够的插槽 来满足 JobManager 的请求，它还可以向资源提供平台发起会话，以提供启动 TaskManager 进程的容器。另外，ResourceManager 还负责终止空闲的 TaskManager，释放计算资源。
+而在运行过程中，JobMaster 会负责所有需要中央协调的操作，比如说检查点(checkpoints)的协调。
 
 
 
+##### 资源管理器(ResourceManager)
+
+主要负责资源的分配和管理。在 Flink 集群中只有一个。所谓“资源”， 主要是指 TaskManager 的任务槽(task slots)。任务槽就是 Flink 集群中的资源调配单元，包含 了机器用来执行计算的一组 CPU 和内存资源。每一个任务(Task)都需要分配到一个 slot 上 执行。
 
 
-#### 分发器（Dispatcher）
+
+Flink 的 ResourceManager，针对不同的环境和资源管理平台(比如 Standalone 部署，或者 YARN)，有不同的具体实现。在 Standalone 部署时，因为 TaskManager 是单独启动的(没有 Per-Job 模式)，所以 ResourceManager 只能分发可用 TaskManager 的任务槽，不能单独启动新 TaskManager。
 
 
 
-- 可以跨作业运行，它为应用提交提供了REST接口。
-- 当一个应用被提交执行时，分发器就会启动并将应用移交给一个 JobManager。 
-- Dispatcher也会启动一个Web UI，用来方便地展示和监控作业 执行的信息。 
-- Dispatcher在架构中可能并不是必需的，这取决于应用提交运行 的方式。
+而在有资源管理平台时，就不受此限制。当新的作业申请资源时，ResourceManager 会将 有空闲槽位的 TaskManager 分配给 JobMaster。如果 ResourceManager 没有足够的任务槽，它 还可以向资源提供平台发起会话，请求提供启动 TaskManager 进程的容器。另外， ResourceManager 还负责停掉空闲的 TaskManager，释放计算资源。
 
 
+
+
+
+##### Dispatcher 
+
+主要负责提供一个 REST 接口，用来提交应用，并且负责为每一个新提交的作 业启动一个新的 JobMaster 组件。Dispatcher 也会启动一个 Web UI，用来方便地展示和监控作业执行的信息。Dispatcher 在架构中并不是必需的，在不同的部署模式下可能会被忽略掉。
+
+
+
+
+
+#### TaskManager
+
+
+
+TaskManager 是 Flink 中的工作进程，数据流的具体计算就是它来做的，所以也被称为 “Worker”。Flink 集群中必须至少有一个 TaskManager;
+
+
+
+当然由于分布式计算的考虑，通常会 有多个 TaskManager 运行，每一个 TaskManager 都包含了一定数量的任务槽(task slots)。Slot
+
+是资源调度的最小单位，slot 的数量限制了 TaskManager 能够并行处理的任务数量。 启动之后，TaskManager 会向资源管理器注册它的 slots;收到资源管理器的指令后， TaskManager就会将一个或者多个槽位提供给JobMaster调用，JobMaster就可以分配任务来执行了。
+
+
+
+在执行过程中，TaskManager 可以缓冲数据，还可以跟其他运行同一应用的 TaskManager交换数据。
 
 
 
@@ -362,21 +495,105 @@ Cancelled job a21e498f6c313c5be5941d45aaef4ed1.
 
 
 
+#### 抽象
+
+1. 一般情况下，由客户端(App)通过分发器提供的 REST 接口，将作业提交给JobManager。
+2. 由分发器启动 JobMaster，并将作业(包含 JobGraph)提交给 JobMaster。
+3.  JobMaster 将 JobGraph 解析为可执行的 ExecutionGraph，得到所需的资源数量，然后向资源管理器请求资源(slots)。
+4.  资源管理器判断当前是否由足够的可用资源;如果没有，启动新的 TaskManager。
+5.  TaskManager 启动之后，向 ResourceManager 注册自己的可用任务槽(slots)。 
+6. 资源管理器通知 TaskManager 为新的作业提供 slots。
+7. TaskManager 连接到对应的 JobMaster，提供 slots。 
+8. JobMaster 将需要执行的任务分发给 TaskManager。 
+9. TaskManager 执行任务，互相之间可以交换数据
 
 
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202203092328874.png)
+
+部署模式不同，有些步骤可能不相同
 
 
 
 
 
-### 任务提交流程（yarn）-TODO
+#### 独立模式
+
+会话模式和应用模式 俩者是相似的
+
+
+
+**不会启动 TaskManager，而且直接向已有的 TaskManager 要求资源**
+
+
+
+#### yarn 集群
+
+##### 会话模式
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202303070923233.png)
 
 
 
 
 
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202203092329448.png)
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202303070923633.png)
+
+在会话模式下，我们需要先启动一个 YARN session，这个会话会创建一个 Flink 集群。
+
+
+
+
+
+这里只启动了 JobManager，而 TaskManager 可以根据需要动态地启动。在 JobManager 内部，由于还没有提交作业，所以只有 ResourceManager 和 Dispatcher 在运行
+
+
+
+
+
+1. 客户端通过 REST 接口，将作业提交给分发器。
+2. 分发器启动 JobMaster，并将作业(包含 JobGraph)提交给 JobMaster。 
+3. JobMaster 向资源管理器请求资源(slots)。
+4. 资源管理器向 YARN 的资源管理器请求 container 资源。
+5. YARN 启动新的 TaskManager 容器。
+6. TaskManager 启动之后，向 Flink 的资源管理器注册自己的可用任务槽。
+7. 资源管理器通知 TaskManager 为新的作业提供 slots。 
+8. TaskManager 连接到对应的 JobMaster，提供 slots。
+9. JobMaster 将需要执行的任务分发给 TaskManager，执行任务。
+
+
+
+##### 单作业模式
+
+
+
+1. 客户端将作业提交给 YARN 的资源管理器，这一步中会同时将 Flink 的 Jar 包和配置 上传到 HDFS，以便后续启动 Flink 相关组件的容器。
+2. YARN的资源管理器分配Container资源，启动Flink JobManager，并将作业提交给 JobMaster。这里省略了 Dispatcher 组件。
+3. JobMaster 向资源管理器请求资源(slots)。
+4. 资源管理器向 YARN 的资源管理器请求 container 资源。
+5. YARN 启动新的 TaskManager 容器。
+6. TaskManager 启动之后，向 Flink 的资源管理器注册自己的可用任务槽。
+7. 资源管理器通知 TaskManager 为新的作业提供 slots。 
+8. TaskManager 连接到对应的 JobMaster，提供 slots。
+9. JobMaster 将需要执行的任务分发给 TaskManager，执行任务。
+
+
+
+可见，区别只在于 JobManager 的启动方式，以及省去了分发器。当第 2 步作业提交交给 JobMaster，之后的流程就与会话模式完全一样了。
+
+
+
+
+
+##### 应用模式
+
+应用模式与单作业模式的提交流程非常相似，只是初始提交给 YARN 资源管理器的不再是具体的作业，而是整个应用。一个应用中可能包含了多个作业，这些作业都将在 Flink 集群中启动各自对应的 JobMaster。
+
+
+
+
+
+### 一些重要概念
 
 
 
@@ -392,7 +609,6 @@ Cancelled job a21e498f6c313c5be5941d45aaef4ed1.
 
 
 
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202203092332014.png)
 
 
 
@@ -400,23 +616,8 @@ Cancelled job a21e498f6c313c5be5941d45aaef4ed1.
 
 
 
-​		客户端不是运行时和程序执行 的一部分，但它用于准备并发送 dataflow(JobGraph)给 Master(JobManager)，然后，客户端断开连接或者维持连接以 等待接收计算结果。
 
 
-
-​		当 Flink 集 群 启 动 后 ， 首 先 会 启 动 一 个 JobManger 和一个或多个的 TaskManager。由 Client 提交任务给 JobManager，JobManager 再调度任务到各个 TaskManager 去执行，然后 TaskManager 将心跳和统计信息汇报给 JobManager。 TaskManager 之间以流的形式进行数据的传输。上述三者均为独立的 JVM 进程。 
-
-
-
-​		Client 为提交 Job 的客户端，可以是运行在任何机器上（与 JobManager 环境 连通即可）。提交 Job 后，Client 可以结束进程（Streaming 的任务），也可以不 结束并等待结果返回。 
-
-
-
-​		JobManager 主 要 负 责 调 度 Job 并 协 调 Task 做 checkpoint， 职 责 上 很 像 Storm 的 Nimbus。从 Client 处接收到 Job 和 JAR 包等资源后，会生成优化后的 执行计划，并以 Task 的单元调度到各个 TaskManager 去执行。
-
-
-
-​		 TaskManager 在启动的时候就设置好了槽位数（Slot），每个 slot 能启动一个 Task，Task 为线程。从 JobManager 处接收需要部署的 Task，部署启动后，与自 己的上游建立 Netty 连接，接收数据并处理。
 
 
 
