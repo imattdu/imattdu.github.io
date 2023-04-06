@@ -138,8 +138,6 @@ log4j.appender.stdout.layout.ConversionPattern=%-4r [%t] %-5p %c %x - %m%n
 
 
 
-
-
 #### 修改文件所有者
 
 ```sh
@@ -324,6 +322,8 @@ Cancelled job a21e498f6c313c5be5941d45aaef4ed1.
 
 Flink 本身无法直接这样运行，所以单作业模式一般需要借助一些资源管理框架来启动集群，比如 YARN、Kubernetes。
 
+1.15 已被抛弃
+
 
 
 #### 应用模式
@@ -331,6 +331,8 @@ Flink 本身无法直接这样运行，所以单作业模式一般需要借助�
 不需要客户端，直接把应用提交到 JobManger 上运行我们需要为每一个提交的应用单独启动一个 JobManager，也就是创建一个集群。这个 JobManager 只为执行这一个应用而存在，执行结束之后 JobManager 也就关闭了。
 
 
+
+会包含多个作业
 
 
 
@@ -597,257 +599,176 @@ TaskManager 是 Flink 中的工作进程，数据流的具体计算就是它来�
 
 
 
+#### 数据流图(Dataflow Graph)
 
+所有的 Flink 程序都可以归纳为由三部分构成:Source、Transformation 和 Sink。
 
+- Source表示“源算子”，负责读取数据源。
+- Transformation表示“转换算子”，利用各种算子进行处理加工。
+- Sink表示“下沉算子”，负责数据的输出。
 
 
 
+在运行时，Flink 程序会被映射成所有算子按照逻辑顺序连接在一起的一张图，这被称为 “逻辑数据流”(logical dataflow)，或者叫“数据流图”(dataflow graph)。
 
 
 
-### 任务调度原理
 
 
+#### 并行度(Parallelism)
 
 
 
+##### 并行计算
 
+一条数据正在执行flatMap 之前的数据可能正在执行读取
 
 
 
+多条数据同时来，可以在不同节点同时计算
 
 
 
 
 
+##### 并行子任务和并行度
 
+每一个算子(operator)可以包含一个或多个子任务(operator subtask)，这些子任务在不同的线程、不同的物理机或不同的容器中完全独立地执行。
 
 
-### 并行度
 
+一个特定算子的子任务(subtask)的个数被称之为其并行度(parallelism)
 
 
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202212282224443.png)
 
 
 
+##### 并行度设置
 
 
 
+代码设置
 
+```
+// 单个算子有效
+stream.map(word -> Tuple2.of(word, 1L)).setParallelism(2);
 
+// 全局有效
+env.setParallelism(2)
+```
 
-一个特定算子的 子任务（subtask）的个数被称之为其并行度（parallelism）。
 
- 一般情况下，一个 stream 的并行度，可以认为就是其所有算子中最大的并行度。
 
+提交任务设置
 
-
-
-
-
-
-### TaskManager 和 Slots
-
-
-
-​		Flink 中每一个 worker(TaskManager)都是一个 JVM 进程，它可能会在独立的线 程上执行一个或多个 subtask。为了控制一个 worker 能接收多少个 task，worker 通 过 task slot 来进行控制（一个 worker 至少有一个 task slot）。 
-
-
-
-​		每个 task slot 表示 TaskManager 拥有资源的一个固定大小的子集。假如一个 TaskManager 有三个 slot，那么它会将其管理的内存分成三份给各个 slot。资源 slot 化意味着一个 subtask 将不需要跟来自其他 job 的 subtask 竞争被管理的内存，取而 代之的是它将拥有一定数量的内存储备。需要注意的是，这里不会涉及到 CPU 的隔 离，slot 目前仅仅用来隔离 task 的受管理的内存。 
-
-​		
-
-​		通过调整 task slot 的数量，允许用户定义 subtask 之间如何互相隔离。如果一个 TaskManager 一个 slot，那将意味着每个 task group 运行在独立的 JVM 中（该 JVM 可能是通过一个特定的容器启动的），而一个 TaskManager 多个 slot 意味着更多的 subtask 可以共享同一个 JVM。而在同一个 JVM 进程中的 task 将共享 TCP 连接（基 于多路复用）和心跳消息。它们也可能共享数据集和数据结构，因此这减少了每个 task 的负载。
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202203092335800.png)
-
-
-
-Flink 中每一个 TaskManager 都是一个JVM进程，它可能会在独立的线程上执 行一个或多个子任务 
-
- 为了控制一个 TaskManager 能接收多少个 task， TaskManager 通过 task slot 来进行控制（一个 TaskManager 至少有一个 slot）
-
-
-
-
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202203092336258.png)
-
-
-
-
-
-​		默认情况下，Flink 允许子任务共享 slot，即使它们是不同任务的子任务（前提 是它们来自同一个 job）。 这样的结果是，一个 slot 可以保存作业的整个管道。 
-
-
-
-​		Task Slot 是静态的概念，是指 TaskManager 具有的并发执行能力，可以通过 参数 taskmanager.numberOfTaskSlots 进行配置；而并行度 parallelism 是动态概念， 即 TaskManager 运行程序时实际使用的并发能力，可以通过参数 parallelism.default 进行配置。 
-
-
-
-​		也就是说，假设一共有 3 个 TaskManager，每一个 TaskManager 中的分配 3 个 TaskSlot，也就是每个 TaskManager 可以接收 3 个 task，一共 9 个 TaskSlot，如果我 们设置 parallelism.default=1，即运行程序默认的并行度为 1，9 个 TaskSlot 只用了 1 个，有 8 个空闲，因此，设置合适的并行度才能提高效率。
-
-
-
-
-
-
-
-### 并行子任务的分配
-
-
-
-
-
-
-
-![子任务](https://raw.githubusercontent.com/imattdu/img/main/img/202203092339776.png)
-
-
-
-
-
-
-
-
-
-### 程序与数据流（DataFlow）
-
-
-
-所有的Flink程序都是由三部分组成的： Source 、Transformation 和 Sink。Source 负责读取数据源，Transformation 利用各种算子进行处理加工，Sink负责输出
-
-
-
-在运行时，Flink上运行的程序会被映射成“逻辑数据流”（dataflows），它包 含了这三部分 每一个dataflow以一个或多个sources开始以一个或多个sinks结束。dataflow 类似于任意的有向无环图（DAG）  在大部分情况下，程序中的转换运算（transformations）跟dataflow中的算子 （operator）是一一对应的关系
-
-
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202203092348844.png)
-
-
-
-
-
-
-
-
-
-### 执行图（ExecutionGraph）
-
-
-
-Flink 中的执行图可以分成四层：StreamGraph -> JobGraph -> ExecutionGraph -> 物理执行图 
-
-➢ StreamGraph：是根据用户通过 Stream API 编写的代码生成的最初的图。用来 表示程序的拓扑结构。
-
- ➢ JobGraph：StreamGraph经过优化后生成了 JobGraph，提交给 JobManager 的数据结构。主要的优化为，将多个符合条件的节点 chain 在一起作为一个节点 
-
-➢ ExecutionGraph：JobManager 根据 JobGraph 生成ExecutionGraph。 ExecutionGraph是JobGraph的并行化版本，是调度层最核心的数据结构。
-
- ➢ 物理执行图：JobManager 根据 ExecutionGraph 对 Job 进行调度后，在各个 TaskManager 上部署 Task 后形成的“图”，并不是一个具体的数据结构。
-
-
-
-
-
-
-
-
-
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202203092352306.png)
-
-
-
-
-
-
-
-
-
-### 数据传输形式
-
-
-
-
-
-一个程序中，不同的算子可能具有不同的并行度 
-
-算子之间传输数据的形式可以是 one-to-one (forwarding) 的模式也可以是 redistributing 的模式，具体是哪一种形式，取决于算子的种类 
-
-➢ One-to-one：stream维护着分区以及元素的顺序（比如source和map之间）。 这意味着map 算子的子任务看到的元素的个数以及顺序跟 source 算子的子任务 生产的元素的个数、顺序相同。map、fliter、flatMap等算子都是one-to-one 的对应关系。 
-
-➢ Redistributing：stream的分区会发生改变。每一个算子的子任务依据所选择的 transformation发送数据到不同的目标任务。例如，keyBy 基于 hashCode 重 分区、而 broadcast 和 rebalance 会随机重新分区，这些算子都会引起 redistribute过程，而 redistribute 过程就类似于 Spark 中的 shuffle 过程。
-
-
-
-
-
-### 任务链（Operator Chains）
-
-
-
-Flink 采用了一种称为任务链的优化技术，可以在特定条件下减少本地通信的开销。为了满足任务链的要求，必须将两个或多个算子设为相同 的并行度，并通过本地转发（local forward）的方式进行连接 
-
- 相同并行度的 one-to-one 操作，Flink 这样相连的算子链接在一起形 成一个 task，原来的算子成为里面的 subtask 
-
-并行度相同、并且是 one-to-one 操作，两个条件缺一不可
-
-
-
-
-
-好处
-
-它能减少线 程之间的切换和基于缓存区的数据交换，在减少时延的同时提升吞吐量。链接的行为可以在编程 API 中进行指定。
-
-
-
-
-
-```java
- //基于数据流进行转换计算
-        DataStream<Tuple2<String, Integer>> resultStream = inputDataStream.flatMap(new WordCount.MyFlatMapper())
-                .keyBy(0)
-                .sum(1).setParallelism(2).startNewChain();
-        // 和前后都不合并任务
-        // .disableChaining();
-
-
-        // 开始一个新的任务链合并 前面断开后面不断开
-        // .startNewChain()
+```
+bin/flink run –p 2 –c com.atguigu.wc.StreamWordCount ./FlinkTutorial-1.0-SNAPSHOT.jar
 ```
 
 
 
 
 
-![](https://raw.githubusercontent.com/imattdu/img/main/img/202203092355735.png)
+配置文件设置 flink-conf.yaml 
+
+``` yaml
+parallelism.default: 2
+```
 
 
 
 
 
+#### 算子链 Operator Chain
 
 
 
+
+
+算子链传输
+
+1:1 source,map
+
+
+
+重分区
+
+keyBy,window,sink
+
+
+
+
+
+在 Flink 中，并行度相同的一对一(one to one)算子操作，可以直接链接在一起形成一个 “大”的任务(task)，这样原来的算子就成为了真正任务里的一部分这样的技术被称为“算子链”(Operator Chain)。
 
 
 
 
 
 ```java
-// 禁用算子链 当前算子不和前后算子合并
-.map(word -> Tuple2.of(word, 1L)).disableChaining();
-// 从当前算子开始新链
+// 禁用算子链
+.map(word -> Tuple2.of(word, 1L)).disableChaining(); // 从当前算子开始新链
 .map(word -> Tuple2.of(word, 1L)).startNewChain()
 ```
+
+
+
+
+
+#### 作业图与执行图
+
+
+
+##### 逻辑流图
+
+这是根据用户通过 DataStream API 编写的代码生成的最初的 DAG 图，用来表示程序的拓 扑结构。这一步一般在客户端完成。
+
+
+
+源算子 Source(socketTextStream())→扁平映射算子 Flat Map(flatMap()) →分组聚合算子 Keyed Aggregation(keyBy/sum()) →输出算子 Sink(print())。
+
+
+
+##### 作业图(JobGraph)
+
+将多个符合条件的节点链接在一起 合并成一个任务节点，形成算子链，这样可以减少数据交换的消耗。
+
+
+
+##### 执行图(ExecutionGraph)
+
+JobMaster 收到 JobGraph 后，会根据它来生成执行图(ExecutionGraph)。ExecutionGraph 是 JobGraph 的并行化版本，是调度层最核心的数据结构。
+
+
+
+##### 物理图(Physical Graph)
+
+JobMaster 生成执行图后， 会将它分发给 TaskManager;各个 TaskManager 会根据执行图 部署任务，最终的物理执行过程也会形成一张“图”，一般就叫作物理图(Physical Graph)。
+
+
+
+
+
+#### 任务(Tasks)和任务槽(Task Slots)
+
+
+
+```
+taskmanager.numberOfTaskSlots: 8
+```
+
+
+
+slot 目前仅仅用来隔离内存，不会涉及 CPU 的隔离
+
+
+
+
+
+只要属于同一个作业，那么对于不同任务节点的并行子任务，就可以放到同一个 slot 上执行。
+
+
+
 
 
 
