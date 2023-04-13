@@ -1436,6 +1436,101 @@ public class UTFTest_Aggfunction {
 
 
 
+``` java
+package com.matt.apitest.table;
+
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+import org.apache.flink.table.functions.TableAggregateFunction;
+import org.apache.flink.util.Collector;
+
+import static org.apache.flink.table.api.Expressions.$;
+import static org.apache.flink.table.api.Expressions.call;
+
+/**
+ * @author matt
+ * @create 2023-04-06 22:32
+ * @desc xxx
+ */
+public class UDFTest_TableAggFunc {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+
+        // 1.新建表指定
+        String createDDL = "CREATE TABLE clickTable (" +
+                "`user` STRING, " +
+                "ts BIGINT, " +
+                "url STRING," +
+                "et AS TO_TIMESTAMP(FROM_UNIXTIME(ts))," +
+                "WATERMARK FOR et as et - INTERVAL '1' SECOND" +
+                ") WITH (" +
+                "'connector' = 'filesystem'," +
+                "'path' = '/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt'," +
+                "'format' = 'csv'" +
+                ")"; // , 分割的文本文件
+        tableEnv.executeSql(createDDL);
+        tableEnv.createTemporarySystemFunction("Top2", Top2.class);
+
+        Table aggT = tableEnv.sqlQuery("SELECT user, COUNT(url) as cnt, window_start, window_end " +
+                "FROM Table (" +
+                "   TUMBLE(TABLE clickTable, DESCRIPTOR(et), INTERVAL '10' SECOND) " +
+                ")" +
+                "GROUP BY user, window_start, window_end");
+        Table top2T = aggT.groupBy($("window_end"))
+                .flatAggregate(call("Top2", $("cnt")).as("v", "rank"))
+                .select($("window_end"), $("v"), $("rank"));
+        tableEnv.toChangelogStream(top2T).print();
+        env.execute();
+    }
+
+
+    public static class Top2Acc {
+        public Long max = Long.MIN_VALUE;
+        public Long secondMax = Long.MIN_VALUE;
+    }
+
+    public static class Top2 extends TableAggregateFunction<Tuple2<Long, Integer>, Top2Acc> {
+
+        @Override
+        public Top2Acc createAccumulator() {
+            return new Top2Acc();
+        }
+
+        // 标准
+        public void accumulate(Top2Acc acc, Long v) {
+            if (v > acc.max) {
+                acc.secondMax = acc.max;
+                acc.max = v;
+            } else if (v > acc.secondMax) {
+                acc.secondMax = v;
+            }
+        }
+
+        public void emitValue(Top2Acc acc, Collector<Tuple2<Long, Integer>> collector) {
+            if (acc.max != Long.MIN_VALUE) {
+                collector.collect(Tuple2.of(acc.max, 1));
+            }
+            if (acc.secondMax != Long.MIN_VALUE) {
+                collector.collect(Tuple2.of(acc.secondMax, 2));
+            }
+        }
+    }
+}
+
+```
+
+
+
+目前 SQL 中没有直接使用表聚合函数的方式，所以需要使用 Table API 的方式来调用
+
+
+
+emitUpdateWithRetract()方法，它可以在结果表发生变化时，以“撤回”(retract)老数 据、发送新数据的方式增量地进行更新。如果同时定义了 emitValue()和 emitUpdateWithRetract() 两个方法，在进行更新操作时会优先调用 emitUpdateWithRetract()。
 
 
 
@@ -1445,10 +1540,514 @@ public class UTFTest_Aggfunction {
 
 
 
+## sql客户端
 
 
+
+
+
+### 流程
+
+1.启动本地集群
+
+```sh
+./bin/start-cluster.sh
+```
+
+2.启动flink-sql客户端
 
 ``` 
 ./bin/sql-client.sh
+```
+
+3.设置运行模式
+
+表环境的运行模式， 有流处理和批处理， 默认是流处理
+
+```sh
+SET 'execution.runtime-mode' = 'streaming';
+```
+
+
+
+其次是 SQL 客户端的“执行结果模式”，主要有 table、changelog、tableau 三种
+
+``` sql
+SET 'sql-client.execution.result-mode' = 'table';
+```
+
+- table 模式就是最普通的表处理模式，结果会以逗号分隔每个字段;
+- changelog 则是更新日 志模式，会在数据前加上“+”(表示插入)或“-”(表示撤回)的前缀;
+- tableau 则是经典 的可视化表模式，结果会是一个虚线框的表格。
+
+
+
+4.编写sql 执行sql查询
+
+
+
+
+
+## 连接到外部系统
+
+
+
+### kafka
+
+
+
+#### 配置依赖
+
+```xml
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-connector-kafka_${scala.binary.version}</artifactId>
+  <version>${flink.version}</version>
+</dependency>
+```
+
+
+
+对于 Kafka 而言，CSV、JSON、Avro 等主要格式都是支持的，由于 SQL 客户端中已经内置了 CSV、JSON 的支持，因此使用时无需专门引入;而对于 没有内置支持的格式(比如 Avro)，则仍然要下载相应的 jar 包
+
+
+
+#### 创建连接表
+
+```sql
+CREATE TABLE KafkaTable (
+  `user` STRING,
+  `url` STRING,
+  `ts` TIMESTAMP(3) METADATA FROM 'timestamp'
+) WITH (
+'connector' = 'kafka',
+  'topic' = 'events',
+  'properties.bootstrap.servers' = 'localhost:9092',
+  'properties.group.id' = 'testGroup',
+  'scan.startup.mode' = 'earliest-offset',
+  'format' = 'csv'
+)
+```
+
+METADATA FROM，这是表示一个“元数据列”(metadata column)，它是由Kafka连接器的元数据“timestamp”生成的。这里的 timestamp 其实就是 Kafka 中数据自带的时间戳，我们把 它直接作为元数据提取出来，转换成一个新的字段 ts。
+
+
+
+
+
+#### upsert
+
+
+
+Upsert Kafka 连接器处理的是更新日志(changlog)流。如果作为 TableSource， 连接器会将读取到的topic中的数据(key, value)，解释为对当前key的数据值的更新(UPDATE)， 
+
+
+
+没有k 对应的行则插入
+
+存在则更新
+
+value为空则删除
+
+
+
+
+
+```sql
+CREATE TABLE pageviews_per_region (
+  user_region STRING,
+  pv BIGINT,
+  uv BIGINT,
+  PRIMARY KEY (user_region) NOT ENFORCED
+) WITH (
+  'connector' = 'upsert-kafka',
+  'topic' = 'pageviews_per_region',
+  'properties.bootstrap.servers' = '...',
+'key.format' = 'avro',
+  'value.format' = 'avro'
+);
+CREATE TABLE pageviews (
+  user_id BIGINT,
+  page_id BIGINT,
+  viewtime TIMESTAMP,
+  user_region STRING,
+  WATERMARK FOR viewtime AS viewtime - INTERVAL '2' SECOND
+) WITH (
+  'connector' = 'kafka',
+  'topic' = 'pageviews',
+  'properties.bootstrap.servers' = '...',
+  'format' = 'json'
+);
+-- 计算 pv、uv 并插入到 upsert-kafka 表中
+INSERT INTO pageviews_per_region SELECT
+  user_region,
+  COUNT(*),
+  COUNT(DISTINCT user_id)
+FROM pageviews
+GROUP BY user_region;
+```
+
+
+
+### 文件系统
+
+flink 已内置该连接器无需导入依赖
+
+
+
+```sql
+CREATE TABLE MyTable (
+  column_name1 INT,
+  column_name2 STRING,
+  ...
+  part_name1 INT,
+  part_name2 STRING
+) PARTITIONED BY (part_name1, part_name2) WITH (
+'connector' = 'filesystem', -- 连接器类型
+'path' = '...', -- 文件路径
+'format' = '...' -- 文件格式 )
+```
+
+
+
+
+
+### JDBC
+
+
+
+作为 TableSink 向数据库写入数据时，运行的模式取决于创建表的 DDL 是否定义了主键 (primary key)。
+
+
+
+如果有主键，那么 JDBC 连接器就将以更新插入(Upsert)模式运行，可以向 外部数据库发送按照指定键(key)的更新(UPDATE)和删除(DELETE)操作;
+
+如果没有 定义主键，那么就将在追加(Append)模式下运行，不支持更新和删除操作。
+
+
+
+
+
+#### 接入流程
+
+##### 引入依赖
+
+``` xml
+<dependency>
+  <groupId>org.apache.flink</groupId>
+<artifactId>flink-connector-jdbc_${scala.binary.version}</artifactId>
+  <version>${flink.version}</version>
+</dependency>
+
+
+<dependency>
+   <groupId>mysql</groupId>
+   <artifactId>mysql-connector-java</artifactId>
+   <version>5.1.38</version>
+</dependency>
+```
+
+##### 创建jdbc表
+
+
+
+```sql
+-- 创建一张连接到 MySQL 的表 
+CREATE TABLE MyTable (
+  id BIGINT,
+  name STRING,
+  age INT,
+  status BOOLEAN,
+  PRIMARY KEY (id) NOT ENFORCED
+) WITH (
+  'connector' = 'jdbc',
+  'url' = 'jdbc:mysql://localhost:3306/mydatabase',
+	'table-name' = 'users'
+);
+-- 将另一张表 T 的数据写入到 MyTable 表中 
+INSERT INTO MyTable
+SELECT id, name, age, status FROM T;
+```
+
+
+
+### es
+
+
+
+#### 接入流程
+
+
+
+##### 引入依赖
+
+es 版本不同 导入依赖的版本不一样
+
+``` xml
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-connector-elasticsearch6_${scala.binary.version}</artifactId>
+  <version>${flink.version}</version>
+</dependency>
+```
+
+
+
+```xml
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-connector-elasticsearch7_${scala.binary.version}</artifactId>
+  <version>${flink.version}</version>
+</dependency>
+```
+
+
+
+##### 创建表
+
+```sql
+-- 创建一张连接到 Elasticsearch 的 表 CREATE TABLE MyTable (
+  user_id STRING,
+  user_name STRING
+  uv BIGINT,
+  pv BIGINT,
+PRIMARY KEY (user_id) NOT ENFORCED
+) WITH (
+  'connector' = 'elasticsearch-7',
+  'hosts' = 'http://localhost:9200',
+  'index' = 'users'
+);
+```
+
+这里定义了主键，所以会以更新插入(Upsert)模式向 Elasticsearch 写入数据。
+
+
+
+
+
+#### hbase
+
+
+
+#### 概述
+
+连接器作为 TableSink 向 HBase 写入数据时，采用的始终是更新插入 (Upsert)模式。也就是说，HBase 要求连接器必须通过定义的主键(primary key)来发送更 新日志(changelog)。所以在创建表的 DDL 中，我们必须要定义行键(rowkey)字段，并将 它声明为主键;如果没有用 PRIMARY KEY 子句声明主键，连接器会默认把 rowkey 作为主键。
+
+
+
+#### 接入流程
+
+##### 引入依赖
+
+目前仅支持1.4.x 2.2.x
+
+hbase1.4
+
+```xml
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-connector-hbase-1.4_${scala.binary.version}</artifactId>
+  <version>${flink.version}</version>
+</dependency>
+```
+
+hbase1.4
+
+```xml
+<dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-connector-hbase-2.2_${scala.binary.version}</artifactId>
+  <version>${flink.version}</version>
+</dependency>
+```
+
+##### 创建表
+
+创建出的 HBase 表中，所有的列族(column family)都必须声明为 ROW 类型，在表中占据一 个字段;而每个 family 中的列(column qualifier)则对应着 ROW 里的嵌套字段。我们不需要 将 HBase 中所有的 family 和 qualifier 都在 Flink SQL 的表中声明出来，只要把那些在查询中用 到的声明出来就可以了。
+
+
+
+ROW 类型的字段(对应着 HBase 中的 family)，表中还应有一个原子类型的字 段，它就会被识别为 HBase 的 rowkey。在表中这个字段可以任意取名，不一定非要叫 rowkey
+
+
+
+```sql
+-- 创建一张连接到 HBase 的 表 CREATE TABLE MyTable (
+ rowkey INT,
+ family1 ROW<q1 INT>,
+ family2 ROW<q2 STRING, q3 BIGINT>,
+ family3 ROW<q4 DOUBLE, q5 BOOLEAN, q6 STRING>,
+ PRIMARY KEY (rowkey) NOT ENFORCED
+) WITH (
+ 'connector' = 'hbase-1.4',
+ 'table-name' = 'mytable',
+ 'zookeeper.quorum' = 'localhost:2181'
+);
+
+-- 假设表 T 的字段结构是 [rowkey, f1q1, f2q2, f2q3, f3q4, f3q5, f3q6]
+INSERT INTO MyTable
+SELECT rowkey, ROW(f1q1), ROW(f2q2, f2q3), ROW(f3q4, f3q5, f3q6) FROM T;
+```
+
+
+
+### hive
+
+
+
+flink 与 Hive 的集成比较特别。Flink 提供了“Hive 目录”(HiveCatalog)功能，允许使用 Hive 的“元存储”(Metastore)来管理 Flink 的元数据。这带来的好处体现在两个方面:
+
+
+
+1.Metastore 可以作为一个持久化的目录，因此使用 HiveCatalog 可以跨会话存储 Flink 特定的元数据。这样一来，我们在 HiveCatalog 中执行执行创建 Kafka 表或者 ElasticSearch 表， 就可以把它们的元数据持久化存储在 Hive 的 Metastore 中;对于不同的作业会话就不需要重复创建了，直接在 SQL 查询中重用就可以。
+
+
+
+2.使用 HiveCatalog，Flink 可以作为读写 Hive 表的替代分析引擎。这样一来，在 Hive 中进行批处理会更加高效;与此同时，也有了连续在 Hive 中读写数据、进行流处理的能力， 这也使得“实时数仓”(real-time data warehouse)成为了可能。
+
+
+
+
+
+#### 接入
+
+##### 引入依赖
+
+目前flink 支持的版本有
+
+Hive 1.x:1.0.0~1.2.2;
+
+Hive 2.x:2.0.0-2.2.0-2.3.0-2.3.6;
+
+Hive 3.x:3.0.0~3.1.2;
+
+
+
+需要有hadoop 环境
+
+
+
+```xml
+<!-- Flink 的 Hive 连接器--> <dependency>
+  <groupId>org.apache.flink</groupId>
+  <artifactId>flink-connector-hive_${scala.binary.version}</artifactId>
+  <version>${flink.version}</version>
+</dependency>
+<!-- Hive 依赖 --> <dependency>
+   <groupId>org.apache.hive</groupId>
+<artifactId>hive-exec</artifactId>
+   <version>${hive.version}</version>
+</dependency>
+```
+
+建议不要把这些依赖打包到结果 jar 文件中，而是在运行时的集群环境中为不同的 Hive 版本添加不同的依赖支持。具体版本对应的依赖关系
+
+
+
+##### 连接hive
+
+在 Flink 中连接 Hive，是通过在表环境中配置 HiveCatalog 来实现的。需要说明的是，配 置 HiveCatalog 本身并不需要限定使用哪个 planner，不过对 Hive 表的读写操作只有 Blink 的 planner 才支持。所以一般我们需要将表环境的 planner 设置为 Blink。
+
+
+
+
+
+```java
+EnvironmentSettings settings =
+EnvironmentSettings.newInstance().useBlinkPlanner().build();
+TableEnvironment tableEnv = TableEnvironment.create(settings);
+String name = "myhive";
+String defaultDatabase = "mydatabase"; String hiveConfDir = "/opt/hive-conf";
+// 创建一个 HiveCatalog，并在表环境中注册
+HiveCatalog hive = new HiveCatalog(name, defaultDatabase, hiveConfDir);
+tableEnv.registerCatalog("myhive", hive);
+// 使用 HiveCatalog 作为当前会话的 catalog tableEnv.useCatalog("myhive");
+```
+
+
+
+
+
+```sql
+Flink SQL> create catalog myhive with ('type' = 'hive', 'hive-conf-dir' =
+'/opt/hive-conf');
+[INFO] Execute statement succeed.
+Flink SQL> use catalog myhive;
+[INFO] Execute statement succeed.
+```
+
+
+
+
+
+##### 设置sql方言
+
+Flink 目前支持两种 SQL 方言的配置:default 和 hive。所谓的 default 就是 Flink SQL 默认 的SQL语法了。我们需要先切换到hive方言，然后才能使用Hive SQL的语法。具体设置可 以分为 SQL 和 Table API 两种方式。
+
+
+
+1.sql中设置
+
+方式一 sql配置
+
+```sql
+set table.sql-dialect=hive;
+```
+
+方式二配置文件中修改sql-cli-defaults.yaml
+
+``` java
+execution:
+  planner: blink
+  type: batch
+  result-mode: table
+configuration:
+  table.sql-dialect: hive
+```
+
+
+
+2.tableAPI设置
+
+``` java
+// 配置 hive 方言 
+tableEnv.getConfig().setSqlDialect(SqlDialect.HIVE); 
+// 配置 default 方言 
+tableEnv.getConfig().setSqlDialect(SqlDialect.DEFAULT);
+```
+
+
+
+##### 读写hive
+
+
+
+``` sql
+-- 设置 SQL 方言为 hive，创建 Hive 表 
+SET table.sql-dialect=hive; 
+CREATE TABLE hive_table (
+  user_id STRING,
+  order_amount DOUBLE
+) PARTITIONED BY (dt STRING, hr STRING) STORED AS parquet TBLPROPERTIES (
+  
+  'partition.time-extractor.timestamp-pattern'='$dt $hr:00:00',
+  'sink.partition-commit.trigger'='partition-time',
+  'sink.partition-commit.delay'='1 h',
+  'sink.partition-commit.policy.kind'='metastore,success-file'
+);
+-- 设置 SQL 方言为 default，创建 Kafka 表 
+SET table.sql-dialect=default;
+CREATE TABLE kafka_table (
+  user_id STRING,
+  order_amount DOUBLE,
+log_ts TIMESTAMP(3),
+WATERMARK FOR log_ts AS log_ts - INTERVAL '5' SECOND – 定义水位线 ) WITH (...);
+
+
+
+-- 将 Kafka 中读取的数据经转换后写入 Hive
+INSERT INTO TABLE hive_table
+SELECT user_id, order_amount, DATE_FORMAT(log_ts, 'yyyy-MM-dd'), DATE_FORMAT(log_ts, 'HH')
+FROM kafka_table;
 ```
 

@@ -9,7 +9,7 @@
 如果是本地则使用本地 集群则使用集群
 
 ```
-StreamExecutionEnvironment    env =StreamExecutionEnvironment.getExecutionEnvironment();
+StreamExecutionEnvironment env =StreamExecutionEnvironment.getExecutionEnvironment();
 ```
 
 使用本地执行环境， 默认并行度是cpu核数
