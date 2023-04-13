@@ -899,29 +899,546 @@ WINDOW w AS (
 
 
 
+### TopN case
+
+```java
+package com.matt.apitest.table;
+
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+
+/**
+ * @author matt
+ * @create 2023-03-29 23:01
+ * @desc xxx
+ */
+public class TopNCase {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+
+        // 1.新建表指定
+        String createDDL = "CREATE TABLE clickTable (" +
+                "`user` STRING, " +
+                "ts BIGINT, " +
+                "url STRING," +
+                "et AS TO_TIMESTAMP(FROM_UNIXTIME(ts))," +
+                "WATERMARK FOR et as et - INTERVAL '1' SECOND" +
+                ") WITH (" +
+                "'connector' = 'filesystem'," +
+                "'path' = '/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt'," +
+                "'format' = 'csv'" +
+                ")"; // , 分割的文本文件
+        tableEnv.executeSql(createDDL);
+
+        Table topNUser = tableEnv.sqlQuery("SELECT user, cnt, row_num " +
+                "FROM ( " +
+                "   SELECT *, ROW_NUMBER() OVER( " +
+                "       ORDER BY cnt DESC" +
+                "   ) AS row_num " +
+                "   FROM (SELECT user, COUNT(url) as cnt FROM clickTable GROUP BY user) " +
+                ")" +
+                "WHERE row_num <= 2");
+
+        //tableEnv.toChangelogStream(topNUser).print();
+
+        // 窗口topN 一段时间内活跃用户 top2
+        // 每个窗口唯一一个结果
+        Table winTopN = tableEnv.sqlQuery("SELECT user, cnt, row_num, window_end " +
+                "FROM ( " +
+                "   SELECT *, ROW_NUMBER() OVER( " +
+                "       PARTITION BY window_start, window_end " +
+                "       ORDER BY cnt DESC" +
+                "   ) AS row_num " +
+                "   FROM (" +
+                "       SELECT user, COUNT(url) as cnt, window_start, window_end " +
+                "       FROM Table (" +
+                "           TUMBLE(TABLE clickTable, DESCRIPTOR(et), INTERVAL '10' SECOND) " +
+                "       )" +
+                "       GROUP BY user, window_start, window_end" +
+                "   ) " +
+                ")" +
+                "WHERE row_num <= 2");
+        tableEnv.toChangelogStream(winTopN).print();
+        env.execute();
+
+    }
+}
+
+```
 
 
 
 
-累计窗口只会计算一次 没有5-15
+
+ROW_NUMBER: 组内排序， 会添加一个排名字段
+
+PARTITION BY: 分区，不同分区分别计算
+
+ORDER BY 排序
 
 
 
-滑动窗口会计算到不同窗口中。有5-15
+
+
+## Join 连接查询
+
+
+
+### 常规连接
+
+和mysql 是一致的
+
+内连接
+
+``` sql
+SELECT *
+FROM Order
+INNER JOIN Product
+ON Order.product_id = Product.id
+```
+
+
+
+外连接
+
+``` sql
+SELECT *
+FROM Order
+LEFT JOIN Product
+ON Order.product_id = Product.id
+
+SELECT *
+FROM Order
+RIGHT JOIN Product
+ON Order.product_id = Product.id
+
+SELECT *
+FROM Order
+FULL OUTER JOIN Product
+ON Order.product_id = Product.id
+```
+
+
+
+### 间隔连接
+
+
+
+会增加一个时间条件限制， 如下
+
+
+
+``` sql
+ltime = rtime
+
+ltime >= rtime AND ltime < rtime + INTERVAL '10' MINUTE
+
+ltime BETWEEN rtime - INTERVAL '10' SECOND AND rtime + INTERVAL '5' SECOND
+```
+
+
+
+案例：下单后4h内发货
+
+```sql
+SELECT *
+FROM Order o, Shipment s
+WHERE o.id = s.order_id
+AND o.order_time BETWEEN s.ship_time - INTERVAL '4' HOUR AND s.ship_time
+```
+
+
+
+## 函数
+
+
+
+### 系统函数
+
+#### 标量函数
+
+输入一个数据 输出一个数据
+
+
+
+##### 比较函数
+
+```sql
+value1 = value2 判断两个值相等
+value1 <> value2 判断两个值不相等
+value IS NOT NULL 判断 value 不为空
+```
+
+##### 逻辑函数
+
+布尔类型拼接起来, and,or,not
+
+```sql
+boolean1 OR boolean2 布尔值 boolean1 与布尔值 boolean2 取逻辑或
+boolean IS FALSE 判断布尔值 boolean 是否为 false
+NOT boolean 布尔值 boolean 取逻辑非
+```
+
+##### 算术函数
+
+
+
+numeric1 + numeric2 两数相加
+
+POWER(numeric1, numeric2) 幂运算，取数 numeric1 的 numeric2 次方
+
+RAND() 返回(0.0, 1.0)区间内的一个 double 类型的伪随机数
+
+
+
+##### 字符串处理函数
+
+string1 || string2 两个字符串的连接
+
+UPPER(string) 将字符串 string 转为全部大写
+
+CHAR_LENGTH(string) 计算字符串 string 的长度
+
+
+
+##### 时间函数
+
+- DATE string 按格式"yyyy-MM-dd"解析字符串 string，返回类型为 SQL Date
+- TIMESTAMP string 按格式"yyyy-MM-dd HH:mm:ss[.SSS]"解析，返回类型为 SQL timestamp
+- CURRENT_TIME 返回本地时区的当前时间，类型为 SQL time(与 LOCALTIME等价)
+- INTERVAL string range 返回一个时间间隔。string 表示数值;range 可以是 DAY，MINUTE，DAT TO HOUR 等单位，也可以是 YEAR TO MONTH 这样的复合单位。如“2 年 10 个月”可以写成:INTERVAL '2-10' YEAR TO MONTH
+
+
+
+#### 聚合函数
+
+
+
+聚合算子有
+
+count(*)
+
+SUM([ ALL | DISTINCT ] expression) 对每个字段进行求和操作。默认情况下省略了关键字 ALL，表示对所有行求和;如果指定 DISTINCT，则会对数据进行去 重，每个值只叠加一次。
+
+RANK() 返回当前值在一组值中的排名
+
+ROW_NUMBER() 对一组值排序后，返回当前值的行号。与RANK()的 功能相似
 
 
 
 
 
-1. 累计窗口：
+### 自定义函数
 
-累计窗口是一个基于时间的固定大小的窗口，它包含从流开始时间到当前时间之间的所有事件。当一个事件进入窗口时，它会被保留在窗口中，直到窗口关闭并进行聚合操作。累计窗口通常用于计算全局的聚合函数，例如对整个数据集进行求和、计数、平均值等操作。
+#### 概述
 
-1. 滚动窗口：
+支持的函数类型
 
-滚动窗口是一个基于时间的固定大小的窗口，它随着时间不断向前移动，并始终包含最近一段时间内的事件。当一个新的窗口开始时，之前的窗口将被关闭并进行聚合操作。滚动窗口通常用于计算实时的统计信息，例如最近10秒钟内的平均值、最大值等。
+- 标量函数：将输入的标量(0,1个或者多个)转换位另一个标量
+- 表函数：将标量值转换成一个或多个新的行数据
+- 聚合函数：将多行数据里的标量值转换成一个新的标量值;
+- 表聚合函数：将多行数据里的标量值转换成一 个或多个新的行数据。
 
-因此，累计窗口和滚动窗口的最大区别在于它们对时间窗口的定义方式和计算方式。累计窗口是对整个数据集进行操作，而滚动窗口只对最近一段时间内的数据进行操作，可以实现实时计算和持续聚合。
+
+
+
+
+#### 基础流程
+
+
+
+##### 1.注册函数
+
+
+
+``` java
+tableEnv.createTemporarySystemFunction("MyFunction", MyFunction.class);
+```
+
+createTemporarySystemFunction：系统函数
+
+createTemporaryFunction:当前目录和数据库
+
+
+
+##### 2.使用TableAPI调用函数
+
+
+
+``` java
+tableEnv.from("MyTable").select(call("MyFunction", $("myField")));
+```
+
+call: arg1(函数名) arg2(调用时传递的参数)
+
+
+
+不注册函数直接使用
+
+
+
+``` java
+tableEnv.from("MyTable").select(call(SubstringFunction.class, $("myField")));
+```
+
+
+
+##### 3.sql中调用函数
+
+``` java
+tableEnv.sqlQuery("SELECT MyFunction(myField) FROM MyTable");
+```
+
+
+
+#### 标量函数
+
+- 继承ScalarFunction
+- 写一个public eval 方法 不是重写该方法
+
+
+
+```java
+package com.matt.apitest.table;
+
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+import org.apache.flink.table.functions.ScalarFunction;
+
+/**
+ * @author matt
+ * @create 2023-03-31 00:43
+ * @desc xxx
+ */
+public class UDFTest_ScalarFunc {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+
+        // 1.新建表指定
+        String createDDL = "CREATE TABLE clickTable (" +
+                "`user` STRING, " +
+                "ts BIGINT, " +
+                "url STRING," +
+                "et AS TO_TIMESTAMP(FROM_UNIXTIME(ts))," +
+                "WATERMARK FOR et as et - INTERVAL '1' SECOND" +
+                ") WITH (" +
+                "'connector' = 'filesystem'," +
+                "'path' = '/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt'," +
+                "'format' = 'csv'" +
+                ")"; // , 分割的文本文件
+        tableEnv.executeSql(createDDL);
+        tableEnv.createTemporarySystemFunction("MyHash", MyHashFunction.class);
+
+
+        Table myHashTable = tableEnv.sqlQuery("SELECT user, MyHash(user) from clickTable");
+
+        tableEnv.toDataStream(myHashTable).print();
+        env.execute();
+    }
+
+    public static class MyHashFunction extends ScalarFunction {
+
+        public int eval(String str) {
+            return str.hashCode();
+        }
+    }
+
+}
+
+```
+
+
+
+
+
+#### 表函数
+
+表函数的输入参数也可以是 0 个、1 个或多个标量值;不同的是，它可 以返回任意多行数据。
+
+
+
+
+
+LATERAL TABLE(MySplit(url)) as T(word, length)
+
+
+
+LATERAL 会生成一个侧向表 然后 和主表进行连接
+
+
+
+``` java
+package com.matt.apitest.table;
+
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+import org.apache.flink.table.functions.TableFunction;
+
+/**
+ * @author matt
+ * @create 2023-03-31 01:08
+ * @desc xxx
+ */
+public class UDFTest_TableFunction {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+
+        // 1.新建表指定
+        String createDDL = "CREATE TABLE clickTable (" +
+                "`user` STRING, " +
+                "ts BIGINT, " +
+                "url STRING," +
+                "et AS TO_TIMESTAMP(FROM_UNIXTIME(ts))," +
+                "WATERMARK FOR et as et - INTERVAL '1' SECOND" +
+                ") WITH (" +
+                "'connector' = 'filesystem'," +
+                "'path' = '/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt'," +
+                "'format' = 'csv'" +
+                ")"; // , 分割的文本文件
+        tableEnv.executeSql(createDDL);
+        tableEnv.createTemporarySystemFunction("MySplit", MySplit.class);
+
+        Table mySplitT = tableEnv.sqlQuery("SELECT user, url,word, length " +
+                "from clickTable, LATERAL TABLE(MySplit(url)) as T(word, length)");
+
+        tableEnv.toDataStream(mySplitT).print();
+        env.execute();
+    }
+
+    // 自定义表函数
+    public static class MySplit extends TableFunction<Tuple2<String, Integer>> {
+
+        public void eval(String str) {
+            String[] words = str.split("\\?");
+            for (String w: words) {
+                collect(Tuple2.of(w, w.length()));
+            }
+        }
+    }
+
+}
+
+```
+
+
+
+#### 聚合函数
+
+会把一行或多行数据 (也就是一个表)聚合成一个标量值。这是一个标准的“多对一”的转换。
+
+
+
+
+
+``` java
+package com.matt.apitest.table;
+
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+import org.apache.flink.table.functions.AggregateFunction;
+
+/**
+ * @author matt
+ * @create 2023-03-31 01:25
+ * @desc xxx
+ */
+public class UTFTest_Aggfunction {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+
+        // 1.新建表指定
+        String createDDL = "CREATE TABLE clickTable (" +
+                "`user` STRING, " +
+                "ts BIGINT, " +
+                "url STRING," +
+                "et AS TO_TIMESTAMP(FROM_UNIXTIME(ts))," +
+                "WATERMARK FOR et as et - INTERVAL '1' SECOND" +
+                ") WITH (" +
+                "'connector' = 'filesystem'," +
+                "'path' = '/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt'," +
+                "'format' = 'csv'" +
+                ")"; // , 分割的文本文件
+        tableEnv.executeSql(createDDL);
+        tableEnv.createTemporarySystemFunction("WeightAverage", WeightAverage.class);
+
+        Table cc = tableEnv.sqlQuery("SELECT user, WeightAverage(ts, 1) as w_avg " +
+                "from clickTable group by user");
+
+        tableEnv.toChangelogStream(cc).print();
+        env.execute();
+    }
+    
+    public static class WeightAvgAcc {
+        public long sum = 0;
+        public int cnt = 0;
+    }
+
+    // 自定义聚合函数
+    public static class WeightAverage extends AggregateFunction<Long, WeightAvgAcc> {
+
+        @Override
+        public Long getValue(WeightAvgAcc acc) {
+            if (acc.cnt == 0) {
+                return 0L;
+            }
+            return acc.sum / acc.cnt;
+        }
+
+        @Override
+        public WeightAvgAcc createAccumulator() {
+            return new WeightAvgAcc();
+        }
+
+        public void accumulate(WeightAvgAcc acc, Long iV, Integer iWeight) {
+            acc.sum += iV * iWeight;
+            acc.cnt += iWeight;
+        }
+    }
+
+}
+
+```
+
+
+
+1.创建累加器
+
+2.每来一条数据触发一次accumulate
+
+3.获取返回数据getValue
+
+
+
+#### 表聚合函数
+
+
+
+用户自定义表聚合函数(UDTAGG)可以把一行或多行数据(也就是一个表)聚合成另 一张表
+
+
+
+
+
+
+
+
 
 
 
