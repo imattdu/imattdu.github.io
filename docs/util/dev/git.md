@@ -723,3 +723,13 @@ win10
 
 
 
+
+
+
+
+
+
+```sh
+git rm -r --cached  log
+```
+

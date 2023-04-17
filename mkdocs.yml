@@ -175,6 +175,7 @@ nav:
     - flink:
       - overview: bigdata/flink/overview.md
       - quickstart: bigdata/flink/quickstart.md
+      - datastreamAPI: bigdata/flink/datastreamAPI.md
       - table: bigdata/flink/table.md
   - question:
     - question: 
