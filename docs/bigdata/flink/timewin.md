@@ -1,32 +1,314 @@
 
 
+## 时间语义
+
+
+
+### 俩种时间
+
+#### 概述
+
+处理时间机器计算的时间
+
+事件时间数据产生的时间
+
+
+
+#### 使用场景：
+
+处理时间是我们计算效率的衡量标准，而事件时间会更符合我们的业务计算逻 辑
+
+
+
+处理时间语义，一般用在对实时性要求极高、而对计算准确性要求不太高的场景，反之就是事件时间
+
+flink1.12默认是事件时间
 
 
 
 
-数据 t1
-
-t1 23:00 点产生
-
-t2 1:00 处理事件
 
 
 
 
 
-test
+
+
+## 水位线
 
 
 
-表调慢 2s
+### 概述
+
+
+
+- 水位线是基于数据的时间戳生成的， 向下游传递特殊的数据 ，用来表示当前事件时间的进展
+- 水位线是单调递增
+- 可以设置延迟，处理迟到数据
+- 水位线为t, 则表示<t的数据均已到达
 
 
 
 
 
-上游可能 不同分区水位线
+### 如何生成水位线
 
-以最小水位线为准
+
+
+
+
+```java
+public interface WatermarkStrategy<T> extends TimestampAssignerSupplier<T>,WatermarkGeneratorSupplier<T>{
+		@Override
+   TimestampAssigner<T> createTimestampAssigner(TimestampAssignerSupplier.Context context);
+	@Override
+  WatermarkGenerator<T> createWatermarkGenerator(WatermarkGeneratorSupplier.Context context);
+}
+```
+
+
+
+水位线相关类的介绍
+
+TimestampAssigner:时间戳分配器，指定哪个字段作为事件时间字段
+
+
+
+WatermarkGenerator:主要负责按照既定的方式，基于时间戳生成水位线。在 WatermarkGenerator 接口中，主要又有两个方法:onEvent()和 onPeriodicEmit()。
+
+
+
+onEvent:每个事件(数据)到来都会调用的方法，它的参数有当前事件、时间戳， 以及允许发出水位线的一个 WatermarkOutput，可以基于事件做各种操作
+
+
+
+onPeriodicEmit:周期性调用的方法，可以由WatermarkOutput发出水位线。周期时间为处理时间，可以调用环境配置的.setAutoWatermarkInterval()方法来设置，默认为200ms。
+
+
+
+
+
+
+
+#### 系统内置水位线
+
+``` java
+package com.matt.apitest.window;
+
+import com.matt.apitest.beans.Event;
+import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+
+import java.time.Duration;
+
+public class Watermark {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        // >=1.12 不需要设置开启watermark
+        // 100ms 触发一次水位线生成
+        env.getConfig().setAutoWatermarkInterval(100);
+        DataStream<Event> dataStream = env.fromElements(
+                new Event("a1", "1", 100L),
+                new Event("a2", "2", 200L),
+                new Event("a3", "3", 300L),
+                new Event("a4", "4", 400L))
+               /* // 有序
+                .assignTimestampsAndWatermarks(WatermarkStrategy.<Event>forMonotonousTimestamps()
+                // 指定时间字段 ms
+                .withTimestampAssigner(new SerializableTimestampAssigner<Event>() {
+                    @Override
+                    public long extractTimestamp(Event event, long l) {
+                        return event.timestamp;
+                    }
+                })*/
+                // 乱序 延迟
+                .assignTimestampsAndWatermarks(WatermarkStrategy.<Event>forBoundedOutOfOrderness(Duration.ofMinutes(2))
+                        .withTimestampAssigner(new SerializableTimestampAssigner<Event>() {
+                            @Override
+                            public long extractTimestamp(Event event, long l) {
+                                return event.timestamp;
+                            }
+                        }));
+        env.execute("matt");
+    }
+}
+
+```
+
+
+
+水位线 = 当前最大时间戳 – 延迟时间 – 1
+
+水位线为7 表示不会再有<=7的数据来
+
+
+
+#### 自定义水位线
+
+自定义数据源 发送水位线
+
+```java
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.source.SourceFunction;
+import org.apache.flink.streaming.api.watermark.Watermark;
+import java.util.Calendar;
+import java.util.Random;
+public class EmitWatermarkInSourceFunction {
+   public static void main(String[] args) throws Exception {
+      StreamExecutionEnvironment env =
+      StreamExecutionEnvironment.getExecutionEnvironment();
+             env.setParallelism(1);
+             env.addSource(new ClickSourceWithWatermark()).print();
+             env.execute();
+   }
+// 泛型是数据源中的类型
+public static class ClickSourceWithWatermark implements SourceFunction<Event> {
+       private boolean running = true;
+       @Override
+  public void run(SourceContext<Event> sourceContext) throws Exception { Random random = new Random();
+      String[] userArr = {"Mary", "Bob", "Alice"};
+      String[] urlArr = {"./home", "./cart", "./prod?id=1"};
+      while (running) {
+          long currTs = Calendar.getInstance().getTimeInMillis(); // 毫秒时
+          String username = userArr[random.nextInt(userArr.length)]; String url = urlArr[random.nextInt(urlArr.length)];
+          Event event = new Event(username, url, currTs);
+          // 使用 collectWithTimestamp 方法将数据发送出去，并指明数据中的时间戳的字段
+          sourceContext.collectWithTimestamp(event, event.timestamp);
+          // 发送水位线
+          sourceContext.emitWatermark(new Watermark(event.timestamp - 1L)); 
+            Thread.sleep(1000L);
+			} 
+   }
+   @Override
+   public void cancel() {
+      running = false;
+   }
+} 
+
+}
+```
+
+
+
+
+
+### 为水位线传递
+
+如果上游有三个分区发来 则取最小的作为 水位线 并发往下游
+
+
+
+
+
+
+
+## 窗口
+
+
+
+
+
+### 窗口分类
+
+
+
+
+
+#### 按照驱动分
+
+
+
+时间窗口：根据时间驱动来划分窗口
+
+计算窗口：根据数据个数来划分窗口
+
+
+
+
+
+#### 按照窗口分配的数据规则
+
+
+
+##### 滚动窗口
+
+1:00 - 1:10， 左必右开
+
+
+
+##### 滑动窗口
+
+需要定义窗口大小以及每次滑动的步长
+
+1:00 - 1:10
+
+1:05 - 1:15
+
+
+
+##### 会话窗口：
+
+超过多少时间没有数据 就关闭会话吗, 会话只有时间没有会话计数窗口
+
+
+
+会话窗口特殊处理：
+
+如果来个数据时间间隔gap 大于指定的size 任务他们属于不同会话，但是如果有一个迟到数据在他们二者之间就会把这个平衡打破， 
+
+
+
+所以每来一个新的数据，都会创建一个新 的会话窗口;然后判断已有窗口之间的距离，如果小于给定的 size，就对它们进行合并(merge) 操作
+
+
+
+##### 全局窗口
+
+同一个key 会公用一个窗口
+
+
+
+### 窗口API
+
+#### 概述
+
+会有按键分区和非按键分区
+
+按键分区会基于键分为多条逻辑流， 而非按键分区只是一条流，推荐使用按键分区
+
+
+
+按键分区
+
+``` java
+stream.keyBy(...)
+      .window(...)
+  
+  
+```
+
+非按键分区
+
+``` java
+stream.windowAll(...)
+```
+
+#### 具体使用
+
+窗口分配器(Window Assigners)和窗口函数(Window Functions)。
+
+``` java
+stream.keyBy(<key selector>) 
+  .window(<window assigner>) 
+  .aggregate(<window function>)
+```
+
+window()方法需要传入一个窗口分配器，它指明了窗口的类型;
+
+aggregate() 方法传入一个窗口函数作为参数，它用来定义窗口具体的处理逻辑。
 
 
 

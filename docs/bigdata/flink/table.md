@@ -1637,8 +1637,6 @@ METADATA FROM，这是表示一个“元数据列”(metadata column)，它是�
 
 #### upsert
 
-
-
 Upsert Kafka 连接器处理的是更新日志(changlog)流。如果作为 TableSource， 连接器会将读取到的topic中的数据(key, value)，解释为对当前key的数据值的更新(UPDATE)， 
 
 

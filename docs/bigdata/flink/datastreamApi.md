@@ -576,10 +576,6 @@ public class Base {
 
 #### 按键分区
 
-
-
-
-
 ``` java
 package com.matt.apitest.transform;
 
@@ -623,8 +619,6 @@ public class Aggr {
 }
 
 ```
-
-
 
 
 
@@ -721,4 +715,678 @@ public class Reduce {
 ```
 
 
+
+但是对于像 flatMap() 这样的函数，它的函数签名 void flatMap(IN value, Collector<OUT> out) 被 Java 编译器编译成了 void flatMap(IN value, Collector out)，也就是说将 Collector 的泛 型信息擦除掉了。这样 Flink 就无法自动推断输出的类型信息了。
+
+
+
+
+
+### 用户自定义函数
+
+
+
+上述基本转换算子&聚合函数 都有对应的抽象类 可以写 匿名匿名内部类 or lambda表达式
+
+
+
+#### 富函数
+
+介绍
+
+map,filter,reduce 都有对应的富函数版本 RichMapFunction、RichFilterFunction、 RichReduceFunction
+
+富函数类可以获取运行环境的上下文，并拥有一些生命周期方法，所以可以实现 更复杂的功能。
+
+
+
+方法：
+
+open()方法，是RichFunction的初始化方法。所以像文件 IO 的创建，数据库连接的创建，配置文件的读取等等这样一次性的工作，都适合在 open()方法中完成。
+
+
+
+close()方法，是生命周期中的最后一个调用的方法，一般用来做一 些清理工作
+
+
+
+
+
+code 
+
+``` java
+package com.matt.apitest.transform;
+
+import com.matt.apitest.beans.SensorReading;
+import org.apache.flink.api.common.functions.RichMapFunction;
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+
+/**
+ * @author matt
+ * @create 2022-01-24 23:55
+ */
+public class RichFunction {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(4);
+        DataStream<String> inputStream = env.readTextFile("/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt");
+
+        DataStream<SensorReading> dataStream = inputStream.map(s -> {
+            String[] fields = s.split(",");
+            return new SensorReading(fields[0], new Long(fields[1]), new Double(fields[2]));
+        });
+
+
+
+        DataStream<Tuple2<String, Integer>> resStream = dataStream.map(
+                new MyMapper()
+        );
+        resStream.print();
+
+        // job name
+        env.execute("trans-form");
+    }
+    
+    public static class MyMapper extends RichMapFunction<SensorReading, Tuple2<String, Integer>> {
+
+        @Override
+        public Tuple2<String, Integer> map(SensorReading v) throws Exception {
+            return new Tuple2<>(v.getId(), getRuntimeContext().getIndexOfThisSubtask());
+        }
+
+        public MyMapper() {
+            super();
+        }
+
+        @Override
+        public void open(Configuration parameters) throws Exception {
+            System.out.println("init....");
+        }
+
+        @Override
+        public void close() throws Exception {
+            System.out.println("clear...");
+        }
+    }
+
+}
+
+```
+
+
+
+
+
+### 物理分区
+
+
+
+分区种类
+
+
+
+1.随机分区 shuffle
+
+把流中的数据随机打乱 均匀传递到下游分区
+
+
+
+2.轮询分区 round-robin
+
+比如来了 a,b,c,d,e,f 6条数据 有分区 p1, p2, p3
+
+则 a,d 进到p1 b,e 进到p2 c,f进到p3
+
+
+
+3.重缩放分区 rescale
+
+比如上游有2分区pp1,pp2 下游有6个分区cp1, cp2 ...cp6
+
+pp1 会发到cp1-cp3 然后再cp1-cp3 做轮询分区
+
+pp2 -> cp4-cp6
+
+
+
+4.广播 broadcast
+
+将数据广播到下游所有分区中
+
+
+
+5.全局分区 global
+
+将上游多个分区 传递到下游1个分区， 把并行度设置为1
+
+
+
+6.自定义分区
+
+``` java
+package com.matt.apitest.transform;
+
+import com.matt.apitest.beans.Event;
+import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.api.common.functions.Partitioner;
+import org.apache.flink.api.common.functions.ReduceFunction;
+import org.apache.flink.api.java.functions.KeySelector;
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.source.ParallelSourceFunction;
+import org.apache.flink.streaming.api.functions.source.RichParallelSourceFunction;
+
+public class Partition {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(16);
+
+        DataStream<Event> stream = env.fromElements(new Event("a1", "/1", 1L),
+                new Event("a1", "/2", 2L),
+                new Event("a2", "/3", 3L),
+                new Event("a2", "/2", 3L),
+                new Event("a3", "/1", 3L),
+                new Event("a2", "/3", 3L),
+                new Event("a3", "/1", 3L),
+                new Event("a2", "/2", 2L));
+
+        // 2.1 keyBy 逻辑分区 shuffle 随机分区
+        //stream.shuffle().print().setParallelism(4);
+
+        // 2.2轮询分区 2 3 1 4 # 2 3 1 4
+        //stream.rebalance().print("rebalance").setParallelism(4);
+
+        // 2.3 rescale 重缩放分区 分组，组内轮询 上游分区2 2 个分区内内部轮询
+        DataStream<Integer> rescaleStream = env.addSource(new RichParallelSourceFunction<Integer>() {
+            @Override
+            public void run(SourceContext<Integer> ctx) throws Exception {
+                for (int i = 1; i <= 8; i++) {
+                    if (i % 2 == getRuntimeContext().getIndexOfThisSubtask()) {
+                        ctx.collect(i);
+                    }
+                }
+            }
+
+            @Override
+            public void cancel() {
+            }
+        }).setParallelism(2);
+        // 上游分区a 发到下游a1 a2 a1,a2 轮询 b -> b1, b2 b1,b2所有分区轮询
+        // 3,4 均是奇书 1,2 均是偶数
+        //rescaleStream.rescale().print("rescale").setParallelism(4);
+
+        // 2.4 广播 一份数据向每个分区都发送
+        //stream.broadcast().print("broadcast").setParallelism(4);
+
+        //2.5 全局分区 等价并行度为1
+        //stream.global().print("global").setParallelism(4);
+
+        // 2.6 自定义重分区
+        env.fromElements(1, 2, 3, 4, 5).partitionCustom(new Partitioner<Integer>() {
+            @Override
+            public int partition(Integer k, int cnt) {
+                return k % 2;
+            }
+        }, new KeySelector<Integer, Integer>() {
+            @Override
+            public Integer getKey(Integer v) throws Exception {
+                return v;
+            }
+        }).print("custom").setParallelism(4);
+
+        // job name
+        env.execute("partition");
+    }
+
+}
+
+```
+
+
+
+
+
+
+
+## 输出算子
+
+
+
+
+
+### 文件
+
+
+
+
+
+行编码:StreamingFileSink.forRowFormat(basePath，rowEncoder)。 路径&数据编码格式
+
+批量编码:StreamingFileSink.forBulkFormat(basePath，bulkWriterFactory)。
+
+
+
+
+
+``` java
+package com.matt.apitest.sink;
+
+import com.matt.apitest.beans.Event;
+import org.apache.flink.api.common.serialization.SimpleStringEncoder;
+import org.apache.flink.core.fs.Path;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.sink.filesystem.StreamingFileSink;
+import org.apache.flink.streaming.api.functions.sink.filesystem.rollingpolicies.DefaultRollingPolicy;
+
+import java.util.concurrent.TimeUnit;
+
+
+public class Sink2File {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        DataStream<Event> stream = env.fromElements(new Event("a1", "/1", 1L),
+                new Event("a1", "/2", 2L),
+                new Event("a2", "/3", 3L),
+                new Event("a2", "/2", 3L),
+                new Event("a3", "/1", 3L),
+                new Event("a2", "/3", 3L),
+                new Event("a3", "/1", 3L),
+                new Event("a2", "/2", 2L));
+
+        StreamingFileSink<String> streamingFileSink = StreamingFileSink.<String>forRowFormat(new Path("./output"),
+                new SimpleStringEncoder<>("UTF-8"))
+                // 滚动策略
+                .withRollingPolicy(DefaultRollingPolicy.builder()
+                        .withMaxPartSize(1024 * 1024 * 1024)
+                        // ms
+                        .withRolloverInterval(TimeUnit.MINUTES.toMillis(15))
+                        // 没有数据来
+                        .withInactivityInterval(TimeUnit.MINUTES.toMillis(5))
+                        .build())
+                .build();
+        stream.map(data -> data.toString()).addSink(streamingFileSink);
+        env.execute();
+    }
+}
+
+```
+
+
+
+分区文件
+
+- 至少包含15分钟的数据
+- 最近5分钟没有收到新的数据
+- 文件大小已达到 1 GB
+
+
+
+
+
+
+### kafka
+
+
+
+
+
+FlinkKafkaProducer 继承了抽象类 TwoPhaseCommitSinkFunction，这是一个实现了“两阶段提交”的 RichSinkFunction。两阶段提交提供了 Flink 向 Kafka 写入数据的事务性保证，能够真正做到精确一次(exactly once)的状态一致性
+
+
+
+
+
+``` java
+package com.matt.apitest.sink;
+
+import com.matt.apitest.beans.Event;
+import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.api.common.serialization.SimpleStringSchema;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer;
+
+import java.util.Properties;
+
+
+/**
+ * @author matt
+ * @create 2022-01-25 23:33
+ */
+public class Sink2Kafka {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        Properties properties = new Properties();
+        properties.setProperty("bootstrap.servers", "localhost:9092");
+        properties.setProperty("group.id", "consumer-group");
+        properties.setProperty("key.deserializer",
+                "org.apache.kafka.common.serialization.StringDeserializer");
+        properties.setProperty("value.deserializer",
+                "org.apache.kafka.common.serialization.StringDeserializer");
+        properties.setProperty("auto.offset.reset", "latest");
+
+        DataStream<String> kafkaStream = env.addSource( new
+                FlinkKafkaConsumer<String>("first", new SimpleStringSchema(), properties));
+
+        //
+        SingleOutputStreamOperator<String> res = kafkaStream.map(new MapFunction<String, String>() {
+            @Override
+            public String map(String s) throws Exception {
+                String[] fileds = s.split(",");
+                return new Event(fileds[0], fileds[1], Long.valueOf(fileds[2])).toString();
+            }
+        });
+
+        res.addSink(new FlinkKafkaProducer<String>("localhost:9092", "test", new SimpleStringSchema()));
+        // job name
+        env.execute("SINK_KAFKA");
+    }
+}
+
+```
+
+
+
+### redis
+
+
+
+导入依赖
+
+``` xml
+<dependency>
+<groupId>org.apache.bahir</groupId>
+  <artifactId>flink-connector-redis_2.11</artifactId>
+  <version>1.0</version>
+</dependency>
+```
+
+
+
+``` java
+package com.matt.apitest.sink;
+
+import com.matt.apitest.beans.Event;
+import com.matt.apitest.beans.SensorReading;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.connectors.redis.RedisSink;
+import org.apache.flink.streaming.connectors.redis.common.config.FlinkJedisPoolConfig;
+import org.apache.flink.streaming.connectors.redis.common.mapper.RedisCommand;
+import org.apache.flink.streaming.connectors.redis.common.mapper.RedisCommandDescription;
+import org.apache.flink.streaming.connectors.redis.common.mapper.RedisMapper;
+
+/**
+ * @author matt
+ * @create 2022-01-25 23:57
+ */
+public class Sink2Redis {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        DataStream<Event> dataStream = env.fromElements(
+                new Event("a1", "1", 1L),
+                new Event("a2", "2", 1L),
+                new Event("a3", "3", 1L),
+                new Event("a4", "4", 1L));
+
+        FlinkJedisPoolConfig config = new FlinkJedisPoolConfig.Builder()
+                .setHost("127.0.0.1")
+                .setPort(6379)
+                .build();
+        dataStream.addSink(new RedisSink<>(config, new MyRedisMapper()));
+
+        env.execute("redis");
+    }
+
+    public static class MyRedisMapper implements RedisMapper<Event> {
+        // 保存到 redis 的命令，存成哈希表
+        public RedisCommandDescription getCommandDescription() {
+            return new RedisCommandDescription(RedisCommand.HSET, "test");
+        }
+        // key
+        public String getKeyFromData(Event data) {
+            return data.user;
+        }
+        // v
+        public String getValueFromData(Event data) {
+            return data.url;
+        }
+    }
+}
+```
+
+
+
+
+
+redisSink 提供2个参数
+
+jedis的连接配置
+
+实现RedisMapper, 提供add, getK getV 实现
+
+
+
+
+
+### es
+
+
+
+flink1.13 支持es7
+
+添加依赖
+
+``` xml
+<dependency>
+   <groupId>org.apache.flink</groupId>
+<artifactId>flink-connector-elasticsearch7_${scala.binary.version}</artifactId>
+   <version>${flink.version}</version>
+</dependency>
+```
+
+
+
+
+
+
+
+``` java
+package com.matt.apitest.sink;
+
+import com.matt.apitest.beans.Event;
+import com.matt.apitest.beans.SensorReading;
+import org.apache.flink.api.common.functions.RuntimeContext;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.connectors.elasticsearch.ElasticsearchSinkFunction;
+import org.apache.flink.streaming.connectors.elasticsearch.RequestIndexer;
+import org.apache.flink.streaming.connectors.elasticsearch6.ElasticsearchSink;
+import org.apache.http.HttpHost;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.client.Requests;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Objects;
+
+/**
+ * @author matt
+ * @create 2022-01-26 0:21
+ */
+public class Sink2ES {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        DataStream<Event> dataStream = env.fromElements(
+                new Event("a1", "1", 1L),
+                new Event("a2", "2", 1L),
+                new Event("a3", "3", 1L),
+                new Event("a4", "4", 1L));
+
+        ArrayList<HttpHost> httpHosts = new ArrayList<>();
+        httpHosts.add(new HttpHost("localhost", 9200));
+        dataStream.addSink(new ElasticsearchSink.Builder<Event>(httpHosts,new MyEsSinkFunction()).build());
+
+        // job name
+        env.execute("sink_es");
+
+    }
+
+    public static class MyEsSinkFunction implements
+            ElasticsearchSinkFunction<Event> {
+        @Override
+        public void process(Event element, RuntimeContext ctx, RequestIndexer
+                indexer) {
+            HashMap<String, String> dataSource = new HashMap<>();
+            dataSource.put("user", element.user);
+            dataSource.put("url", element.url);
+            dataSource.put("ts", String.valueOf(element.timestamp));
+            IndexRequest indexRequest = Requests.indexRequest()
+                    .index("tt4")
+                    .type("tt")
+                    .source(dataSource);
+            indexer.add(indexRequest);
+        }
+    }
+}
+
+```
+
+
+
+### mysql
+
+
+
+```xml
+ <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <!--版本太低可能会失败-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.28</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-jdbc_${scala.binary.version}</artifactId>
+            <version>${flink.version}</version>
+        </dependency>
+```
+
+
+
+
+
+```java
+package com.matt.apitest.sink;
+
+import com.matt.apitest.beans.Event;
+import com.matt.apitest.beans.SensorReading;
+
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.connector.jdbc.JdbcConnectionOptions;
+import org.apache.flink.connector.jdbc.JdbcExecutionOptions;
+import org.apache.flink.connector.jdbc.JdbcSink;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.sink.RichSinkFunction;
+
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+/**
+ * @author matt
+ * @create 2022-01-26 1:41
+ */
+public class Sink2MySQL {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        DataStream<Event> dataStream = env.fromElements(
+                new Event("a1", "1", 1L),
+                new Event("a2", "2", 1L),
+                new Event("a3", "3", 1L),
+                new Event("a4", "4", 1L));
+
+
+        String sql = "INSERT INTO `event` (user, url) VALUES(?, ?)";
+        dataStream.addSink(JdbcSink.sink(sql, ((statement, event) -> {
+                    statement.setString(1, event.user);
+                    statement.setString(2, event.url);
+                }),
+                //JdbcExecutionOptions.builder()
+                //        .withBatchSize(1000)
+                //        .withBatchIntervalMs(200)
+                //        .withMaxRetries(5)
+                //        .build(),
+                new JdbcConnectionOptions.JdbcConnectionOptionsBuilder()
+                        .withUrl("jdbc:mysql://localhost:3306/stu_go?characterEncoding=utf8&useSSL=false")
+                        .withDriverName("com.mysql.cj.jdbc.Driver")
+                        .withUsername("root")
+                        .withPassword("rootroot")
+                        .build()
+        ));
+
+        // job name
+        env.execute();
+
+    }
+
+
+    public static class MyJdbcSink extends RichSinkFunction<SensorReading> {
+        Connection conn = null;
+        PreparedStatement insertStmt = null;
+        PreparedStatement updateStmt = null;
+
+        // open 主要是创建连接
+        @Override
+        public void open(Configuration parameters) throws Exception {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/stu_flink",
+                    "root", "root");
+
+            // 创建预编译器，有占位符，可传入参数
+            insertStmt = conn.prepareStatement("INSERT INTO sensor_temp (id, temp) VALUES ( ?, ?)");
+            updateStmt = conn.prepareStatement("UPDATE sensor_temp SET temp = ? WHERE id = ? ");
+        }
+
+        // 调用连接，执行 sql
+        @Override
+        public void invoke(SensorReading value, Context context) throws Exception {
+            // 执行更新语句，注意不要留 super
+            updateStmt.setDouble(1, value.getTemperatrue());
+            updateStmt.setString(2, value.getId());
+            updateStmt.execute();
+            // 如果刚才 update 语句没有更新，那么插入
+            if (updateStmt.getUpdateCount() == 0) {
+                insertStmt.setString(1, value.getId());
+                insertStmt.setDouble(2, value.getTemperatrue());
+                insertStmt.execute();
+            }
+        }
+
+        @Override
+        public void close() throws Exception {
+            insertStmt.close();
+            updateStmt.close();
+            conn.close();
+        }
+    }
+}
+```
 
