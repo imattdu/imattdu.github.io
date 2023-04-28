@@ -34,7 +34,7 @@ flowchart TD
 
 
 ``` mermaid
-graph LR
+flowchart TD
   A[Start] --> B{Error?};
   B -->|Yes| C[Hmm...];
   C --> D[Debug];
