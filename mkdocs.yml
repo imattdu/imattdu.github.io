@@ -32,8 +32,6 @@ theme:
     # - header.autohide
     # 返回顶部
     - navigation.top
-    # 代码注释
-    - content.code.annotate
     - search.highlight
     - search.suggest
     # 搜索共享
@@ -42,6 +40,10 @@ theme:
     - navigation.tracking
     # 导航跟随
     - toc.follow
+    # 代码注释
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
 plugins:
   - search:
       # separator: '[\s\-,:!=\[\]()"/]+|(?!\b)(?=[A-Z][a-z])|\.(?!\d)|&[lg]t;'
@@ -65,6 +67,8 @@ extra:
       link: https://github.com/imattdu  
 # 内容选项卡
 markdown_extensions:
+  - md_in_html
+  - def_list
   - meta
   - pymdownx.details
   - pymdownx.superfences
@@ -192,9 +196,5 @@ nav:
 extra_css:
   - stylesheets/extra.css
 
-markdown_extensions:
-  - md_in_html
-  - def_list
-  - pymdownx.tasklist:
-      custom_checkbox: true  
+
 
