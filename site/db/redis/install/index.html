@@ -2789,8 +2789,8 @@
 <p>可参考官网安装</p>
 <p>https://redis.io/docs/getting-started/</p>
 <h3 id="mac">mac安装</h3>
-<pre><code class="language-sh">brew install redis
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>brew install redis
+</span></code></pre></div>
 <p>默认安装目录</p>
 <p>/opt/homebrew/Cellar/redis/7.0.0</p>
 <p>配置文件</p>
@@ -2798,52 +2798,52 @@
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202205310300731.png" /></p>
 <h3 id="linux-todo">linux安装 todo</h3>
 <h4 id="gcc">依赖gcc环境</h4>
-<pre><code class="language-sh"> yum install gcc-c++
-
- gcc --version
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a> yum install gcc-c++
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a> gcc --version
+</span></code></pre></div>
 <h4 id="_3">基础</h4>
 <p>官网下载 -&gt; 解压 -&gt; 进入解压后的目录</p>
 <h4 id="_4">编译安装</h4>
-<pre><code class="language-sh">make
-
-
-make PREFIX=/usr/local/redis install
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>make
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>make <span class="nv">PREFIX</span><span class="o">=</span>/usr/local/redis install
+</span></code></pre></div>
 <p>这里多了一个关键字 <strong><code>PREFIX=</code></strong> 这个关键字的作用是编译的时候用于指定程序存放的路径。比如我们现在就是指定了redis必须存放在/usr/local/redis目录。假设不添加该关键字Linux会将可执行文件存放在/usr/local/bin目录，</p>
 <p>库文件会存放在/usr/local/lib目录。配置文件会存放在/usr/local/etc目录。其他的资源文件会存放在usr/local/share目录。这里指定号目录也方便后续的卸载，后续直接rm -rf /usr/local/redis 即可删除redis。</p>
 <h2 id="_5">使用</h2>
 <h3 id="_6">启动服务端</h3>
-<pre><code class="language-sh">//方式一：使用brew帮助我们启动软件
-brew services start redis
-//方式二
-redis-server /opt/homebrew/etc/redis.conf
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>//方式一：使用brew帮助我们启动软件
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>brew services start redis
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>//方式二
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>redis-server /opt/homebrew/etc/redis.conf
+</span></code></pre></div>
 <h3 id="_7">启动客户端</h3>
-<pre><code class="language-sh">redis-cli -h 127.0.0.1 -p 6379
-
-redis-cli
-
-redis-cli -p 6379
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>redis-cli -h <span class="m">127</span>.0.0.1 -p <span class="m">6379</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>redis-cli
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>redis-cli -p <span class="m">6379</span>
+</span></code></pre></div>
 <h3 id="_8">关闭</h3>
-<pre><code class="language-sh">redis-cli shutdown
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>redis-cli shutdown
+</span></code></pre></div>
 <h3 id="_9">测试</h3>
-<pre><code class="language-sh">redis-cli
-ping
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>redis-cli
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>ping
+</span></code></pre></div>
 <h2 id="_10">配置</h2>
 <h3 id="_11">配置后台启动</h3>
 <p>1.daemonize no改成yes</p>
-<pre><code class="language-sh">daemonize yes
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>daemonize yes
+</span></code></pre></div>
 <p>2.注释掉bind</p>
 <p>3.protected-mode设置为false</p>
 <h3 id="include">include</h3>
 <p>导入一个文件</p>
-<pre><code class="language-sh">include /opt/homebrew/etc/redis.conf
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>include /opt/homebrew/etc/redis.conf
+</span></code></pre></div>
 <h3 id="_12">网络配置</h3>
 <h4 id="bind">bind</h4>
 <p>默认情况bind=127.0.0.1只能接受本机的访问请求</p>
@@ -2868,8 +2868,8 @@ ping
 <p>守护进程，后台启动</p>
 <h4 id="pidfile">pidfile</h4>
 <p>存放pid文件的位置，每个实例会产生一个不同的pid文件</p>
-<pre><code class="language-sh">pidfile /var/run/redis_6379.pid
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>pidfile /var/run/redis_6379.pid
+</span></code></pre></div>
 <h4 id="loglevel">loglevel</h4>
 <p>指定日志记录级别，Redis总共支持四个级别：debug、verbose、notice、warning，默认为<strong>notice</strong></p>
 <p>四个级别根据使用阶段来选择，生产环境选择notice 或者warning</p>
@@ -2879,8 +2879,8 @@ ping
 <p>设定库的数量 默认16，默认数据库为0，可以使用SELECT <dbid>命令在连接上指定数据库id</p>
 <h3 id="_14">权限</h3>
 <h4 id="_15">密码</h4>
-<pre><code class="language-sh">requirepass 123456
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>requirepass <span class="m">123456</span>
+</span></code></pre></div>
 <h3 id="limit">limit</h3>
 <h4 id="maxclients">maxclients</h4>
 <p>设置redis同时可以与多少个客户端进行连接,默认为10000个</p>
@@ -2898,13 +2898,13 @@ ping
 <h4 id="maxmemory-samples">maxmemory-samples</h4>
 <p>设置样本数量，LRU算法和最小TTL算法都并非是精确的算法，而是估算值，所以你可以设置样本的大小，redis默认会检查这么多个key并选择其中LRU的那个。</p>
 <p>一般设置3到7的数字，数值越小样本越不准确，但性能消耗越小。</p>
-<pre><code class="language-sh"># 1k =&gt; 1000 bytes
-# 1kb =&gt; 1024 bytes
-# 1m =&gt; 1000000 bytes
-# 1mb =&gt; 1024*1024 bytes
-# 1g =&gt; 1000000000 bytes
-# 1gb =&gt; 1024*1024*1024 bytes
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># 1k =&gt; 1000 bytes</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="c1"># 1kb =&gt; 1024 bytes</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1"># 1m =&gt; 1000000 bytes</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="c1"># 1mb =&gt; 1024*1024 bytes</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># 1g =&gt; 1000000000 bytes</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="c1"># 1gb =&gt; 1024*1024*1024 bytes</span>
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -2940,7 +2940,10 @@ ping
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -2999,7 +3002,7 @@ ping
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

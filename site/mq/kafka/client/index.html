@@ -2654,11 +2654,11 @@
 <h2 id="kafka">终端操作kafka</h2>
 <p>如果启动失败 查看logs/server.log</p>
 <h3 id="topic">查看所有topic</h3>
-<pre><code class="language-sh">./kafka-topics.sh --zookeeper localhost:2181 --list
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>./kafka-topics.sh --zookeeper localhost:2181 --list
+</span></code></pre></div>
 <h3 id="topic_1">创建topic</h3>
-<pre><code class="language-sh">./kafka-topics.sh --zookeeper localhost:2181 --create --replication-factor  1 --partitions 2 --topic first
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./kafka-topics.sh --zookeeper localhost:2181 --create --replication-factor  <span class="m">1</span> --partitions <span class="m">2</span> --topic first
+</span></code></pre></div>
 <p>选项
 说明：
 --topic 定义 topic名
@@ -2667,31 +2667,31 @@
 <p><strong>副本数量 不能超过机器数</strong></p>
 <p>分区可以大于机器数量</p>
 <h3 id="topic_2">删除topic</h3>
-<pre><code class="language-sh">./kafka-topics.sh --zookeeper localhost:2181 --delete --topic first
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./kafka-topics.sh --zookeeper localhost:2181 --delete --topic first
+</span></code></pre></div>
 <p><strong>需要server.properties中设置 delete.topic.enable=true否则只是标记删除。</strong></p>
 <h3 id="topic_3">查看topic详情</h3>
-<pre><code class="language-sh">./kafka-topics.sh --zookeeper 127.0.0.1:2181 --describe --topic first
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./kafka-topics.sh --zookeeper <span class="m">127</span>.0.0.1:2181 --describe --topic first
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202111180115815.png" /></p>
 <h3 id="_1">发送消息</h3>
-<pre><code class="language-sh">./kafka-console-producer.sh --broker-list localhost:9092 --topic first
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./kafka-console-producer.sh --broker-list localhost:9092 --topic first
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202111180125374.png" /></p>
 <h3 id="_2">消费消息</h3>
 <p>可以连接zookeeper</p>
-<pre><code class="language-sh">./kafka-console-consumer.sh --zookeeper localhost:2181 --topic first
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./kafka-console-consumer.sh --zookeeper localhost:2181 --topic first
+</span></code></pre></div>
 <p>会有警告 </p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202111180130466.png" /></p>
-<pre><code class="language-sh">./kafka-console-consumer.sh --bootstrap-server matt05:9092 --topic first
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>./kafka-console-consumer.sh --bootstrap-server matt05:9092 --topic first
+</span></code></pre></div>
 <p>从最开始的位置消费</p>
-<pre><code class="language-sh">./kafka-console-consumer.sh --bootstrap-server matt05:9092 --from-beginning --topic first
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>./kafka-console-consumer.sh --bootstrap-server matt05:9092 --from-beginning --topic first
+</span></code></pre></div>
 <h3 id="_3">修改分区数</h3>
-<pre><code class="language-shell">./kafka-topics.sh --zookeeper localhost:2181 --alter --topic first --partitions 3
-</code></pre>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>./kafka-topics.sh --zookeeper localhost:2181 --alter --topic first --partitions <span class="m">3</span>
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -2727,7 +2727,10 @@
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -2822,7 +2825,7 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

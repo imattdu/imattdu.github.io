@@ -2900,99 +2900,95 @@
 <p>下载安装</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202202120757953.png" /></p>
 <h4 id="_3">配置</h4>
-<pre><code class="language-sh">
-git config --global user.name &quot;matt&quot;              # 你的名字
-git config --global user.email &quot;imattdu@gmail.com&quot;     # 你的邮箱
-
-
-# 配置git代理
-git config --global http.proxy 'http://127.0.0.1:7890/' 
-git config --global https.proxy 'http://127.0.0.1:7890/'
-
-# 配置github代理
-git config --global http.https://github.com.proxy 'http://127.0.0.1:7890/'
-
-# 取消代理
-git config --global --unset http.https://github.com.proxy 'http://127.0.0.1:7890/'
-
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git config --global user.name <span class="s2">&quot;matt&quot;</span>              <span class="c1"># 你的名字</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git config --global user.email <span class="s2">&quot;imattdu@gmail.com&quot;</span>     <span class="c1"># 你的邮箱</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 配置git代理</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>git config --global http.proxy <span class="s1">&#39;http://127.0.0.1:7890/&#39;</span> 
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>git config --global https.proxy <span class="s1">&#39;http://127.0.0.1:7890/&#39;</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># 配置github代理</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>git config --global http.https://github.com.proxy <span class="s1">&#39;http://127.0.0.1:7890/&#39;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="c1"># 取消代理</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>git config --global --unset http.https://github.com.proxy <span class="s1">&#39;http://127.0.0.1:7890/&#39;</span>
+</span></code></pre></div>
 <p>可以先安装brew</p>
-<pre><code class="language-sh">brew install git
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>brew install git
+</span></code></pre></div>
 <h4 id="git">将本地安装的git卸载</h4>
-<pre><code class="language-sh">cd ／usr／bin
-sudo rm －rf git＊
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span> ／usr／bin
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo rm －rf git＊
+</span></code></pre></div>
 <h3 id="windows">Windows</h3>
 <h2 id="ssh">SSH登录</h2>
-<pre><code class="language-python">cd ~ # 进入家目录
-
-rm -rvf .ssh # 删除.ssh 目录
-
-ssh-keygen -t rsa -C matt17@qq.com # 运行命令生成.ssh 密钥目录
-</code></pre>
-<pre><code class="language-python">cd .ssh
-
-cat id_rsa.pub
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">cd</span> <span class="o">~</span> <span class="c1"># 进入家目录</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">rm</span> <span class="o">-</span><span class="n">rvf</span> <span class="o">.</span><span class="n">ssh</span> <span class="c1"># 删除.ssh 目录</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span> <span class="o">-</span><span class="n">C</span> <span class="n">matt17</span><span class="nd">@qq</span><span class="o">.</span><span class="n">com</span> <span class="c1"># 运行命令生成.ssh 密钥目录</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">cd</span> <span class="o">.</span><span class="n">ssh</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">cat</span> <span class="n">id_rsa</span><span class="o">.</span><span class="n">pub</span>
+</span></code></pre></div>
 <p>复制 id_rsa.pub 文件内容，登录 GitHub，点击用户头像→Settings→SSH and GPG keys</p>
 <p>New SSH Key</p>
 <p>输入复制的密钥信息</p>
 <p>1.failed to push some refs to 'git@github.com:pavi-du/note.git'</p>
 <p>问题：自己在远程仓库更改了内容，而本地不知道，直接提交</p>
 <p>解决：</p>
-<pre><code>// git fetch+merge
-git pull origin master 
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>// git fetch+merge
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>git pull origin master 
+</span></code></pre></div>
 <h2 id="_4">命令</h2>
 <h3 id="_5">基本</h3>
-<pre><code class="language-bash">// 第一下克隆下来
-git clone https://github.com/imattdu/note.git
-git remote -v
-// 设置别名
-git remote add origin https://github.com/imattdu/note.git
-// 拉取
-git pull origin
-
-// git add --all
-git add --all
-
-git commit -m &quot;xxxm&quot;
-
-// 推送
-//git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
-git push origin master:master
-
-
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>// 第一下克隆下来
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>git clone https://github.com/imattdu/note.git
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>git remote -v
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>// 设置别名
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>git remote add origin https://github.com/imattdu/note.git
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>// 拉取
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>git pull origin
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>// git add --all
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>git add --all
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>git commit -m <span class="s2">&quot;xxxm&quot;</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>// 推送
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>//git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>git push origin master:master
+</span></code></pre></div>
 <h3 id="_6">分支</h3>
-<pre><code class="language-java">git branch // 查看本地分支
-
-git branch -r // 查看远程分支
-
-git branch -a // 查看本地分支和远程分支
-
-git branch test // 创建test分支
-
-
-git checkout test // 切换test分支
-
-git merge test // 合并test分支
-</code></pre>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">git</span><span class="w"> </span><span class="n">branch</span><span class="w"> </span><span class="c1">// 查看本地分支</span><span class="w"></span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">git</span><span class="w"> </span><span class="n">branch</span><span class="w"> </span><span class="o">-</span><span class="n">r</span><span class="w"> </span><span class="c1">// 查看远程分支</span><span class="w"></span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">git</span><span class="w"> </span><span class="n">branch</span><span class="w"> </span><span class="o">-</span><span class="n">a</span><span class="w"> </span><span class="c1">// 查看本地分支和远程分支</span><span class="w"></span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="n">git</span><span class="w"> </span><span class="n">branch</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="c1">// 创建test分支</span><span class="w"></span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="n">git</span><span class="w"> </span><span class="n">checkout</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="c1">// 切换test分支</span><span class="w"></span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="n">git</span><span class="w"> </span><span class="n">merge</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="c1">// 合并test分支</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_7"><strong>修改远程仓库地址</strong></h3>
-<pre><code class="language-sh">git remote rm origin
-
-git remote add origin git@github.com:imattdu/studyhdfs.git
-
-
-git remote set-url origin https://github.com/vuejs/vue.git
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>git remote rm origin
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>git remote add origin git@github.com:imattdu/studyhdfs.git
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>git remote set-url origin https://github.com/vuejs/vue.git
+</span></code></pre></div>
 <h2 id="_8">错误</h2>
 <h3 id="git-clone">由于第一次使用不是git clone 然后直接推送</h3>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210724111931.png" /></p>
-<pre><code class="language-java">git pull origin master --allow-unrelated-histories
-// 合并俩个独立的仓库
-</code></pre>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">git</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="n">master</span><span class="w"> </span><span class="o">--</span><span class="n">allow</span><span class="o">-</span><span class="n">unrelated</span><span class="o">-</span><span class="n">histories</span><span class="w"></span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1">// 合并俩个独立的仓库</span><span class="w"></span>
+</span></code></pre></div>
 <p>IDEA如何第一次创建项目提交</p>
 <p>首先在githup中创建项目</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20201219202633.png" /></p>
@@ -3004,127 +3000,121 @@ git remote set-url origin https://github.com/vuejs/vue.git
 <p><strong>这里记得和远程仓库的名字相同，如果远程是master,这里也得是master</strong></p>
 <p>之后可能会出现 <strong>Push rejected: Push to origin/master was rejected</strong></p>
 <p>我们输入以下内容即可</p>
-<pre><code class="language-java">git pull origin master --allow-unrelated-histories
-// master远程仓库分支名
-</code></pre>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">git</span><span class="w"> </span><span class="n">pull</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="n">master</span><span class="w"> </span><span class="o">--</span><span class="n">allow</span><span class="o">-</span><span class="n">unrelated</span><span class="o">-</span><span class="n">histories</span><span class="w"></span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1">// master远程仓库分支名</span><span class="w"></span>
+</span></code></pre></div>
 <p>紧接着add,commit,push即可</p>
-<pre><code># IntelliJ project files
-.idea
-*.iml
-out
-gen
-
-# Compiled class file
-*.class
-# Log file
-*.log
-# BlueJ files
-*.ctxt
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-.classpath
-.project
-.settings
-target
-# .gitignore
-</code></pre>
-<pre><code class="language-c">git config --global http.https://github.com.proxy https://127.0.0.1:XXXX
-git config --global https.https://github.com.proxy https://127.0.0.1:XXXX
-
-git config --global --unset http.proxy
-git config --global --unset https.proxy
-
-
-git config --global --unset http.https://github.com.proxy
-git config --global --unset https.https://github.com.proxy
-
-
-git config --global -l
-
-
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a># IntelliJ project files
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>.idea
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>*.iml
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>out
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>gen
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a># Compiled class file
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>*.class
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a># Log file
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>*.log
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a># BlueJ files
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>*.ctxt
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a># Mobile Tools for Java (J2ME)
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>.mtj.tmp/
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16" href="#__codelineno-11-16"></a># Package Files #
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17" href="#__codelineno-11-17"></a>*.jar
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18" href="#__codelineno-11-18"></a>*.war
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a>*.nar
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20" href="#__codelineno-11-20"></a>*.ear
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>*.zip
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a>*.tar.gz
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a>*.rar
+</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a># virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>hs_err_pid*
+</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a>.classpath
+</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>.project
+</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a>.settings
+</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a>target
+</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a># .gitignore
+</span></code></pre></div>
+<div class="language-c highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">git</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">global</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="n">https</span><span class="o">:</span><span class="c1">//github.com.proxy https://127.0.0.1:XXXX</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">git</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">global</span><span class="w"> </span><span class="n">https</span><span class="p">.</span><span class="n">https</span><span class="o">:</span><span class="c1">//github.com.proxy https://127.0.0.1:XXXX</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="n">git</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">global</span><span class="w"> </span><span class="o">--</span><span class="n">unset</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="n">proxy</span><span class="w"></span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="n">git</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">global</span><span class="w"> </span><span class="o">--</span><span class="n">unset</span><span class="w"> </span><span class="n">https</span><span class="p">.</span><span class="n">proxy</span><span class="w"></span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="n">git</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">global</span><span class="w"> </span><span class="o">--</span><span class="n">unset</span><span class="w"> </span><span class="n">http</span><span class="p">.</span><span class="n">https</span><span class="o">:</span><span class="c1">//github.com.proxy</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="n">git</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">global</span><span class="w"> </span><span class="o">--</span><span class="n">unset</span><span class="w"> </span><span class="n">https</span><span class="p">.</span><span class="n">https</span><span class="o">:</span><span class="c1">//github.com.proxy</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="n">git</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">--</span><span class="n">global</span><span class="w"> </span><span class="o">-</span><span class="n">l</span><span class="w"></span>
+</span></code></pre></div>
 <p>git设置代理</p>
-<pre><code class="language-python">git config --global http.proxy 'http://127.0.0.1:10809/' 
-git config --global https.proxy 'http://127.0.0.1:10809/'
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">http</span><span class="o">.</span><span class="n">proxy</span> <span class="s1">&#39;http://127.0.0.1:10809/&#39;</span> 
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">https</span><span class="o">.</span><span class="n">proxy</span> <span class="s1">&#39;http://127.0.0.1:10809/&#39;</span>
+</span></code></pre></div>
 <p>打开设置-》网络设置-》找代理-》端口号</p>
-<pre><code class="language-python">git config --global --unset http.proxy
-</code></pre>
-<pre><code class="language-python"># github设置代理
-git config --global http.https://github.com.proxy 'http://127.0.0.1:10809/'
-
-# 取消代理
-git config --global --unset http.https://github.com.proxy 'http://127.0.0.1:10809/'
-
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="o">--</span><span class="n">unset</span> <span class="n">http</span><span class="o">.</span><span class="n">proxy</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># github设置代理</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="n">http</span><span class="o">.</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">proxy</span> <span class="s1">&#39;http://127.0.0.1:10809/&#39;</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="c1"># 取消代理</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="o">--</span><span class="n">unset</span> <span class="n">http</span><span class="o">.</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">.</span><span class="n">proxy</span> <span class="s1">&#39;http://127.0.0.1:10809/&#39;</span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210320000112.png" /></p>
 <p>查阅了一下资料，发现可以在pull命令后紧接着使用<code>--allow-unrelated-history</code>选项来解决问题（该选项可以合并两个独立启动仓库的历史）。</p>
-<pre><code>git stash #封存修改
-
-
-$git pull origin master --allow-unrelated-histories
-
-git stash pop #把修改还原
-
-</code></pre>
-<pre><code>$ git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
-也就是
-$git push origin master:master
-提交成功。
-
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>git stash #封存修改
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>$git pull origin master --allow-unrelated-histories
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>git stash pop #把修改还原
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>$ git push &lt;远程主机名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>也就是
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>$git push origin master:master
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>提交成功。
+</span></code></pre></div>
 <p>git stash：备份当前工作区内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致。同时，将当前工作区内容保存到Git栈中
 git pull：拉取服务器上当前分支代码
 git stash pop：从Git栈中读取最近一次保存的内容，恢复工作区相关内容。同时，用户可能进行多次stash操作，需要保证后stash的最先被取到，所以用栈（先进后出）来管理；pop取栈顶的内容并恢复
 git stash list：显示Git栈内的所有备份，可以利用这个列表来决定从那个地方恢复。
 git stash clear：清空Git栈</p>
-<pre><code class="language-go">git clone -b dev 远程仓库地址
-// 默认拉取master分支
-git clone xxxx
-</code></pre>
-<pre><code class="language-go">git fetch origin dev
-git checkout -b dev origin/dev
-git pull origin dev:dev
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nx">git</span><span class="w"> </span><span class="nx">clone</span><span class="w"> </span><span class="o">-</span><span class="nx">b</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">远程仓库地址</span><span class="w"></span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1">// 默认拉取master分支</span><span class="w"></span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="nx">git</span><span class="w"> </span><span class="nx">clone</span><span class="w"> </span><span class="nx">xxxx</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nx">git</span><span class="w"> </span><span class="nx">fetch</span><span class="w"> </span><span class="nx">origin</span><span class="w"> </span><span class="nx">dev</span><span class="w"></span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nx">git</span><span class="w"> </span><span class="nx">checkout</span><span class="w"> </span><span class="o">-</span><span class="nx">b</span><span class="w"> </span><span class="nx">dev</span><span class="w"> </span><span class="nx">origin</span><span class="o">/</span><span class="nx">dev</span><span class="w"></span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="nx">git</span><span class="w"> </span><span class="nx">pull</span><span class="w"> </span><span class="nx">origin</span><span class="w"> </span><span class="nx">dev</span><span class="p">:</span><span class="nx">dev</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="-">远程仓库创建-本地仓库创建</h3>
-<pre><code class="language-go">// 本地初始化
-git init
-
-git add --all
-git commit -m &quot;&quot;
-
-// 关联仓库
-git remote add origin 远程仓库地址
-git remote -v
-
-git push origin master:master
-//提示出错，使用下面命令合并即可
-// 合并俩个独立的仓库
-git pull origin master --allow-unrelated-histories
-
-</code></pre>
-<pre><code class="language-go">// 创建分支
-git branch dev
-
-//切换分支
-git checkout dev
-
-git branch -a
-
-// 当前在master分支，合并devf
-git merge dev
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1">// 本地初始化</span><span class="w"></span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="nx">git</span><span class="w"> </span><span class="nx">init</span><span class="w"></span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="nx">git</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="o">--</span><span class="nx">all</span><span class="w"></span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="nx">git</span><span class="w"> </span><span class="nx">commit</span><span class="w"> </span><span class="o">-</span><span class="nx">m</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"></span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="c1">// 关联仓库</span><span class="w"></span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="nx">git</span><span class="w"> </span><span class="nx">remote</span><span class="w"> </span><span class="nx">add</span><span class="w"> </span><span class="nx">origin</span><span class="w"> </span><span class="nx">远程仓库地址</span><span class="w"></span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="nx">git</span><span class="w"> </span><span class="nx">remote</span><span class="w"> </span><span class="o">-</span><span class="nx">v</span><span class="w"></span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="nx">git</span><span class="w"> </span><span class="nx">push</span><span class="w"> </span><span class="nx">origin</span><span class="w"> </span><span class="nx">master</span><span class="p">:</span><span class="nx">master</span><span class="w"></span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="c1">//提示出错，使用下面命令合并即可</span><span class="w"></span>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="c1">// 合并俩个独立的仓库</span><span class="w"></span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="nx">git</span><span class="w"> </span><span class="nx">pull</span><span class="w"> </span><span class="nx">origin</span><span class="w"> </span><span class="nx">master</span><span class="w"> </span><span class="o">--</span><span class="nx">allow</span><span class="o">-</span><span class="nx">unrelated</span><span class="o">-</span><span class="nx">histories</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1">// 创建分支</span><span class="w"></span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="nx">git</span><span class="w"> </span><span class="nx">branch</span><span class="w"> </span><span class="nx">dev</span><span class="w"></span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1">//切换分支</span><span class="w"></span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="nx">git</span><span class="w"> </span><span class="nx">checkout</span><span class="w"> </span><span class="nx">dev</span><span class="w"></span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="nx">git</span><span class="w"> </span><span class="nx">branch</span><span class="w"> </span><span class="o">-</span><span class="nx">a</span><span class="w"></span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="c1">// 当前在master分支，合并devf</span><span class="w"></span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="nx">git</span><span class="w"> </span><span class="nx">merge</span><span class="w"> </span><span class="nx">dev</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210812105559.png" /></p>
 <p>////</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210907232930.png" /></p>
@@ -3143,39 +3133,39 @@ git merge dev
 <p>分支并没有改变·1</p>
 <p>变基：</p>
 <p>分支也基于最新的基础改变了</p>
-<pre><code class="language-sh">// master分支执行b1的操作 基于他们最近的祖先
-git rebase b1
-
-// 提交已解决的事项
-git add .
-git rebase --continue
-
-
-// 退出变基
-git rebase --abort
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>// master分支执行b1的操作 基于他们最近的祖先
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>git rebase b1
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>// 提交已解决的事项
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>git add .
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>git rebase --continue
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>// 退出变基
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>git rebase --abort
+</span></code></pre></div>
 <p>// 不推荐</p>
 <p><code>git stash pop --index</code> 恢复最新的进度到工作区和暂存区</p>
-<pre><code class="language-sh">git stash save &quot;xxx&quot;
-
-
-
-git stash list
-git stash pop
-git stash pop stash@{1}
-
-git stash apply stash@{1}
-
-git stash drop stash@{1}
-
-git stash clear
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>git stash save <span class="s2">&quot;xxx&quot;</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>git stash list
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>git stash pop
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>git stash pop stash@<span class="o">{</span><span class="m">1</span><span class="o">}</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>git stash apply stash@<span class="o">{</span><span class="m">1</span><span class="o">}</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a>git stash drop stash@<span class="o">{</span><span class="m">1</span><span class="o">}</span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>git stash clear
+</span></code></pre></div>
 <p>工作区 add 暂存区 commit 分支</p>
 <p>git reset --hard</p>
-<pre><code class="language-sh">--soft # 还原 HEAD
---mixed # 还原 HEAD、Index # 默认参数
---hard # 还原 HEAD、Index、Working Directory
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>--soft <span class="c1"># 还原 HEAD</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>--mixed <span class="c1"># 还原 HEAD、Index # 默认参数</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>--hard <span class="c1"># 还原 HEAD、Index、Working Directory</span>
+</span></code></pre></div>
 <h3 id="_10">忽略文件</h3>
 <table>
 <thead>
@@ -3243,11 +3233,11 @@ git stash clear
 <p>win10</p>
 <p>如果项目均在win则设置为false</p>
 <p>否则设置为true</p>
-<pre><code class="language-sh">[core]
-    autocrlf = true
-</code></pre>
-<pre><code class="language-sh">git rm -r --cached  log
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">[</span>core<span class="o">]</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>    <span class="nv">autocrlf</span> <span class="o">=</span> <span class="nb">true</span>
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>git rm -r --cached  log
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -3283,7 +3273,10 @@ git stash clear
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -3378,7 +3371,7 @@ git stash clear
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

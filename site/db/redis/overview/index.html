@@ -2590,8 +2590,8 @@
 <h3 id="todo">与其他产品区别 todo</h3>
 <p>todo</p>
 <p>redis有16个库默认使用第一个,如下命令切换库</p>
-<pre><code class="language-sh">select 1
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">select</span> <span class="m">1</span>
+</span></code></pre></div>
 <h2 id="_4">基础命令</h2>
 <h3 id="key">key</h3>
 <table>
@@ -2939,21 +2939,21 @@
 </table>
 <p>bit</p>
 <p>0 1 2 3 4 5 ....</p>
-<pre><code class="language-sh">setbit b1 1 1
-</code></pre>
-<pre><code class="language-sh">getbit b1 1
-
-
-
-bitcount b1 1 2 BITE
-
-bitcount b1 1 2 BIT
-</code></pre>
-<pre><code class="language-sh">127.0.0.1:6379&gt; pfadd h1 1 2 3 1
-(integer) 1
-127.0.0.1:6379&gt; pfcount h1
-(integer) 3
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>setbit b1 <span class="m">1</span> <span class="m">1</span>
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>getbit b1 <span class="m">1</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>bitcount b1 <span class="m">1</span> <span class="m">2</span> BITE
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>bitcount b1 <span class="m">1</span> <span class="m">2</span> BIT
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="m">127</span>.0.0.1:6379&gt; pfadd h1 <span class="m">1</span> <span class="m">2</span> <span class="m">3</span> <span class="m">1</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="o">(</span>integer<span class="o">)</span> <span class="m">1</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="m">127</span>.0.0.1:6379&gt; pfcount h1
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="o">(</span>integer<span class="o">)</span> <span class="m">3</span>
+</span></code></pre></div>
 <p>mac：关闭vpn</p>
 <p>xsd fetch </p>
 <p>multi exec</p>
@@ -2962,32 +2962,32 @@ bitcount b1 1 2 BIT
 <p>开启aof</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202206121117316.png" /></p>
 <p>修复aof文件</p>
-<pre><code class="language-sh">redis-check-aof --fix appendonly.aof
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>redis-check-aof --fix appendonly.aof
+</span></code></pre></div>
 <p>setup </p>
 <p>base</p>
 <p>source</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202206162348952.png" /></p>
 <p>info replication</p>
-<pre><code class="language-sh">redis-cli -p 6379
-</code></pre>
-<pre><code class="language-sh">slaveof 127.0.0.1 6379
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>redis-cli -p <span class="m">6379</span>
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>slaveof <span class="m">127</span>.0.0.1 <span class="m">6379</span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202206162352350.png" /></p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202206181700708.png" /></p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202206181703435.png" /></p>
-<pre><code class="language-sh">replica-priority 100
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>replica-priority <span class="m">100</span>
+</span></code></pre></div>
 <p>代理：代理作为入口</p>
 <p>无中心化：任一一台服务器都可以作为入口</p>
 <p>i</p>
-<pre><code class="language-sh">[OK] All 16384 slots covered.
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">[</span>OK<span class="o">]</span> All <span class="m">16384</span> slots covered.
+</span></code></pre></div>
 <p>任何一个节点均可以</p>
-<pre><code class="language-sh">redis-cli -c -p 6379
-</code></pre>
-<pre><code class="language-sh">cluster nodes
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>redis-cli -c -p <span class="m">6379</span>
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cluster nodes
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -3023,7 +3023,10 @@ bitcount b1 1 2 BIT
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -3082,7 +3085,7 @@ bitcount b1 1 2 BIT
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

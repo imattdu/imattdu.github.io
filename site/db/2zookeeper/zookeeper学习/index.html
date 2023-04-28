@@ -2619,179 +2619,179 @@
 <h2 id="22">2.2本地安装</h2>
 <h3 id="_6">安装</h3>
 <h4 id="1tar">1.将tar包发送到服务器</h4>
-<pre><code class="language-go">scp -r apache-zookeeper-3.5.7-bin.tar.gz root@123.56.135.43:/opt/software
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">scp</span><span class="w"> </span><span class="o">-</span><span class="nx">r</span><span class="w"> </span><span class="nx">apache</span><span class="o">-</span><span class="nx">zookeeper</span><span class="o">-</span><span class="mf">3.5.7</span><span class="o">-</span><span class="nx">bin</span><span class="p">.</span><span class="nx">tar</span><span class="p">.</span><span class="nx">gz</span><span class="w"> </span><span class="nx">root</span><span class="err">@</span><span class="mf">123.56.135.43</span><span class="p">:</span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">software</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="2_1">2.解压</h4>
-<pre><code class="language-go">tar -zxvf apache-zookeeper-3.5.7-bin.tar.gz -C /opt/module/
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">tar</span><span class="w"> </span><span class="o">-</span><span class="nx">zxvf</span><span class="w"> </span><span class="nx">apache</span><span class="o">-</span><span class="nx">zookeeper</span><span class="o">-</span><span class="mf">3.5.7</span><span class="o">-</span><span class="nx">bin</span><span class="p">.</span><span class="nx">tar</span><span class="p">.</span><span class="nx">gz</span><span class="w"> </span><span class="o">-</span><span class="nx">C</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="o">/</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="3">3.改名</h4>
-<pre><code class="language-go">mv apache-zookeeper-3.5.7-bin/ zookeeper-3.5.7/
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">mv</span><span class="w"> </span><span class="nx">apache</span><span class="o">-</span><span class="nx">zookeeper</span><span class="o">-</span><span class="mf">3.5.7</span><span class="o">-</span><span class="nx">bin</span><span class="o">/</span><span class="w"> </span><span class="nx">zookeeper</span><span class="o">-</span><span class="mf">3.5.7</span><span class="o">/</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_7">配置修改</h3>
 <p><strong>/tmp存储临时数据，一定周期就会删除</strong></p>
 <h4 id="1-zookeeper">1.在 zookeeper 安装目录下创建数据目录</h4>
-<pre><code class="language-go">mkdir zkData
-
-pwd
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">mkdir</span><span class="w"> </span><span class="nx">zkData</span><span class="w"></span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nx">pwd</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="2zoo_samplecfgzoocfg">2.配置文件目录下的zoo_sample.cfg改为zoo.cfg</h4>
-<pre><code class="language-go">cd conf
-mv zoo_sample.cfg zoo.cfg
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">cd</span><span class="w"> </span><span class="nx">conf</span><span class="w"></span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nx">mv</span><span class="w"> </span><span class="nx">zoo_sample</span><span class="p">.</span><span class="nx">cfg</span><span class="w"> </span><span class="nx">zoo</span><span class="p">.</span><span class="nx">cfg</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="3_1">3.修改配置文件</h4>
-<pre><code class="language-go">vim zoo.cfg
-</code></pre>
-<pre><code class="language-go">dataDir=/opt/module/zookeeper-3.5.7/zkData
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">vim</span><span class="w"> </span><span class="nx">zoo</span><span class="p">.</span><span class="nx">cfg</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nx">dataDir</span><span class="p">=</span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="o">/</span><span class="nx">zookeeper</span><span class="o">-</span><span class="mf">3.5.7</span><span class="o">/</span><span class="nx">zkData</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="23">2.3集群安装</h2>
 <h3 id="_8">安装</h3>
 <h4 id="1tar_1">1.将tar包发送到服务器</h4>
-<pre><code class="language-go">scp -r apache-zookeeper-3.5.7-bin.tar.gz root@123.56.135.43:/opt/software
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nx">scp</span><span class="w"> </span><span class="o">-</span><span class="nx">r</span><span class="w"> </span><span class="nx">apache</span><span class="o">-</span><span class="nx">zookeeper</span><span class="o">-</span><span class="mf">3.5.7</span><span class="o">-</span><span class="nx">bin</span><span class="p">.</span><span class="nx">tar</span><span class="p">.</span><span class="nx">gz</span><span class="w"> </span><span class="nx">root</span><span class="err">@</span><span class="mf">123.56.135.43</span><span class="p">:</span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">software</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="2_2">2.解压</h4>
-<pre><code class="language-go">tar -zxvf apache-zookeeper-3.5.7-bin.tar.gz -C /opt/module/
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nx">tar</span><span class="w"> </span><span class="o">-</span><span class="nx">zxvf</span><span class="w"> </span><span class="nx">apache</span><span class="o">-</span><span class="nx">zookeeper</span><span class="o">-</span><span class="mf">3.5.7</span><span class="o">-</span><span class="nx">bin</span><span class="p">.</span><span class="nx">tar</span><span class="p">.</span><span class="nx">gz</span><span class="w"> </span><span class="o">-</span><span class="nx">C</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="o">/</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="3_2">3.改名</h4>
-<pre><code class="language-go">mv apache-zookeeper-3.5.7-bin/ zookeeper-3.5.7/
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">mv</span><span class="w"> </span><span class="nx">apache</span><span class="o">-</span><span class="nx">zookeeper</span><span class="o">-</span><span class="mf">3.5.7</span><span class="o">-</span><span class="nx">bin</span><span class="o">/</span><span class="w"> </span><span class="nx">zookeeper</span><span class="o">-</span><span class="mf">3.5.7</span><span class="o">/</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_9">配置</h3>
 <h4 id="1zookeeperzkdata">1.在zookeeper安装目录下创建zkData目录</h4>
-<pre><code class="language-go">mkdir zkData
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nx">mkdir</span><span class="w"> </span><span class="nx">zkData</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="2zkdata-myid">2.在zkData目录下创建一个 myid 的文件</h4>
-<pre><code class="language-go">touch myid
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nx">touch</span><span class="w"> </span><span class="nx">myid</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="3myid">3.编写myid文件，文件中写该服务器唯一标识符</h4>
-<pre><code class="language-go">1
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="mi">1</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="4zookeeper">4.将该zookeeper安装目录分发到其他服务器</h4>
-<pre><code class="language-go">xsync zookeeper-3.5.7
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nx">xsync</span><span class="w"> </span><span class="nx">zookeeper</span><span class="o">-</span><span class="mf">3.5.7</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="5zkdatamyid">5.更改其他服务中zkData中的myid文件中的唯一标识</h4>
 <h4 id="6zoo_samplecfgzoocfg">6.配置文件目录下的zoo_sample.cfg改为zoo.cfg</h4>
-<pre><code class="language-go">cd conf
-mv zoo_sample.cfg zoo.cfg
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nx">cd</span><span class="w"> </span><span class="nx">conf</span><span class="w"></span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nx">mv</span><span class="w"> </span><span class="nx">zoo_sample</span><span class="p">.</span><span class="nx">cfg</span><span class="w"> </span><span class="nx">zoo</span><span class="p">.</span><span class="nx">cfg</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="7">7.修改配置文件</h4>
-<pre><code class="language-go">vim zoo.cfg
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nx">vim</span><span class="w"> </span><span class="nx">zoo</span><span class="p">.</span><span class="nx">cfg</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="8">8.修改数据存储路径配置</h4>
-<pre><code class="language-go">dataDir=/opt/module/zookeeper-3.5.7/zkData
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nx">dataDir</span><span class="p">=</span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="o">/</span><span class="nx">zookeeper</span><span class="o">-</span><span class="mf">3.5.7</span><span class="o">/</span><span class="nx">zkData</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="9">9.添加集群信息</h4>
-<pre><code class="language-go">#######################cluster########################## 
-server.2=matt05:2888:3888
-server.3=matt06:2888:3888
-server.4=matt07:2888:3888
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="err">#######################</span><span class="nx">cluster</span><span class="err">##########################</span><span class="w"> </span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="nx">server</span><span class="mf">.2</span><span class="p">=</span><span class="nx">matt05</span><span class="p">:</span><span class="mi">2888</span><span class="p">:</span><span class="mi">3888</span><span class="w"></span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nx">server</span><span class="mf">.3</span><span class="p">=</span><span class="nx">matt06</span><span class="p">:</span><span class="mi">2888</span><span class="p">:</span><span class="mi">3888</span><span class="w"></span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="nx">server</span><span class="mf">.4</span><span class="p">=</span><span class="nx">matt07</span><span class="p">:</span><span class="mi">2888</span><span class="p">:</span><span class="mi">3888</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="_10"><strong>配置文件解读</strong></h4>
-<pre><code class="language-go">server.A=B:C:D
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nx">server</span><span class="p">.</span><span class="nx">A</span><span class="p">=</span><span class="nx">B</span><span class="p">:</span><span class="nx">C</span><span class="p">:</span><span class="nx">D</span><span class="w"></span>
+</span></code></pre></div>
 <p><strong>A</strong> 是一个数字，表示这个是第几号服务器;集群模式下配置一个文件 myid，这个文件在 dataDir 目录下，这个文件里面有一个数据 就是 A 的值，Zookeeper 启动时读取此文件，拿到里面的数据zoo.cfg 里面的配置信息比 较从而判断到底是哪个 server。</p>
 <p><strong>B</strong> 是这个服务器的地址;
 <strong>C</strong> 是这个服务器 Follower 与集群中的 Leader 服务器交换信息的端口;
 <strong>D</strong> 是万一集群中的 Leader 服务器挂了，需要一个端口来重新进行选举，选出一个新的Leader，而个端口就是用来执行选举时服务器相互通信的端口。</p>
 <h4 id="10">10.同步配置文件，发送到其他服务器</h4>
-<pre><code class="language-go">xsync zoo.cfg
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nx">xsync</span><span class="w"> </span><span class="nx">zoo</span><span class="p">.</span><span class="nx">cfg</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_11">启动集群脚本</h3>
-<pre><code class="language-go">cd /home/matt/bin
-
-
-vim zk.sh
-</code></pre>
-<pre><code class="language-go">#!/bin/bash
-
-case $1 in
-&quot;start&quot;){
-    for i in matt05 matt06 matt07
-  do
-    echo ---------- zookeeper $i 启动 ------------
-    ssh $i &quot;/opt/module/zookeeper-3.5.7/bin/zkServer.sh start&quot;
-    done 
-};;
-&quot;stop&quot;){
-    for i in matt05 matt06 matt07
-  do
-    echo ---------- zookeeper $i 停止 ------------
-    ssh $i &quot;/opt/module/zookeeper-3.5.7/bin/zkServer.sh stop&quot;
-    done
-};;
-&quot;status&quot;){
-    for i in matt05 matt06 matt07
-  do
-    echo ---------- zookeeper $i 状态 ------------
-    ssh $i &quot;/opt/module/zookeeper-3.5.7/bin/zkServer.sh status&quot;
-    done
-};;
-esac
-</code></pre>
-<pre><code class="language-go">chmod u+x zk.sh
-</code></pre>
-<pre><code class="language-go">zk.sh start
-
-zk.sh stop
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nx">cd</span><span class="w"> </span><span class="o">/</span><span class="nx">home</span><span class="o">/</span><span class="nx">matt</span><span class="o">/</span><span class="nx">bin</span><span class="w"></span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="nx">vim</span><span class="w"> </span><span class="nx">zk</span><span class="p">.</span><span class="nx">sh</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="err">#</span><span class="p">!</span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">bash</span><span class="w"></span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">case</span><span class="w"> </span><span class="err">$</span><span class="mi">1</span><span class="w"> </span><span class="nx">in</span><span class="w"></span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="s">&quot;start&quot;</span><span class="p">){</span><span class="w"></span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="nx">in</span><span class="w"> </span><span class="nx">matt05</span><span class="w"> </span><span class="nx">matt06</span><span class="w"> </span><span class="nx">matt07</span><span class="w"></span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="w">  </span><span class="nx">do</span><span class="w"></span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="w">    </span><span class="nx">echo</span><span class="w"> </span><span class="o">----------</span><span class="w"> </span><span class="nx">zookeeper</span><span class="w"> </span><span class="err">$</span><span class="nx">i</span><span class="w"> </span><span class="nx">启动</span><span class="w"> </span><span class="o">------------</span><span class="w"></span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="w">    </span><span class="nx">ssh</span><span class="w"> </span><span class="err">$</span><span class="nx">i</span><span class="w"> </span><span class="s">&quot;/opt/module/zookeeper-3.5.7/bin/zkServer.sh start&quot;</span><span class="w"></span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="w">    </span><span class="nx">done</span><span class="w"> </span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="p">};;</span><span class="w"></span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="s">&quot;stop&quot;</span><span class="p">){</span><span class="w"></span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="nx">in</span><span class="w"> </span><span class="nx">matt05</span><span class="w"> </span><span class="nx">matt06</span><span class="w"> </span><span class="nx">matt07</span><span class="w"></span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="w">  </span><span class="nx">do</span><span class="w"></span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="w">    </span><span class="nx">echo</span><span class="w"> </span><span class="o">----------</span><span class="w"> </span><span class="nx">zookeeper</span><span class="w"> </span><span class="err">$</span><span class="nx">i</span><span class="w"> </span><span class="nx">停止</span><span class="w"> </span><span class="o">------------</span><span class="w"></span>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="w">    </span><span class="nx">ssh</span><span class="w"> </span><span class="err">$</span><span class="nx">i</span><span class="w"> </span><span class="s">&quot;/opt/module/zookeeper-3.5.7/bin/zkServer.sh stop&quot;</span><span class="w"></span>
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="w">    </span><span class="nx">done</span><span class="w"></span>
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a><span class="p">};;</span><span class="w"></span>
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="s">&quot;status&quot;</span><span class="p">){</span><span class="w"></span>
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="nx">i</span><span class="w"> </span><span class="nx">in</span><span class="w"> </span><span class="nx">matt05</span><span class="w"> </span><span class="nx">matt06</span><span class="w"> </span><span class="nx">matt07</span><span class="w"></span>
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a><span class="w">  </span><span class="nx">do</span><span class="w"></span>
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="w">    </span><span class="nx">echo</span><span class="w"> </span><span class="o">----------</span><span class="w"> </span><span class="nx">zookeeper</span><span class="w"> </span><span class="err">$</span><span class="nx">i</span><span class="w"> </span><span class="nx">状态</span><span class="w"> </span><span class="o">------------</span><span class="w"></span>
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a><span class="w">    </span><span class="nx">ssh</span><span class="w"> </span><span class="err">$</span><span class="nx">i</span><span class="w"> </span><span class="s">&quot;/opt/module/zookeeper-3.5.7/bin/zkServer.sh status&quot;</span><span class="w"></span>
+</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a><span class="w">    </span><span class="nx">done</span><span class="w"></span>
+</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a><span class="p">};;</span><span class="w"></span>
+</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a><span class="nx">esac</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nx">chmod</span><span class="w"> </span><span class="nx">u</span><span class="o">+</span><span class="nx">x</span><span class="w"> </span><span class="nx">zk</span><span class="p">.</span><span class="nx">sh</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nx">zk</span><span class="p">.</span><span class="nx">sh</span><span class="w"> </span><span class="nx">start</span><span class="w"></span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nx">zk</span><span class="p">.</span><span class="nx">sh</span><span class="w"> </span><span class="nx">stop</span><span class="w"></span>
+</span></code></pre></div>
 <p>写数据：半数以上同意就可以给客户端发送ack。</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210810164957.png" /></p>
 <h1 id="3_3">3.客户端操作</h1>
 <h2 id="_12">启动</h2>
 <h3 id="_13">服务端启动</h3>
-<pre><code class="language-go">./zkServer.sh start
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="p">.</span><span class="o">/</span><span class="nx">zkServer</span><span class="p">.</span><span class="nx">sh</span><span class="w"> </span><span class="nx">start</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_14">查看服务端状态</h3>
-<pre><code class="language-go">./zkServer.sh status
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="p">.</span><span class="o">/</span><span class="nx">zkServer</span><span class="p">.</span><span class="nx">sh</span><span class="w"> </span><span class="nx">status</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_15">服务端关闭</h3>
-<pre><code class="language-go">./zkServer.sh stop
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="p">.</span><span class="o">/</span><span class="nx">zkServer</span><span class="p">.</span><span class="nx">sh</span><span class="w"> </span><span class="nx">stop</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_16">客户端启动</h3>
-<pre><code class="language-go">// 不指定服务端
-./zkCli.sh
-
-// 指定服务端
-./zkCli.sh -server 192.168.96.132:2181
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1">// 不指定服务端</span><span class="w"></span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="p">.</span><span class="o">/</span><span class="nx">zkCli</span><span class="p">.</span><span class="nx">sh</span><span class="w"></span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="c1">// 指定服务端</span><span class="w"></span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="p">.</span><span class="o">/</span><span class="nx">zkCli</span><span class="p">.</span><span class="nx">sh</span><span class="w"> </span><span class="o">-</span><span class="nx">server</span><span class="w"> </span><span class="mf">192.168.96.132</span><span class="p">:</span><span class="mi">2181</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="jps">全格式查看jps</h3>
-<pre><code class="language-go">jps -l
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nx">jps</span><span class="w"> </span><span class="o">-</span><span class="nx">l</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_17">查看所有命令</h2>
-<pre><code class="language-go">help
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nx">help</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_18">创建节点</h2>
-<pre><code class="language-go">create /matt &quot;matt&quot;
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nx">create</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"> </span><span class="s">&quot;matt&quot;</span><span class="w"></span>
+</span></code></pre></div>
 <p>-e:短暂，客户端关闭再次开启该节点就会删除</p>
 <p>-s:带序号</p>
-<pre><code class="language-go">create -e -s /matt &quot;1&quot;
-
-create -s /matt &quot;2&quot;
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nx">create</span><span class="w"> </span><span class="o">-</span><span class="nx">e</span><span class="w"> </span><span class="o">-</span><span class="nx">s</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"> </span><span class="s">&quot;1&quot;</span><span class="w"></span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="nx">create</span><span class="w"> </span><span class="o">-</span><span class="nx">s</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_19">删除节点</h2>
-<pre><code class="language-go">delete /matt
-
-// 递归删除节点
-deleteall /matt
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nx">delete</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"></span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="c1">// 递归删除节点</span><span class="w"></span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="nx">deleteall</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_20">修改节点</h2>
-<pre><code class="language-go">set /matt &quot;matt&quot;
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nx">set</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"> </span><span class="s">&quot;matt&quot;</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_21">查看子节点</h2>
-<pre><code class="language-go">// 查看当前节点包含哪些子节点
-ls /matt
-
-// 更加详细 查看当前节点包含哪些子节点
-ls -s /matt
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="c1">// 查看当前节点包含哪些子节点</span><span class="w"></span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="nx">ls</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"></span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="c1">// 更加详细 查看当前节点包含哪些子节点</span><span class="w"></span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="nx">ls</span><span class="w"> </span><span class="o">-</span><span class="nx">s</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_22">查看当前节点的值</h2>
-<pre><code class="language-go">get /matt
-
-// 详细
-get -s /matt
-
-// 查看节点的状态，就是不显示当前的值
-stat /matt
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nx">get</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"></span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="c1">// 详细</span><span class="w"></span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="nx">get</span><span class="w"> </span><span class="o">-</span><span class="nx">s</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"></span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="c1">// 查看节点的状态，就是不显示当前的值</span><span class="w"></span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="nx">stat</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"></span>
+</span></code></pre></div>
 <p><strong>1.czxid:创建节点的事务 zxid</strong></p>
 <p>每次修改ZooKeeper状态都会产生一个ZooKeeper事务ID。事务ID是ZooKeeper中所 有修改总的次序。每次修改都有唯一的 zxid，如果 zxid1 小于 zxid2，那么 zxid1 在 zxid2 之 前发生。</p>
 <p>2.ctime:znode 被创建的毫秒数(从 1970 年开始)</p>
@@ -2807,16 +2807,16 @@ stat /matt
 <h2 id="_23">监听</h2>
 <p>监听器：使用一次就会失效</p>
 <p>监听节点的值发生变化</p>
-<pre><code class="language-go">get -w /matt
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nx">get</span><span class="w"> </span><span class="o">-</span><span class="nx">w</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"></span>
+</span></code></pre></div>
 <p>监听节点的子节点发生变化</p>
-<pre><code class="language-go">ls -w /matt
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nx">ls</span><span class="w"> </span><span class="o">-</span><span class="nx">w</span><span class="w"> </span><span class="o">/</span><span class="nx">matt</span><span class="w"></span>
+</span></code></pre></div>
 <h1 id="_24"><strong>错误</strong></h1>
 <p>org.apache.zookeeper.server.quorum.QuorumPeerConfig$ConfigException: Address</p>
-<pre><code class="language-go">2021-08-14 11:44:23,004 [myid:] - ERROR [main:QuorumPeerMain@89] - Invalid config, exiting abnormally
-org.apache.zookeeper.server.quorum.QuorumPeerConfig$ConfigException: Address unresolved: 192.168.96.135:3887 
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="mi">2021</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">14</span><span class="w"> </span><span class="mi">11</span><span class="p">:</span><span class="mi">44</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="mo">004</span><span class="w"> </span><span class="p">[</span><span class="nx">myid</span><span class="p">:]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">ERROR</span><span class="w"> </span><span class="p">[</span><span class="nx">main</span><span class="p">:</span><span class="nx">QuorumPeerMain</span><span class="err">@</span><span class="mi">89</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">Invalid</span><span class="w"> </span><span class="nx">config</span><span class="p">,</span><span class="w"> </span><span class="nx">exiting</span><span class="w"> </span><span class="nx">abnormally</span><span class="w"></span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="nx">org</span><span class="p">.</span><span class="nx">apache</span><span class="p">.</span><span class="nx">zookeeper</span><span class="p">.</span><span class="nx">server</span><span class="p">.</span><span class="nx">quorum</span><span class="p">.</span><span class="nx">QuorumPeerConfig</span><span class="err">$</span><span class="nx">ConfigException</span><span class="p">:</span><span class="w"> </span><span class="nx">Address</span><span class="w"> </span><span class="nx">unresolved</span><span class="p">:</span><span class="w"> </span><span class="mf">192.168.96.135</span><span class="p">:</span><span class="mi">3887</span><span class="w"> </span>
+</span></code></pre></div>
 <p>在集群配置有空格，删除即可</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210814115022.png" /></p>
 <h1 id="_25">待做</h1>
@@ -2859,7 +2859,10 @@ org.apache.zookeeper.server.quorum.QuorumPeerConfig$ConfigException: Address unr
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -2918,7 +2921,7 @@ org.apache.zookeeper.server.quorum.QuorumPeerConfig$ConfigException: Address unr
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

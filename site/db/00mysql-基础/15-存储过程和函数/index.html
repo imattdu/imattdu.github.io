@@ -2964,12 +2964,12 @@
 <p>就是一组经过 预先编译 的 SQL 语句 的封装 存储到mysql</p>
 <h3 id="_3">语法</h3>
 <h4 id="_4">基础格式</h4>
-<pre><code class="language-mysql">CREATE PROCEDURE 存储过程名(IN|OUT|INOUT 参数名 参数类型,...)
-[characteristics ...]
-  BEGIN
-  存储过程体
-  END
-</code></pre>
+<div class="language-mysql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">存储过程名</span><span class="p">(</span><span class="k">IN</span><span class="o">|</span><span class="k">OUT</span><span class="o">|</span><span class="k">INOUT</span><span class="w"> </span><span class="n">参数名</span><span class="w"> </span><span class="n">参数类型</span><span class="p">,...)</span><span class="w"></span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="err">[</span><span class="n">characteristics</span><span class="w"> </span><span class="p">...</span><span class="err">]</span><span class="w"></span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="k">BEGIN</span><span class="w"></span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="n">存储过程体</span><span class="w"></span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="k">END</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="_5">特别说明</h4>
 <h5 id="1">1.模式</h5>
 <p>IN ：当前参数为输入参数，也就是表示入参； 存储过程只是读取这个参数的值。如果没有定义参数种类， 默认就是 IN ，表示输入参数。 
@@ -2977,12 +2977,12 @@ OUT ：当前参数为输出参数，也就是表示出参； 执行完成之后
 INOUT ：当前参数既可以为输入参数，也可以为输出参数。</p>
 <h5 id="2-mysql">2.形参类型可以是 MySQL数据库中的任意类型。</h5>
 <h5 id="3characteristics">3.characteristics 表示创建存储过程时指定的对存储过程的约束条件</h5>
-<pre><code class="language-sql">LANGUAGE SQL
-| [NOT] DETERMINISTIC
-| { CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA }
-| SQL SECURITY { DEFINER | INVOKER }
-| COMMENT 'string'
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">LANGUAGE</span><span class="w"> </span><span class="k">SQL</span><span class="w"></span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="o">|</span><span class="w"> </span><span class="p">[</span><span class="k">NOT</span><span class="p">]</span><span class="w"> </span><span class="k">DETERMINISTIC</span><span class="w"></span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="o">|</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="k">CONTAINS</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">READS</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">MODIFIES</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="err">}</span><span class="w"></span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="o">|</span><span class="w"> </span><span class="k">SQL</span><span class="w"> </span><span class="k">SECURITY</span><span class="w"> </span><span class="err">{</span><span class="w"> </span><span class="k">DEFINER</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">INVOKER</span><span class="w"> </span><span class="err">}</span><span class="w"></span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="o">|</span><span class="w"> </span><span class="k">COMMENT</span><span class="w"> </span><span class="s1">&#39;string&#39;</span><span class="w"></span>
+</span></code></pre></div>
 <p>LANGUAGE SQL ：说明存储过程执行体是由SQL语句组成的，当前系统支持的语言为SQL。 </p>
 <p>[NOT] DETERMINISTIC ：指明存储过程执行的结果是否确定。</p>
 <p>DETERMINISTIC表示结果是确定 的。每次执行存储过程时，相同的输入会得到相同的输出。</p>
@@ -3006,76 +3006,76 @@ INOUT ：当前参数既可以为输入参数，也可以为输出参数。</p>
 <p>因为MySQL默认的语句结束符号为分号';'。为了避免与存储过程中SQL语句结束符相冲突，需要使用 DELIMITER改变存储过程的结束符。</p>
 <h3 id="_6">使用</h3>
 <h4 id="_7">创建 + 调用</h4>
-<pre><code class="language-mysql"># IN 模式 输入
-DELIMITER $
-CREATE PROCEDURE p1(IN t INT)
-    BEGIN
-        SELECT COUNT(1)
-        FROM c1
-        WHERE t = 1;
-    END $
-
-
-CALL p1(1);
-
-
-
-# out 模式输出
-DELIMITER $
-CREATE PROCEDURE p2(OUT o1 INT)
-    BEGIN
-        SELECT COUNT(1) INTO o1
-        FROM c1;
-    END $
-
-SET @o1 = 100;  
-CALL p2(@o1);
-SELECT @o1;
-
-
-# inout 模式既可以是输入又是输出
-DELIMITER $
-CREATE PROCEDURE p3(INOUT empname VARCHAR(20))
-    BEGIN
-      SELECT ename INTO empname FROM emps
-      WHERE eid = (SELECT MID FROM emps WHERE ename=empname);
-    END $
-
-
-SET @io2 = 'matt';  
-CALL p3(@io2);
-SELECT @io2;
-</code></pre>
+<div class="language-mysql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># IN 模式 输入</span><span class="w"></span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">DELIMITER</span><span class="w"> </span><span class="n">$</span><span class="w"></span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">p1</span><span class="p">(</span><span class="k">IN</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="kt">INT</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">BEGIN</span><span class="w"></span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="nf">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">c1</span><span class="w"></span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="k">WHERE</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="n">$</span><span class="w"></span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="k">CALL</span><span class="w"> </span><span class="n">p1</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="c1"># out 模式输出</span><span class="w"></span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">DELIMITER</span><span class="w"> </span><span class="n">$</span><span class="w"></span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">p2</span><span class="p">(</span><span class="k">OUT</span><span class="w"> </span><span class="n">o1</span><span class="w"> </span><span class="kt">INT</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="k">BEGIN</span><span class="w"></span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="nf">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">o1</span><span class="w"></span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">c1</span><span class="p">;</span><span class="w"></span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="n">$</span><span class="w"></span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="k">SET</span><span class="w"> </span><span class="nv">@o1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w">  </span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="k">CALL</span><span class="w"> </span><span class="n">p2</span><span class="p">(</span><span class="nv">@o1</span><span class="p">);</span><span class="w"></span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="k">SELECT</span><span class="w"> </span><span class="nv">@o1</span><span class="p">;</span><span class="w"></span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="c1"># inout 模式既可以是输入又是输出</span><span class="w"></span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="n">DELIMITER</span><span class="w"> </span><span class="n">$</span><span class="w"></span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">p3</span><span class="p">(</span><span class="k">INOUT</span><span class="w"> </span><span class="n">empname</span><span class="w"> </span><span class="kt">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span><span class="w"></span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">    </span><span class="k">BEGIN</span><span class="w"></span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ename</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">empname</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">emps</span><span class="w"></span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="n">eid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">MID</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">emps</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ename</span><span class="o">=</span><span class="n">empname</span><span class="p">);</span><span class="w"></span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="w">    </span><span class="k">END</span><span class="w"> </span><span class="n">$</span><span class="w"></span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="k">SET</span><span class="w"> </span><span class="nv">@io2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;matt&#39;</span><span class="p">;</span><span class="w">  </span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="k">CALL</span><span class="w"> </span><span class="n">p3</span><span class="p">(</span><span class="nv">@io2</span><span class="p">);</span><span class="w"></span>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="k">SELECT</span><span class="w"> </span><span class="nv">@io2</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="_8">存储过程、函数 的查看、修改、删除</h4>
 <h5 id="_9">查看</h5>
 <h6 id="1_1">1.创建信息</h6>
-<pre><code class="language-sql">SHOW CREATE {PROCEDURE | FUNCTION} 存储过程名或函数名
-</code></pre>
-<pre><code class="language-sql">SHOW CREATE FUNCTION test_db.CountProc
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="err">{</span><span class="k">PROCEDURE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">FUNCTION</span><span class="err">}</span><span class="w"> </span><span class="err">存储过程名或函数名</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">test_db</span><span class="p">.</span><span class="n">CountProc</span><span class="w"></span>
+</span></code></pre></div>
 <h6 id="2">2.状态信息</h6>
-<pre><code class="language-sql">SHOW {PROCEDURE | FUNCTION} STATUS [LIKE 'pattern']
-</code></pre>
-<pre><code class="language-sql">SHOW PROCEDURE STATUS LIKE 'SELECT%'
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="err">{</span><span class="k">PROCEDURE</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">FUNCTION</span><span class="err">}</span><span class="w"> </span><span class="n">STATUS</span><span class="w"> </span><span class="p">[</span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;pattern&#39;</span><span class="p">]</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">STATUS</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;SELECT%&#39;</span><span class="w"></span>
+</span></code></pre></div>
 <h6 id="3information_schemaroutines">3.从information_schema.Routines表中查看存储过程和函数的信息</h6>
-<pre><code class="language-sql">SELECT * FROM information_schema.Routines
-WHERE ROUTINE_NAME='存储过程或函数的名' [AND ROUTINE_TYPE = {'PROCEDURE|FUNCTION'}];
-</code></pre>
-<pre><code class="language-sql">SELECT * FROM information_schema.Routines
-WHERE ROUTINE_NAME='count_by_id' AND ROUTINE_TYPE = 'FUNCTION' 
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">Routines</span><span class="w"></span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">ROUTINE_NAME</span><span class="o">=</span><span class="s1">&#39;存储过程或函数的名&#39;</span><span class="w"> </span><span class="p">[</span><span class="k">AND</span><span class="w"> </span><span class="n">ROUTINE_TYPE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{</span><span class="s1">&#39;PROCEDURE|FUNCTION&#39;</span><span class="err">}</span><span class="p">];</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">information_schema</span><span class="p">.</span><span class="n">Routines</span><span class="w"></span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">ROUTINE_NAME</span><span class="o">=</span><span class="s1">&#39;count_by_id&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">ROUTINE_TYPE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;FUNCTION&#39;</span><span class="w"> </span>
+</span></code></pre></div>
 <h2 id="_10">存储函数</h2>
 <h3 id="_11">是什么</h3>
 <p>自定义函数</p>
 <h3 id="_12">语法</h3>
-<pre><code class="language-sql">CREATE FUNCTION 函数名(参数名 参数类型,...)
-RETURNS 返回值类型
-[characteristics ...]
-BEGIN
-  函数体 #函数体中肯定有 RETURN 语句
-END
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="err">函数名</span><span class="p">(</span><span class="err">参数名</span><span class="w"> </span><span class="err">参数类型</span><span class="p">,...)</span><span class="w"></span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">RETURNS</span><span class="w"> </span><span class="err">返回值类型</span><span class="w"></span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="p">[</span><span class="k">characteristics</span><span class="w"> </span><span class="p">...]</span><span class="w"></span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="k">BEGIN</span><span class="w"></span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">  </span><span class="err">函数体</span><span class="w"> </span><span class="o">#</span><span class="err">函数体中肯定有</span><span class="w"> </span><span class="k">RETURN</span><span class="w"> </span><span class="err">语句</span><span class="w"></span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">END</span><span class="w"></span>
+</span></code></pre></div>
 <p>1、参数列表：指定参数为IN、OUT或INOUT只对PROCEDURE是合法的，FUNCTION中总是默认为IN参 数。 </p>
 <p>2、RETURNS type 语句表示函数返回数据的类型； RETURNS子句只能对FUNCTION做指定，对函数而言这是 强制 的。它用来指定函数的返回类型，而且函 数体必须包含一个 RETURN value 语句。 </p>
 <p>3、characteristic 创建函数时指定的对函数的约束。取值与创建存储过程时相同，这里不再赘述。 </p>
@@ -3083,17 +3083,17 @@ END
 <p>调用存储函数</p>
 <p>SELECT 函数名(实参列表)</p>
 <h3 id="_13">使用</h3>
-<pre><code class="language-sql">DELIMITER $
-CREATE FUNCTION f1(t1 INT)
-RETURNS INT
-DETERMINISTIC
-CONTAINS SQL
-BEGIN
-    RETURN (SELECT COUNT(1) FROM c1 WHERE t1 = 1);
-END $
-
-SELECT f1(2)
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">DELIMITER</span><span class="w"> </span><span class="err">$</span><span class="w"></span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">f1</span><span class="p">(</span><span class="n">t1</span><span class="w"> </span><span class="nb">INT</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">RETURNS</span><span class="w"> </span><span class="nb">INT</span><span class="w"></span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">DETERMINISTIC</span><span class="w"></span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">CONTAINS</span><span class="w"> </span><span class="k">SQL</span><span class="w"></span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">BEGIN</span><span class="w"></span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="w">    </span><span class="k">RETURN</span><span class="w"> </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">c1</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w"></span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="k">END</span><span class="w"> </span><span class="err">$</span><span class="w"></span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">f1</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202209210047043.png" /></p>
 <h2 id="_14">分析</h2>
 <h3 id="_15">优点</h3>
@@ -3143,7 +3143,10 @@ SELECT f1(2)
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -3238,7 +3241,7 @@ SELECT f1(2)
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

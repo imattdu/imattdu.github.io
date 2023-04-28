@@ -2998,30 +2998,23 @@
 <h1 id="111">111</h1>
 <h2 id="mac">mac</h2>
 <h3 id="_1">安装</h3>
-<pre><code class="language-sh">brew install go
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>brew install go
+</span></code></pre></div>
 <h3 id="_2">配置</h3>
-<pre><code class="language-sh">vim .zshrc
-</code></pre>
-<p>```sh title="配置"
-GOROOT=/opt/homebrew/Cellar/go/1.17.6/libexec
-export GOROOT
-export GOPATH=/Users/matt/workspace/go
-export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOBIN:$GOROOT/bin # (1)!</p>
-<pre><code>1.  :man_raising_hand: I'm a code annotation! I can contain `code`, __formatted
-    text__, images, ... basically anything that can be written in Markdown.
-
-
-
-
-
-
-``` yaml
-this is good # (1)!
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>vim .zshrc
+</span></code></pre></div>
+<p><div class="language-sh highlight"><span class="filename">配置</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">GOROOT</span><span class="o">=</span>/opt/homebrew/Cellar/go/1.17.6/libexec
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">export</span> GOROOT
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nb">export</span> <span class="nv">GOPATH</span><span class="o">=</span>/Users/matt/workspace/go
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="nb">export</span> <span class="nv">GOBIN</span><span class="o">=</span><span class="nv">$GOPATH</span>/bin
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$GOBIN</span>:<span class="nv">$GOROOT</span>/bin <span class="c1"># (1)!</span>
+</span></code></pre></div>
+1.  <img alt="🙋‍♂️" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f64b-200d-2642-fe0f.svg" title=":man_raising_hand:" /> I'm a code annotation! I can contain <code>code</code>, <strong>formatted
+    text</strong>, images, ... basically anything that can be written in Markdown.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="l l-Scalar l-Scalar-Plain">this is good</span><span class="w"> </span><span class="c1"># (1)!</span><span class="w"></span>
+</span></code></pre></div>
 <ol>
-<li>If you ++cmd++ :material-plus::material-cursor-default-outline: me, I'm
+<li>If you ++cmd++ <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2Z"/></svg></span><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.07 14.27a.997.997 0 0 1 1.33.48l2.3 4.99 1.8-.85-2.31-4.98c-.24-.5-.02-1.1.48-1.33l.28-.08 2.3-.45L8 5.12V15.9l1.82-1.47.25-.16m3.57 7.7a.99.99 0 0 1-1.33-.47l-2.18-4.74-2.51 2.02c-.17.14-.38.22-.62.22a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1c.24 0 .47.09.64.23l.01-.01 11.49 9.64a1.001 1.001 0 0 1-.44 1.75l-3.16.62 2.2 4.73c.26.5.02 1.09-.48 1.32l-3.62 1.69Z"/></svg></span> me, I'm
     rendered open in a new tab. You can also right-click me to <strong>copy link
     address</strong> to share me with others.</li>
 </ol>
@@ -3037,36 +3030,36 @@ this is good # (1)!
 <p>GOPATH:工作目录，go项目的工作目录</p>
 <p>系统环境变量中添加</p>
 <p>GOROOT</p>
-<pre><code>D:\develop\env\go
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>D:\develop\env\go
+</span></code></pre></div>
 <p>path</p>
-<pre><code>%GOROOT%\bin
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>%GOROOT%\bin
+</span></code></pre></div>
 <p>GOPATH</p>
-<pre><code>D:\matt\workspace\go
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>D:\matt\workspace\go
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202111190039095.png" /></p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202111190040183.png" /></p>
 <h2 id="_5">设置</h2>
 <h3 id="_6">设置国内镜像</h3>
-<pre><code class="language-go">go env -w GOPROXY=https://goproxy.cn,direct
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">go</span><span class="w"> </span><span class="nx">env</span><span class="w"> </span><span class="o">-</span><span class="nx">w</span><span class="w"> </span><span class="nx">GOPROXY</span><span class="p">=</span><span class="nx">https</span><span class="p">:</span><span class="c1">//goproxy.cn,direct</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="gogomod">go的依赖管理，开启gomod</h3>
-<pre><code class="language-go">go env -w GO111MODULE=on
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">go</span><span class="w"> </span><span class="nx">env</span><span class="w"> </span><span class="o">-</span><span class="nx">w</span><span class="w"> </span><span class="nx">GO111MODULE</span><span class="p">=</span><span class="nx">on</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="sumgolangorg">验证配置,可能验证的默认网站无法访问 sum.golang.org</h3>
-<pre><code class="language-bash">go env -w GOSUMDB=&quot;sum.golang.google.cn&quot;
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>go env -w <span class="nv">GOSUMDB</span><span class="o">=</span><span class="s2">&quot;sum.golang.google.cn&quot;</span>
+</span></code></pre></div>
 <p><strong>或者关闭验证</strong></p>
-<pre><code class="language-bash">go env -w GOSUMDB=off
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>go env -w <span class="nv">GOSUMDB</span><span class="o">=</span>off
+</span></code></pre></div>
 <h3 id="_7">验证</h3>
 <p>验证go环境是否安装成功</p>
-<pre><code class="language-bash">go version
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>go version
+</span></code></pre></div>
 <p>格式化代码</p>
-<pre><code>go fmt -w main.go
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>go fmt -w main.go
+</span></code></pre></div>
 <h2 id="_8">资料</h2>
 <p><a href="https://studygolang.com/pkgdoc">中文API</a></p>
 <p><a href="https://golang.org/">官网</a></p>
@@ -3096,11 +3089,11 @@ this is good # (1)!
 <p>会使用系统中配置的gopath,一般不要勾选这个</p>
 <h2 id="_12">常用命令</h2>
 <h3 id="_13">编译</h3>
-<pre><code class="language-bash">go build -o ./bin/main main.go
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>go build -o ./bin/main main.go
+</span></code></pre></div>
 <h3 id="_14">运行</h3>
-<pre><code class="language-sh">go run main.go -config app.cfg
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>go run main.go -config app.cfg
+</span></code></pre></div>
 <h3 id="go-get">go get</h3>
 <ol>
 <li>download</li>
@@ -3108,8 +3101,8 @@ this is good # (1)!
 <li>install</li>
 </ol>
 <h4 id="_15">参数</h4>
-<pre><code class="language-sh">go get -u xxx
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>go get -u xxx
+</span></code></pre></div>
 <table>
 <thead>
 <tr>
@@ -3133,18 +3126,17 @@ this is good # (1)!
 </tbody>
 </table>
 <h4 id="_16">指定版本</h4>
-<pre><code class="language-sh">go get k8s.io/klog@v1.0.0
-
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>go get k8s.io/klog@v1.0.0
+</span></code></pre></div>
 <h3 id="go-install">go  install</h3>
 <ol>
 <li>compile</li>
 <li>install</li>
 </ol>
-<pre><code class="language-sh">go mod init
-
-go mod tidy
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>go mod init
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>go mod tidy
+</span></code></pre></div>
 <p>go mod download 下载模块到本地缓存，缓存路径是 $GOPATH/pkg/mod/cache
 go mod edit 是提供了命令版编辑 go.mod 的功能，例如 go mod edit -fmt go.mod 会格式化 go.mod
 go mod graph 把模块之间的依赖图显示出来
@@ -3188,7 +3180,10 @@ go mod why 解释为什么需要包和模块</p>
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -3283,7 +3278,7 @@ go mod why 解释为什么需要包和模块</p>
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

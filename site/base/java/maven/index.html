@@ -2599,40 +2599,38 @@
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202202120020582.png" /></p>
 <p>解压重命名为 ApacheMaven，移动到/usr/local下</p>
 <p>重命名</p>
-<pre><code class="language-sh">mv apache-maven-3.8.4 ApacheMaven
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>mv apache-maven-3.8.4 ApacheMaven
+</span></code></pre></div>
 <p>移动</p>
-<pre><code class="language-sh">mv ./ApacheMaven /usr/local/
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mv ./ApacheMaven /usr/local/
+</span></code></pre></div>
 <h4 id="_2">配置</h4>
-<pre><code class="language-sh">vi ~/.bash_profile 
-
-</code></pre>
-<pre><code class="language-sh">export M=&quot;/usr/local/ApacheMaven&quot;
-export PATH=&quot;$M/bin:$PATH&quot;
-</code></pre>
-<pre><code class="language-sh">source ~/.bash_profile
-
-</code></pre>
-<pre><code class="language-sh">mvn -v
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>vi ~/.bash_profile 
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">export</span> <span class="nv">M</span><span class="o">=</span><span class="s2">&quot;/usr/local/ApacheMaven&quot;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$M</span><span class="s2">/bin:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">source</span> ~/.bash_profile
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>mvn -v
+</span></code></pre></div>
 <h3 id="windows">Windows</h3>
 <h4 id="1java_home">1.检查JAVA_HOME环境变量。</h4>
 <p>Maven是使用Java开发的，所以必须知道当前系统环境中JDK的安装目录。</p>
-<pre><code class="language-bash">C:\Users\matt&gt;echo %JAVA_HOME%
-D:\develop\env\jdk-8u201-windows-x64
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>C:<span class="se">\U</span>sers<span class="se">\m</span>att&gt;echo %JAVA_HOME%
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>D:<span class="se">\d</span>evelop<span class="se">\e</span>nv<span class="se">\j</span>dk-8u201-windows-x64
+</span></code></pre></div>
 <h4 id="2maven">2.解压Maven的核心程序。</h4>
 <p>将apache-maven-3.5.0-bin.zip解压到一个<strong>非中文无空格</strong>的目录下。例如</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210508000144.png" /></p>
 <h4 id="3">3.配置环境变量</h4>
 <p><em>都可以写在系统环境变量中</em></p>
 <p><strong>M2_HOME</strong></p>
-<pre><code class="language-bash">D:\develop\env\apache-maven-3.5.0
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>D:<span class="se">\d</span>evelop<span class="se">\e</span>nv<span class="se">\a</span>pache-maven-3.5.0
+</span></code></pre></div>
 <p>path</p>
-<pre><code class="language-bash">%M2_HOME%\bin
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>%M2_HOME%<span class="se">\b</span>in
+</span></code></pre></div>
 <h3 id="_3">验证</h3>
 <h4 id="maven_1">查看Maven版本信息验证安装是否正确</h4>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210508000527.png" /></p>
@@ -2641,39 +2639,39 @@ D:\develop\env\jdk-8u201-windows-x64
 <p>Tips：~表示当前用户的家目录。</p>
 <p>[2]Maven的核心程序并不包含具体功能，仅负责宏观调度。具体功能由插件来完成。Maven核心程序会到本地仓库中查找插件。如果本地仓库中没有就会从远程中央仓库下载。此时如果不能上网则无法执行Maven的具体功能。为了解决这个问题，我们可以将Maven的本地仓库指向一个在联网情况下下载好的目录。</p>
 <p>[3]Maven的核心配置文件位置：</p>
-<pre><code class="language-bash">解压目录\ D:\Server\ apache-maven-3.5.0\conf\settings.xml
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>解压目录<span class="se">\ </span>D:<span class="se">\S</span>erver<span class="se">\ </span>apache-maven-3.5.0<span class="se">\c</span>onf<span class="se">\s</span>ettings.xml
+</span></code></pre></div>
 <p>[4]设置方式</p>
-<pre><code class="language-bash">&lt;localRepository&gt;D:/develop/env/mavenRepository&lt;/localRepository&gt;
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>&lt;localRepository&gt;D:/develop/env/mavenRepository&lt;/localRepository&gt;
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210508001031.png" /></p>
 <p>指定aliyun仓库</p>
-<pre><code class="language-xml"> &lt;mirrors&gt;
-    &lt;mirror&gt;  
-        &lt;id&gt;alimaven&lt;/id&gt;
-        &lt;name&gt;aliyun maven&lt;/name&gt;
-        &lt;url&gt;http://maven.aliyun.com/nexus/content/groups/public/&lt;/url&gt;
-        &lt;mirrorOf&gt;central&lt;/mirrorOf&gt; 
-    &lt;/mirror&gt;
-&lt;/mirrors&gt;
-</code></pre>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a> <span class="nt">&lt;mirrors&gt;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    <span class="nt">&lt;mirror&gt;</span>  
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>        <span class="nt">&lt;id&gt;</span>alimaven<span class="nt">&lt;/id&gt;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        <span class="nt">&lt;name&gt;</span>aliyun maven<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>        <span class="nt">&lt;url&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="nt">&lt;/url&gt;</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>        <span class="nt">&lt;mirrorOf&gt;</span>central<span class="nt">&lt;/mirrorOf&gt;</span> 
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>    <span class="nt">&lt;/mirror&gt;</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nt">&lt;/mirrors&gt;</span>
+</span></code></pre></div>
 <p>指定jdk版本</p>
-<pre><code class="language-xml">&lt;profiles&gt;
-    &lt;profile&gt;
-        &lt;id&gt;jdk-1.8&lt;/id&gt;
-        &lt;activation&gt;
-            &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
-            &lt;jdk&gt;1.8&lt;/jdk&gt;
-        &lt;/activation&gt;
-
-        &lt;properties&gt;
-            &lt;maven.compiler.source&gt;1.8&lt;/maven.compiler.source&gt;
-            &lt;maven.compiler.target&gt;1.8&lt;/maven.compiler.target&gt;
-            &lt;maven.compiler.compilerVersion&gt;1.8&lt;/maven.compiler.compilerVersion&gt;
-        &lt;/properties&gt;
-    &lt;/profile&gt; 
-&lt;/profiles&gt;
-</code></pre>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">&lt;profiles&gt;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    <span class="nt">&lt;profile&gt;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>        <span class="nt">&lt;id&gt;</span>jdk-1.8<span class="nt">&lt;/id&gt;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>        <span class="nt">&lt;activation&gt;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>            <span class="nt">&lt;activeByDefault&gt;</span>true<span class="nt">&lt;/activeByDefault&gt;</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>            <span class="nt">&lt;jdk&gt;</span>1.8<span class="nt">&lt;/jdk&gt;</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>        <span class="nt">&lt;/activation&gt;</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>        <span class="nt">&lt;properties&gt;</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>            <span class="nt">&lt;maven.compiler.source&gt;</span>1.8<span class="nt">&lt;/maven.compiler.source&gt;</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>            <span class="nt">&lt;maven.compiler.target&gt;</span>1.8<span class="nt">&lt;/maven.compiler.target&gt;</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>            <span class="nt">&lt;maven.compiler.compilerVersion&gt;</span>1.8<span class="nt">&lt;/maven.compiler.compilerVersion&gt;</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>        <span class="nt">&lt;/properties&gt;</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    <span class="nt">&lt;/profile&gt;</span> 
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="nt">&lt;/profiles&gt;</span>
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -2709,7 +2707,10 @@ D:\develop\env\jdk-8u201-windows-x64
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -2768,7 +2769,7 @@ D:\develop\env\jdk-8u201-windows-x64
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

@@ -3146,113 +3146,113 @@
 <p>子网ip，主机和虚拟机 需要在同一网段（因为在一个内网下）</p>
 <p><strong>关闭windows防火墙</strong></p>
 <h4 id="centos_1">设置centos网络</h4>
-<pre><code class="language-java">vim /etc/sysconfig/network-scripts/ifcfg-ens33
-</code></pre>
-<pre><code class="language-java">TYPE=&quot;Ethernet&quot;
-PROXY_METHOD=&quot;none&quot;
-BROWSER_ONLY=&quot;no&quot;
-BOOTPROTO=&quot;dhcp&quot;
-DEFROUTE=&quot;yes&quot;
-IPV4_FAILURE_FATAL=&quot;no&quot;
-IPV6INIT=&quot;yes&quot;
-IPV6_AUTOCONF=&quot;yes&quot;
-IPV6_DEFROUTE=&quot;yes&quot;
-IPV6_FAILURE_FATAL=&quot;no&quot;
-IPV6_ADDR_GEN_MODE=&quot;stable-privacy&quot;
-NAME=&quot;ens33&quot;
-UUID=&quot;6b84fa31-a207-4928-9e53-61ad2ec7b485&quot;
-DEVICE=&quot;ens33&quot;
-ONBOOT=&quot;yes&quot;
-</code></pre>
-<pre><code class="language-java">TYPE=&quot;Ethernet&quot;
-PROXY_METHOD=&quot;none&quot;
-BROWSER_ONLY=&quot;no&quot;
-BOOTPROTO=&quot;static&quot; // 更改该值
-DEFROUTE=&quot;yes&quot; 
-IPV4_FAILURE_FATAL=&quot;no&quot;
-IPV6INIT=&quot;yes&quot;
-IPV6_AUTOCONF=&quot;yes&quot;
-IPV6_DEFROUTE=&quot;yes&quot;
-IPV6_FAILURE_FATAL=&quot;no&quot;
-IPV6_ADDR_GEN_MODE=&quot;stable-privacy&quot;
-NAME=&quot;ens33&quot;
-UUID=&quot;6b84fa31-a207-4928-9e53-61ad2ec7b485&quot;
-DEVICE=&quot;ens33&quot;
-ONBOOT=&quot;yes&quot;   // 改
-IPADDR=192.168.96.129   // ip 地址,前三位和子网ip一致
-GATEWAY=192.168.96.2    // ip.2
-DNS1=192.168.96.2    // 默认
-</code></pre>
-<pre><code class="language-go">TYPE=Ethernet
-PROXY_METHOD=none
-BROWSER_ONLY=no
-BOOTPROTO=dhcp
-DEFROUTE=yes
-IPV4_FAILURE_FATAL=no
-IPV6INIT=yes
-IPV6_AUTOCONF=yes
-IPV6_DEFROUTE=yes
-IPV6_FAILURE_FATAL=no
-IPV6_ADDR_GEN_MODE=stable-privacy
-NAME=ens33
-UUID=dba7c9df-22d1-43b7-8291-e28dc76ed1dd
-DEVICE=ens33
-ONBOOT=no
-</code></pre>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">vim</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">sysconfig</span><span class="o">/</span><span class="n">network</span><span class="o">-</span><span class="n">scripts</span><span class="o">/</span><span class="n">ifcfg</span><span class="o">-</span><span class="n">ens33</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">TYPE</span><span class="o">=</span><span class="s">&quot;Ethernet&quot;</span><span class="w"></span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">PROXY_METHOD</span><span class="o">=</span><span class="s">&quot;none&quot;</span><span class="w"></span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">BROWSER_ONLY</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="w"></span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">BOOTPROTO</span><span class="o">=</span><span class="s">&quot;dhcp&quot;</span><span class="w"></span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">DEFROUTE</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="w"></span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">IPV4_FAILURE_FATAL</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="w"></span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="n">IPV6INIT</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="w"></span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">IPV6_AUTOCONF</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="w"></span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">IPV6_DEFROUTE</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="w"></span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">IPV6_FAILURE_FATAL</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="w"></span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">IPV6_ADDR_GEN_MODE</span><span class="o">=</span><span class="s">&quot;stable-privacy&quot;</span><span class="w"></span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">NAME</span><span class="o">=</span><span class="s">&quot;ens33&quot;</span><span class="w"></span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">UUID</span><span class="o">=</span><span class="s">&quot;6b84fa31-a207-4928-9e53-61ad2ec7b485&quot;</span><span class="w"></span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="n">DEVICE</span><span class="o">=</span><span class="s">&quot;ens33&quot;</span><span class="w"></span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">ONBOOT</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">TYPE</span><span class="o">=</span><span class="s">&quot;Ethernet&quot;</span><span class="w"></span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">PROXY_METHOD</span><span class="o">=</span><span class="s">&quot;none&quot;</span><span class="w"></span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">BROWSER_ONLY</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="w"></span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">BOOTPROTO</span><span class="o">=</span><span class="s">&quot;static&quot;</span><span class="w"> </span><span class="c1">// 更改该值</span><span class="w"></span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">DEFROUTE</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="w"> </span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">IPV4_FAILURE_FATAL</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="w"></span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">IPV6INIT</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="w"></span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">IPV6_AUTOCONF</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="w"></span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">IPV6_DEFROUTE</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="w"></span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">IPV6_FAILURE_FATAL</span><span class="o">=</span><span class="s">&quot;no&quot;</span><span class="w"></span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">IPV6_ADDR_GEN_MODE</span><span class="o">=</span><span class="s">&quot;stable-privacy&quot;</span><span class="w"></span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">NAME</span><span class="o">=</span><span class="s">&quot;ens33&quot;</span><span class="w"></span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">UUID</span><span class="o">=</span><span class="s">&quot;6b84fa31-a207-4928-9e53-61ad2ec7b485&quot;</span><span class="w"></span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">DEVICE</span><span class="o">=</span><span class="s">&quot;ens33&quot;</span><span class="w"></span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="n">ONBOOT</span><span class="o">=</span><span class="s">&quot;yes&quot;</span><span class="w">   </span><span class="c1">// 改</span><span class="w"></span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">IPADDR</span><span class="o">=</span><span class="mf">192.168.96.129</span><span class="w">   </span><span class="c1">// ip 地址,前三位和子网ip一致</span><span class="w"></span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="n">GATEWAY</span><span class="o">=</span><span class="mf">192.168.96.2</span><span class="w">    </span><span class="c1">// ip.2</span><span class="w"></span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="n">DNS1</span><span class="o">=</span><span class="mf">192.168.96.2</span><span class="w">    </span><span class="c1">// 默认</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">TYPE</span><span class="p">=</span><span class="nx">Ethernet</span><span class="w"></span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nx">PROXY_METHOD</span><span class="p">=</span><span class="nx">none</span><span class="w"></span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nx">BROWSER_ONLY</span><span class="p">=</span><span class="nx">no</span><span class="w"></span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nx">BOOTPROTO</span><span class="p">=</span><span class="nx">dhcp</span><span class="w"></span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="nx">DEFROUTE</span><span class="p">=</span><span class="nx">yes</span><span class="w"></span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nx">IPV4_FAILURE_FATAL</span><span class="p">=</span><span class="nx">no</span><span class="w"></span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nx">IPV6INIT</span><span class="p">=</span><span class="nx">yes</span><span class="w"></span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nx">IPV6_AUTOCONF</span><span class="p">=</span><span class="nx">yes</span><span class="w"></span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nx">IPV6_DEFROUTE</span><span class="p">=</span><span class="nx">yes</span><span class="w"></span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nx">IPV6_FAILURE_FATAL</span><span class="p">=</span><span class="nx">no</span><span class="w"></span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="nx">IPV6_ADDR_GEN_MODE</span><span class="p">=</span><span class="nx">stable</span><span class="o">-</span><span class="nx">privacy</span><span class="w"></span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nx">NAME</span><span class="p">=</span><span class="nx">ens33</span><span class="w"></span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="nx">UUID</span><span class="p">=</span><span class="nx">dba7c9df</span><span class="o">-</span><span class="mi">22</span><span class="nx">d1</span><span class="o">-</span><span class="mi">43</span><span class="nx">b7</span><span class="o">-</span><span class="mi">8291</span><span class="o">-</span><span class="nx">e28dc76ed1dd</span><span class="w"></span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="nx">DEVICE</span><span class="p">=</span><span class="nx">ens33</span><span class="w"></span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="nx">ONBOOT</span><span class="p">=</span><span class="nx">no</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="_11">重启网络或者重启</h4>
 <p>推荐重启即可</p>
-<pre><code class="language-java">service network restart
-</code></pre>
-<pre><code class="language-go">systemctl restart network
-</code></pre>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">service</span><span class="w"> </span><span class="n">network</span><span class="w"> </span><span class="n">restart</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">systemctl</span><span class="w"> </span><span class="nx">restart</span><span class="w"> </span><span class="nx">network</span><span class="w"></span>
+</span></code></pre></div>
 <p>如果无法上网点击有线连接即可</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20201223174649.png" /></p>
 <h2 id="_12">防火墙</h2>
 <p>查看防火墙状态</p>
-<pre><code class="language-java">systemctl status firewalld.service
-</code></pre>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">systemctl</span><span class="w"> </span><span class="n">status</span><span class="w"> </span><span class="n">firewalld</span><span class="p">.</span><span class="na">service</span><span class="w"></span>
+</span></code></pre></div>
 <p>关闭防火墙</p>
-<pre><code class="language-java">systemctl stop firewalld.service
-</code></pre>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">systemctl</span><span class="w"> </span><span class="n">stop</span><span class="w"> </span><span class="n">firewalld</span><span class="p">.</span><span class="na">service</span><span class="w"></span>
+</span></code></pre></div>
 <p>禁止开机启动</p>
-<pre><code class="language-java">systemctl disable firewalld.service
-</code></pre>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">systemctl</span><span class="w"> </span><span class="n">disable</span><span class="w"> </span><span class="n">firewalld</span><span class="p">.</span><span class="na">service</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_13">设置主机名称</h2>
-<pre><code class="language-go">vim /etc/hostname
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">vim</span><span class="w"> </span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">hostname</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="ip">主机ip映射</h2>
 <p>主机名和ip映射</p>
-<pre><code class="language-go">vim /etc/hosts
-</code></pre>
-<pre><code class="language-go">192.168.96.128 matt04
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nx">vim</span><span class="w"> </span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">hosts</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="mf">192.168.96.128</span><span class="w"> </span><span class="nx">matt04</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="root">创建非root用户</h2>
 <h3 id="matt">创建matt用户</h3>
-<pre><code class="language-go">useradd matt
-
-passwd matt
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nx">useradd</span><span class="w"> </span><span class="nx">matt</span><span class="w"></span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nx">passwd</span><span class="w"> </span><span class="nx">matt</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="mattsudo">为matt用户添加sudo权限</h3>
 <p>修改/etc/sudoers 文件，在%wheel 这行下面添加一行，如下所示：</p>
-<pre><code class="language-go">vim /etc/sudoers
-</code></pre>
-<pre><code class="language-go">## Allows people in group wheel to run all commands
-%wheel  ALL=(ALL)       ALL
-matt    ALL=(ALL)       NOPASSWD:ALL
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nx">vim</span><span class="w"> </span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">sudoers</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="err">##</span><span class="w"> </span><span class="nx">Allows</span><span class="w"> </span><span class="nx">people</span><span class="w"> </span><span class="nx">in</span><span class="w"> </span><span class="nx">group</span><span class="w"> </span><span class="nx">wheel</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="nx">run</span><span class="w"> </span><span class="nx">all</span><span class="w"> </span><span class="nx">commands</span><span class="w"></span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="o">%</span><span class="nx">wheel</span><span class="w">  </span><span class="nx">ALL</span><span class="p">=(</span><span class="nx">ALL</span><span class="p">)</span><span class="w">       </span><span class="nx">ALL</span><span class="w"></span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nx">matt</span><span class="w">    </span><span class="nx">ALL</span><span class="p">=(</span><span class="nx">ALL</span><span class="p">)</span><span class="w">       </span><span class="nx">NOPASSWD</span><span class="p">:</span><span class="nx">ALL</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_14">创建软件安装目录</h3>
-<pre><code class="language-go">mkdir /opt/software
-
-mkdir /opt/module
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nx">mkdir</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">software</span><span class="w"></span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nx">mkdir</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="matt_1">修改创建的文件的用户和用户组为matt</h3>
-<pre><code class="language-go">chown -R matt:matt /opt/software
-
-chown -R matt:matt /opt/module
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nx">chown</span><span class="w"> </span><span class="o">-</span><span class="nx">R</span><span class="w"> </span><span class="nx">matt</span><span class="p">:</span><span class="nx">matt</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">software</span><span class="w"></span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nx">chown</span><span class="w"> </span><span class="o">-</span><span class="nx">R</span><span class="w"> </span><span class="nx">matt</span><span class="p">:</span><span class="nx">matt</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_15">验证</h3>
-<pre><code class="language-go">ll
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nx">ll</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_16">虚拟机克隆</h2>
 <p>在网络配置好在克隆记得一定要关机下</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20201223174740.png" /></p>
@@ -3261,14 +3261,14 @@ chown -R matt:matt /opt/module
 <p><strong>记得修改ip,服务器名，主机IP映射</strong></p>
 <h2 id="ssh">安装ssh</h2>
 <p>检查是否安装ssh</p>
-<pre><code class="language-java">yum list installed | grep openssh-server
-</code></pre>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">yum</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="n">installed</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">grep</span><span class="w"> </span><span class="n">openssh</span><span class="o">-</span><span class="n">server</span><span class="w"></span>
+</span></code></pre></div>
 <p>安装ssh</p>
-<pre><code class="language-java">yum install -y openssl openssh-server
-</code></pre>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">yum</span><span class="w"> </span><span class="n">install</span><span class="w"> </span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="n">openssl</span><span class="w"> </span><span class="n">openssh</span><span class="o">-</span><span class="n">server</span><span class="w"></span>
+</span></code></pre></div>
 <p>配置</p>
-<pre><code class="language-java">vim /etc/ssh/sshd_config
-</code></pre>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">vim</span><span class="w"> </span><span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">ssh</span><span class="o">/</span><span class="n">sshd_config</span><span class="w"></span>
+</span></code></pre></div>
 <p>以下打开</p>
 <p><strong>port,ListenAddress</strong></p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20201218140734.png" /></p>
@@ -3276,165 +3276,163 @@ chown -R matt:matt /opt/module
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20201218140817.png" /></p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20201218140845.png" /></p>
 <h4 id="_17">退出</h4>
-<pre><code class="language-python">logout 123.56.135.43 //退出ssh连接
-exit
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">logout</span> <span class="mf">123.56.135.43</span> <span class="o">//</span><span class="n">退出ssh连接</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="n">exit</span>
+</span></code></pre></div>
 <p>免密登录</p>
-<pre><code class="language-go">ssh-keygen
-
-cd /home/matt/.ssh
-
-ssh-copy-id -i id_rsa.pub root@192.168.96.128
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nx">ssh</span><span class="o">-</span><span class="nx">keygen</span><span class="w"></span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="nx">cd</span><span class="w"> </span><span class="o">/</span><span class="nx">home</span><span class="o">/</span><span class="nx">matt</span><span class="o">/</span><span class="p">.</span><span class="nx">ssh</span><span class="w"></span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="nx">ssh</span><span class="o">-</span><span class="nx">copy</span><span class="o">-</span><span class="nx">id</span><span class="w"> </span><span class="o">-</span><span class="nx">i</span><span class="w"> </span><span class="nx">id_rsa</span><span class="p">.</span><span class="nx">pub</span><span class="w"> </span><span class="nx">root</span><span class="err">@</span><span class="mf">192.168.96.128</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_18">虚拟机扩容</h2>
 <h3 id="_19">查看本机磁盘环境</h3>
-<pre><code class="language-go">df -h
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nx">df</span><span class="w"> </span><span class="o">-</span><span class="nx">h</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210728022647.png" /></p>
-<pre><code class="language-go">lsblk
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nx">lsblk</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210728021802.png" /></p>
 <h3 id="_20">添加磁盘分区</h3>
-<pre><code class="language-go">fdisk /dev/sda
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nx">fdisk</span><span class="w"> </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">sda</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210728031925.png" /></p>
 <p><strong>输入p不是默认e,第二个默认</strong></p>
 <p>记得重启</p>
-<pre><code class="language-go">lsblk
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nx">lsblk</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210728022101.png" /></p>
 <h4 id="_21">开始扩容</h4>
 <p>创建物理卷</p>
-<pre><code class="language-go">[root@localhost ~]# lvm
-lvm&gt; pvcreate /dev/sda4
-WARNING: dos signature detected on /dev/sda4 at offset 510. Wipe it? [y/n]: y
-  Wiping dos signature on /dev/sda4.
-  Physical volume &quot;/dev/sda4&quot; successfully created.
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="p">[</span><span class="nx">root</span><span class="err">@</span><span class="nx">localhost</span><span class="w"> </span><span class="o">~</span><span class="p">]</span><span class="err">#</span><span class="w"> </span><span class="nx">lvm</span><span class="w"></span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="nx">lvm</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">pvcreate</span><span class="w"> </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">sda4</span><span class="w"></span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="nx">WARNING</span><span class="p">:</span><span class="w"> </span><span class="nx">dos</span><span class="w"> </span><span class="nx">signature</span><span class="w"> </span><span class="nx">detected</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">sda4</span><span class="w"> </span><span class="nx">at</span><span class="w"> </span><span class="nx">offset</span><span class="w"> </span><span class="mf">510.</span><span class="w"> </span><span class="nx">Wipe</span><span class="w"> </span><span class="nx">it</span><span class="err">?</span><span class="w"> </span><span class="p">[</span><span class="nx">y</span><span class="o">/</span><span class="nx">n</span><span class="p">]:</span><span class="w"> </span><span class="nx">y</span><span class="w"></span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w">  </span><span class="nx">Wiping</span><span class="w"> </span><span class="nx">dos</span><span class="w"> </span><span class="nx">signature</span><span class="w"> </span><span class="nx">on</span><span class="w"> </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">sda4</span><span class="p">.</span><span class="w"></span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">  </span><span class="nx">Physical</span><span class="w"> </span><span class="nx">volume</span><span class="w"> </span><span class="s">&quot;/dev/sda4&quot;</span><span class="w"> </span><span class="nx">successfully</span><span class="w"> </span><span class="nx">created</span><span class="p">.</span><span class="w"></span>
+</span></code></pre></div>
 <p>查看物理卷和卷组：</p>
-<pre><code class="language-go">lvm&gt; pvdisplay
-  --- Physical volume ---
-  PV Name               /dev/sda2
-  VG Name               centos
-  PV Size               11.23 GiB / not usable 4.00 MiB
-  Allocatable           yes (but full)
-  PE Size               4.00 MiB
-  Total PE              2875
-  Free PE               0
-  Allocated PE          2875
-  PV UUID               lTqDdT-6UxW-feyh-V97X-BJEg-zN18-G5kc4Z
-
-  --- Physical volume ---
-  PV Name               /dev/sda3
-  VG Name               centos
-  PV Size               5.00 GiB / not usable 4.00 MiB
-  Allocatable           yes (but full)
-  PE Size               4.00 MiB
-  Total PE              1279
-  Free PE               0
-  Allocated PE          1279
-  PV UUID               kSnxe0-jrzC-UPoT-UZQk-2oda-eZrK-ggQXKp
-
-  &quot;/dev/sda4&quot; is a new physical volume of &quot;2.00 GiB&quot;
-  --- NEW Physical volume ---
-  PV Name               /dev/sda4
-  VG Name               
-  PV Size               2.00 GiB
-  Allocatable           NO
-  PE Size               0   
-  Total PE              0
-  Free PE               0
-  Allocated PE          0
-  PV UUID               VVW6TL-NF39-NfgU-2oBR-zqkF-RCiN-0I73Zq
-
-</code></pre>
-<pre><code class="language-go">lvm&gt; vgdisplay
-  --- Volume group ---
-  VG Name               centos
-  System ID             
-  Format                lvm2
-  Metadata Areas        2
-  Metadata Sequence No  5
-  VG Access             read/write
-  VG Status             resizable
-  MAX LV                0
-  Cur LV                2
-  Open LV               2
-  Max PV                0
-  Cur PV                2
-  Act PV                2
-  VG Size               &lt;16.23 GiB
-  PE Size               4.00 MiB
-  Total PE              4154
-  Alloc PE / Size       4154 / &lt;16.23 GiB
-  Free  PE / Size       0 / 0   
-  VG UUID               1V8J83-cmtx-C8uY-KAQZ-teqj-uGD2-Tmad21
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nx">lvm</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">pvdisplay</span><span class="w"></span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span><span class="o">---</span><span class="w"> </span><span class="nx">Physical</span><span class="w"> </span><span class="nx">volume</span><span class="w"> </span><span class="o">---</span><span class="w"></span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">  </span><span class="nx">PV</span><span class="w"> </span><span class="nx">Name</span><span class="w">               </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">sda2</span><span class="w"></span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">Name</span><span class="w">               </span><span class="nx">centos</span><span class="w"></span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">  </span><span class="nx">PV</span><span class="w"> </span><span class="nx">Size</span><span class="w">               </span><span class="mf">11.23</span><span class="w"> </span><span class="nx">GiB</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">not</span><span class="w"> </span><span class="nx">usable</span><span class="w"> </span><span class="mf">4.00</span><span class="w"> </span><span class="nx">MiB</span><span class="w"></span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">  </span><span class="nx">Allocatable</span><span class="w">           </span><span class="nx">yes</span><span class="w"> </span><span class="p">(</span><span class="nx">but</span><span class="w"> </span><span class="nx">full</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">  </span><span class="nx">PE</span><span class="w"> </span><span class="nx">Size</span><span class="w">               </span><span class="mf">4.00</span><span class="w"> </span><span class="nx">MiB</span><span class="w"></span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">  </span><span class="nx">Total</span><span class="w"> </span><span class="nx">PE</span><span class="w">              </span><span class="mi">2875</span><span class="w"></span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">  </span><span class="nx">Free</span><span class="w"> </span><span class="nx">PE</span><span class="w">               </span><span class="mi">0</span><span class="w"></span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">  </span><span class="nx">Allocated</span><span class="w"> </span><span class="nx">PE</span><span class="w">          </span><span class="mi">2875</span><span class="w"></span>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">  </span><span class="nx">PV</span><span class="w"> </span><span class="nx">UUID</span><span class="w">               </span><span class="nx">lTqDdT</span><span class="o">-</span><span class="mi">6</span><span class="nx">UxW</span><span class="o">-</span><span class="nx">feyh</span><span class="o">-</span><span class="nx">V97X</span><span class="o">-</span><span class="nx">BJEg</span><span class="o">-</span><span class="nx">zN18</span><span class="o">-</span><span class="nx">G5kc4Z</span><span class="w"></span>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="w">  </span><span class="o">---</span><span class="w"> </span><span class="nx">Physical</span><span class="w"> </span><span class="nx">volume</span><span class="w"> </span><span class="o">---</span><span class="w"></span>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="w">  </span><span class="nx">PV</span><span class="w"> </span><span class="nx">Name</span><span class="w">               </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">sda3</span><span class="w"></span>
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">Name</span><span class="w">               </span><span class="nx">centos</span><span class="w"></span>
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a><span class="w">  </span><span class="nx">PV</span><span class="w"> </span><span class="nx">Size</span><span class="w">               </span><span class="mf">5.00</span><span class="w"> </span><span class="nx">GiB</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">not</span><span class="w"> </span><span class="nx">usable</span><span class="w"> </span><span class="mf">4.00</span><span class="w"> </span><span class="nx">MiB</span><span class="w"></span>
+</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="w">  </span><span class="nx">Allocatable</span><span class="w">           </span><span class="nx">yes</span><span class="w"> </span><span class="p">(</span><span class="nx">but</span><span class="w"> </span><span class="nx">full</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-28-18"><a id="__codelineno-28-18" name="__codelineno-28-18" href="#__codelineno-28-18"></a><span class="w">  </span><span class="nx">PE</span><span class="w"> </span><span class="nx">Size</span><span class="w">               </span><span class="mf">4.00</span><span class="w"> </span><span class="nx">MiB</span><span class="w"></span>
+</span><span id="__span-28-19"><a id="__codelineno-28-19" name="__codelineno-28-19" href="#__codelineno-28-19"></a><span class="w">  </span><span class="nx">Total</span><span class="w"> </span><span class="nx">PE</span><span class="w">              </span><span class="mi">1279</span><span class="w"></span>
+</span><span id="__span-28-20"><a id="__codelineno-28-20" name="__codelineno-28-20" href="#__codelineno-28-20"></a><span class="w">  </span><span class="nx">Free</span><span class="w"> </span><span class="nx">PE</span><span class="w">               </span><span class="mi">0</span><span class="w"></span>
+</span><span id="__span-28-21"><a id="__codelineno-28-21" name="__codelineno-28-21" href="#__codelineno-28-21"></a><span class="w">  </span><span class="nx">Allocated</span><span class="w"> </span><span class="nx">PE</span><span class="w">          </span><span class="mi">1279</span><span class="w"></span>
+</span><span id="__span-28-22"><a id="__codelineno-28-22" name="__codelineno-28-22" href="#__codelineno-28-22"></a><span class="w">  </span><span class="nx">PV</span><span class="w"> </span><span class="nx">UUID</span><span class="w">               </span><span class="nx">kSnxe0</span><span class="o">-</span><span class="nx">jrzC</span><span class="o">-</span><span class="nx">UPoT</span><span class="o">-</span><span class="nx">UZQk</span><span class="o">-</span><span class="mi">2</span><span class="nx">oda</span><span class="o">-</span><span class="nx">eZrK</span><span class="o">-</span><span class="nx">ggQXKp</span><span class="w"></span>
+</span><span id="__span-28-23"><a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a>
+</span><span id="__span-28-24"><a id="__codelineno-28-24" name="__codelineno-28-24" href="#__codelineno-28-24"></a><span class="w">  </span><span class="s">&quot;/dev/sda4&quot;</span><span class="w"> </span><span class="nx">is</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">new</span><span class="w"> </span><span class="nx">physical</span><span class="w"> </span><span class="nx">volume</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="s">&quot;2.00 GiB&quot;</span><span class="w"></span>
+</span><span id="__span-28-25"><a id="__codelineno-28-25" name="__codelineno-28-25" href="#__codelineno-28-25"></a><span class="w">  </span><span class="o">---</span><span class="w"> </span><span class="nx">NEW</span><span class="w"> </span><span class="nx">Physical</span><span class="w"> </span><span class="nx">volume</span><span class="w"> </span><span class="o">---</span><span class="w"></span>
+</span><span id="__span-28-26"><a id="__codelineno-28-26" name="__codelineno-28-26" href="#__codelineno-28-26"></a><span class="w">  </span><span class="nx">PV</span><span class="w"> </span><span class="nx">Name</span><span class="w">               </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">sda4</span><span class="w"></span>
+</span><span id="__span-28-27"><a id="__codelineno-28-27" name="__codelineno-28-27" href="#__codelineno-28-27"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">Name</span><span class="w">               </span>
+</span><span id="__span-28-28"><a id="__codelineno-28-28" name="__codelineno-28-28" href="#__codelineno-28-28"></a><span class="w">  </span><span class="nx">PV</span><span class="w"> </span><span class="nx">Size</span><span class="w">               </span><span class="mf">2.00</span><span class="w"> </span><span class="nx">GiB</span><span class="w"></span>
+</span><span id="__span-28-29"><a id="__codelineno-28-29" name="__codelineno-28-29" href="#__codelineno-28-29"></a><span class="w">  </span><span class="nx">Allocatable</span><span class="w">           </span><span class="nx">NO</span><span class="w"></span>
+</span><span id="__span-28-30"><a id="__codelineno-28-30" name="__codelineno-28-30" href="#__codelineno-28-30"></a><span class="w">  </span><span class="nx">PE</span><span class="w"> </span><span class="nx">Size</span><span class="w">               </span><span class="mi">0</span><span class="w">   </span>
+</span><span id="__span-28-31"><a id="__codelineno-28-31" name="__codelineno-28-31" href="#__codelineno-28-31"></a><span class="w">  </span><span class="nx">Total</span><span class="w"> </span><span class="nx">PE</span><span class="w">              </span><span class="mi">0</span><span class="w"></span>
+</span><span id="__span-28-32"><a id="__codelineno-28-32" name="__codelineno-28-32" href="#__codelineno-28-32"></a><span class="w">  </span><span class="nx">Free</span><span class="w"> </span><span class="nx">PE</span><span class="w">               </span><span class="mi">0</span><span class="w"></span>
+</span><span id="__span-28-33"><a id="__codelineno-28-33" name="__codelineno-28-33" href="#__codelineno-28-33"></a><span class="w">  </span><span class="nx">Allocated</span><span class="w"> </span><span class="nx">PE</span><span class="w">          </span><span class="mi">0</span><span class="w"></span>
+</span><span id="__span-28-34"><a id="__codelineno-28-34" name="__codelineno-28-34" href="#__codelineno-28-34"></a><span class="w">  </span><span class="nx">PV</span><span class="w"> </span><span class="nx">UUID</span><span class="w">               </span><span class="nx">VVW6TL</span><span class="o">-</span><span class="nx">NF39</span><span class="o">-</span><span class="nx">NfgU</span><span class="o">-</span><span class="mi">2</span><span class="nx">oBR</span><span class="o">-</span><span class="nx">zqkF</span><span class="o">-</span><span class="nx">RCiN</span><span class="o">-</span><span class="mi">0</span><span class="nx">I73Zq</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nx">lvm</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">vgdisplay</span><span class="w"></span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">  </span><span class="o">---</span><span class="w"> </span><span class="nx">Volume</span><span class="w"> </span><span class="nx">group</span><span class="w"> </span><span class="o">---</span><span class="w"></span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">Name</span><span class="w">               </span><span class="nx">centos</span><span class="w"></span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">  </span><span class="nx">System</span><span class="w"> </span><span class="nx">ID</span><span class="w">             </span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">  </span><span class="nx">Format</span><span class="w">                </span><span class="nx">lvm2</span><span class="w"></span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">  </span><span class="nx">Metadata</span><span class="w"> </span><span class="nx">Areas</span><span class="w">        </span><span class="mi">2</span><span class="w"></span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">  </span><span class="nx">Metadata</span><span class="w"> </span><span class="nx">Sequence</span><span class="w"> </span><span class="nx">No</span><span class="w">  </span><span class="mi">5</span><span class="w"></span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">Access</span><span class="w">             </span><span class="nx">read</span><span class="o">/</span><span class="nx">write</span><span class="w"></span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">Status</span><span class="w">             </span><span class="nx">resizable</span><span class="w"></span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="w">  </span><span class="nx">MAX</span><span class="w"> </span><span class="nx">LV</span><span class="w">                </span><span class="mi">0</span><span class="w"></span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="w">  </span><span class="nx">Cur</span><span class="w"> </span><span class="nx">LV</span><span class="w">                </span><span class="mi">2</span><span class="w"></span>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="w">  </span><span class="nx">Open</span><span class="w"> </span><span class="nx">LV</span><span class="w">               </span><span class="mi">2</span><span class="w"></span>
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a><span class="w">  </span><span class="nx">Max</span><span class="w"> </span><span class="nx">PV</span><span class="w">                </span><span class="mi">0</span><span class="w"></span>
+</span><span id="__span-29-14"><a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a><span class="w">  </span><span class="nx">Cur</span><span class="w"> </span><span class="nx">PV</span><span class="w">                </span><span class="mi">2</span><span class="w"></span>
+</span><span id="__span-29-15"><a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a><span class="w">  </span><span class="nx">Act</span><span class="w"> </span><span class="nx">PV</span><span class="w">                </span><span class="mi">2</span><span class="w"></span>
+</span><span id="__span-29-16"><a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">Size</span><span class="w">               </span><span class="p">&lt;</span><span class="mf">16.23</span><span class="w"> </span><span class="nx">GiB</span><span class="w"></span>
+</span><span id="__span-29-17"><a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a><span class="w">  </span><span class="nx">PE</span><span class="w"> </span><span class="nx">Size</span><span class="w">               </span><span class="mf">4.00</span><span class="w"> </span><span class="nx">MiB</span><span class="w"></span>
+</span><span id="__span-29-18"><a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a><span class="w">  </span><span class="nx">Total</span><span class="w"> </span><span class="nx">PE</span><span class="w">              </span><span class="mi">4154</span><span class="w"></span>
+</span><span id="__span-29-19"><a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a><span class="w">  </span><span class="nx">Alloc</span><span class="w"> </span><span class="nx">PE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">Size</span><span class="w">       </span><span class="mi">4154</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">&lt;</span><span class="mf">16.23</span><span class="w"> </span><span class="nx">GiB</span><span class="w"></span>
+</span><span id="__span-29-20"><a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a><span class="w">  </span><span class="nx">Free</span><span class="w">  </span><span class="nx">PE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">Size</span><span class="w">       </span><span class="mi">0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">0</span><span class="w">   </span>
+</span><span id="__span-29-21"><a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">UUID</span><span class="w">               </span><span class="mi">1</span><span class="nx">V8J83</span><span class="o">-</span><span class="nx">cmtx</span><span class="o">-</span><span class="nx">C8uY</span><span class="o">-</span><span class="nx">KAQZ</span><span class="o">-</span><span class="nx">teqj</span><span class="o">-</span><span class="nx">uGD2</span><span class="o">-</span><span class="nx">Tmad21</span><span class="w"></span>
+</span></code></pre></div>
 <p>将物理卷加入到卷组：</p>
-<pre><code class="language-go">lvm&gt; vgextend centos /dev/sda4
-  Volume group &quot;centos&quot; successfully extended
-lvm&gt; vgdisplay
-  --- Volume group ---
-  VG Name               centos
-  System ID             
-  Format                lvm2
-  Metadata Areas        3
-  Metadata Sequence No  6
-  VG Access             read/write
-  VG Status             resizable
-  MAX LV                0
-  Cur LV                2
-  Open LV               2
-  Max PV                0
-  Cur PV                3
-  Act PV                3
-  VG Size               18.22 GiB
-  PE Size               4.00 MiB
-  Total PE              4665
-  Alloc PE / Size       4154 / &lt;16.23 GiB
-  Free  PE / Size       511 / &lt;2.00 GiB
-  VG UUID               1V8J83-cmtx-C8uY-KAQZ-teqj-uGD2-Tmad21
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nx">lvm</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">vgextend</span><span class="w"> </span><span class="nx">centos</span><span class="w"> </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">sda4</span><span class="w"></span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="w">  </span><span class="nx">Volume</span><span class="w"> </span><span class="nx">group</span><span class="w"> </span><span class="s">&quot;centos&quot;</span><span class="w"> </span><span class="nx">successfully</span><span class="w"> </span><span class="nx">extended</span><span class="w"></span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="nx">lvm</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">vgdisplay</span><span class="w"></span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">  </span><span class="o">---</span><span class="w"> </span><span class="nx">Volume</span><span class="w"> </span><span class="nx">group</span><span class="w"> </span><span class="o">---</span><span class="w"></span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">Name</span><span class="w">               </span><span class="nx">centos</span><span class="w"></span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="w">  </span><span class="nx">System</span><span class="w"> </span><span class="nx">ID</span><span class="w">             </span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="w">  </span><span class="nx">Format</span><span class="w">                </span><span class="nx">lvm2</span><span class="w"></span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="w">  </span><span class="nx">Metadata</span><span class="w"> </span><span class="nx">Areas</span><span class="w">        </span><span class="mi">3</span><span class="w"></span>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="w">  </span><span class="nx">Metadata</span><span class="w"> </span><span class="nx">Sequence</span><span class="w"> </span><span class="nx">No</span><span class="w">  </span><span class="mi">6</span><span class="w"></span>
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">Access</span><span class="w">             </span><span class="nx">read</span><span class="o">/</span><span class="nx">write</span><span class="w"></span>
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">Status</span><span class="w">             </span><span class="nx">resizable</span><span class="w"></span>
+</span><span id="__span-30-12"><a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a><span class="w">  </span><span class="nx">MAX</span><span class="w"> </span><span class="nx">LV</span><span class="w">                </span><span class="mi">0</span><span class="w"></span>
+</span><span id="__span-30-13"><a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a><span class="w">  </span><span class="nx">Cur</span><span class="w"> </span><span class="nx">LV</span><span class="w">                </span><span class="mi">2</span><span class="w"></span>
+</span><span id="__span-30-14"><a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a><span class="w">  </span><span class="nx">Open</span><span class="w"> </span><span class="nx">LV</span><span class="w">               </span><span class="mi">2</span><span class="w"></span>
+</span><span id="__span-30-15"><a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a><span class="w">  </span><span class="nx">Max</span><span class="w"> </span><span class="nx">PV</span><span class="w">                </span><span class="mi">0</span><span class="w"></span>
+</span><span id="__span-30-16"><a id="__codelineno-30-16" name="__codelineno-30-16" href="#__codelineno-30-16"></a><span class="w">  </span><span class="nx">Cur</span><span class="w"> </span><span class="nx">PV</span><span class="w">                </span><span class="mi">3</span><span class="w"></span>
+</span><span id="__span-30-17"><a id="__codelineno-30-17" name="__codelineno-30-17" href="#__codelineno-30-17"></a><span class="w">  </span><span class="nx">Act</span><span class="w"> </span><span class="nx">PV</span><span class="w">                </span><span class="mi">3</span><span class="w"></span>
+</span><span id="__span-30-18"><a id="__codelineno-30-18" name="__codelineno-30-18" href="#__codelineno-30-18"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">Size</span><span class="w">               </span><span class="mf">18.22</span><span class="w"> </span><span class="nx">GiB</span><span class="w"></span>
+</span><span id="__span-30-19"><a id="__codelineno-30-19" name="__codelineno-30-19" href="#__codelineno-30-19"></a><span class="w">  </span><span class="nx">PE</span><span class="w"> </span><span class="nx">Size</span><span class="w">               </span><span class="mf">4.00</span><span class="w"> </span><span class="nx">MiB</span><span class="w"></span>
+</span><span id="__span-30-20"><a id="__codelineno-30-20" name="__codelineno-30-20" href="#__codelineno-30-20"></a><span class="w">  </span><span class="nx">Total</span><span class="w"> </span><span class="nx">PE</span><span class="w">              </span><span class="mi">4665</span><span class="w"></span>
+</span><span id="__span-30-21"><a id="__codelineno-30-21" name="__codelineno-30-21" href="#__codelineno-30-21"></a><span class="w">  </span><span class="nx">Alloc</span><span class="w"> </span><span class="nx">PE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">Size</span><span class="w">       </span><span class="mi">4154</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">&lt;</span><span class="mf">16.23</span><span class="w"> </span><span class="nx">GiB</span><span class="w"></span>
+</span><span id="__span-30-22"><a id="__codelineno-30-22" name="__codelineno-30-22" href="#__codelineno-30-22"></a><span class="w">  </span><span class="nx">Free</span><span class="w">  </span><span class="nx">PE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">Size</span><span class="w">       </span><span class="mi">511</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">&lt;</span><span class="mf">2.00</span><span class="w"> </span><span class="nx">GiB</span><span class="w"></span>
+</span><span id="__span-30-23"><a id="__codelineno-30-23" name="__codelineno-30-23" href="#__codelineno-30-23"></a><span class="w">  </span><span class="nx">VG</span><span class="w"> </span><span class="nx">UUID</span><span class="w">               </span><span class="mi">1</span><span class="nx">V8J83</span><span class="o">-</span><span class="nx">cmtx</span><span class="o">-</span><span class="nx">C8uY</span><span class="o">-</span><span class="nx">KAQZ</span><span class="o">-</span><span class="nx">teqj</span><span class="o">-</span><span class="nx">uGD2</span><span class="o">-</span><span class="nx">Tmad21</span><span class="w"></span>
+</span></code></pre></div>
 <p>将卷组剩余空间(刚添加的2G)添加到逻辑卷/dev/centos/root :</p>
-<pre><code class="language-go">lvm&gt; lvextend -l +100%FREE /dev/centos/root
-  Size of logical volume centos/root changed from &lt;14.32 GiB (3665 extents) to 16.31 GiB (4176 extents).
-  Logical volume centos/root successfully resized.
-lvm&gt; exit
-  Exiting.
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nx">lvm</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">lvextend</span><span class="w"> </span><span class="o">-</span><span class="nx">l</span><span class="w"> </span><span class="o">+</span><span class="mi">100</span><span class="o">%</span><span class="nx">FREE</span><span class="w"> </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">centos</span><span class="o">/</span><span class="nx">root</span><span class="w"></span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="w">  </span><span class="nx">Size</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">logical</span><span class="w"> </span><span class="nx">volume</span><span class="w"> </span><span class="nx">centos</span><span class="o">/</span><span class="nx">root</span><span class="w"> </span><span class="nx">changed</span><span class="w"> </span><span class="nx">from</span><span class="w"> </span><span class="p">&lt;</span><span class="mf">14.32</span><span class="w"> </span><span class="nx">GiB</span><span class="w"> </span><span class="p">(</span><span class="mi">3665</span><span class="w"> </span><span class="nx">extents</span><span class="p">)</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="mf">16.31</span><span class="w"> </span><span class="nx">GiB</span><span class="w"> </span><span class="p">(</span><span class="mi">4176</span><span class="w"> </span><span class="nx">extents</span><span class="p">).</span><span class="w"></span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="w">  </span><span class="nx">Logical</span><span class="w"> </span><span class="nx">volume</span><span class="w"> </span><span class="nx">centos</span><span class="o">/</span><span class="nx">root</span><span class="w"> </span><span class="nx">successfully</span><span class="w"> </span><span class="nx">resized</span><span class="p">.</span><span class="w"></span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="nx">lvm</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">exit</span><span class="w"></span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">  </span><span class="nx">Exiting</span><span class="p">.</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="_22">同步到文件系统</h4>
 <p>之前只是对逻辑卷扩容，还要同步到文件系统，实现对根目录的扩容。</p>
-<pre><code class="language-go">[root@localhost ~]# xfs_growfs /dev/centos/root
-meta-data=/dev/mapper/centos-root isize=512    agcount=7, agsize=610304 blks
-         =                       sectsz=512   attr=2, projid32bit=1
-         =                       crc=1        finobt=0 spinodes=0
-data     =                       bsize=4096   blocks=3752960, imaxpct=25
-         =                       sunit=0      swidth=0 blks
-naming   =version 2              bsize=4096   ascii-ci=0 ftype=1
-log      =internal               bsize=4096   blocks=2560, version=2
-         =                       sectsz=512   sunit=0 blks, lazy-count=1
-realtime =none                   extsz=4096   blocks=0, rtextents=0
-data blocks changed from 3752960 to 4276224
-
-</code></pre>
-<pre><code class="language-go">[root@localhost ~]# df -h
-文件系统                 容量  已用  可用 已用% 挂载点
-devtmpfs                 894M     0  894M    0% /dev
-tmpfs                    910M     0  910M    0% /dev/shm
-tmpfs                    910M   11M  900M    2% /run
-tmpfs                    910M     0  910M    0% /sys/fs/cgroup
-/dev/mapper/centos-root   17G  9.3G  7.1G   57% /
-/dev/sda1                187M  163M   25M   87% /boot
-tmpfs                    182M     0  182M    0% /run/user/0
-tmpfs                    182M  8.0K  182M    1% /run/user/42
-[root@localhost ~]# 
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="p">[</span><span class="nx">root</span><span class="err">@</span><span class="nx">localhost</span><span class="w"> </span><span class="o">~</span><span class="p">]</span><span class="err">#</span><span class="w"> </span><span class="nx">xfs_growfs</span><span class="w"> </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">centos</span><span class="o">/</span><span class="nx">root</span><span class="w"></span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="nx">meta</span><span class="o">-</span><span class="nx">data</span><span class="p">=</span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">mapper</span><span class="o">/</span><span class="nx">centos</span><span class="o">-</span><span class="nx">root</span><span class="w"> </span><span class="nx">isize</span><span class="p">=</span><span class="mi">512</span><span class="w">    </span><span class="nx">agcount</span><span class="p">=</span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="nx">agsize</span><span class="p">=</span><span class="mi">610304</span><span class="w"> </span><span class="nx">blks</span><span class="w"></span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">         </span><span class="p">=</span><span class="w">                       </span><span class="nx">sectsz</span><span class="p">=</span><span class="mi">512</span><span class="w">   </span><span class="nx">attr</span><span class="p">=</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nx">projid32bit</span><span class="p">=</span><span class="mi">1</span><span class="w"></span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">         </span><span class="p">=</span><span class="w">                       </span><span class="nx">crc</span><span class="p">=</span><span class="mi">1</span><span class="w">        </span><span class="nx">finobt</span><span class="p">=</span><span class="mi">0</span><span class="w"> </span><span class="nx">spinodes</span><span class="p">=</span><span class="mi">0</span><span class="w"></span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="nx">data</span><span class="w">     </span><span class="p">=</span><span class="w">                       </span><span class="nx">bsize</span><span class="p">=</span><span class="mi">4096</span><span class="w">   </span><span class="nx">blocks</span><span class="p">=</span><span class="mi">3752960</span><span class="p">,</span><span class="w"> </span><span class="nx">imaxpct</span><span class="p">=</span><span class="mi">25</span><span class="w"></span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">         </span><span class="p">=</span><span class="w">                       </span><span class="nx">sunit</span><span class="p">=</span><span class="mi">0</span><span class="w">      </span><span class="nx">swidth</span><span class="p">=</span><span class="mi">0</span><span class="w"> </span><span class="nx">blks</span><span class="w"></span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="nx">naming</span><span class="w">   </span><span class="p">=</span><span class="nx">version</span><span class="w"> </span><span class="mi">2</span><span class="w">              </span><span class="nx">bsize</span><span class="p">=</span><span class="mi">4096</span><span class="w">   </span><span class="nx">ascii</span><span class="o">-</span><span class="nx">ci</span><span class="p">=</span><span class="mi">0</span><span class="w"> </span><span class="nx">ftype</span><span class="p">=</span><span class="mi">1</span><span class="w"></span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="nx">log</span><span class="w">      </span><span class="p">=</span><span class="nx">internal</span><span class="w">               </span><span class="nx">bsize</span><span class="p">=</span><span class="mi">4096</span><span class="w">   </span><span class="nx">blocks</span><span class="p">=</span><span class="mi">2560</span><span class="p">,</span><span class="w"> </span><span class="nx">version</span><span class="p">=</span><span class="mi">2</span><span class="w"></span>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="w">         </span><span class="p">=</span><span class="w">                       </span><span class="nx">sectsz</span><span class="p">=</span><span class="mi">512</span><span class="w">   </span><span class="nx">sunit</span><span class="p">=</span><span class="mi">0</span><span class="w"> </span><span class="nx">blks</span><span class="p">,</span><span class="w"> </span><span class="nx">lazy</span><span class="o">-</span><span class="nx">count</span><span class="p">=</span><span class="mi">1</span><span class="w"></span>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="nx">realtime</span><span class="w"> </span><span class="p">=</span><span class="nx">none</span><span class="w">                   </span><span class="nx">extsz</span><span class="p">=</span><span class="mi">4096</span><span class="w">   </span><span class="nx">blocks</span><span class="p">=</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="nx">rtextents</span><span class="p">=</span><span class="mi">0</span><span class="w"></span>
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="nx">data</span><span class="w"> </span><span class="nx">blocks</span><span class="w"> </span><span class="nx">changed</span><span class="w"> </span><span class="nx">from</span><span class="w"> </span><span class="mi">3752960</span><span class="w"> </span><span class="nx">to</span><span class="w"> </span><span class="mi">4276224</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="p">[</span><span class="nx">root</span><span class="err">@</span><span class="nx">localhost</span><span class="w"> </span><span class="o">~</span><span class="p">]</span><span class="err">#</span><span class="w"> </span><span class="nx">df</span><span class="w"> </span><span class="o">-</span><span class="nx">h</span><span class="w"></span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="nx">文件系统</span><span class="w">                 </span><span class="nx">容量</span><span class="w">  </span><span class="nx">已用</span><span class="w">  </span><span class="nx">可用</span><span class="w"> </span><span class="nx">已用</span><span class="o">%</span><span class="w"> </span><span class="nx">挂载点</span><span class="w"></span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="nx">devtmpfs</span><span class="w">                 </span><span class="mi">894</span><span class="nx">M</span><span class="w">     </span><span class="mi">0</span><span class="w">  </span><span class="mi">894</span><span class="nx">M</span><span class="w">    </span><span class="mi">0</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="nx">dev</span><span class="w"></span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="nx">tmpfs</span><span class="w">                    </span><span class="mi">910</span><span class="nx">M</span><span class="w">     </span><span class="mi">0</span><span class="w">  </span><span class="mi">910</span><span class="nx">M</span><span class="w">    </span><span class="mi">0</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">shm</span><span class="w"></span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="nx">tmpfs</span><span class="w">                    </span><span class="mi">910</span><span class="nx">M</span><span class="w">   </span><span class="mi">11</span><span class="nx">M</span><span class="w">  </span><span class="mi">900</span><span class="nx">M</span><span class="w">    </span><span class="mi">2</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="nx">run</span><span class="w"></span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="nx">tmpfs</span><span class="w">                    </span><span class="mi">910</span><span class="nx">M</span><span class="w">     </span><span class="mi">0</span><span class="w">  </span><span class="mi">910</span><span class="nx">M</span><span class="w">    </span><span class="mi">0</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="nx">sys</span><span class="o">/</span><span class="nx">fs</span><span class="o">/</span><span class="nx">cgroup</span><span class="w"></span>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">mapper</span><span class="o">/</span><span class="nx">centos</span><span class="o">-</span><span class="nx">root</span><span class="w">   </span><span class="mi">17</span><span class="nx">G</span><span class="w">  </span><span class="mf">9.3</span><span class="nx">G</span><span class="w">  </span><span class="mf">7.1</span><span class="nx">G</span><span class="w">   </span><span class="mi">57</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">sda1</span><span class="w">                </span><span class="mi">187</span><span class="nx">M</span><span class="w">  </span><span class="mi">163</span><span class="nx">M</span><span class="w">   </span><span class="mi">25</span><span class="nx">M</span><span class="w">   </span><span class="mi">87</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="nx">boot</span><span class="w"></span>
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="nx">tmpfs</span><span class="w">                    </span><span class="mi">182</span><span class="nx">M</span><span class="w">     </span><span class="mi">0</span><span class="w">  </span><span class="mi">182</span><span class="nx">M</span><span class="w">    </span><span class="mi">0</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="nx">run</span><span class="o">/</span><span class="nx">user</span><span class="o">/</span><span class="mi">0</span><span class="w"></span>
+</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="nx">tmpfs</span><span class="w">                    </span><span class="mi">182</span><span class="nx">M</span><span class="w">  </span><span class="mf">8.0</span><span class="nx">K</span><span class="w">  </span><span class="mi">182</span><span class="nx">M</span><span class="w">    </span><span class="mi">1</span><span class="o">%</span><span class="w"> </span><span class="o">/</span><span class="nx">run</span><span class="o">/</span><span class="nx">user</span><span class="o">/</span><span class="mi">42</span><span class="w"></span>
+</span><span id="__span-33-11"><a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="p">[</span><span class="nx">root</span><span class="err">@</span><span class="nx">localhost</span><span class="w"> </span><span class="o">~</span><span class="p">]</span><span class="err">#</span><span class="w"> </span>
+</span></code></pre></div>
 <h3 id="_23">删除分区</h3>
 <p>适用于还没有挂载，如果挂载则需要卸载</p>
-<pre><code class="language-go">fdisk /dev/sdc
-
-# 输入d,然后按照提示输入分区号
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nx">fdisk</span><span class="w"> </span><span class="o">/</span><span class="nx">dev</span><span class="o">/</span><span class="nx">sdc</span><span class="w"></span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="err">#</span><span class="w"> </span><span class="nx">输入d</span><span class="p">,</span><span class="nx">然后按照提示输入分区号</span><span class="w"></span>
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -3470,7 +3468,10 @@ tmpfs                    182M  8.0K  182M    1% /run/user/42
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -3565,7 +3566,7 @@ tmpfs                    182M  8.0K  182M    1% /run/user/42
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

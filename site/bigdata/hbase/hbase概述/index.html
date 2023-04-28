@@ -2590,93 +2590,92 @@ HDFS 为 HBase 提供最终的底层数据存储服务，同时为 HBase 提供�
 <p><strong>提前安装zk,hadoop。二者都为集群</strong></p>
 <h2 id="21">2.1安装</h2>
 <h3 id="1">1.解压</h3>
-<pre><code class="language-go">tar -zxvf hbase-1.3.1-bin.tar.gz -C /opt/module/
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">tar</span><span class="w"> </span><span class="o">-</span><span class="nx">zxvf</span><span class="w"> </span><span class="nx">hbase</span><span class="o">-</span><span class="mf">1.3.1</span><span class="o">-</span><span class="nx">bin</span><span class="p">.</span><span class="nx">tar</span><span class="p">.</span><span class="nx">gz</span><span class="w"> </span><span class="o">-</span><span class="nx">C</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="o">/</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="22">2.2配置</h2>
 <h3 id="1_1">1.进入配置目录</h3>
-<pre><code class="language-go">/opt/module/hbase-1.3.1/conf
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="o">/</span><span class="nx">hbase</span><span class="o">-</span><span class="mf">1.3.1</span><span class="o">/</span><span class="nx">conf</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="2-java_home">2.记录 JAVA_HOME 路径</h3>
-<pre><code class="language-GO">echo $JAVA_HOME
-
-/opt/module/jdk1.8.0_212
-</code></pre>
+<div class="language-GO highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">echo</span><span class="w"> </span><span class="err">$</span><span class="nx">JAVA_HOME</span><span class="w"></span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="o">/</span><span class="nx">jdk1</span><span class="mf">.8.0</span><span class="nx">_212</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="3hbase-envsh">3.编写配置文件hbase-env.sh</h3>
-<pre><code class="language-go">vim hbase-env.sh
-</code></pre>
-<pre><code class="language-go">// The java implementation to use.  Java 1.7+ required.
-export JAVA_HOME=/opt/module/jdk1.8.0_212
-
-// hbase 有自带的zk,不要使用自带的
-// Tell HBase whether it should manage it's own instance of Zookeeper or not.
-export HBASE_MANAGES_ZK=false
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nx">vim</span><span class="w"> </span><span class="nx">hbase</span><span class="o">-</span><span class="nx">env</span><span class="p">.</span><span class="nx">sh</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// The java implementation to use.  Java 1.7+ required.</span><span class="w"></span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nx">export</span><span class="w"> </span><span class="nx">JAVA_HOME</span><span class="p">=</span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="o">/</span><span class="nx">jdk1</span><span class="mf">.8.0</span><span class="nx">_212</span><span class="w"></span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">// hbase 有自带的zk,不要使用自带的</span><span class="w"></span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1">// Tell HBase whether it should manage it&#39;s own instance of Zookeeper or not.</span><span class="w"></span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nx">export</span><span class="w"> </span><span class="nx">HBASE_MANAGES_ZK</span><span class="p">=</span><span class="kc">false</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="4hbase-sitexml">4.hbase-site.xml</h3>
-<pre><code class="language-go">vim hbase-site.xml
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">vim</span><span class="w"> </span><span class="nx">hbase</span><span class="o">-</span><span class="nx">site</span><span class="p">.</span><span class="nx">xml</span><span class="w"></span>
+</span></code></pre></div>
 <p>hbase-site.xml=core-site.xml</p>
 <p>hbase.rootdir=fs.defaultFS</p>
-<pre><code class="language-go">&lt;property&gt;
-    &lt;name&gt;fs.defaultFS&lt;/name&gt;
-    &lt;value&gt;hdfs://matt05:8020&lt;/value&gt;
-&lt;/property&gt;
-</code></pre>
-<pre><code class="language-xml">&lt;configuration&gt;
-    &lt;property&gt;
-        &lt;name&gt;hbase.rootdir&lt;/name&gt;
-        &lt;value&gt;hdfs://matt05:8020/HBase&lt;/value&gt;
-    &lt;/property&gt;
-
-    &lt;property&gt;
-        &lt;name&gt;hbase.cluster.distributed&lt;/name&gt;
-        &lt;value&gt;true&lt;/value&gt;
-    &lt;/property&gt;
-
-    &lt;!-- 0.98 后的新变动，之前版本没有.port,默认端口为 60000 --&gt;
-    &lt;property&gt;
-        &lt;name&gt;hbase.master.port&lt;/name&gt;
-        &lt;value&gt;16000&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;hbase.zookeeper.property.dataDir&lt;/name&gt;
-        &lt;value&gt;/opt/module/zookeeper-3.5.7/zkData&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;hbase.zookeeper.quorum&lt;/name&gt;
-        &lt;value&gt;matt05,matt06,matt07&lt;/value&gt;
-    &lt;/property&gt;
-
-&lt;/configuration&gt;
-
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">&lt;</span><span class="nx">property</span><span class="p">&gt;</span><span class="w"></span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="p">&lt;</span><span class="nx">name</span><span class="p">&gt;</span><span class="nx">fs</span><span class="p">.</span><span class="nx">defaultFS</span><span class="p">&lt;</span><span class="o">/</span><span class="nx">name</span><span class="p">&gt;</span><span class="w"></span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="p">&lt;</span><span class="nx">value</span><span class="p">&gt;</span><span class="nx">hdfs</span><span class="p">:</span><span class="c1">//matt05:8020&lt;/value&gt;</span><span class="w"></span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">&lt;</span><span class="o">/</span><span class="nx">property</span><span class="p">&gt;</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">&lt;configuration&gt;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="nt">&lt;property&gt;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        <span class="nt">&lt;name&gt;</span>hbase.rootdir<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>        <span class="nt">&lt;value&gt;</span>hdfs://matt05:8020/HBase<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="nt">&lt;property&gt;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>        <span class="nt">&lt;name&gt;</span>hbase.cluster.distributed<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>        <span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>    <span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>    <span class="cm">&lt;!-- 0.98 后的新变动，之前版本没有.port,默认端口为 60000 --&gt;</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>    <span class="nt">&lt;property&gt;</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>        <span class="nt">&lt;name&gt;</span>hbase.master.port<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>        <span class="nt">&lt;value&gt;</span>16000<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>    <span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>    <span class="nt">&lt;property&gt;</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>        <span class="nt">&lt;name&gt;</span>hbase.zookeeper.property.dataDir<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>        <span class="nt">&lt;value&gt;</span>/opt/module/zookeeper-3.5.7/zkData<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>    <span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>    <span class="nt">&lt;property&gt;</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>        <span class="nt">&lt;name&gt;</span>hbase.zookeeper.quorum<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>        <span class="nt">&lt;value&gt;</span>matt05,matt06,matt07<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>    <span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="nt">&lt;/configuration&gt;</span>
+</span></code></pre></div>
 <h3 id="5regionservers">5.集群文件regionservers</h3>
-<pre><code class="language-go">vim regionservers 
-</code></pre>
-<pre><code class="language-go">matt05
-matt06
-matt07
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nx">vim</span><span class="w"> </span><span class="nx">regionservers</span><span class="w"> </span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">matt05</span><span class="w"></span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nx">matt06</span><span class="w"></span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="nx">matt07</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="6hadoop">6建立hadoop快捷方式</h3>
-<pre><code class="language-go">ln -s /opt/module/hadoop-3.1.3/etc/hadoop/core-site.xml /opt/module/hbase-1.3.1/conf/core-site.xml
-</code></pre>
-<pre><code class="language-go">ln -s /opt/module/hadoop-3.1.3/etc/hadoop/hdfs-site.xml /opt/module/hbase-1.3.1/conf/hdfs-site.xml
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nx">ln</span><span class="w"> </span><span class="o">-</span><span class="nx">s</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="o">/</span><span class="nx">hadoop</span><span class="o">-</span><span class="mf">3.1.3</span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">hadoop</span><span class="o">/</span><span class="nx">core</span><span class="o">-</span><span class="nx">site</span><span class="p">.</span><span class="nx">xml</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="o">/</span><span class="nx">hbase</span><span class="o">-</span><span class="mf">1.3.1</span><span class="o">/</span><span class="nx">conf</span><span class="o">/</span><span class="nx">core</span><span class="o">-</span><span class="nx">site</span><span class="p">.</span><span class="nx">xml</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nx">ln</span><span class="w"> </span><span class="o">-</span><span class="nx">s</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="o">/</span><span class="nx">hadoop</span><span class="o">-</span><span class="mf">3.1.3</span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">hadoop</span><span class="o">/</span><span class="nx">hdfs</span><span class="o">-</span><span class="nx">site</span><span class="p">.</span><span class="nx">xml</span><span class="w"> </span><span class="o">/</span><span class="nx">opt</span><span class="o">/</span><span class="nx">module</span><span class="o">/</span><span class="nx">hbase</span><span class="o">-</span><span class="mf">1.3.1</span><span class="o">/</span><span class="nx">conf</span><span class="o">/</span><span class="nx">hdfs</span><span class="o">-</span><span class="nx">site</span><span class="p">.</span><span class="nx">xml</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="7">7.分发安装</h3>
-<pre><code class="language-go">xsync hbase-1.3.1/
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nx">xsync</span><span class="w"> </span><span class="nx">hbase</span><span class="o">-</span><span class="mf">1.3.1</span><span class="o">/</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210822150446.png" /></p>
 <h2 id="23">2.3启动</h2>
 <p>记得开启同步时间</p>
 <h3 id="_1">方式一</h3>
-<pre><code class="language-go">[matt@matt05 bin]$ ./hbase-daemon.sh start master
-</code></pre>
-<pre><code class="language-go">./hbase-daemon.sh start regionserver
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="p">[</span><span class="nx">matt</span><span class="err">@</span><span class="nx">matt05</span><span class="w"> </span><span class="nx">bin</span><span class="p">]</span><span class="err">$</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="nx">hbase</span><span class="o">-</span><span class="nx">daemon</span><span class="p">.</span><span class="nx">sh</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="nx">master</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="p">.</span><span class="o">/</span><span class="nx">hbase</span><span class="o">-</span><span class="nx">daemon</span><span class="p">.</span><span class="nx">sh</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="nx">regionserver</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_2">方式二</h3>
-<pre><code class="language-go">bin/start-hbase.sh
-
-bin/stop-hbase.sh
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nx">bin</span><span class="o">/</span><span class="nx">start</span><span class="o">-</span><span class="nx">hbase</span><span class="p">.</span><span class="nx">sh</span><span class="w"></span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nx">bin</span><span class="o">/</span><span class="nx">stop</span><span class="o">-</span><span class="nx">hbase</span><span class="p">.</span><span class="nx">sh</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="24">2.4访问</h2>
 <h3 id="web">web页面</h3>
 <p>ip:port</p>
@@ -2684,109 +2683,107 @@ bin/stop-hbase.sh
 <h1 id="3">3.使用</h1>
 <h2 id="31">3.1基础</h2>
 <h3 id="hbase-shell">进入hbase shell</h3>
-<pre><code class="language-go">./hbase shell
-
-
-quit
-exit
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="p">.</span><span class="o">/</span><span class="nx">hbase</span><span class="w"> </span><span class="nx">shell</span><span class="w"></span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nx">quit</span><span class="w"></span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="nx">exit</span><span class="w"></span>
+</span></code></pre></div>
 <p>退出；</p>
 <h3 id="_3">帮助</h3>
-<pre><code class="language-go">help
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nx">help</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_4">查看有哪些表</h3>
-<pre><code class="language-go">list
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nx">list</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_5">命名相关</h2>
-<pre><code class="language-go">// 创建命名空间
-create_namespace 'test1'
-
-
-
-create 'test1:student','info1'
-
-
-// 需要先删除该命名空间下的表
-drop_namespace 'test1'
-
-
-list_namespace
-
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">// 创建命名空间</span><span class="w"></span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nx">create_namespace</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">test1</span><span class="err">&#39;</span><span class="w"></span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="nx">create</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">test1</span><span class="p">:</span><span class="nx">student</span><span class="sc">&#39;,&#39;</span><span class="nx">info1</span><span class="err">&#39;</span><span class="w"></span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="c1">// 需要先删除该命名空间下的表</span><span class="w"></span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="nx">drop_namespace</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">test1</span><span class="err">&#39;</span><span class="w"></span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a><span class="nx">list_namespace</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="ddl">表相关ddl</h2>
-<pre><code class="language-go">hbase(main):023:0&gt; create
-
-ERROR: wrong number of arguments (0 for 1)
-
-Here is some help for this command:
-Creates a table. Pass a table name, and a set of column family
-specifications (at least one), and, optionally, table configuration.
-Column specification can be a simple string (name), or a dictionary
-(dictionaries are described below in main help output), necessarily 
-including NAME attribute. 
-Examples:
-
-Create a table with namespace=ns1 and table qualifier=t1
-  hbase&gt; create 'ns1:t1', {NAME =&gt; 'f1', VERSIONS =&gt; 5}
-
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nx">hbase</span><span class="p">(</span><span class="nx">main</span><span class="p">):</span><span class="mo">023</span><span class="p">:</span><span class="mi">0</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">create</span><span class="w"></span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="nx">ERROR</span><span class="p">:</span><span class="w"> </span><span class="nx">wrong</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">arguments</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="nx">Here</span><span class="w"> </span><span class="nx">is</span><span class="w"> </span><span class="nx">some</span><span class="w"> </span><span class="nx">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nx">this</span><span class="w"> </span><span class="nx">command</span><span class="p">:</span><span class="w"></span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="nx">Creates</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">table</span><span class="p">.</span><span class="w"> </span><span class="nx">Pass</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">table</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">and</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">set</span><span class="w"> </span><span class="nx">of</span><span class="w"> </span><span class="nx">column</span><span class="w"> </span><span class="nx">family</span><span class="w"></span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="nx">specifications</span><span class="w"> </span><span class="p">(</span><span class="nx">at</span><span class="w"> </span><span class="nx">least</span><span class="w"> </span><span class="nx">one</span><span class="p">),</span><span class="w"> </span><span class="nx">and</span><span class="p">,</span><span class="w"> </span><span class="nx">optionally</span><span class="p">,</span><span class="w"> </span><span class="nx">table</span><span class="w"> </span><span class="nx">configuration</span><span class="p">.</span><span class="w"></span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="nx">Column</span><span class="w"> </span><span class="nx">specification</span><span class="w"> </span><span class="nx">can</span><span class="w"> </span><span class="nx">be</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">simple</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="p">),</span><span class="w"> </span><span class="nx">or</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">dictionary</span><span class="w"></span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="p">(</span><span class="nx">dictionaries</span><span class="w"> </span><span class="nx">are</span><span class="w"> </span><span class="nx">described</span><span class="w"> </span><span class="nx">below</span><span class="w"> </span><span class="nx">in</span><span class="w"> </span><span class="nx">main</span><span class="w"> </span><span class="nx">help</span><span class="w"> </span><span class="nx">output</span><span class="p">),</span><span class="w"> </span><span class="nx">necessarily</span><span class="w"> </span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="nx">including</span><span class="w"> </span><span class="nx">NAME</span><span class="w"> </span><span class="nx">attribute</span><span class="p">.</span><span class="w"> </span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="nx">Examples</span><span class="p">:</span><span class="w"></span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a><span class="nx">Create</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="nx">table</span><span class="w"> </span><span class="nx">with</span><span class="w"> </span><span class="nx">namespace</span><span class="p">=</span><span class="nx">ns1</span><span class="w"> </span><span class="nx">and</span><span class="w"> </span><span class="nx">table</span><span class="w"> </span><span class="nx">qualifier</span><span class="p">=</span><span class="nx">t1</span><span class="w"></span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a><span class="w">  </span><span class="nx">hbase</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">create</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">ns1</span><span class="p">:</span><span class="nx">t1</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">NAME</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">f1</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">VERSIONS</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mi">5</span><span class="p">}</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_6">创建表</h3>
-<pre><code class="language-go">create 't2','info'
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nx">create</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">t2</span><span class="sc">&#39;,&#39;</span><span class="nx">info</span><span class="err">&#39;</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_7">删除表</h3>
-<pre><code class="language-go">disable 'test'
-drop 'test'
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nx">disable</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">test</span><span class="err">&#39;</span><span class="w"></span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="nx">drop</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">test</span><span class="err">&#39;</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_8">修改列组版本</h3>
-<pre><code class="language-go">alter 't1', {NAME =&gt; 'info', VERSIONS =&gt; 1}
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nx">alter</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">t1</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">NAME</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">info</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">VERSIONS</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">}</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_9">查看表的信息</h3>
-<pre><code class="language-go">describe 't1'
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nx">describe</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">t1</span><span class="err">&#39;</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_10">查看所有表</h3>
-<pre><code class="language-go">list
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nx">list</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="dml-crud">dml crud</h2>
-<pre><code class="language-go">put 'student','1001','info1:name','matt'
-
-
-
-scan 'student'
-
-// 表名 rowKey
-get 'student','1001'
-
-
-scan 'student',{COLUMNS =&gt; ['info1:name', 'info2:sex'], LIMIT =&gt; 10, STARTROW =&gt; '1001',STOPROW =&gt; '1003'}
-
-
-
-scan 'student', {RAW =&gt; true, VERSIONS =&gt; 3}
-</code></pre>
-<pre><code class="language-go">hbase(main):010:0&gt; scan 't2', {RAW =&gt; true, VERSIONS =&gt; 3}
-ROW                    COLUMN+CELL                                                    
- 1001                  column=info:, timestamp=1630203659417, type=DeleteColumn       
- 1001                  column=info:name, timestamp=1630203905379, type=DeleteColumn   
- 1001                  column=info:name, timestamp=1630203448221, value=b             
- 1001                  column=info:name, timestamp=1630203437357, value=a             
-1 row(s) in 0.0240 seconds
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nx">put</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">student</span><span class="sc">&#39;,&#39;</span><span class="mi">1001</span><span class="sc">&#39;,&#39;</span><span class="nx">info1</span><span class="p">:</span><span class="nx">name</span><span class="sc">&#39;,&#39;</span><span class="nx">matt</span><span class="err">&#39;</span><span class="w"></span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nx">scan</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">student</span><span class="err">&#39;</span><span class="w"></span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="c1">// 表名 rowKey</span><span class="w"></span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="nx">get</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">student</span><span class="sc">&#39;,&#39;</span><span class="mi">1001</span><span class="err">&#39;</span><span class="w"></span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="nx">scan</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">student</span><span class="err">&#39;</span><span class="p">,{</span><span class="nx">COLUMNS</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">[</span><span class="err">&#39;</span><span class="nx">info1</span><span class="p">:</span><span class="nx">name</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">info2</span><span class="p">:</span><span class="nx">sex</span><span class="err">&#39;</span><span class="p">],</span><span class="w"> </span><span class="nx">LIMIT</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nx">STARTROW</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">1001</span><span class="err">&#39;</span><span class="p">,</span><span class="nx">STOPROW</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="err">&#39;</span><span class="mi">1003</span><span class="err">&#39;</span><span class="p">}</span><span class="w"></span>
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a>
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a><span class="nx">scan</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">student</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">RAW</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">VERSIONS</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">}</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="nx">hbase</span><span class="p">(</span><span class="nx">main</span><span class="p">):</span><span class="mo">010</span><span class="p">:</span><span class="mi">0</span><span class="p">&gt;</span><span class="w"> </span><span class="nx">scan</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">t2</span><span class="err">&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="nx">RAW</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">VERSIONS</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">}</span><span class="w"></span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="nx">ROW</span><span class="w">                    </span><span class="nx">COLUMN</span><span class="o">+</span><span class="nx">CELL</span><span class="w">                                                    </span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="w"> </span><span class="mi">1001</span><span class="w">                  </span><span class="nx">column</span><span class="p">=</span><span class="nx">info</span><span class="p">:,</span><span class="w"> </span><span class="nx">timestamp</span><span class="p">=</span><span class="mi">1630203659417</span><span class="p">,</span><span class="w"> </span><span class="kd">type</span><span class="p">=</span><span class="nx">DeleteColumn</span><span class="w">       </span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="w"> </span><span class="mi">1001</span><span class="w">                  </span><span class="nx">column</span><span class="p">=</span><span class="nx">info</span><span class="p">:</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">timestamp</span><span class="p">=</span><span class="mi">1630203905379</span><span class="p">,</span><span class="w"> </span><span class="kd">type</span><span class="p">=</span><span class="nx">DeleteColumn</span><span class="w">   </span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w"> </span><span class="mi">1001</span><span class="w">                  </span><span class="nx">column</span><span class="p">=</span><span class="nx">info</span><span class="p">:</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">timestamp</span><span class="p">=</span><span class="mi">1630203448221</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">=</span><span class="nx">b</span><span class="w">             </span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w"> </span><span class="mi">1001</span><span class="w">                  </span><span class="nx">column</span><span class="p">=</span><span class="nx">info</span><span class="p">:</span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">timestamp</span><span class="p">=</span><span class="mi">1630203437357</span><span class="p">,</span><span class="w"> </span><span class="nx">value</span><span class="p">=</span><span class="nx">a</span><span class="w">             </span>
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="mi">1</span><span class="w"> </span><span class="nx">row</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span><span class="w"> </span><span class="nx">in</span><span class="w"> </span><span class="mf">0.0240</span><span class="w"> </span><span class="nx">seconds</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210823011717.png" /></p>
-<pre><code class="language-go">// update
-put 'student','1001','info1:name','matt1'
-
-
-// 指定到列组则不会删除
-delete 'student','1001','info1:sex'
-
-
-
-deleteall 'student','1002'
-
-
-
-truncate 'student'
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1">// update</span><span class="w"></span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="nx">put</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">student</span><span class="sc">&#39;,&#39;</span><span class="mi">1001</span><span class="sc">&#39;,&#39;</span><span class="nx">info1</span><span class="p">:</span><span class="nx">name</span><span class="sc">&#39;,&#39;</span><span class="nx">matt1</span><span class="err">&#39;</span><span class="w"></span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="c1">// 指定到列组则不会删除</span><span class="w"></span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="nx">delete</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">student</span><span class="sc">&#39;,&#39;</span><span class="mi">1001</span><span class="sc">&#39;,&#39;</span><span class="nx">info1</span><span class="p">:</span><span class="nx">sex</span><span class="err">&#39;</span><span class="w"></span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="nx">deleteall</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">student</span><span class="sc">&#39;,&#39;</span><span class="mi">1002</span><span class="err">&#39;</span><span class="w"></span>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="nx">truncate</span><span class="w"> </span><span class="err">&#39;</span><span class="nx">student</span><span class="err">&#39;</span><span class="w"></span>
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -2822,7 +2819,10 @@ truncate 'student'
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -2881,7 +2881,7 @@ truncate 'student'
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

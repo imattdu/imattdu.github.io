@@ -3300,74 +3300,74 @@
 <p>（2）如果块设置的太大，从磁盘传输数据的时间会明显大于定位这个块开 始位置所需的时间。导致程序在处理这块数据时，会非常慢。 总结：HDFS块的大小设置主要取决于磁盘传输速率。</p>
 <h2 id="shell">shell</h2>
 <h3 id="help">help</h3>
-<pre><code class="language-bash">hadoop fs -help rm
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>hadoop fs -help rm
+</span></code></pre></div>
 <h3 id="_1">创建文件夹</h3>
-<pre><code class="language-go">hadoop fs -mkdir /sanguo
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">mkdir</span><span class="w"> </span><span class="o">/</span><span class="nx">sanguo</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_2">剪切</h3>
-<pre><code class="language-bash">hadoop fs -mv /sanguo/wuguo.txt /
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>hadoop fs -mv /sanguo/wuguo.txt /
+</span></code></pre></div>
 <h3 id="_3">拷贝</h3>
-<pre><code class="language-bash">hadoop fs -cp /sanguo/shuguo.txt /sanguo/jingguo
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>hadoop fs -cp /sanguo/shuguo.txt /sanguo/jingguo
+</span></code></pre></div>
 <h3 id="put">上传 put</h3>
-<pre><code class="language-go">hadoop fs -put wuguo.txt /sanguo
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">put</span><span class="w"> </span><span class="nx">wuguo</span><span class="p">.</span><span class="nx">txt</span><span class="w"> </span><span class="o">/</span><span class="nx">sanguo</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="get">下载 get</h3>
-<pre><code class="language-go">hadoop fs -get /xiyou/test1 ./
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">get</span><span class="w"> </span><span class="o">/</span><span class="nx">xiyou</span><span class="o">/</span><span class="nx">test1</span><span class="w"> </span><span class="p">.</span><span class="o">/</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="rm">rm</h3>
-<pre><code class="language-bash">hadoop fs -rm /sanguo/shuguo.txt
-# 递归删除
-hadoop fs -rm -r /sanguo/shuguo.txt
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>hadoop fs -rm /sanguo/shuguo.txt
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="c1"># 递归删除</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>hadoop fs -rm -r /sanguo/shuguo.txt
+</span></code></pre></div>
 <h3 id="ls">ls</h3>
-<pre><code class="language-go">[matt@matt05 stuhadoop]$ hadoop fs -ls /
-Found 4 items
-drwxr-xr-x   - matt supergroup          0 2021-08-05 23:22 /input
-drwxr-xr-x   - matt supergroup          0 2021-08-05 00:22 /output
-drwxr-xr-x   - matt supergroup          0 2021-08-05 23:50 /sanguo
-drwx------   - matt supergroup          0 2021-08-05 00:21 /tmp
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">[</span><span class="nx">matt</span><span class="err">@</span><span class="nx">matt05</span><span class="w"> </span><span class="nx">stuhadoop</span><span class="p">]</span><span class="err">$</span><span class="w"> </span><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">ls</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nx">Found</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="nx">items</span><span class="w"></span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="nx">matt</span><span class="w"> </span><span class="nx">supergroup</span><span class="w">          </span><span class="mi">0</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mo">05</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">22</span><span class="w"> </span><span class="o">/</span><span class="nx">input</span><span class="w"></span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="nx">matt</span><span class="w"> </span><span class="nx">supergroup</span><span class="w">          </span><span class="mi">0</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mo">05</span><span class="w"> </span><span class="mo">00</span><span class="p">:</span><span class="mi">22</span><span class="w"> </span><span class="o">/</span><span class="nx">output</span><span class="w"></span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="nx">matt</span><span class="w"> </span><span class="nx">supergroup</span><span class="w">          </span><span class="mi">0</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mo">05</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">50</span><span class="w"> </span><span class="o">/</span><span class="nx">sanguo</span><span class="w"></span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nx">drwx</span><span class="o">------</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="nx">matt</span><span class="w"> </span><span class="nx">supergroup</span><span class="w">          </span><span class="mi">0</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mo">05</span><span class="w"> </span><span class="mo">00</span><span class="p">:</span><span class="mi">21</span><span class="w"> </span><span class="o">/</span><span class="nx">tmp</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="cat">cat</h3>
-<pre><code class="language-go">[matt@matt05 stuhadoop]$ hadoop fs -cat /sanguo/weiguo.txt
-2021-08-06 00:02:01,065 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-caocao
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p">[</span><span class="nx">matt</span><span class="err">@</span><span class="nx">matt05</span><span class="w"> </span><span class="nx">stuhadoop</span><span class="p">]</span><span class="err">$</span><span class="w"> </span><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">cat</span><span class="w"> </span><span class="o">/</span><span class="nx">sanguo</span><span class="o">/</span><span class="nx">weiguo</span><span class="p">.</span><span class="nx">txt</span><span class="w"></span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="mi">2021</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mo">06</span><span class="w"> </span><span class="mo">00</span><span class="p">:</span><span class="mo">02</span><span class="p">:</span><span class="mo">01</span><span class="p">,</span><span class="mo">065</span><span class="w"> </span><span class="nx">INFO</span><span class="w"> </span><span class="nx">sasl</span><span class="p">.</span><span class="nx">SaslDataTransferClient</span><span class="p">:</span><span class="w"> </span><span class="nx">SASL</span><span class="w"> </span><span class="nx">encryption</span><span class="w"> </span><span class="nx">trust</span><span class="w"> </span><span class="nx">check</span><span class="p">:</span><span class="w"> </span><span class="nx">localHostTrusted</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="nx">remoteHostTrusted</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kc">false</span><span class="w"></span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nx">caocao</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="tail">tail</h3>
 <p>-tail：显示一个文件的末尾 1kb 的数据</p>
-<pre><code class="language-go">hadoop fs -tail /sanguo/wuguo.txt /
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">tail</span><span class="w"> </span><span class="o">/</span><span class="nx">sanguo</span><span class="o">/</span><span class="nx">wuguo</span><span class="p">.</span><span class="nx">txt</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210806001930.png" /></p>
 <h3 id="chmod">设置权限chmod</h3>
-<pre><code class="language-go">[matt@matt05 stuhadoop]$ hadoop fs -chmod 777 /sanguo
-[matt@matt05 stuhadoop]$ hadoop fs -ls /
-Found 4 items
-drwxr-xr-x   - matt supergroup          0 2021-08-05 23:22 /input
-drwxr-xr-x   - matt supergroup          0 2021-08-05 00:22 /output
-drwxrwxrwx   - matt supergroup          0 2021-08-05 23:50 /sanguo
-drwx------   - matt supergroup          0 2021-08-05 00:21 /tmp
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">[</span><span class="nx">matt</span><span class="err">@</span><span class="nx">matt05</span><span class="w"> </span><span class="nx">stuhadoop</span><span class="p">]</span><span class="err">$</span><span class="w"> </span><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">chmod</span><span class="w"> </span><span class="mi">777</span><span class="w"> </span><span class="o">/</span><span class="nx">sanguo</span><span class="w"></span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="p">[</span><span class="nx">matt</span><span class="err">@</span><span class="nx">matt05</span><span class="w"> </span><span class="nx">stuhadoop</span><span class="p">]</span><span class="err">$</span><span class="w"> </span><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">ls</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nx">Found</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="nx">items</span><span class="w"></span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="nx">matt</span><span class="w"> </span><span class="nx">supergroup</span><span class="w">          </span><span class="mi">0</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mo">05</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">22</span><span class="w"> </span><span class="o">/</span><span class="nx">input</span><span class="w"></span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nx">drwxr</span><span class="o">-</span><span class="nx">xr</span><span class="o">-</span><span class="nx">x</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="nx">matt</span><span class="w"> </span><span class="nx">supergroup</span><span class="w">          </span><span class="mi">0</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mo">05</span><span class="w"> </span><span class="mo">00</span><span class="p">:</span><span class="mi">22</span><span class="w"> </span><span class="o">/</span><span class="nx">output</span><span class="w"></span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nx">drwxrwxrwx</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="nx">matt</span><span class="w"> </span><span class="nx">supergroup</span><span class="w">          </span><span class="mi">0</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mo">05</span><span class="w"> </span><span class="mi">23</span><span class="p">:</span><span class="mi">50</span><span class="w"> </span><span class="o">/</span><span class="nx">sanguo</span><span class="w"></span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nx">drwx</span><span class="o">------</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="nx">matt</span><span class="w"> </span><span class="nx">supergroup</span><span class="w">          </span><span class="mi">0</span><span class="w"> </span><span class="mi">2021</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mo">05</span><span class="w"> </span><span class="mo">00</span><span class="p">:</span><span class="mi">21</span><span class="w"> </span><span class="o">/</span><span class="nx">tmp</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="chown">chown</h3>
-<pre><code class="language-go">hadoop fs -chown matt:matt /sanguo/shuguo.txt
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">chown</span><span class="w"> </span><span class="nx">matt</span><span class="p">:</span><span class="nx">matt</span><span class="w"> </span><span class="o">/</span><span class="nx">sanguo</span><span class="o">/</span><span class="nx">shuguo</span><span class="p">.</span><span class="nx">txt</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210806000640.png" /></p>
 <h3 id="chgrp">chgrp</h3>
-<pre><code class="language-go">hadoop fs -chgrp matt /sanguo/weiguo.txt
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">chgrp</span><span class="w"> </span><span class="nx">matt</span><span class="w"> </span><span class="o">/</span><span class="nx">sanguo</span><span class="o">/</span><span class="nx">weiguo</span><span class="p">.</span><span class="nx">txt</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_4">查看文件大小</h3>
-<pre><code class="language-go">hadoop fs -du -h -s /
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">du</span><span class="w"> </span><span class="o">-</span><span class="nx">h</span><span class="w"> </span><span class="o">-</span><span class="nx">s</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
+</span></code></pre></div>
 <p>三个副本</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210806004950.png" /></p>
 <h3 id="_5">更加详细内容</h3>
-<pre><code class="language-go">hadoop fs -du -h /
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">du</span><span class="w"> </span><span class="o">-</span><span class="nx">h</span><span class="w"> </span><span class="o">/</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210806005124.png" /></p>
 <h3 id="_6">设置副本</h3>
-<pre><code class="language-go">hadoop fs -setrep 10 /sanguo
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nx">hadoop</span><span class="w"> </span><span class="nx">fs</span><span class="w"> </span><span class="o">-</span><span class="nx">setrep</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="o">/</span><span class="nx">sanguo</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210806005517.png" /></p>
 <h2 id="api">api</h2>
 <h3 id="install">install</h3>
@@ -3375,15 +3375,15 @@ drwx------   - matt supergroup          0 2021-08-05 00:21 /tmp
 <p>如果win10要使用还需要安装依赖库</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/2021/12/12/20211212153216.png" /></p>
 <h4 id="_7">配置</h4>
-<pre><code class="language-go">HADOOP_HOME
-
-
-D:\develop\env\hadoop-3.1.0 
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="nx">HADOOP_HOME</span><span class="w"></span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nx">D</span><span class="p">:</span><span class="err">\</span><span class="nx">develop</span><span class="err">\</span><span class="nx">env</span><span class="err">\</span><span class="nx">hadoop</span><span class="o">-</span><span class="mf">3.1.0</span><span class="w"> </span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210806010731.png" /></p>
 <p>path:</p>
-<pre><code class="language-go">%HADOOP_HOME%\bin
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="o">%</span><span class="nx">HADOOP_HOME</span><span class="o">%</span><span class="err">\</span><span class="nx">bin</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210806010954.png" /></p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210806011151.png" /></p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210806081940.png" /></p>
@@ -3443,61 +3443,59 @@ D:\develop\env\hadoop-3.1.0
 <p>（4）每 次NameNode启动的时候都会将Fsimage文件读入内存，加 载Edits里面的更新操作，保证内存 中的元数据信息是最新的、同步的，可以看成NameNode启动的时候就将Fsimage和Edits文件进行了合并。</p>
 <h4 id="521-oiv-fsimage">5.2.1 oiv 查看 Fsimage 文件</h4>
 <p>hdfs oiv -p 文件类型 -i 镜像文件 -o 转换后文件输出路径</p>
-<pre><code class="language-sh">cd /opt/module/hadoop-3.1.3/data/dfs/name/current
-</code></pre>
-<pre><code class="language-sh">hdfs oiv -p XML -i fsimage_0000000000000009738 -o /opt/module/hadoop-3.1.3/fsimage.xml
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">cd</span> /opt/module/hadoop-3.1.3/data/dfs/name/current
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>hdfs oiv -p XML -i fsimage_0000000000000009738 -o /opt/module/hadoop-3.1.3/fsimage.xml
+</span></code></pre></div>
 <h4 id="522-oev-edits">5.2.2 oev 查看 Edits 文件</h4>
 <p>hdfs oev -p 文件类型 -i 镜像文件 -o 转换后文件输出路径</p>
-<pre><code class="language-sh">hdfs oev -p XML -i edits_inprogress_0000000000000008686 -o /opt/module/hadoop-3.1.3/edits.xml
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>hdfs oev -p XML -i edits_inprogress_0000000000000008686 -o /opt/module/hadoop-3.1.3/edits.xml
+</span></code></pre></div>
 <p><strong>下载文件到本地</strong></p>
-<pre><code class="language-sh">sz fsimage.xml
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>sz fsimage.xml
+</span></code></pre></div>
 <h3 id="53checkpoint">5.3CheckPoint 时间设置</h3>
 <p>1）通常情况下，SecondaryNameNode 每隔一小时执行一次。 </p>
-<pre><code class="language-xml">&lt;property&gt;
-     &lt;name&gt;dfs.namenode.checkpoint.period&lt;/name&gt;
-     &lt;value&gt;3600s&lt;/value&gt;
-&lt;/property&gt;
-
-</code></pre>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>     <span class="nt">&lt;name&gt;</span>dfs.namenode.checkpoint.period<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>     <span class="nt">&lt;value&gt;</span>3600s<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="nt">&lt;/property&gt;</span>
+</span></code></pre></div>
 <p>2）一分钟检查一次操作次数，当操作次数达到 1 百万时，SecondaryNameNode 执行一次。</p>
-<pre><code class="language-xml">&lt;property&gt;
-    &lt;name&gt;dfs.namenode.checkpoint.txns&lt;/name&gt;
-     &lt;value&gt;1000000&lt;/value&gt;
-    &lt;description&gt;操作动作次数&lt;/description&gt;
-&lt;/property&gt;
-&lt;property&gt;
-     &lt;name&gt;dfs.namenode.checkpoint.check.period&lt;/name&gt;
-     &lt;value&gt;60s&lt;/value&gt;
-    &lt;description&gt; 1 分钟检查一次操作次数&lt;/description&gt;
-&lt;/property&gt;
-</code></pre>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>    <span class="nt">&lt;name&gt;</span>dfs.namenode.checkpoint.txns<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>     <span class="nt">&lt;value&gt;</span>1000000<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>    <span class="nt">&lt;description&gt;</span>操作动作次数<span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>     <span class="nt">&lt;name&gt;</span>dfs.namenode.checkpoint.check.period<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a>     <span class="nt">&lt;value&gt;</span>60s<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>    <span class="nt">&lt;description&gt;</span> 1 分钟检查一次操作次数<span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="nt">&lt;/property&gt;</span>
+</span></code></pre></div>
 <h2 id="datanode">datanode</h2>
 <h3 id="datanode_1">datanode 工作机制</h3>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/2021/12/12/20211212145927.png" /></p>
 <p>1.一个数据块在 DataNode 上以文件形式存储在磁盘上，包括两个文件，一个是数据 本身，一个是元数据包括数据块的长度，块数据的校验和，以及时间戳。 </p>
 <p>2.DataNode 启动后向 NameNode 注册，通过后，周期性（6 小时）的向 NameNode 上 报所有的块信息。</p>
-<pre><code class="language-properties">&lt;property&gt;
-    &lt;name&gt;dfs.blockreport.intervalMsec&lt;/name&gt;
-    &lt;value&gt;21600000&lt;/value&gt;
-    &lt;description&gt;Determines block reporting interval in
-    milliseconds.&lt;/description&gt;
-&lt;/property&gt;
-
-</code></pre>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="err">&lt;property&gt;</span><span class="w"></span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="err">&lt;name&gt;dfs.blockreport.intervalMsec&lt;/name&gt;</span><span class="w"></span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="err">&lt;value&gt;21600000&lt;/value&gt;</span><span class="w"></span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">    </span><span class="err">&lt;description&gt;Determines</span><span class="w"> </span><span class="err">block</span><span class="w"> </span><span class="err">reporting</span><span class="w"> </span><span class="err">interval</span><span class="w"> </span><span class="err">in</span><span class="w"></span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">    </span><span class="err">milliseconds.&lt;/description&gt;</span><span class="w"></span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="err">&lt;/property&gt;</span><span class="w"></span>
+</span></code></pre></div>
 <p>DN 扫描自己节点块信息列表的时间，默认 6 小时</p>
-<pre><code class="language-properties">&lt;property&gt;
-    &lt;name&gt;dfs.datanode.directoryscan.interval&lt;/name&gt;
-    &lt;value&gt;21600s&lt;/value&gt;
-    &lt;description&gt;Interval in seconds for Datanode to scan datadirectories and reconcile the difference between blocks in memory and on
-    the disk.
-    Support multiple time unit suffix(case insensitive), as described
-    in dfs.heartbeat.interval.
-    &lt;/description&gt;
-&lt;/property&gt;
-</code></pre>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="err">&lt;property&gt;</span><span class="w"></span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="err">&lt;name&gt;dfs.datanode.directoryscan.interval&lt;/name&gt;</span><span class="w"></span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="err">&lt;value&gt;21600s&lt;/value&gt;</span><span class="w"></span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="w">    </span><span class="err">&lt;description&gt;Interval</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">seconds</span><span class="w"> </span><span class="err">for</span><span class="w"> </span><span class="err">Datanode</span><span class="w"> </span><span class="err">to</span><span class="w"> </span><span class="err">scan</span><span class="w"> </span><span class="err">datadirectories</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">reconcile</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">difference</span><span class="w"> </span><span class="err">between</span><span class="w"> </span><span class="err">blocks</span><span class="w"> </span><span class="err">in</span><span class="w"> </span><span class="err">memory</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">on</span><span class="w"></span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">    </span><span class="err">the</span><span class="w"> </span><span class="err">disk.</span><span class="w"></span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">    </span><span class="err">Support</span><span class="w"> </span><span class="err">multiple</span><span class="w"> </span><span class="err">time</span><span class="w"> </span><span class="err">unit</span><span class="w"> </span><span class="err">suffix(case</span><span class="w"> </span><span class="err">insensitive),</span><span class="w"> </span><span class="err">as</span><span class="w"> </span><span class="err">described</span><span class="w"></span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">    </span><span class="err">in</span><span class="w"> </span><span class="err">dfs.heartbeat.interval.</span><span class="w"></span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">    </span><span class="err">&lt;/description&gt;</span><span class="w"></span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="err">&lt;/property&gt;</span><span class="w"></span>
+</span></code></pre></div>
 <p>3.心跳是每 3 秒一次，心跳返回结果带有 NameNode 给该 DataNode 的命令如复制块 数据到另一台机器，或删除某个数据块。如果超过 10 分钟没有收到某个 DataNode 的心跳， 则认为该节点不可用。 </p>
 <p>4.集群运行中可以安全加入和退出一些机器。</p>
 <h3 id="_12">数据校验</h3>
@@ -3515,15 +3513,15 @@ D:\develop\env\hadoop-3.1.0
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/2021/12/12/20211212150510.png" /></p>
 <p>4、如果定义超时时间为TimeOut，则超时时长的计算公式为：</p>
 <p>TimeOut = 2 * dfs.namenode.heartbeat.recheck-interval + 10 * dfs.heartbeat.interval。 而默认的dfs.namenode.heartbeat.recheck-interval 大小为5分钟，dfs.heartbeat.interval默认为3秒。</p>
-<pre><code class="language-properties">&lt;property&gt;
-     &lt;name&gt;dfs.namenode.heartbeat.recheck-interval&lt;/name&gt;
-     &lt;value&gt;300000&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-     &lt;name&gt;dfs.heartbeat.interval&lt;/name&gt;
-     &lt;value&gt;3&lt;/value&gt;
-&lt;/property&gt;
-</code></pre>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="err">&lt;property&gt;</span><span class="w"></span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">     </span><span class="err">&lt;name&gt;dfs.namenode.heartbeat.recheck-interval&lt;/name&gt;</span><span class="w"></span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">     </span><span class="err">&lt;value&gt;300000&lt;/value&gt;</span><span class="w"></span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="w">    </span><span class="err">&lt;/property&gt;</span><span class="w"></span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="w">    </span><span class="err">&lt;property&gt;</span><span class="w"></span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="w">     </span><span class="err">&lt;name&gt;dfs.heartbeat.interval&lt;/name&gt;</span><span class="w"></span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="w">     </span><span class="err">&lt;value&gt;3&lt;/value&gt;</span><span class="w"></span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="err">&lt;/property&gt;</span><span class="w"></span>
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -3559,7 +3557,10 @@ D:\develop\env\hadoop-3.1.0
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -3654,7 +3655,7 @@ D:\develop\env\hadoop-3.1.0
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

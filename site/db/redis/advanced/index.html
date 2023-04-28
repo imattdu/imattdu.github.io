@@ -3523,11 +3523,11 @@
 <p>订阅者：接收信息</p>
 <h3 id="redis">redis发布订阅</h3>
 <p>订阅管道c1</p>
-<pre><code class="language-sh">subscribe c1
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>subscribe c1
+</span></code></pre></div>
 <p>在管道c1发布消息</p>
-<pre><code class="language-sh">publish c1 1
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>publish c1 <span class="m">1</span>
+</span></code></pre></div>
 <h2 id="_3">新数据类型</h2>
 <h3 id="bitmaps">bitmaps</h3>
 <p>存储01组成的数组</p>
@@ -3535,27 +3535,27 @@
 <h5 id="setbit">setbit</h5>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202206282336522.png" /></p>
 <p>offset从0开始</p>
-<pre><code class="language-sh">setbit b1 0 0
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>setbit b1 <span class="m">0</span> <span class="m">0</span>
+</span></code></pre></div>
 <h5 id="getbit">getbit</h5>
 <p>getbit key offset</p>
-<pre><code class="language-sh">getbit b1 0
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>getbit b1 <span class="m">0</span>
+</span></code></pre></div>
 <h5 id="bitcount">bitcount</h5>
 <p>bitcount key start end</p>
 <p>start,end 均包含 start-&gt;end之间1的个数</p>
 <p>-1：最后一位</p>
 <p>-2：倒数第二位</p>
-<pre><code class="language-sh">bitcount b1 0 3
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>bitcount b1 <span class="m">0</span> <span class="m">3</span>
+</span></code></pre></div>
 <h5 id="bitop">bitop</h5>
 <p>bitop and(or/not/xor)  destkey k1 k2 k3 ....</p>
 <p>and：&amp;&amp;</p>
 <p>or：或者</p>
 <p>not：非</p>
 <p>xor:异或</p>
-<pre><code class="language-sh">bitop and b3 b1 b2
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>bitop and b3 b1 b2
+</span></code></pre></div>
 <h3 id="hyperloglog">HyperLogLog</h3>
 <h4 id="_5">概述</h4>
 <p>统计某个key 不重复元素的个数</p>
@@ -3569,87 +3569,84 @@
 <p>5</p>
 <h4 id="_7">命令</h4>
 <h5 id="pfadd">pfadd</h5>
-<pre><code class="language-sh">pfadd key v1 v2 ....
-
-
-pfadd p1 1 2 3
-
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>pfadd key v1 v2 ....
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>pfadd p1 <span class="m">1</span> <span class="m">2</span> <span class="m">3</span>
+</span></code></pre></div>
 <h5 id="pfcount">pfcount</h5>
 <p>计算多个key的基数</p>
-<pre><code class="language-sh">pfcount k1 k2 k3 ....
-
-
-pfcount p1
-
-
-pfcount p1 p2
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>pfcount k1 k2 k3 ....
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>pfcount p1
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>pfcount p1 p2
+</span></code></pre></div>
 <h5 id="pfmerge">pfmerge</h5>
 <p>将多个key进行合并</p>
-<pre><code class="language-sh">pfmerge destkey k1 k2 k3
-
-
-
-
-pfmerge p3 p2 p1
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>pfmerge destkey k1 k2 k3
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>pfmerge p3 p2 p1
+</span></code></pre></div>
 <h3 id="geospatial">Geospatial</h3>
 <h4 id="_8">概述</h4>
 <p>经纬度</p>
 <h4 id="_9">命令</h4>
 <h5 id="geoadd">geoadd 添加</h5>
 <p>有效的经度从 -180 度到 180 度。有效的纬度从 -85.05112878 度到 85.05112878 度。</p>
-<pre><code class="language-sh">
-geoadd key 经度 纬度 成员 [经度 纬度 成员]
-
-
-geoadd g1 1 1 a1
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>geoadd key 经度 纬度 成员 <span class="o">[</span>经度 纬度 成员<span class="o">]</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>geoadd g1 <span class="m">1</span> <span class="m">1</span> a1
+</span></code></pre></div>
 <h5 id="geopos">geopos 定位</h5>
 <p>获取指定成员的经度 纬度</p>
-<pre><code class="language-sh">
-geopos key member [member ...]
-
-
-127.0.0.1:6379&gt; geopos g1 a1
-1) 1) &quot;0.99999994039535522&quot;
-   2) &quot;0.99999945914297683&quot;
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>geopos key member <span class="o">[</span>member ...<span class="o">]</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="m">127</span>.0.0.1:6379&gt; geopos g1 a1
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="m">1</span><span class="o">)</span> <span class="m">1</span><span class="o">)</span> <span class="s2">&quot;0.99999994039535522&quot;</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>   <span class="m">2</span><span class="o">)</span> <span class="s2">&quot;0.99999945914297683&quot;</span>
+</span></code></pre></div>
 <h5 id="geodist">geodist 获取俩个位置的直线距离</h5>
 <p>m 表示单位为米[默认值]。</p>
 <p>km 表示单位为千米。</p>
 <p>mi 表示单位为英里。</p>
 <p>ft 表示单位为英尺。</p>
-<pre><code class="language-sh">geodist key member1 member2 [m | km | ft | mi]
-
-
-geodist g1 a1 a2 m
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>geodist key member1 member2 <span class="o">[</span>m <span class="p">|</span> km <span class="p">|</span> ft <span class="p">|</span> mi<span class="o">]</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>geodist g1 a1 a2 m
+</span></code></pre></div>
 <h5 id="georadius">georadius 给定经纬度为中心 找到一定半径内的元素</h5>
-<pre><code class="language-sh">georadius key 经度 纬度 radius m | km | ft | mi
-
-
-
-georadius g1 1 1 1000 km
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>georadius key 经度 纬度 radius m <span class="p">|</span> km <span class="p">|</span> ft <span class="p">|</span> mi
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>georadius g1 <span class="m">1</span> <span class="m">1</span> <span class="m">1000</span> km
+</span></code></pre></div>
 <h2 id="redis_1">redis 事务</h2>
 <h3 id="redis_2">redis事务定义</h3>
 <p>Redis事务是一个单独的隔离操作：事务中所有命令都会序列化、按顺序的执行。事务执行过程中，不会被可他客户端发送的命令打断。</p>
 <h3 id="multi-exec-discard">multi exec discard</h3>
 <p>从输入Multi命令开始，输入的命令都会依次进入命令队列中，但不会执行，直到输入Exec后，Redis会将之前的命令队列中的命令依次执行。</p>
 <p>组队的过程中可以通过discard来放弃组队。</p>
-<pre><code class="language-sh">127.0.0.1:6379&gt; multi
-OK
-127.0.0.1:6379(TX)&gt; set 1 1
-QUEUED
-127.0.0.1:6379(TX)&gt; set 2 2
-QUEUED
-127.0.0.1:6379(TX)&gt; exec
-1) OK
-2) OK
-127.0.0.1:6379&gt;
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="m">127</span>.0.0.1:6379&gt; multi
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>OK
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="m">127</span>.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">set</span> <span class="m">1</span> <span class="m">1</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>QUEUED
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="m">127</span>.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">set</span> <span class="m">2</span> <span class="m">2</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>QUEUED
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="m">127</span>.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">exec</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="m">1</span><span class="o">)</span> OK
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="m">2</span><span class="o">)</span> OK
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="m">127</span>.0.0.1:6379&gt;
+</span></code></pre></div>
 <h3 id="_10">如果发生错误</h3>
 <p>组队中某个命令出现了报告错误，执行时整个的所有队列都会被取消。</p>
 <p>如果执行阶段某个命令报出了错误，则只有报错的命令不会被执行，而其他的命令都会执行，不会回滚。</p>
@@ -3660,16 +3657,16 @@ QUEUED
 <p><strong>乐观锁(Optimistic Lock),</strong> 顾名思义，就是很乐观，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，可以使用版本号等机制。<strong>乐观锁适用于多读的应用类型，这样可以提高吞吐量</strong>。Redis就是利用这种check-and-set机制实现事务的。</p>
 <h3 id="watch-unwatch">watch unwatch</h3>
 <p>在执行multi之前，先执行watch key1 [key2],可以监视一个(或多个) key ，如果在事务<strong>执行之前这个(</strong><strong>或这些) key</strong> <strong>被其他命令所改动，那么事务将被打断。</strong></p>
-<pre><code class="language-sh">127.0.0.1:6379&gt; watch 1
-OK
-127.0.0.1:6379&gt; multi
-OK
-127.0.0.1:6379(TX)&gt; set 1 1
-QUEUED
-127.0.0.1:6379(TX)&gt; exec
-(nil)
-127.0.0.1:6379&gt;
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="m">127</span>.0.0.1:6379&gt; watch <span class="m">1</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>OK
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="m">127</span>.0.0.1:6379&gt; multi
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>OK
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="m">127</span>.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">set</span> <span class="m">1</span> <span class="m">1</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>QUEUED
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="m">127</span>.0.0.1:6379<span class="o">(</span>TX<span class="o">)</span>&gt; <span class="nb">exec</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a><span class="o">(</span>nil<span class="o">)</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a><span class="m">127</span>.0.0.1:6379&gt;
+</span></code></pre></div>
 <p>unwatch 取消对key的监视</p>
 <h3 id="redis_3">redis事务特性</h3>
 <p>Ø 单独的隔离操作 </p>
@@ -3689,8 +3686,8 @@ QUEUED
 <h4 id="config">config</h4>
 <h5 id="_15">指定文件位置</h5>
 <p>redis.conf</p>
-<pre><code class="language-sh">dir /opt/homebrew/var/db/redis/
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>dir /opt/homebrew/var/db/redis/
+</span></code></pre></div>
 <h5 id="_16">配置触发策略</h5>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202207091120910.png" /></p>
 <p>不设置save指令，或者给save传入空字符串</p>
@@ -3794,41 +3791,41 @@ QUEUED
 <p>从单机中的redis.conf复制一份redis.conf</p>
 <p>新建redis6379.conf,redis6380.conf,redis6381.conf</p>
 <p>填入如下内容，修改<strong>pidfile,port,dbfilename</strong></p>
-<pre><code class="language-sh">include /opt/homebrew/etc/myredis/redis.conf
-pidfile &quot;/var/run/redis_6379.pid&quot;
-port 6379
-dbfilename dump6379.rdb
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>include /opt/homebrew/etc/myredis/redis.conf
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>pidfile <span class="s2">&quot;/var/run/redis_6379.pid&quot;</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>port <span class="m">6379</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>dbfilename dump6379.rdb
+</span></code></pre></div>
 <h5 id="_29">启动</h5>
 <p>启动三台redis服务器</p>
-<pre><code class="language-sh">❯ redis-server ./redis6379.conf
-❯ redis-server ./redis6380.conf
-❯ redis-server ./redis6381.conf
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>❯ redis-server ./redis6379.conf
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>❯ redis-server ./redis6380.conf
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>❯ redis-server ./redis6381.conf
+</span></code></pre></div>
 <h5 id="_30">查看</h5>
-<pre><code class="language-sh">127.0.0.1:6379&gt; info replication
-# Replication
-role:master
-connected_slaves:0
-master_failover_state:no-failover
-master_replid:08f03d154f528b0980ccb908bff473e966a19509
-master_replid2:0000000000000000000000000000000000000000
-master_repl_offset:0
-second_repl_offset:-1
-repl_backlog_active:0
-repl_backlog_size:1048576
-repl_backlog_first_byte_offset:0
-repl_backlog_histlen:0
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="m">127</span>.0.0.1:6379&gt; info replication
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="c1"># Replication</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>role:master
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>connected_slaves:0
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>master_failover_state:no-failover
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>master_replid:08f03d154f528b0980ccb908bff473e966a19509
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>master_replid2:0000000000000000000000000000000000000000
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>master_repl_offset:0
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>second_repl_offset:-1
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>repl_backlog_active:0
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>repl_backlog_size:1048576
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>repl_backlog_first_byte_offset:0
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>repl_backlog_histlen:0
+</span></code></pre></div>
 <h5 id="_31">从机配置 主机不配置</h5>
 <p>6380,6381配置</p>
-<pre><code class="language-sh">slaveof 127.0.0.1 6379
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>slaveof <span class="m">127</span>.0.0.1 <span class="m">6379</span>
+</span></code></pre></div>
 <h5 id="_32">注意</h5>
 <p>从机写数据就会报错</p>
-<pre><code class="language-sh">127.0.0.1:6381&gt; set 1 1
-(error) READONLY You can't write against a read only replica.
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="m">127</span>.0.0.1:6381&gt; <span class="nb">set</span> <span class="m">1</span> <span class="m">1</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="o">(</span>error<span class="o">)</span> READONLY You can<span class="err">&#39;</span>t write against a <span class="nb">read</span> only replica.
+</span></code></pre></div>
 <p>主机挂掉重启即可</p>
 <p>从机重启需要重新配置slaveof 127.0.0.1 6379，也可以写在配置文件中</p>
 <h4 id="_33">常见的三种主从模式</h4>
@@ -3842,19 +3839,19 @@ repl_backlog_histlen:0
 <p>基于薪火相传</p>
 <p>当一个master宕机后，后面的slave可以立刻升为master，其后面的slave不用做任何修改。</p>
 <p>使用如下命令</p>
-<pre><code class="language-sh">slaveof no one 
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>slaveof no one 
+</span></code></pre></div>
 <h4 id="_37">哨兵模式</h4>
 <h5 id="what_4">what</h5>
 <p><strong>反客为主的自动版</strong>，能够后台监控主机是否故障，如果故障了根据投票数自动将从库转换为主库</p>
 <h5 id="use_2">use</h5>
 <p>使用一主二仆， master:6379, slaver:6380,6381</p>
 <p>配置文件下新建sentinel.conf</p>
-<pre><code class="language-sh">sentinel monitor mymaster 127.0.0.1 6379 1
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>sentinel monitor mymaster <span class="m">127</span>.0.0.1 <span class="m">6379</span> <span class="m">1</span>
+</span></code></pre></div>
 <p>启动哨兵</p>
-<pre><code class="language-sh">redis-sentinel  ./sentinel.conf 
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>redis-sentinel  ./sentinel.conf 
+</span></code></pre></div>
 <p>选举规则</p>
 <p>1</p>
 <p>master挂掉，则根据下列条件从slaver中选举一个master</p>
@@ -3880,50 +3877,50 @@ repl_backlog_histlen:0
 <h4 id="_40">搭建</h4>
 <h5 id="_41">删除持计化文件</h5>
 <p>查看redis.conf配置文件持久化文件目录</p>
-<pre><code class="language-sh">dir /opt/homebrew/var/db/redis/
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>dir /opt/homebrew/var/db/redis/
+</span></code></pre></div>
 <p>删除持久化文件</p>
 <h5 id="_42">新建如下配置文件</h5>
 <p>在如下目录新建redis6379.conf</p>
 <p>redis6379.conf redis6380.conf redis6381.conf redis6389.conf redis6390.conf redis6391.conf</p>
-<pre><code class="language-sh">/opt/homebrew/etc/myredis/cluster
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>/opt/homebrew/etc/myredis/cluster
+</span></code></pre></div>
 <p>cluster-enabled yes  打开集群模式</p>
 <p>cluster-config-file nodes-6379.conf 设定节点配置文件名</p>
 <p>cluster-node-timeout 15000  设定节点失联时间，超过该时间（毫秒），集群自动进行主从切换。</p>
-<pre><code class="language-sh">include /opt/homebrew/etc/myredis/redis.conf
-port 6379
-pidfile &quot;/var/run/redis_6379.pid&quot;
-
-dbfilename &quot;dump6379.rdb&quot;
-logfile &quot;/opt/homebrew/var/db/redis/redis_cluster/logs/redis_err_6379.log&quot;
-
-
-cluster-enabled yes
-cluster-config-file nodes-6379.conf
-cluster-node-timeout 15000
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>include /opt/homebrew/etc/myredis/redis.conf
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>port <span class="m">6379</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>pidfile <span class="s2">&quot;/var/run/redis_6379.pid&quot;</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>dbfilename <span class="s2">&quot;dump6379.rdb&quot;</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>logfile <span class="s2">&quot;/opt/homebrew/var/db/redis/redis_cluster/logs/redis_err_6379.log&quot;</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>cluster-enabled yes
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>cluster-config-file nodes-6379.conf
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>cluster-node-timeout <span class="m">15000</span>
+</span></code></pre></div>
 <h5 id="_43">启动服务端</h5>
 <p>启动6台redis,</p>
 <p>启动可能会报错，需要新建日志所在的目录</p>
-<pre><code class="language-sh">❯ redis-server ./redis6379.conf
-❯ redis-server ./redis6380.conf
-❯ redis-server ./redis6381.conf
-❯ redis-server ./redis6389.conf
-❯ redis-server ./redis6390.conf
-❯ redis-server ./redis6391.conf
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>❯ redis-server ./redis6379.conf
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>❯ redis-server ./redis6380.conf
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>❯ redis-server ./redis6381.conf
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>❯ redis-server ./redis6389.conf
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>❯ redis-server ./redis6390.conf
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>❯ redis-server ./redis6391.conf
+</span></code></pre></div>
 <h5 id="_44">合体</h5>
 <p>不要使用127.0.0.1,使用真实ip192.168.199.222</p>
-<pre><code class="language-sh">redis-cli --cluster create --cluster-replicas 1 192.168.199.222:6379 192.168.199.222:6380 192.168.199.222:6381 192.168.199.222:6389 192.168.199.222:6390 192.168.199.222:6391
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>redis-cli --cluster create --cluster-replicas <span class="m">1</span> <span class="m">192</span>.168.199.222:6379 <span class="m">192</span>.168.199.222:6380 <span class="m">192</span>.168.199.222:6381 <span class="m">192</span>.168.199.222:6389 <span class="m">192</span>.168.199.222:6390 <span class="m">192</span>.168.199.222:6391
+</span></code></pre></div>
 <h5 id="_45">启动客户端</h5>
-<pre><code class="language-sh">redis-cli -c -p 6379
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>redis-cli -c -p <span class="m">6379</span>
+</span></code></pre></div>
 <h4 id="_46">基础使用</h4>
 <h5 id="_47">查看集群信息</h5>
-<p><code>sh
- cluster nodes</code></p>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>cluster nodes
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202206191121531.png" /></p>
 <h4 id="slots">slots</h4>
 <p>一个 Redis 集群包含 16384 个插槽（hash slot）， 数据库中的每个键都属于这 16384 个插槽的其中一个， </p>
@@ -3935,24 +3932,24 @@ cluster-node-timeout 15000
 <h4 id="set-mset">set mset</h4>
 <p>不在一个slot下的键值，是不能使用mget,mset等多键操作。</p>
 <p>可以通过{}来定义组的概念，从而使key中{}内相同内容的键值对放到一个slot中去。</p>
-<pre><code class="language-sh">127.0.0.1:6379&gt; set s1 1
--&gt; Redirected to slot [15224] located at 192.168.199.222:6381
-OK
-</code></pre>
-<pre><code class="language-sh">192.168.199.222:6381&gt; mset name{user} matt age{user} 12
--&gt; Redirected to slot [5474] located at 192.168.199.222:6380
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="m">127</span>.0.0.1:6379&gt; <span class="nb">set</span> s1 <span class="m">1</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>-&gt; Redirected to slot <span class="o">[</span><span class="m">15224</span><span class="o">]</span> located at <span class="m">192</span>.168.199.222:6381
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>OK
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="m">192</span>.168.199.222:6381&gt; mset name<span class="o">{</span>user<span class="o">}</span> matt age<span class="o">{</span>user<span class="o">}</span> <span class="m">12</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>-&gt; Redirected to slot <span class="o">[</span><span class="m">5474</span><span class="o">]</span> located at <span class="m">192</span>.168.199.222:6380
+</span></code></pre></div>
 <h4 id="_48">其他操作</h4>
 <p>判断某个key在哪个槽位</p>
-<pre><code class="language-sh">cluster keyslot s1
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>cluster keyslot s1
+</span></code></pre></div>
 <p>统计15345槽位有几个key</p>
-<pre><code class="language-sh">cluster countkeysinslot 15345
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>cluster countkeysinslot <span class="m">15345</span>
+</span></code></pre></div>
 <p>返回槽位2843 2 个key</p>
-<pre><code class="language-sh">192.168.199.222:6379&gt; cluster getkeysinslot 2843 2
-1) &quot;s2&quot;
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="m">192</span>.168.199.222:6379&gt; cluster getkeysinslot <span class="m">2843</span> <span class="m">2</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="m">1</span><span class="o">)</span> <span class="s2">&quot;s2&quot;</span>
+</span></code></pre></div>
 <h3 id="_49">故障恢复</h3>
 <p>如果某一段插槽的主从都挂掉，而cluster-require-full-coverage 为yes ，那么 ，整个集群都挂掉</p>
 <p>如果某一段插槽的主从都挂掉，而cluster-require-full-coverage 为no ，那么，该插槽数据全都不能使用，也无法存储。</p>
@@ -4005,8 +4002,8 @@ OK
 <p>2执行 释放锁 会把别的线程的锁释放</p>
 <h4 id="_58">基础</h4>
 <p>1.使用setnx</p>
-<pre><code class="language-sh">set k1 1 nx ex 3
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nb">set</span> k1 <span class="m">1</span> nx ex <span class="m">3</span>
+</span></code></pre></div>
 <p>ex 3 : 3s</p>
 <p>px 3:3ms</p>
 <p>2如果获取锁成功，处理，释放锁</p>
@@ -4055,7 +4052,10 @@ OK
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -4114,7 +4114,7 @@ OK
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

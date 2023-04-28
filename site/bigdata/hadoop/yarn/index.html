@@ -2501,242 +2501,238 @@
 <p>静态数据</p>
 <h3 id="matt">matt</h3>
 <p>DAG有向无环图:任务1执行输出的结果作为任务2的输入 。。。。。</p>
-<pre><code class="language-sh">cd /opt/module/hadoop-3.1.3/share/hadoop/mapreduce
-
-
-
-sz hadoop-mapreduce-examples-3.1.3.jar    
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span> /opt/module/hadoop-3.1.3/share/hadoop/mapreduce
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>sz hadoop-mapreduce-examples-3.1.3.jar    
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/2021/12/15/20211215004015.png" /></p>
 <p>FIFO调度器:job1运行完才可以运行job2</p>
 <p>c7关闭 虚拟内存检查</p>
-<pre><code class="language-xml">&lt;!-- 选择调度器，默认容量 --&gt;
-&lt;property&gt;
-&lt;description&gt;The class to use as the resource scheduler.&lt;/description&gt;
-&lt;name&gt;yarn.resourcemanager.scheduler.class&lt;/name&gt;
-&lt;value&gt;org.apache.hadoop.yarn.server.resourcemanager.scheduler.capaci
-ty.CapacityScheduler&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- ResourceManager 处理调度器请求的线程数量,默认 50；如果提交的任务数大于 50，可以
-增加该值，但是不能超过 3 台 * 4 线程 = 12 线程（去除其他应用程序实际不能超过 8） --&gt;
-&lt;property&gt;
-&lt;description&gt;Number of threads to handle scheduler
-interface.&lt;/description&gt;
-&lt;name&gt;yarn.resourcemanager.scheduler.client.thread-count&lt;/name&gt;
-&lt;value&gt;8&lt;/value&gt;
-&lt;/property&gt;
-
-&lt;!-- 是否让 yarn 自动检测硬件进行配置，默认是 false，如果该节点有很多其他应用程序，建议
-手动配置。如果该节点没有其他应用程序，可以采用自动 --&gt;
-&lt;property&gt;
-&lt;description&gt;Enable auto-detection of node capabilities such as
-memory and CPU.
-&lt;/description&gt;
-&lt;name&gt;yarn.nodemanager.resource.detect-hardware-capabilities&lt;/name&gt;
-&lt;value&gt;false&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 是否将虚拟核数当作 CPU 核数，默认是 false，采用物理 CPU 核数 --&gt;
-&lt;property&gt;
-&lt;description&gt;Flag to determine if logical processors(such as
-hyperthreads) should be counted as cores. Only applicable on Linux
-when yarn.nodemanager.resource.cpu-vcores is set to -1 and
-yarn.nodemanager.resource.detect-hardware-capabilities is true.
-&lt;/description&gt;
-&lt;name&gt;yarn.nodemanager.resource.count-logical-processors-ascores&lt;/name&gt;
-&lt;value&gt;false&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 虚拟核数和物理核数乘数，默认是 1.0 --&gt;
-&lt;property&gt;
-&lt;description&gt;Multiplier to determine how to convert phyiscal cores to
-vcores. This value is used if yarn.nodemanager.resource.cpu-vcores
-is set to -1(which implies auto-calculate vcores) and
-yarn.nodemanager.resource.detect-hardware-capabilities is set to true.
-The number of vcores will be calculated as number of CPUs * multiplier.
-&lt;/description&gt;
-&lt;name&gt;yarn.nodemanager.resource.pcores-vcores-multiplier&lt;/name&gt;
-&lt;value&gt;1.0&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- NodeManager 使用内存数，默认 8G，修改为 4G 内存 --&gt;
-&lt;property&gt;
-&lt;description&gt;Amount of physical memory, in MB, that can be allocated
-for containers. If set to -1 and
-yarn.nodemanager.resource.detect-hardware-capabilities is true, it is
-automatically calculated(in case of Windows and Linux).
-In other cases, the default is 8192MB.
-&lt;/description&gt;
-&lt;name&gt;yarn.nodemanager.resource.memory-mb&lt;/name&gt;
-&lt;value&gt;2048&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- nodemanager 的 CPU 核数，不按照硬件环境自动设定时默认是 8 个，修改为 4 个 --&gt;
-&lt;property&gt;
-&lt;description&gt;Number of vcores that can be allocated
-for containers. This is used by the RM scheduler when allocating
-resources for containers. This is not used to limit the number of
-CPUs used by YARN containers. If it is set to -1 and
-yarn.nodemanager.resource.detect-hardware-capabilities is true, it is
-automatically determined from the hardware in case of Windows and Linux.
-In other cases, number of vcores is 8 by default.&lt;/description&gt;
-&lt;name&gt;yarn.nodemanager.resource.cpu-vcores&lt;/name&gt;
-&lt;value&gt;2&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 容器最小内存，默认 1G --&gt;
-&lt;property&gt;
-&lt;description&gt;The minimum allocation for every container request at theRM in MBs. Memory requests lower than this will be set to the value of
-this property. Additionally, a node manager that is configured to have
-less memory than this value will be shut down by the resource manager.
-&lt;/description&gt;
-&lt;name&gt;yarn.scheduler.minimum-allocation-mb&lt;/name&gt;
-&lt;value&gt;1024&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 容器最大内存，默认 8G，修改为 2G --&gt;
-&lt;property&gt;
-&lt;description&gt;The maximum allocation for every container request at the
-RM in MBs. Memory requests higher than this will throw an
-InvalidResourceRequestException.
-&lt;/description&gt;
-&lt;name&gt;yarn.scheduler.maximum-allocation-mb&lt;/name&gt;
-&lt;value&gt;2048&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 容器最小 CPU 核数，默认 1 个 --&gt;
-&lt;property&gt;
-&lt;description&gt;The minimum allocation for every container request at the
-RM in terms of virtual CPU cores. Requests lower than this will be set to
-the value of this property. Additionally, a node manager that is configured
-to have fewer virtual cores than this value will be shut down by the
-resource manager.
-&lt;/description&gt;
-&lt;name&gt;yarn.scheduler.minimum-allocation-vcores&lt;/name&gt;
-&lt;value&gt;1&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 容器最大 CPU 核数，默认 4 个，修改为 2 个 --&gt;
-&lt;property&gt;
-&lt;description&gt;The maximum allocation for every container request at the
-RM in terms of virtual CPU cores. Requests higher than this will throw an
-InvalidResourceRequestException.&lt;/description&gt;
-&lt;name&gt;yarn.scheduler.maximum-allocation-vcores&lt;/name&gt;
-&lt;value&gt;2&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 虚拟内存检查，默认打开，修改为关闭 --&gt;
-&lt;property&gt;
-&lt;description&gt;Whether virtual memory limits will be enforced for
-containers.&lt;/description&gt;
-&lt;name&gt;yarn.nodemanager.vmem-check-enabled&lt;/name&gt;
-&lt;value&gt;false&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 虚拟内存和物理内存设置比例,默认 2.1 --&gt;
-&lt;property&gt;
-&lt;description&gt;Ratio between virtual memory to physical memory when
-setting memory limits for containers. Container allocations are
-expressed in terms of physical memory, and virtual memory usage is
-allowed to exceed this allocation by this ratio.
-&lt;/description&gt;
-&lt;name&gt;yarn.nodemanager.vmem-pmem-ratio&lt;/name&gt;
-&lt;value&gt;2.1&lt;/value&gt;
-&lt;/property&gt;
-</code></pre>
-<pre><code class="language-sh">hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount /input /o2
-</code></pre>
-<pre><code class="language-xml">&lt;!-- 指定多队列，增加 hive 队列 --&gt;
-&lt;property&gt;
- &lt;name&gt;yarn.scheduler.capacity.root.queues&lt;/name&gt;
- &lt;value&gt;default,hive&lt;/value&gt;
- &lt;description&gt;
- The queues at the this level (root is the root queue).
- &lt;/description&gt;
-&lt;/property&gt;
-&lt;!-- 降低 default 队列资源额定容量为 40%，默认 100% --&gt;
-&lt;property&gt;
- &lt;name&gt;yarn.scheduler.capacity.root.default.capacity&lt;/name&gt;
- &lt;value&gt;40&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 降低 default 队列资源最大容量为 60%，默认 100% --&gt;
-&lt;property&gt;
- &lt;name&gt;yarn.scheduler.capacity.root.default.maximum-capacity&lt;/name&gt;
- &lt;value&gt;60&lt;/value&gt;
-&lt;/property&gt;
-</code></pre>
-<pre><code class="language-xml">&lt;!-- 指定 hive 队列的资源额定容量 --&gt;
-&lt;property&gt;
- &lt;name&gt;yarn.scheduler.capacity.root.hive.capacity&lt;/name&gt;
- &lt;value&gt;60&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 用户最多可以使用队列多少资源，1 表示 --&gt;
-&lt;property&gt;
- &lt;name&gt;yarn.scheduler.capacity.root.hive.user-limit-factor&lt;/name&gt;
- &lt;value&gt;1&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 指定 hive 队列的资源最大容量 --&gt;
-&lt;property&gt;
- &lt;name&gt;yarn.scheduler.capacity.root.hive.maximum-capacity&lt;/name&gt;
- &lt;value&gt;80&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 启动 hive 队列 --&gt;
-&lt;property&gt;
- &lt;name&gt;yarn.scheduler.capacity.root.hive.state&lt;/name&gt;
- &lt;value&gt;RUNNING&lt;/value&gt;
-&lt;/property&gt;
-
-
-&lt;!-- 哪些用户有权向队列提交作业 --&gt;
-&lt;property&gt;
- &lt;name&gt;yarn.scheduler.capacity.root.hive.acl_submit_applications&lt;/name&gt;
- &lt;value&gt;*&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 哪些用户有权操作队列，管理员权限（查看/杀死） --&gt;
-&lt;property&gt;
- &lt;name&gt;yarn.scheduler.capacity.root.hive.acl_administer_queue&lt;/name&gt;
- &lt;value&gt;*&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 哪些用户有权配置提交任务优先级 --&gt;
-&lt;property&gt;
-
-&lt;name&gt;yarn.scheduler.capacity.root.hive.acl_application_max_priority&lt;/nam
-e&gt;
- &lt;value&gt;*&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 任务的超时时间设置：yarn application -appId appId -updateLifetime Timeout
-参考资料： https://blog.cloudera.com/enforcing-application-lifetime-slasyarn/ --&gt;
-&lt;!-- 如果 application 指定了超时时间，则提交到该队列的 application 能够指定的最大超时
-时间不能超过该值。
---&gt;
-&lt;property&gt;
- &lt;name&gt;yarn.scheduler.capacity.root.hive.maximum-applicationlifetime&lt;/name&gt;
- &lt;value&gt;-1&lt;/value&gt;
-&lt;/property&gt;
-&lt;!-- 如果 application 没指定超时时间，则用 default-application-lifetime 作为默认
-值 --&gt;
-&lt;property&gt;
- &lt;name&gt;yarn.scheduler.capacity.root.hive.default-applicationlifetime&lt;/name&gt;
- &lt;value&gt;-1&lt;/value&gt;
-&lt;/property&gt;
-</code></pre>
-<pre><code class="language-sh">vim capacity-scheduler.xml
-</code></pre>
-<pre><code class="language-sh">hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount -D mapreduce.job.queuename=hive /input /o3
-
-
-
-</code></pre>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cm">&lt;!-- 选择调度器，默认容量 --&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">&lt;description&gt;</span>The class to use as the resource scheduler.<span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nt">&lt;name&gt;</span>yarn.resourcemanager.scheduler.class<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nt">&lt;value&gt;</span>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capaci
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>ty.CapacityScheduler<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="cm">&lt;!-- ResourceManager 处理调度器请求的线程数量,默认 50；如果提交的任务数大于 50，可以</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="cm">增加该值，但是不能超过 3 台 * 4 线程 = 12 线程（去除其他应用程序实际不能超过 8） --&gt;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nt">&lt;description&gt;</span>Number of threads to handle scheduler
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>interface.<span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="nt">&lt;name&gt;</span>yarn.resourcemanager.scheduler.client.thread-count<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="nt">&lt;value&gt;</span>8<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="cm">&lt;!-- 是否让 yarn 自动检测硬件进行配置，默认是 false，如果该节点有很多其他应用程序，建议</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="cm">手动配置。如果该节点没有其他应用程序，可以采用自动 --&gt;</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="nt">&lt;description&gt;</span>Enable auto-detection of node capabilities such as
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>memory and CPU.
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="nt">&lt;name&gt;</span>yarn.nodemanager.resource.detect-hardware-capabilities<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="nt">&lt;value&gt;</span>false<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="cm">&lt;!-- 是否将虚拟核数当作 CPU 核数，默认是 false，采用物理 CPU 核数 --&gt;</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="nt">&lt;description&gt;</span>Flag to determine if logical processors(such as
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>hyperthreads) should be counted as cores. Only applicable on Linux
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>when yarn.nodemanager.resource.cpu-vcores is set to -1 and
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>yarn.nodemanager.resource.detect-hardware-capabilities is true.
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="nt">&lt;name&gt;</span>yarn.nodemanager.resource.count-logical-processors-ascores<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="nt">&lt;value&gt;</span>false<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="cm">&lt;!-- 虚拟核数和物理核数乘数，默认是 1.0 --&gt;</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="nt">&lt;description&gt;</span>Multiplier to determine how to convert phyiscal cores to
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>vcores. This value is used if yarn.nodemanager.resource.cpu-vcores
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>is set to -1(which implies auto-calculate vcores) and
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>yarn.nodemanager.resource.detect-hardware-capabilities is set to true.
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>The number of vcores will be calculated as number of CPUs * multiplier.
+</span><span id="__span-1-43"><a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-44"><a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="nt">&lt;name&gt;</span>yarn.nodemanager.resource.pcores-vcores-multiplier<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-45"><a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a><span class="nt">&lt;value&gt;</span>1.0<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-46"><a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-1-47"><a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="cm">&lt;!-- NodeManager 使用内存数，默认 8G，修改为 4G 内存 --&gt;</span>
+</span><span id="__span-1-48"><a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-49"><a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="nt">&lt;description&gt;</span>Amount of physical memory, in MB, that can be allocated
+</span><span id="__span-1-50"><a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>for containers. If set to -1 and
+</span><span id="__span-1-51"><a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>yarn.nodemanager.resource.detect-hardware-capabilities is true, it is
+</span><span id="__span-1-52"><a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>automatically calculated(in case of Windows and Linux).
+</span><span id="__span-1-53"><a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>In other cases, the default is 8192MB.
+</span><span id="__span-1-54"><a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a><span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-55"><a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="nt">&lt;name&gt;</span>yarn.nodemanager.resource.memory-mb<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-56"><a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a><span class="nt">&lt;value&gt;</span>2048<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-57"><a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-1-58"><a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a><span class="cm">&lt;!-- nodemanager 的 CPU 核数，不按照硬件环境自动设定时默认是 8 个，修改为 4 个 --&gt;</span>
+</span><span id="__span-1-59"><a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-60"><a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a><span class="nt">&lt;description&gt;</span>Number of vcores that can be allocated
+</span><span id="__span-1-61"><a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>for containers. This is used by the RM scheduler when allocating
+</span><span id="__span-1-62"><a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>resources for containers. This is not used to limit the number of
+</span><span id="__span-1-63"><a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>CPUs used by YARN containers. If it is set to -1 and
+</span><span id="__span-1-64"><a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>yarn.nodemanager.resource.detect-hardware-capabilities is true, it is
+</span><span id="__span-1-65"><a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>automatically determined from the hardware in case of Windows and Linux.
+</span><span id="__span-1-66"><a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>In other cases, number of vcores is 8 by default.<span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-67"><a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="nt">&lt;name&gt;</span>yarn.nodemanager.resource.cpu-vcores<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-68"><a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a><span class="nt">&lt;value&gt;</span>2<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-69"><a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-1-70"><a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a><span class="cm">&lt;!-- 容器最小内存，默认 1G --&gt;</span>
+</span><span id="__span-1-71"><a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-72"><a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a><span class="nt">&lt;description&gt;</span>The minimum allocation for every container request at theRM in MBs. Memory requests lower than this will be set to the value of
+</span><span id="__span-1-73"><a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>this property. Additionally, a node manager that is configured to have
+</span><span id="__span-1-74"><a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>less memory than this value will be shut down by the resource manager.
+</span><span id="__span-1-75"><a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-76"><a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a><span class="nt">&lt;name&gt;</span>yarn.scheduler.minimum-allocation-mb<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-77"><a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a><span class="nt">&lt;value&gt;</span>1024<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-78"><a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-1-79"><a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a><span class="cm">&lt;!-- 容器最大内存，默认 8G，修改为 2G --&gt;</span>
+</span><span id="__span-1-80"><a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-81"><a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a><span class="nt">&lt;description&gt;</span>The maximum allocation for every container request at the
+</span><span id="__span-1-82"><a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>RM in MBs. Memory requests higher than this will throw an
+</span><span id="__span-1-83"><a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>InvalidResourceRequestException.
+</span><span id="__span-1-84"><a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a><span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-85"><a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a><span class="nt">&lt;name&gt;</span>yarn.scheduler.maximum-allocation-mb<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-86"><a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a><span class="nt">&lt;value&gt;</span>2048<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-87"><a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-1-88"><a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a><span class="cm">&lt;!-- 容器最小 CPU 核数，默认 1 个 --&gt;</span>
+</span><span id="__span-1-89"><a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-90"><a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a><span class="nt">&lt;description&gt;</span>The minimum allocation for every container request at the
+</span><span id="__span-1-91"><a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>RM in terms of virtual CPU cores. Requests lower than this will be set to
+</span><span id="__span-1-92"><a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>the value of this property. Additionally, a node manager that is configured
+</span><span id="__span-1-93"><a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>to have fewer virtual cores than this value will be shut down by the
+</span><span id="__span-1-94"><a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>resource manager.
+</span><span id="__span-1-95"><a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a><span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-96"><a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a><span class="nt">&lt;name&gt;</span>yarn.scheduler.minimum-allocation-vcores<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-97"><a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a><span class="nt">&lt;value&gt;</span>1<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-98"><a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-1-99"><a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a><span class="cm">&lt;!-- 容器最大 CPU 核数，默认 4 个，修改为 2 个 --&gt;</span>
+</span><span id="__span-1-100"><a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-101"><a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a><span class="nt">&lt;description&gt;</span>The maximum allocation for every container request at the
+</span><span id="__span-1-102"><a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>RM in terms of virtual CPU cores. Requests higher than this will throw an
+</span><span id="__span-1-103"><a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>InvalidResourceRequestException.<span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-104"><a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a><span class="nt">&lt;name&gt;</span>yarn.scheduler.maximum-allocation-vcores<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-105"><a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a><span class="nt">&lt;value&gt;</span>2<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-106"><a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-1-107"><a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a><span class="cm">&lt;!-- 虚拟内存检查，默认打开，修改为关闭 --&gt;</span>
+</span><span id="__span-1-108"><a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-109"><a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a><span class="nt">&lt;description&gt;</span>Whether virtual memory limits will be enforced for
+</span><span id="__span-1-110"><a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>containers.<span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-111"><a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a><span class="nt">&lt;name&gt;</span>yarn.nodemanager.vmem-check-enabled<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-112"><a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a><span class="nt">&lt;value&gt;</span>false<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-113"><a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-1-114"><a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a><span class="cm">&lt;!-- 虚拟内存和物理内存设置比例,默认 2.1 --&gt;</span>
+</span><span id="__span-1-115"><a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-1-116"><a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a><span class="nt">&lt;description&gt;</span>Ratio between virtual memory to physical memory when
+</span><span id="__span-1-117"><a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a>setting memory limits for containers. Container allocations are
+</span><span id="__span-1-118"><a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a>expressed in terms of physical memory, and virtual memory usage is
+</span><span id="__span-1-119"><a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a>allowed to exceed this allocation by this ratio.
+</span><span id="__span-1-120"><a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a><span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-1-121"><a id="__codelineno-1-121" name="__codelineno-1-121" href="#__codelineno-1-121"></a><span class="nt">&lt;name&gt;</span>yarn.nodemanager.vmem-pmem-ratio<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-1-122"><a id="__codelineno-1-122" name="__codelineno-1-122" href="#__codelineno-1-122"></a><span class="nt">&lt;value&gt;</span>2.1<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-1-123"><a id="__codelineno-1-123" name="__codelineno-1-123" href="#__codelineno-1-123"></a><span class="nt">&lt;/property&gt;</span>
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount /input /o2
+</span></code></pre></div>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cm">&lt;!-- 指定多队列，增加 hive 队列 --&gt;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a> <span class="nt">&lt;name&gt;</span>yarn.scheduler.capacity.root.queues<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a> <span class="nt">&lt;value&gt;</span>default,hive<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a> <span class="nt">&lt;description&gt;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a> The queues at the this level (root is the root queue).
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a> <span class="nt">&lt;/description&gt;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="cm">&lt;!-- 降低 default 队列资源额定容量为 40%，默认 100% --&gt;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a> <span class="nt">&lt;name&gt;</span>yarn.scheduler.capacity.root.default.capacity<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a> <span class="nt">&lt;value&gt;</span>40<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="cm">&lt;!-- 降低 default 队列资源最大容量为 60%，默认 100% --&gt;</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a> <span class="nt">&lt;name&gt;</span>yarn.scheduler.capacity.root.default.maximum-capacity<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a> <span class="nt">&lt;value&gt;</span>60<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="nt">&lt;/property&gt;</span>
+</span></code></pre></div>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="cm">&lt;!-- 指定 hive 队列的资源额定容量 --&gt;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a> <span class="nt">&lt;name&gt;</span>yarn.scheduler.capacity.root.hive.capacity<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a> <span class="nt">&lt;value&gt;</span>60<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="cm">&lt;!-- 用户最多可以使用队列多少资源，1 表示 --&gt;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a> <span class="nt">&lt;name&gt;</span>yarn.scheduler.capacity.root.hive.user-limit-factor<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a> <span class="nt">&lt;value&gt;</span>1<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="cm">&lt;!-- 指定 hive 队列的资源最大容量 --&gt;</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a> <span class="nt">&lt;name&gt;</span>yarn.scheduler.capacity.root.hive.maximum-capacity<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a> <span class="nt">&lt;value&gt;</span>80<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="cm">&lt;!-- 启动 hive 队列 --&gt;</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a> <span class="nt">&lt;name&gt;</span>yarn.scheduler.capacity.root.hive.state<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a> <span class="nt">&lt;value&gt;</span>RUNNING<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="cm">&lt;!-- 哪些用户有权向队列提交作业 --&gt;</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a> <span class="nt">&lt;name&gt;</span>yarn.scheduler.capacity.root.hive.acl_submit_applications<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a> <span class="nt">&lt;value&gt;</span>*<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="cm">&lt;!-- 哪些用户有权操作队列，管理员权限（查看/杀死） --&gt;</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a> <span class="nt">&lt;name&gt;</span>yarn.scheduler.capacity.root.hive.acl_administer_queue<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a> <span class="nt">&lt;value&gt;</span>*<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="cm">&lt;!-- 哪些用户有权配置提交任务优先级 --&gt;</span>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="nt">&lt;name&gt;</span>yarn.scheduler.capacity.root.hive.acl_application_max_priority<span class="err">&lt;</span>/nam
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>e&gt;
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a> <span class="nt">&lt;value&gt;</span>*<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="cm">&lt;!-- 任务的超时时间设置：yarn application -appId appId -updateLifetime Timeout</span>
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="cm">参考资料： https://blog.cloudera.com/enforcing-application-lifetime-slasyarn/ --&gt;</span>
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a><span class="cm">&lt;!-- 如果 application 指定了超时时间，则提交到该队列的 application 能够指定的最大超时</span>
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a><span class="cm">时间不能超过该值。</span>
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="cm">--&gt;</span>
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a> <span class="nt">&lt;name&gt;</span>yarn.scheduler.capacity.root.hive.maximum-applicationlifetime<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a> <span class="nt">&lt;value&gt;</span>-1<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a><span class="cm">&lt;!-- 如果 application 没指定超时时间，则用 default-application-lifetime 作为默认</span>
+</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a><span class="cm">值 --&gt;</span>
+</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-4-52"><a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a> <span class="nt">&lt;name&gt;</span>yarn.scheduler.capacity.root.hive.default-applicationlifetime<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-4-53"><a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a> <span class="nt">&lt;value&gt;</span>-1<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-4-54"><a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a><span class="nt">&lt;/property&gt;</span>
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>vim capacity-scheduler.xml
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>hadoop jar ./share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount -D mapreduce.job.queuename<span class="o">=</span>hive /input /o3
+</span></code></pre></div>
 <p>优先级</p>
-<pre><code class="language-sh">hadoop jar /opt/module/hadoop-3.1.3/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar pi 5 2000000
-
-
-# 优先级高
-hadoop jar /opt/module/hadoop-3.1.3/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar pi -D mapreduce.job.priority=5 5 2000000
-
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>hadoop jar /opt/module/hadoop-3.1.3/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar pi <span class="m">5</span> <span class="m">2000000</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># 优先级高</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>hadoop jar /opt/module/hadoop-3.1.3/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar pi -D mapreduce.job.priority<span class="o">=</span><span class="m">5</span> <span class="m">5</span> <span class="m">2000000</span>
+</span></code></pre></div>
 <p>yarn tool 解决自定义程序无法指定yarn参数</p>
-<pre><code class="language-sh">yarn jar stu-yarn-1.0-SNAPSHOT.jar com.matt.yarn.WordCountDriver wordcount /input /o4
-
-
-
-yarn jar stu-yarn-1.0-SNAPSHOT.jar com.matt.yarn.WordCountDriver wordcount -Dmapreduce.job.priority=5 /input /041
-
-yarn jar stu-yarn-1.0-SNAPSHOT.jar com.matt.yarn.WordCountDriver wordcount -D mapreduce.job.priority=5 /input /042
-
-
-stu-yarn-1.0-SNAPSHOT.jar
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>yarn jar stu-yarn-1.0-SNAPSHOT.jar com.matt.yarn.WordCountDriver wordcount /input /o4
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>yarn jar stu-yarn-1.0-SNAPSHOT.jar com.matt.yarn.WordCountDriver wordcount -Dmapreduce.job.priority<span class="o">=</span><span class="m">5</span> /input /041
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>yarn jar stu-yarn-1.0-SNAPSHOT.jar com.matt.yarn.WordCountDriver wordcount -D mapreduce.job.priority<span class="o">=</span><span class="m">5</span> /input /042
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>stu-yarn-1.0-SNAPSHOT.jar
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -2772,7 +2768,10 @@ stu-yarn-1.0-SNAPSHOT.jar
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -2831,7 +2830,7 @@ stu-yarn-1.0-SNAPSHOT.jar
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

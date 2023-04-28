@@ -2509,68 +2509,68 @@
 <h3 id="_5">参考手册</h3>
 <p>https://docs.docker.com/install/linux/docker-ce/centos/</p>
 <h3 id="_6">查看版本号</h3>
-<pre><code class="language-go">cat /etc/redhat-release
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">cat</span><span class="w"> </span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">redhat</span><span class="o">-</span><span class="nx">release</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210812234746.png" /></p>
 <h3 id="gcc">确保网络正常，安装gcc</h3>
-<pre><code class="language-go">yum -y install gcc
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nx">yum</span><span class="w"> </span><span class="o">-</span><span class="nx">y</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">gcc</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="gcc-c">安装gcc-c++</h3>
-<pre><code class="language-go">yum -y install gcc-c++
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nx">yum</span><span class="w"> </span><span class="o">-</span><span class="nx">y</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">gcc</span><span class="o">-</span><span class="nx">c</span><span class="o">++</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_7">卸载旧的版本</h3>
-<pre><code class="language-sh">yum remove docker \
-                  docker-client \
-                  docker-client-latest \
-                  docker-common \
-                  docker-latest \
-                  docker-latest-logrotate \
-                  docker-logrotate \
-                  docker-engine
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>yum remove docker <span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>                  docker-client <span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>                  docker-client-latest <span class="se">\</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>                  docker-common <span class="se">\</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>                  docker-latest <span class="se">\</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>                  docker-latest-logrotate <span class="se">\</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>                  docker-logrotate <span class="se">\</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>                  docker-engine
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210728012901.png" /></p>
 <h3 id="_8">安装需要的软件包</h3>
-<pre><code class="language-go">yum install -y yum-utils
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">yum</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="o">-</span><span class="nx">y</span><span class="w"> </span><span class="nx">yum</span><span class="o">-</span><span class="nx">utils</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210728012952.png" /></p>
 <h3 id="stable"><strong>设置stable镜像仓库</strong></h3>
 <p>推荐使用这个</p>
-<pre><code class="language-go">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">yum</span><span class="o">-</span><span class="nx">config</span><span class="o">-</span><span class="nx">manager</span><span class="w"> </span><span class="o">--</span><span class="nx">add</span><span class="o">-</span><span class="nx">repo</span><span class="w"> </span><span class="nx">http</span><span class="p">:</span><span class="c1">//mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="yum">更新yum软件包索引</h3>
-<pre><code class="language-go">yum makecache fast
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nx">yum</span><span class="w"> </span><span class="nx">makecache</span><span class="w"> </span><span class="nx">fast</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="docker-ce">安装DOCKER CE</h3>
-<pre><code class="language-go">yum install docker-ce docker-ce-cli containerd.io
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nx">yum</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">docker</span><span class="o">-</span><span class="nx">ce</span><span class="w"> </span><span class="nx">docker</span><span class="o">-</span><span class="nx">ce</span><span class="o">-</span><span class="nx">cli</span><span class="w"> </span><span class="nx">containerd</span><span class="p">.</span><span class="nx">io</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="docker">启动docker</h3>
-<pre><code class="language-go">systemctl start docker
-docker version
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nx">systemctl</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="nx">docker</span><span class="w"></span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">version</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_9">测试</h3>
-<pre><code class="language-go">docker run hello-world
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">run</span><span class="w"> </span><span class="nx">hello</span><span class="o">-</span><span class="nx">world</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_10">配置阿里云镜像</h3>
-<pre><code class="language-go">mkdir -p /etc/docker
-vim  /etc/docker/daemon.json
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nx">mkdir</span><span class="w"> </span><span class="o">-</span><span class="nx">p</span><span class="w"> </span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">docker</span><span class="w"></span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nx">vim</span><span class="w">  </span><span class="o">/</span><span class="nx">etc</span><span class="o">/</span><span class="nx">docker</span><span class="o">/</span><span class="nx">daemon</span><span class="p">.</span><span class="nx">json</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_11">阿里云</h3>
-<pre><code class="language-go">{
-  &quot;registry-mirrors&quot;: [&quot;https://l0s7i35d.mirror.aliyuncs.com&quot;]
-}
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span><span class="w"></span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">  </span><span class="s">&quot;registry-mirrors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;https://l0s7i35d.mirror.aliyuncs.com&quot;</span><span class="p">]</span><span class="w"></span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">}</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210728232707.png" /></p>
-<pre><code class="language-go">systemctl daemon-reload
-systemctl restart docker
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nx">systemctl</span><span class="w"> </span><span class="nx">daemon</span><span class="o">-</span><span class="nx">reload</span><span class="w"></span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nx">systemctl</span><span class="w"> </span><span class="nx">restart</span><span class="w"> </span><span class="nx">docker</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_12">卸载</h2>
-<pre><code class="language-go">systemctl stop docker
-
-yum -y remove docker-ce docker-ce-cli containerd.io
-
-rm -rf /var/lib/docker
-rm -rf /var/lib/containerd
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nx">systemctl</span><span class="w"> </span><span class="nx">stop</span><span class="w"> </span><span class="nx">docker</span><span class="w"></span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nx">yum</span><span class="w"> </span><span class="o">-</span><span class="nx">y</span><span class="w"> </span><span class="nx">remove</span><span class="w"> </span><span class="nx">docker</span><span class="o">-</span><span class="nx">ce</span><span class="w"> </span><span class="nx">docker</span><span class="o">-</span><span class="nx">ce</span><span class="o">-</span><span class="nx">cli</span><span class="w"> </span><span class="nx">containerd</span><span class="p">.</span><span class="nx">io</span><span class="w"></span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nx">rm</span><span class="w"> </span><span class="o">-</span><span class="nx">rf</span><span class="w"> </span><span class="o">/</span><span class="kd">var</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">docker</span><span class="w"></span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="nx">rm</span><span class="w"> </span><span class="o">-</span><span class="nx">rf</span><span class="w"> </span><span class="o">/</span><span class="kd">var</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">containerd</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_13"><strong>错误</strong></h2>
 <p>可以参考linux 目录下Linux安装和基本配置.md中的磁盘扩容，更好的方式是安装的时候推荐50g空间</p>
 <p><strong>空间不足</strong></p>
@@ -2588,56 +2588,56 @@ rm -rf /var/lib/containerd
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/2022/03/05/20220305102616.png" /></p>
 <h1 id="_17">常用命令</h1>
 <h2 id="_18">帮助命令</h2>
-<pre><code class="language-go">docker version
-
-docker info
-
-docker --help
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">version</span><span class="w"></span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">info</span><span class="w"></span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="nx">docker</span><span class="w"> </span><span class="o">--</span><span class="nx">help</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_19">镜像命令</h2>
 <h3 id="docker-images">docker images列出本地主机上的镜像</h3>
-<pre><code class="language-go">docker images
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">images</span><span class="w"></span>
+</span></code></pre></div>
 <p>REPOSITORY：表示镜像的仓库源
 TAG：镜像的标签
 IMAGE ID：镜像ID
 CREATED：镜像创建时间
 SIZE：镜像大小</p>
-<pre><code class="language-go">[root@iz2zeiw2bqogm8ir3ugpvqz ~]# docker images
-REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
-hello-world   latest    d1165f221234   5 months ago   13.3kB
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="p">[</span><span class="nx">root</span><span class="err">@</span><span class="nx">iz2zeiw2bqogm8ir3ugpvqz</span><span class="w"> </span><span class="o">~</span><span class="p">]</span><span class="err">#</span><span class="w"> </span><span class="nx">docker</span><span class="w"> </span><span class="nx">images</span><span class="w"></span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="nx">REPOSITORY</span><span class="w">    </span><span class="nx">TAG</span><span class="w">       </span><span class="nx">IMAGE</span><span class="w"> </span><span class="nx">ID</span><span class="w">       </span><span class="nx">CREATED</span><span class="w">        </span><span class="nx">SIZE</span><span class="w"></span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nx">hello</span><span class="o">-</span><span class="nx">world</span><span class="w">   </span><span class="nx">latest</span><span class="w">    </span><span class="nx">d1165f221234</span><span class="w">   </span><span class="mi">5</span><span class="w"> </span><span class="nx">months</span><span class="w"> </span><span class="nx">ago</span><span class="w">   </span><span class="mf">13.3</span><span class="nx">kB</span><span class="w"></span>
+</span></code></pre></div>
 <p>同一仓库源可以有多个 TAG，代表这个仓库源的不同个版本，我们使用 REPOSITORY:TAG 来定义不同的镜像。
 如果你不指定一个镜像的版本标签，例如你只使用 ubuntu，docker 将默认使用 ubuntu:latest 镜像</p>
 <p>-a :列出本地所有的镜像（含中间映像层）</p>
 <p>-q :只显示镜像ID。</p>
 <p>--digests :显示镜像的摘要信息</p>
 <p>--no-trunc :显示完整的镜像信息</p>
-<pre><code class="language-go">docker images --digests
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">images</span><span class="w"> </span><span class="o">--</span><span class="nx">digests</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210813000017.png" /></p>
 <h3 id="docker-search">docker search</h3>
 <p>docker search:从docker hub中搜，下载从阿里云镜像</p>
 <p>docker search [OPTIONS] 镜像名字</p>
 <p>https://hub.docker.com</p>
-<pre><code class="language-go">docker search tomcat
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">search</span><span class="w"> </span><span class="nx">tomcat</span><span class="w"></span>
+</span></code></pre></div>
 <p>--no-trunc : 显示完整的镜像描述</p>
 <h3 id="docker-pull">docker pull</h3>
 <p>docker pull 镜像名字[:TAG]</p>
-<pre><code class="language-go">docker pull tomcat
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">pull</span><span class="w"> </span><span class="nx">tomcat</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="docker-rmi">docker rmi</h3>
 <p>docker rmi 某个XXX镜像名字ID</p>
 <p>删除单个</p>
-<pre><code class="language-go">docker rmi  -f 镜像ID
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">rmi</span><span class="w">  </span><span class="o">-</span><span class="nx">f</span><span class="w"> </span><span class="nx">镜像ID</span><span class="w"></span>
+</span></code></pre></div>
 <p>删除多个</p>
-<pre><code class="language-go">docker rmi -f 镜像名1:TAG 镜像名2:TAG 
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">rmi</span><span class="w"> </span><span class="o">-</span><span class="nx">f</span><span class="w"> </span><span class="nx">镜像名1</span><span class="p">:</span><span class="nx">TAG</span><span class="w"> </span><span class="nx">镜像名2</span><span class="p">:</span><span class="nx">TAG</span><span class="w"> </span>
+</span></code></pre></div>
 <p>删除全部</p>
-<pre><code class="language-go">docker rmi -f $(docker images -qa)
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">rmi</span><span class="w"> </span><span class="o">-</span><span class="nx">f</span><span class="w"> </span><span class="err">$</span><span class="p">(</span><span class="nx">docker</span><span class="w"> </span><span class="nx">images</span><span class="w"> </span><span class="o">-</span><span class="nx">qa</span><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_20">容器命令</h2>
 <h3 id="_21">新建并启动容器</h3>
 <p>docker run [OPTIONS] IMAGE [COMMAND] [ARG...]</p>
@@ -2652,20 +2652,20 @@ hello-world   latest    d1165f221234   5 months ago   13.3kB
       ip::containerPort
       hostPort:containerPort
       containerPort</p>
-<pre><code class="language-go">docker run -it centos /bin/bash
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">run</span><span class="w"> </span><span class="o">-</span><span class="nx">it</span><span class="w"> </span><span class="nx">centos</span><span class="w"> </span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">bash</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210813001240.png" /></p>
 <h3 id="_22">退出容器</h3>
 <p>容器不停止</p>
-<pre><code class="language-go">ctrl+p+q
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nx">ctrl</span><span class="o">+</span><span class="nx">p</span><span class="o">+</span><span class="nx">q</span><span class="w"></span>
+</span></code></pre></div>
 <p>容器停止</p>
-<pre><code class="language-go">exit
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="nx">exit</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_23">列出当前运行的容器</h3>
 <p>docker ps [OPTIONS]</p>
-<pre><code class="language-go">docker ps
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">ps</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210813001624.png" /></p>
 <p>OPTIONS说明（常用）：</p>
 <p><strong>-a :列出当前所有正在运行的容器+历史上运行过的</strong>
@@ -2674,106 +2674,104 @@ hello-world   latest    d1165f221234   5 months ago   13.3kB
 -q :静默模式，只显示容器编号。
 --no-trunc :不截断输出。</p>
 <p>常用</p>
-<pre><code class="language-sh">docker ps -qa
-docker ps -a
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>docker ps -qa
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>docker ps -a
+</span></code></pre></div>
 <h3 id="_24">启动容器</h3>
-<pre><code class="language-go">//docker start 容器ID或者容器名
-
-docker start centos:centos7
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1">//docker start 容器ID或者容器名</span><span class="w"></span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="nx">centos</span><span class="p">:</span><span class="nx">centos7</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_25">重启容器</h3>
-<pre><code class="language-go">docker restart 容器ID或者容器名
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">restart</span><span class="w"> </span><span class="nx">容器ID或者容器名</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_26">停止容器</h3>
-<pre><code class="language-go">docker stop 容器ID或者容器名
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">stop</span><span class="w"> </span><span class="nx">容器ID或者容器名</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_27">强制停止容器</h3>
-<pre><code class="language-go">docker kill 容器ID或者容器名
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">kill</span><span class="w"> </span><span class="nx">容器ID或者容器名</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_28">删除已停止的容器</h3>
-<pre><code class="language-go">docker rm 容器ID
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">rm</span><span class="w"> </span><span class="nx">容器ID</span><span class="w"></span>
+</span></code></pre></div>
 <p><strong>一次删除多个</strong></p>
-<pre><code class="language-go">docker rm -f $(docker ps -a -q)
-
-
-docker ps -a -q | xargs docker rm
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">rm</span><span class="w"> </span><span class="o">-</span><span class="nx">f</span><span class="w"> </span><span class="err">$</span><span class="p">(</span><span class="nx">docker</span><span class="w"> </span><span class="nx">ps</span><span class="w"> </span><span class="o">-</span><span class="nx">a</span><span class="w"> </span><span class="o">-</span><span class="nx">q</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">ps</span><span class="w"> </span><span class="o">-</span><span class="nx">a</span><span class="w"> </span><span class="o">-</span><span class="nx">q</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nx">xargs</span><span class="w"> </span><span class="nx">docker</span><span class="w"> </span><span class="nx">rm</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_29">进入容器</h3>
-<pre><code class="language-go">docker exec -it 容器id /bin/baah
-
-
-docker attach 容器i
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">exec</span><span class="w"> </span><span class="o">-</span><span class="nx">it</span><span class="w"> </span><span class="nx">容器id</span><span class="w"> </span><span class="o">/</span><span class="nx">bin</span><span class="o">/</span><span class="nx">baah</span><span class="w"></span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">attach</span><span class="w"> </span><span class="nx">容器i</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_30">重要命令</h3>
 <h4 id="_31">以后台方式启动</h4>
 <p>docker run -d 容器名</p>
-<pre><code class="language-sh">docker run -d tomcat
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>docker run -d tomcat
+</span></code></pre></div>
 <h4 id="_32">查看容器日志</h4>
-<pre><code class="language-sh">docker logs -f -t --tail 容器ID
-
-
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>docker logs -f -t --tail 容器ID
+</span></code></pre></div>
 <ul>
 <li>-t 是加入时间戳</li>
 <li>-f 跟随最新的日志打印</li>
 <li>--tail 数字 显示最后多少条</li>
 </ul>
 <h4 id="_33">查看容器内运行的进程</h4>
-<pre><code class="language-sh">docker top 容器ID
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a>docker top 容器ID
+</span></code></pre></div>
 <h4 id="_34">查看容器内部细节</h4>
 <p>docker inspect 容器ID</p>
 <h4 id="_35">进入正在运行的容器并以命令行交互</h4>
 <p>docker exec -it 容器ID bashShell</p>
-<pre><code class="language-sh">docker exec -it xxccc /bin/bash
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>docker <span class="nb">exec</span> -it xxccc /bin/bash
+</span></code></pre></div>
 <p>docker attach 容器ID</p>
 <p>区别</p>
 <p>attach 直接进入容器启动命令的终端，不会启动新的进程</p>
 <p>exec 是在容器中打开新的终端，并且可以启动新的进程</p>
 <h4 id="_36">从容器内拷贝文件到主机上</h4>
 <p>docker cp  容器ID:容器内路径 目的主机路径</p>
-<pre><code class="language-sh">attach    Attach to a running container                 # 当前 shell 下 attach 连接指定运行镜像
-build     Build an image from a Dockerfile              # 通过 Dockerfile 定制镜像
-commit    Create a new image from a container changes   # 提交当前容器为新的镜像
-cp        Copy files/folders from the containers filesystem to the host path   #从容器中拷贝指定文件或者目录到宿主机中
-create    Create a new container                        # 创建一个新的容器，同 run，但不启动容器
-diff      Inspect changes on a container's filesystem   # 查看 docker 容器变化
-events    Get real time events from the server          # 从 docker 服务获取容器实时事件
-exec      Run a command in an existing container        # 在已存在的容器上运行命令
-export    Stream the contents of a container as a tar archive   # 导出容器的内容流作为一个 tar 归档文件[对应 import ]
-history   Show the history of an image                  # 展示一个镜像形成历史
-images    List images                                   # 列出系统当前镜像
-import    Create a new filesystem image from the contents of a tarball # 从tar包中的内容创建一个新的文件系统映像[对应export]
-info      Display system-wide information               # 显示系统相关信息
-inspect   Return low-level information on a container   # 查看容器详细信息
-kill      Kill a running container                      # kill 指定 docker 容器
-load      Load an image from a tar archive              # 从一个 tar 包中加载一个镜像[对应 save]
-login     Register or Login to the docker registry server    # 注册或者登陆一个 docker 源服务器
-logout    Log out from a Docker registry server          # 从当前 Docker registry 退出
-logs      Fetch the logs of a container                 # 输出当前容器日志信息
-port      Lookup the public-facing port which is NAT-ed to PRIVATE_PORT    # 查看映射端口对应的容器内部源端口
-pause     Pause all processes within a container        # 暂停容器
-ps        List containers                               # 列出容器列表
-pull      Pull an image or a repository from the docker registry server   # 从docker镜像源服务器拉取指定镜像或者库镜像
-push      Push an image or a repository to the docker registry server    # 推送指定镜像或者库镜像至docker源服务器
-restart   Restart a running container                   # 重启运行的容器
-rm        Remove one or more containers                 # 移除一个或者多个容器
-rmi       Remove one or more images             # 移除一个或多个镜像[无容器使用该镜像才可删除，否则需删除相关容器才可继续或 -f 强制删除]
-run       Run a command in a new container              # 创建一个新的容器并运行一个命令
-save      Save an image to a tar archive                # 保存一个镜像为一个 tar 包[对应 load]
-search    Search for an image on the Docker Hub         # 在 docker hub 中搜索镜像
-start     Start a stopped containers                    # 启动容器
-stop      Stop a running containers                     # 停止容器
-tag       Tag an image into a repository                # 给源中镜像打标签
-top       Lookup the running processes of a container   # 查看容器中运行的进程信息
-unpause   Unpause a paused container                    # 取消暂停容器
-version   Show the docker version information           # 查看 docker 版本号
-wait      Block until a container stops, then print its exit code   # 截取容器停止时的退出状态值
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>attach    Attach to a running container                 <span class="c1"># 当前 shell 下 attach 连接指定运行镜像</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a>build     Build an image from a Dockerfile              <span class="c1"># 通过 Dockerfile 定制镜像</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>commit    Create a new image from a container changes   <span class="c1"># 提交当前容器为新的镜像</span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>cp        Copy files/folders from the containers filesystem to the host path   <span class="c1">#从容器中拷贝指定文件或者目录到宿主机中</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>create    Create a new container                        <span class="c1"># 创建一个新的容器，同 run，但不启动容器</span>
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>diff      Inspect changes on a container<span class="err">&#39;</span>s filesystem   <span class="c1"># 查看 docker 容器变化</span>
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a>events    Get real <span class="nb">time</span> events from the server          <span class="c1"># 从 docker 服务获取容器实时事件</span>
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a><span class="nb">exec</span>      Run a <span class="nb">command</span> <span class="k">in</span> an existing container        <span class="c1"># 在已存在的容器上运行命令</span>
+</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a><span class="nb">export</span>    Stream the contents of a container as a tar archive   <span class="c1"># 导出容器的内容流作为一个 tar 归档文件[对应 import ]</span>
+</span><span id="__span-39-10"><a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a><span class="nb">history</span>   Show the <span class="nb">history</span> of an image                  <span class="c1"># 展示一个镜像形成历史</span>
+</span><span id="__span-39-11"><a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a>images    List images                                   <span class="c1"># 列出系统当前镜像</span>
+</span><span id="__span-39-12"><a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a>import    Create a new filesystem image from the contents of a tarball <span class="c1"># 从tar包中的内容创建一个新的文件系统映像[对应export]</span>
+</span><span id="__span-39-13"><a id="__codelineno-39-13" name="__codelineno-39-13" href="#__codelineno-39-13"></a>info      Display system-wide information               <span class="c1"># 显示系统相关信息</span>
+</span><span id="__span-39-14"><a id="__codelineno-39-14" name="__codelineno-39-14" href="#__codelineno-39-14"></a>inspect   Return low-level information on a container   <span class="c1"># 查看容器详细信息</span>
+</span><span id="__span-39-15"><a id="__codelineno-39-15" name="__codelineno-39-15" href="#__codelineno-39-15"></a><span class="nb">kill</span>      Kill a running container                      <span class="c1"># kill 指定 docker 容器</span>
+</span><span id="__span-39-16"><a id="__codelineno-39-16" name="__codelineno-39-16" href="#__codelineno-39-16"></a>load      Load an image from a tar archive              <span class="c1"># 从一个 tar 包中加载一个镜像[对应 save]</span>
+</span><span id="__span-39-17"><a id="__codelineno-39-17" name="__codelineno-39-17" href="#__codelineno-39-17"></a>login     Register or Login to the docker registry server    <span class="c1"># 注册或者登陆一个 docker 源服务器</span>
+</span><span id="__span-39-18"><a id="__codelineno-39-18" name="__codelineno-39-18" href="#__codelineno-39-18"></a><span class="nb">logout</span>    Log out from a Docker registry server          <span class="c1"># 从当前 Docker registry 退出</span>
+</span><span id="__span-39-19"><a id="__codelineno-39-19" name="__codelineno-39-19" href="#__codelineno-39-19"></a>logs      Fetch the logs of a container                 <span class="c1"># 输出当前容器日志信息</span>
+</span><span id="__span-39-20"><a id="__codelineno-39-20" name="__codelineno-39-20" href="#__codelineno-39-20"></a>port      Lookup the public-facing port which is NAT-ed to PRIVATE_PORT    <span class="c1"># 查看映射端口对应的容器内部源端口</span>
+</span><span id="__span-39-21"><a id="__codelineno-39-21" name="__codelineno-39-21" href="#__codelineno-39-21"></a>pause     Pause all processes within a container        <span class="c1"># 暂停容器</span>
+</span><span id="__span-39-22"><a id="__codelineno-39-22" name="__codelineno-39-22" href="#__codelineno-39-22"></a>ps        List containers                               <span class="c1"># 列出容器列表</span>
+</span><span id="__span-39-23"><a id="__codelineno-39-23" name="__codelineno-39-23" href="#__codelineno-39-23"></a>pull      Pull an image or a repository from the docker registry server   <span class="c1"># 从docker镜像源服务器拉取指定镜像或者库镜像</span>
+</span><span id="__span-39-24"><a id="__codelineno-39-24" name="__codelineno-39-24" href="#__codelineno-39-24"></a>push      Push an image or a repository to the docker registry server    <span class="c1"># 推送指定镜像或者库镜像至docker源服务器</span>
+</span><span id="__span-39-25"><a id="__codelineno-39-25" name="__codelineno-39-25" href="#__codelineno-39-25"></a>restart   Restart a running container                   <span class="c1"># 重启运行的容器</span>
+</span><span id="__span-39-26"><a id="__codelineno-39-26" name="__codelineno-39-26" href="#__codelineno-39-26"></a>rm        Remove one or more containers                 <span class="c1"># 移除一个或者多个容器</span>
+</span><span id="__span-39-27"><a id="__codelineno-39-27" name="__codelineno-39-27" href="#__codelineno-39-27"></a>rmi       Remove one or more images             <span class="c1"># 移除一个或多个镜像[无容器使用该镜像才可删除，否则需删除相关容器才可继续或 -f 强制删除]</span>
+</span><span id="__span-39-28"><a id="__codelineno-39-28" name="__codelineno-39-28" href="#__codelineno-39-28"></a>run       Run a <span class="nb">command</span> <span class="k">in</span> a new container              <span class="c1"># 创建一个新的容器并运行一个命令</span>
+</span><span id="__span-39-29"><a id="__codelineno-39-29" name="__codelineno-39-29" href="#__codelineno-39-29"></a>save      Save an image to a tar archive                <span class="c1"># 保存一个镜像为一个 tar 包[对应 load]</span>
+</span><span id="__span-39-30"><a id="__codelineno-39-30" name="__codelineno-39-30" href="#__codelineno-39-30"></a>search    Search <span class="k">for</span> an image on the Docker Hub         <span class="c1"># 在 docker hub 中搜索镜像</span>
+</span><span id="__span-39-31"><a id="__codelineno-39-31" name="__codelineno-39-31" href="#__codelineno-39-31"></a>start     Start a stopped containers                    <span class="c1"># 启动容器</span>
+</span><span id="__span-39-32"><a id="__codelineno-39-32" name="__codelineno-39-32" href="#__codelineno-39-32"></a>stop      Stop a running containers                     <span class="c1"># 停止容器</span>
+</span><span id="__span-39-33"><a id="__codelineno-39-33" name="__codelineno-39-33" href="#__codelineno-39-33"></a>tag       Tag an image into a repository                <span class="c1"># 给源中镜像打标签</span>
+</span><span id="__span-39-34"><a id="__codelineno-39-34" name="__codelineno-39-34" href="#__codelineno-39-34"></a>top       Lookup the running processes of a container   <span class="c1"># 查看容器中运行的进程信息</span>
+</span><span id="__span-39-35"><a id="__codelineno-39-35" name="__codelineno-39-35" href="#__codelineno-39-35"></a>unpause   Unpause a paused container                    <span class="c1"># 取消暂停容器</span>
+</span><span id="__span-39-36"><a id="__codelineno-39-36" name="__codelineno-39-36" href="#__codelineno-39-36"></a>version   Show the docker version information           <span class="c1"># 查看 docker 版本号</span>
+</span><span id="__span-39-37"><a id="__codelineno-39-37" name="__codelineno-39-37" href="#__codelineno-39-37"></a><span class="nb">wait</span>      Block <span class="k">until</span> a container stops, <span class="k">then</span> print its <span class="nb">exit</span> code   <span class="c1"># 截取容器停止时的退出状态值</span>
+</span></code></pre></div>
 <h1 id="_37">镜像</h1>
 <h2 id="_38">是什么</h2>
 <p>一种可以创建运行环境的软件</p>
@@ -2784,54 +2782,50 @@ wait      Block until a container stops, then print its exit code   # 截取容�
 <h2 id="docker-commit">docker commit</h2>
 <p>docker commit提交容器副本使之成为一个新的镜像</p>
 <p>docker commit -m=“提交的描述信息” -a=“作者” 容器ID 要创建的目标镜像名:[标签名]</p>
-<pre><code class="language-sh">docker run -it -p 8080:8080 tomcat
-
-
-cd /usr/local/tomcat/webapps
-
-touch a.txt
-
-docker commit -m=&quot;my centos&quot; -a=&quot;matt&quot; xxcc mcentos:1.0
-
-
-
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>docker run -it -p <span class="m">8080</span>:8080 tomcat
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="nb">cd</span> /usr/local/tomcat/webapps
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>touch a.txt
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>docker commit -m<span class="o">=</span><span class="s2">&quot;my centos&quot;</span> -a<span class="o">=</span><span class="s2">&quot;matt&quot;</span> xxcc mcentos:1.0
+</span></code></pre></div>
 <h1 id="_40">容器数据卷</h1>
 <h2 id="_41">可以干什么</h2>
 <p>容器的持久化</p>
 <p>容器建继承+共享数据</p>
 <h2 id="_42">数据卷</h2>
 <h3 id="_43">命令</h3>
-<pre><code class="language-sh">docker run -it -v /宿主机绝对路径目录:/容器内目录      镜像名
-
-
-# 查看容器是否挂载成功 
-docker inspect 容器ID
-
-
-# 只读
-docker run -it -v /宿主机绝对路径目录:/容器内目录:ro 镜像名
-
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>docker run -it -v /宿主机绝对路径目录:/容器内目录      镜像名
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="c1"># 查看容器是否挂载成功 </span>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>docker inspect 容器ID
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>
+</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a><span class="c1"># 只读</span>
+</span><span id="__span-41-9"><a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a>docker run -it -v /宿主机绝对路径目录:/容器内目录:ro 镜像名
+</span></code></pre></div>
 <p>容器停止，对宿主机的修改仍可以对容器发生改变</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/2022/03/04/20220304003222.png" /></p>
-<pre><code class="language-sh">docker run -it -v /home/matt/dataVolumeContainer:/dataVolumeContainer centos /bin/bash
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>docker run -it -v /home/matt/dataVolumeContainer:/dataVolumeContainer centos /bin/bash
+</span></code></pre></div>
 <h3 id="dockerfile">Dockerfile</h3>
-<pre><code class="language-sh"># volume test
-FROM centos
-VOLUME [&quot;/dataVolumeContainer1&quot;,&quot;/dataVolumeContainer2&quot;]
-CMD echo &quot;finished,--------success1&quot;
-CMD /bin/bash
-</code></pre>
-<pre><code class="language-sh"> docker build -f /home/matt/docker/Dockerfile -t matt/centos .
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="c1"># volume test</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>FROM centos
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a>VOLUME <span class="o">[</span><span class="s2">&quot;/dataVolumeContainer1&quot;</span>,<span class="s2">&quot;/dataVolumeContainer2&quot;</span><span class="o">]</span>
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a>CMD <span class="nb">echo</span> <span class="s2">&quot;finished,--------success1&quot;</span>
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a>CMD /bin/bash
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a> docker build -f /home/matt/docker/Dockerfile -t matt/centos .
+</span></code></pre></div>
 <p>镜像是千层饼，一个镜像可能多层组成</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210731181948.png" /></p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210731235833.png" /></p>
 <p>!&gt; 一段重要的内容，随机端口号</p>
-<pre><code class="language-go">docker run -dit -P 8080 tomcat
-</code></pre>
+<div class="language-go highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="nx">docker</span><span class="w"> </span><span class="nx">run</span><span class="w"> </span><span class="o">-</span><span class="nx">dit</span><span class="w"> </span><span class="o">-</span><span class="nx">P</span><span class="w"> </span><span class="mi">8080</span><span class="w"> </span><span class="nx">tomcat</span><span class="w"></span>
+</span></code></pre></div>
 <p>宿主机端口随机分配</p>
 <h2 id="_44">问题</h2>
 <p><em>没遇到</em></p>
@@ -2841,13 +2835,13 @@ CMD /bin/bash
 <h3 id="_46">是什么</h3>
 <p>命名的容器挂载数据卷，其它容器通过挂载这个(父容器)实现数据共享，挂载数据卷的容器，称之为数据卷容器</p>
 <p>c1</p>
-<pre><code class="language-sh">docker run -it --name c1 matt/centos
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>docker run -it --name c1 matt/centos
+</span></code></pre></div>
 <p>c2继承c1</p>
-<pre><code class="language-sh">docker run -it --name c2 --volumes-from c1 matt/centos
-
-docker run -it --name c3 --volumes-from c1 matt/centos
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>docker run -it --name c2 --volumes-from c1 matt/centos
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>docker run -it --name c3 --volumes-from c1 matt/centos
+</span></code></pre></div>
 <p>c2，c3数据就可以共享，即使删除c1，仍然可以共享</p>
 <p><strong>容器之间配置信息的传递，数据卷的生命周期一直持续到没有容器使用它为止</strong></p>
 
@@ -2885,7 +2879,10 @@ docker run -it --name c3 --volumes-from c1 matt/centos
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -2944,7 +2941,7 @@ docker run -it --name c3 --volumes-from c1 matt/centos
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

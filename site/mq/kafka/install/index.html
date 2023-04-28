@@ -3001,126 +3001,124 @@
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202209241431775.png" /></p>
 <h3 id="_3">安装</h3>
 <h4 id="_4">解压缩</h4>
-<pre><code class="language-sh">tar -zxvf kafka_2.11-0.11.0.0.tgz -C /opt/module
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>tar -zxvf kafka_2.11-0.11.0.0.tgz -C /opt/module
+</span></code></pre></div>
 <h4 id="_5">修改文件名称</h4>
-<pre><code class="language-sh">mv kafka_2.11-0.11.0.0 kafka
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>mv kafka_2.11-0.11.0.0 kafka
+</span></code></pre></div>
 <h3 id="_6">配置</h3>
 <h4 id="_7">创建日志目录</h4>
-<pre><code class="language-sh">cd kafka
-
-
-mkdir logs
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span> kafka
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>mkdir logs
+</span></code></pre></div>
 <h4 id="_8">修改配置文件</h4>
-<pre><code class="language-sh">cd config
-
-vim server.properties
-</code></pre>
-<pre><code class="language-sh">#broker 的全局唯一编号，不能重复
-broker.id=0
-#删除 topic 功能使能
-delete.topic.enable=true
-
-
-#kafka 运行日志存放的路径
-log.dirs=/opt/module/kafka/logs
-
-#配置连接 Zookeeper 集群地址
-zookeeper.connect=matt05:2181,matt06:2181
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span> config
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>vim server.properties
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">#broker 的全局唯一编号，不能重复</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>broker.id<span class="o">=</span><span class="m">0</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">#删除 topic 功能使能</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>delete.topic.enable<span class="o">=</span><span class="nb">true</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1">#kafka 运行日志存放的路径</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>log.dirs<span class="o">=</span>/opt/module/kafka/logs
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1">#配置连接 Zookeeper 集群地址</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>zookeeper.connect<span class="o">=</span>matt05:2181,matt06:2181
+</span></code></pre></div>
 <h4 id="_9">配置环境变量</h4>
 <p>vim .zshrc.pre-oh-my-zsh</p>
-<pre><code class="language-sh">vim .zshrc.pre-oh-my-zsh
-</code></pre>
-<pre><code class="language-sh">#KAFKA_HOME
-export KAFKA_HOME=/opt/module/kafka
-export PATH=$PATH:$KAFKA_HOME/bin
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>vim .zshrc.pre-oh-my-zsh
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">#KAFKA_HOME</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">export</span> <span class="nv">KAFKA_HOME</span><span class="o">=</span>/opt/module/kafka
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$KAFKA_HOME</span>/bin
+</span></code></pre></div>
 <h3 id="zk">zk 安装</h3>
 <h4 id="_10">地址</h4>
 <p>https://archive.apache.org/dist/zookeeper/zookeeper-3.5.7/</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202209241449105.png" /></p>
 <h4 id="_11">解压缩 + 修改文件名</h4>
-<pre><code class="language-sh">tar -zxvf apache-zookeeper-3.5.7-bin.tar.gz -C /opt/module
-</code></pre>
-<pre><code class="language-sh">mv apache-zookeeper-3.5.7-bin/ zookeeper-3.5.7
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>tar -zxvf apache-zookeeper-3.5.7-bin.tar.gz -C /opt/module
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>mv apache-zookeeper-3.5.7-bin/ zookeeper-3.5.7
+</span></code></pre></div>
 <h4 id="_12">创建日志目录</h4>
-<pre><code class="language-sh">mkdir zkData
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>mkdir zkData
+</span></code></pre></div>
 <h4 id="_13">配置文件修改</h4>
-<pre><code class="language-sh">cp zoo_sample.cfg zoo.cfg
-</code></pre>
-<pre><code class="language-sh">dataDir=/opt/module/zookeeper-3.5.7/zkData
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cp zoo_sample.cfg zoo.cfg
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nv">dataDir</span><span class="o">=</span>/opt/module/zookeeper-3.5.7/zkData
+</span></code></pre></div>
 <h4 id="_14">启动</h4>
-<pre><code class="language-sh">zkServer.sh start
-
-zkServer.sh stop
-
-zkServer.sh status
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>zkServer.sh start
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>zkServer.sh stop
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>zkServer.sh status
+</span></code></pre></div>
 <p>启动kafka</p>
-<pre><code class="language-sh">./bin/kafka-server-start.sh -daemon ./config/server.properties
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>./bin/kafka-server-start.sh -daemon ./config/server.properties
+</span></code></pre></div>
 <h3 id="_15">启动</h3>
 <h4 id="bin">启动,安装目录bin目录下</h4>
-<pre><code class="language-bash">./kafka-server-start.sh -daemon ../config/server.properties
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>./kafka-server-start.sh -daemon ../config/server.properties
+</span></code></pre></div>
 <h4 id="_16">关闭</h4>
-<pre><code class="language-bash">./kafka-server-stop.sh stop
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>./kafka-server-stop.sh stop
+</span></code></pre></div>
 <h2 id="linux">linux</h2>
 <h3 id="_17">规划</h3>
 <p>matt05 zk kafka</p>
 <p>matt06 zk kafka</p>
 <p>matt07 zk kafka</p>
 <h3 id="_18">解压</h3>
-<pre><code class="language-bash">tar -zxvf kafka_2.11-0.11.0.0.tgz -C /opt/module/
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>tar -zxvf kafka_2.11-0.11.0.0.tgz -C /opt/module/
+</span></code></pre></div>
 <h3 id="_19">重命名</h3>
-<pre><code class="language-bash">mv kafka_2.11-0.11.0.0/ kafka
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>mv kafka_2.11-0.11.0.0/ kafka
+</span></code></pre></div>
 <p><strong>2.scanla版本</strong></p>
 <p><strong>0.11kafka</strong>版本</p>
 <h3 id="data">在安装目录下创建data文件夹</h3>
 <p>默认日志放在logs </p>
 <p>data:存储数据</p>
-<pre><code class="language-bash">mkdir data
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>mkdir data
+</span></code></pre></div>
 <h3 id="_20">修改配置文件</h3>
-<pre><code class="language-bash">cd config/
-vi server.properties
-</code></pre>
-<pre><code class="language-sh"># 改 broker 的全局唯一编号，不能重复 
-broker.id=0
-# 改 删除 topic 功能使能 
-delete.topic.enable=true 
-
-# 改 kafka 运行日志存放的路径 日志目录
-log.dirs=/opt/module/kafka/data 
-
-# 改 配置连接 Zookeeper 集群地址 
-zookeeper.connect=zookeeper.connect=192.168.96.135:2181,192.168.96.136:2181,192.168.96.137:2181
-
-
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">cd</span> config/
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>vi server.properties
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1"># 改 broker 的全局唯一编号，不能重复 </span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>broker.id<span class="o">=</span><span class="m">0</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="c1"># 改 删除 topic 功能使能 </span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>delete.topic.enable<span class="o">=</span><span class="nb">true</span> 
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="c1"># 改 kafka 运行日志存放的路径 日志目录</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>log.dirs<span class="o">=</span>/opt/module/kafka/data 
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="c1"># 改 配置连接 Zookeeper 集群地址 </span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>zookeeper.connect<span class="o">=</span>zookeeper.connect<span class="o">=</span><span class="m">192</span>.168.96.135:2181,192.168.96.136:2181,192.168.96.137:2181
+</span></code></pre></div>
 <h3 id="_21">分发安装包</h3>
-<pre><code class="language-bash">xsync ./kafka/
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>xsync ./kafka/
+</span></code></pre></div>
 <p><strong>记得修改机器的broker.id 因为他是惟一的</strong></p>
 <h3 id="bin_1">启动,安装目录bin目录下， 分别进入三台机器</h3>
-<pre><code class="language-bash">./kafka-server-start.sh -daemon ../config/server.properties
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>./kafka-server-start.sh -daemon ../config/server.properties
+</span></code></pre></div>
 <h3 id="bin_2">关闭,安装目录bin目录下</h3>
-<pre><code class="language-bash">./kafka-server-stop.sh stop
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>./kafka-server-stop.sh stop
+</span></code></pre></div>
 <p>使用时可能会无法连接kafka，在server.properties进行如下配置</p>
 <p><strong><Connection to node 0 could not be established. Broker may not be available.></strong></p>
-<pre><code class="language-bash">advertised.listeners=PLAINTEXT://192.168.96.128:9092
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>advertised.listeners<span class="o">=</span>PLAINTEXT://192.168.96.128:9092
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -3156,7 +3154,10 @@ zookeeper.connect=zookeeper.connect=192.168.96.135:2181,192.168.96.136:2181,192.
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -3251,7 +3252,7 @@ zookeeper.connect=zookeeper.connect=192.168.96.135:2181,192.168.96.136:2181,192.
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

@@ -3313,12 +3313,12 @@
 <h3 id="mac-">mac-安装</h3>
 <p><strong>直接官网下载即可</strong></p>
 <p>官网</p>
-<pre><code class="language-sh">/usr/local/bin
-/Library/Frameworks/Python.framework/Versions/3.10/bin/python3
-
-
-ln -s -f /usr/local/bin/python3 /usr/local/bin/python
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/usr/local/bin
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>/Library/Frameworks/Python.framework/Versions/3.10/bin/python3
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>ln -s -f /usr/local/bin/python3 /usr/local/bin/python
+</span></code></pre></div>
 <p>不要使用brew安装 </p>
 <p>1 需要在配置文件中进行配置环境变量</p>
 <p>2..pycharm会无法识别</p>
@@ -3362,47 +3362,47 @@ ln -s -f /usr/local/bin/python3 /usr/local/bin/python
 <h3 id="requests">安装requests</h3>
 <p>首先需要安装pip</p>
 <p>2020.1205安装时由于挂vpn所以导致错误，之后关闭即解决问题。</p>
-<pre><code class="language-cmd">pip install requests
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip install requests
+</span></code></pre></div>
 <h3 id="vscodepython">VSCode开发python</h3>
 <p>Pyright</p>
 <p>Python</p>
 <p>安装以上俩个插件</p>
 <h3 id="python">使用python解释器</h3>
-<pre><code class="language-python">python // 在终端输入即可使用
-
-
-exit() // 退出
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">python</span> <span class="o">//</span> <span class="n">在终端输入即可使用</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">exit</span><span class="p">()</span> <span class="o">//</span> <span class="n">退出</span>
+</span></code></pre></div>
 <h3 id="_4">概述</h3>
 <p>demo.py</p>
 <p>demo:脚本名    py:脚本格式</p>
 <h4 id="_5">程序组成</h4>
-<pre><code class="language-python"># coding:utf-8     # 脚本头
-
-import os  # 引用部分
-
-if __name__ == '__main__':  # 业务代码
-    print('hello word ' + os.getcwd())
-print('end')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># coding:utf-8     # 脚本头</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">import</span> <span class="nn">os</span>  <span class="c1"># 引用部分</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>  <span class="c1"># 业务代码</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello word &#39;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>脚本头注释：告诉解释器使用的编码格式</p>
 <h4 id="_6">注释</h4>
-<pre><code class="language-python"># coding:utf-8
-
-import os
-
-
-'''
-   这是块注释
-'''
-
-&quot;&quot;&quot;
-    这也是块注释
-&quot;&quot;&quot;
-print(os.getcwd())
-print('hello word by matt')  # 这是行注释
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">import</span> <span class="nn">os</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="sd">   这是块注释</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="sd">    这也是块注释</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello word by matt&#39;</span><span class="p">)</span>  <span class="c1"># 这是行注释</span>
+</span></code></pre></div>
 <p><em>·行注释之前俩个空格</em></p>
 <h3 id="_7">变量</h3>
 <h4 id="_8">定义</h4>
@@ -3414,36 +3414,36 @@ print('hello word by matt')  # 这是行注释
 <h4 id="_9">类型</h4>
 <h5 id="_10">数字</h5>
 <p>整数</p>
-<pre><code class="language-python">age = 11  # 推荐使用这种
-age = int(11)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">age</span> <span class="o">=</span> <span class="mi">11</span>  <span class="c1"># 推荐使用这种</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">age</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+</span></code></pre></div>
 <p>浮点数</p>
-<pre><code>average = 1.1
-average = float(1.1)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>average = 1.1
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>average = float(1.1)
+</span></code></pre></div>
 <h5 id="_11">字符串</h5>
-<pre><code class="language-python">str1 = 'hello word' 
-str2 = &quot;hello word&quot;
-str3 = str('hello word')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">str1</span> <span class="o">=</span> <span class="s1">&#39;hello word&#39;</span> 
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">str2</span> <span class="o">=</span> <span class="s2">&quot;hello word&quot;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">str3</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="s1">&#39;hello word&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>字符串使用+即可相加，使用*可以复制几次</p>
 <p>定义一个长的字符串</p>
-<pre><code class="language-python">（'hello'
-'word'）
-</code></pre>
-<pre><code class="language-python">'''
-this is good
-hello hey
-'''
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="err">（</span><span class="s1">&#39;hello&#39;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="s1">&#39;word&#39;</span><span class="err">）</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="sd">this is good</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="sd">hello hey</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="sd">&#39;&#39;&#39;</span>
+</span></code></pre></div>
 <h5 id="_12">布尔类型</h5>
-<pre><code class="language-python">bool1 = True
-bool1 = bool('hello')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">bool1</span> <span class="o">=</span> <span class="kc">True</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">bool1</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210111233719.png" /></p>
 <h5 id="_13">空类型</h5>
-<pre><code class="language-python">None
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kc">None</span>
+</span></code></pre></div>
 <h3 id="_14">关键字</h3>
 <p><em>变量名用于给变量赋值使用，而关键字用于业务逻辑处理</em></p>
 <p>常见关键字</p>
@@ -3452,577 +3452,573 @@ bool1 = bool('hello')
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20201228002007.png" /></p>
 <p>比较</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20201227231419.png" /></p>
-<pre><code>0-255会使用缓存
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>0-255会使用缓存
+</span></code></pre></div>
 <h3 id="_16">函数</h3>
 <h4 id="_17">主函数，入口</h4>
-<pre><code class="language-python">if __name__ == '__main__':
-    print('hello word ' + os.getcwd())  # 主函数退出就是不在有缩进
-print('end')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello word &#39;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>  <span class="c1"># 主函数退出就是不在有缩进</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p><strong>主函数退出就是不在有缩进</strong>（4个空格/tab）</p>
 <h4 id="_18">常用的内置函数</h4>
 <p>input:从键盘输入</p>
-<pre><code>name = input(&quot;你的姓名&quot;)
-print('name: %s' % (name))
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>name = input(&quot;你的姓名&quot;)
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>print(&#39;name: %s&#39; % (name))
+</span></code></pre></div>
 <p>格式化输出</p>
-<pre><code>print('name: %s' % (name))
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>print(&#39;name: %s&#39; % (name))
+</span></code></pre></div>
 <p>type:判断数据的类型</p>
-<pre><code>type(age)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>type(age)
+</span></code></pre></div>
 <p>id:返回变量的内存地址</p>
-<pre><code>id(age)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>id(age)
+</span></code></pre></div>
 <p>is :判断俩个对象内存地址是否相等</p>
-<pre><code>print(str is str_1)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>print(str is str_1)
+</span></code></pre></div>
 <p>len:返回字符串的长度</p>
-<pre><code>len(str1)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>len(str1)
+</span></code></pre></div>
 <p>in 和  not in</p>
-<pre><code>'hello' in 'hello word'  # hello是否在hello word中
-
-'hello' not in 'hello word' 
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>&#39;hello&#39; in &#39;hello word&#39;  # hello是否在hello word中
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>&#39;hello&#39; not in &#39;hello word&#39; 
+</span></code></pre></div>
 <p>max:判断数据中最大的成员</p>
-<pre><code>max(list2)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>max(list2)
+</span></code></pre></div>
 <p>min：判断数据中最小的成员</p>
-<pre><code>min(list1)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>min(list1)
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20201227201958.png" /></p>
 <h3 id="_19">常用的数据结构</h3>
 <h4 id="list">list</h4>
 <p>列表：用来存储有序的数据的队列</p>
-<pre><code>int_list = [1, 2, 3]
-
-
-int_list1 = list([1, 2, 3])
-</code></pre>
-<pre><code>list = ['1', '2', '3']
-list = list * 2
-// 都会创建新的链表
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>int_list = [1, 2, 3]
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>int_list1 = list([1, 2, 3])
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>list = [&#39;1&#39;, &#39;2&#39;, &#39;3&#39;]
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>list = list * 2
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>// 都会创建新的链表
+</span></code></pre></div>
 <h4 id="tuple">tuple</h4>
 <p>元组：用来存储有序的数据的队列，相对于list,元组是不可变，list是可以改变的</p>
-<pre><code class="language-python"># coding:utf-8
-
-tuple_1 = (1, 2, 3,)
-
-tuple_2 = tuple((1, 2, 3, 4,))
-print(tuple_1)
-print(tuple_2)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="n">tuple_1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,)</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="n">tuple_2</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,))</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">tuple_1</span><span class="p">)</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">tuple_2</span><span class="p">)</span>
+</span></code></pre></div>
 <p>如果元组中只有一个元素一定要添加,</p>
-<pre><code class="language-python">res = (1,)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span>
+</span></code></pre></div>
 <h4 id="dict">dict</h4>
 <p>字典：用来存储key 和 value的映射</p>
 <p><strong>key 支持 字符串，数字和元组类型，但列表是不支持的</strong>
 <strong>value 支持所有python的数据类型</strong></p>
-<pre><code class="language-python"># coding:utf-8
-
-dict_01 = {'name': 'matt', 'age': 12}
-dict_02 = dict({'name': 'mike', 'age': 19})
-print(dict_01)
-print(dict_02)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="n">dict_01</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;matt&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="n">dict_02</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;mike&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">19</span><span class="p">})</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">dict_01</span><span class="p">)</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">dict_02</span><span class="p">)</span>
+</span></code></pre></div>
 <h3 id="_20">字符串</h3>
-<pre><code class="language-python">str1.capitalize() # 字符串首字母大写
-str1.lower() # 字符串小写
-str1.upper() # 字符串大写
-str1.swapcase() # 字符串大小写转换
-str2.zfill(10) # 左边用0填充
-
-str2.count('h') # 返回字符串成员的个数
-print(str2.startswith('he')) # str2是否是‘he’开头
-print(str2.endswith('he')) # str2是否以‘he’结尾
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">str1</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span> <span class="c1"># 字符串首字母大写</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="n">str1</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="c1"># 字符串小写</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="n">str1</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="c1"># 字符串大写</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="n">str1</span><span class="o">.</span><span class="n">swapcase</span><span class="p">()</span> <span class="c1"># 字符串大小写转换</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="n">str2</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># 左边用0填充</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="n">str2</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">)</span> <span class="c1"># 返回字符串成员的个数</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">str2</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;he&#39;</span><span class="p">))</span> <span class="c1"># str2是否是‘he’开头</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">str2</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;he&#39;</span><span class="p">))</span> <span class="c1"># str2是否以‘he’结尾</span>
+</span></code></pre></div>
 <p>find 和 index 查找成员开始的位置</p>
 <p>区别：find找不到返回-1,而index会报错</p>
-<pre><code class="language-python">print(str2.find('hell'))
-print(str2.index('hell'))
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">str2</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;hell&#39;</span><span class="p">))</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">str2</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">&#39;hell&#39;</span><span class="p">))</span>
+</span></code></pre></div>
 <p>strip去除字符串首尾指定的成员默认是空格</p>
-<pre><code class="language-python">str3 = ' hello '
-print(str3.strip())
-
-print(str3.strip('h')) # hellhoh -&gt; ellho
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="n">str3</span> <span class="o">=</span> <span class="s1">&#39; hello &#39;</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">str3</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">str3</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">))</span> <span class="c1"># hellhoh -&gt; ellho</span>
+</span></code></pre></div>
 <p>replace():字符串替换</p>
-<pre><code class="language-python">str4 = 'hello'
-print(str4.replace('e', 'a', 3)) # old,new,次数：默认是全部替换
-</code></pre>
-<pre><code class="language-python">str_1 = ' '
-print(str_1.isspace()) # 判断字符串是否有空格组成
-str_1 = 'hello'
-print(str_1.istitle())  # 判断字符串是标题，即单词首字母大写
-
-print(str_1.isupper()) # 判断字符串是否全部大写
-print(str_1.islower()) # 判断字符串是否全部小写
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">str4</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">str4</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="c1"># old,new,次数：默认是全部替换</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="n">str_1</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">str_1</span><span class="o">.</span><span class="n">isspace</span><span class="p">())</span> <span class="c1"># 判断字符串是否有空格组成</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="n">str_1</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">str_1</span><span class="o">.</span><span class="n">istitle</span><span class="p">())</span>  <span class="c1"># 判断字符串是标题，即单词首字母大写</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">str_1</span><span class="o">.</span><span class="n">isupper</span><span class="p">())</span> <span class="c1"># 判断字符串是否全部大写</span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">str_1</span><span class="o">.</span><span class="n">islower</span><span class="p">())</span> <span class="c1"># 判断字符串是否全部小写</span>
+</span></code></pre></div>
 <p>字符串格式化</p>
-<pre><code class="language-python">str1 = 'hello word'
-# 1
-print('%s python' % (str1))
-
-# 2
-print(f'hello {str1}')
-
-# 3
-print('abc{}'.format('ag'))
-
-print('hello {0} -{1}-{0}'.format(1,2))
-print('hello {name}'.format(name='age'))
-print('hello num {:10.2f}'.format(3.134343))
-print('{:d}'.format(34))
-
-print('hello %30.e' % (10000000))
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">str1</span> <span class="o">=</span> <span class="s1">&#39;hello word&#39;</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="c1"># 1</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> python&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">str1</span><span class="p">))</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="c1"># 2</span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;hello </span><span class="si">{</span><span class="n">str1</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="c1"># 3</span>
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;abc</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;ag&#39;</span><span class="p">))</span>
+</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>
+</span><span id="__span-33-11"><a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello </span><span class="si">{0}</span><span class="s1"> -</span><span class="si">{1}</span><span class="s1">-</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+</span><span id="__span-33-12"><a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello </span><span class="si">{name}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;age&#39;</span><span class="p">))</span>
+</span><span id="__span-33-13"><a id="__codelineno-33-13" name="__codelineno-33-13" href="#__codelineno-33-13"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello num </span><span class="si">{:10.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mf">3.134343</span><span class="p">))</span>
+</span><span id="__span-33-14"><a id="__codelineno-33-14" name="__codelineno-33-14" href="#__codelineno-33-14"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:d}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">34</span><span class="p">))</span>
+</span><span id="__span-33-15"><a id="__codelineno-33-15" name="__codelineno-33-15" href="#__codelineno-33-15"></a>
+</span><span id="__span-33-16"><a id="__codelineno-33-16" name="__codelineno-33-16" href="#__codelineno-33-16"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello %30.e&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">10000000</span><span class="p">))</span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210109003738.png" /></p>
-<pre><code class="language-python">%d # 十进制
-%b # 二进制
-%o # 八进制
-%x # 十六进制
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="o">%</span><span class="n">d</span> <span class="c1"># 十进制</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="o">%</span><span class="n">b</span> <span class="c1"># 二进制</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="o">%</span><span class="n">o</span> <span class="c1"># 八进制</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="o">%</span><span class="n">x</span> <span class="c1"># 十六进制</span>
+</span></code></pre></div>
 <p>转义字符</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210112002623.png" /></p>
 <h3 id="list_1">列表 list</h3>
 <p>len:判断列表中元素的个数</p>
-<pre><code class="language-python">str = 'hello'
-list1= [1, 3, 3]
-print(len(list1)) # 3
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="n">list1</span><span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list1</span><span class="p">))</span> <span class="c1"># 3</span>
+</span></code></pre></div>
 <p>in :判断某个元素是否在该列表中，或者判断任何数据类型的长度,而not in 功能刚好相反</p>
-<pre><code class="language-python">str = 'hello'
-list_1= [1, 3, 3]
-print(len(list_1))
-
-print(1 in list_1)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="n">list_1</span><span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_1</span><span class="p">))</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="nb">print</span><span class="p">(</span><span class="mi">1</span> <span class="ow">in</span> <span class="n">list_1</span><span class="p">)</span>
+</span></code></pre></div>
 <p>append():列表添加元素</p>
-<pre><code class="language-python">list_1.append('5')
-print(list_1) # [1, 3, 3, '5']
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">list_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;5&#39;</span><span class="p">)</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">)</span> <span class="c1"># [1, 3, 3, &#39;5&#39;]</span>
+</span></code></pre></div>
 <p>insert:列表中指定位置添加元素</p>
-<pre><code class="language-python">list_1 = [1, 2, 3]
-list_1.insert(0, 'a')
-print(list_1) # ['a', 1, 2, 3]
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">list_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="n">list_1</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">)</span> <span class="c1"># [&#39;a&#39;, 1, 2, 3]</span>
+</span></code></pre></div>
 <p>count:在列表中统计某个元素出现的次数</p>
-<pre><code class="language-python">print(list_1.count(1)) # 1
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># 1</span>
+</span></code></pre></div>
 <p>remove:删除列表中的元素，如果不存在则报错，如果有多个则删除第一个</p>
-<pre><code class="language-python">list_1.remove(1)
-print(list_1)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="n">list_1</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">)</span>
+</span></code></pre></div>
 <p>del:将变量完全删除，在使用就会报错</p>
-<pre><code class="language-python">del list_1
-print(list_1) # 直接报错
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="k">del</span> <span class="n">list_1</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">)</span> <span class="c1"># 直接报错</span>
+</span></code></pre></div>
 <p>reverse():列表的元素进行反转</p>
-<pre><code class="language-python">list_1 = list([1, 2, 3])
-list_1.reverse()
-print(list_1) # [3, 2, 1]
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="n">list_1</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="n">list_1</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">)</span> <span class="c1"># [3, 2, 1]</span>
+</span></code></pre></div>
 <p>sort():排序,reverse=False(默认)升序，如果True则降序，key=根据什么进行排序，</p>
 <p>成员必须是同一数据类型，否则无法进行排序</p>
-<pre><code class="language-python">list_1.sort(reverse=False) # key= reverse=
-print(list_1) # [1, 2, 3]
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="n">list_1</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># key= reverse=</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">)</span> <span class="c1"># [1, 2, 3]</span>
+</span></code></pre></div>
 <p>clear():列表清空</p>
-<pre><code class="language-python">list_1.clear()
-print(list_1) # []
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="n">list_1</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">)</span> <span class="c1"># []</span>
+</span></code></pre></div>
 <p>copy和deepcopy都是列表拷贝一份</p>
 <p>如果列表还有列表使用copy则它们会共享一个列表，而deepcopy会重新开辟一个列表</p>
-<pre><code class="language-python">print('copy')
-list_1 = [1, 2, 3]
-list_2 = list_1.copy()
-list_1.append('a')
-print(list_1,list_2) # [1, 2, 3, 'a'] [1, 2, 3]
-print(list_1 is list_2)
-
-print('deepcopy----')
-list_1 = [[1,2],[3,4]]
-list_2 = copy.deepcopy(list_1)
-list_2[1].append('a')
-print(list_1, list_2)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;copy&#39;</span><span class="p">)</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="n">list_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a><span class="n">list_2</span> <span class="o">=</span> <span class="n">list_1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="n">list_1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">,</span><span class="n">list_2</span><span class="p">)</span> <span class="c1"># [1, 2, 3, &#39;a&#39;] [1, 2, 3]</span>
+</span><span id="__span-45-6"><a id="__codelineno-45-6" name="__codelineno-45-6" href="#__codelineno-45-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span> <span class="ow">is</span> <span class="n">list_2</span><span class="p">)</span>
+</span><span id="__span-45-7"><a id="__codelineno-45-7" name="__codelineno-45-7" href="#__codelineno-45-7"></a>
+</span><span id="__span-45-8"><a id="__codelineno-45-8" name="__codelineno-45-8" href="#__codelineno-45-8"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;deepcopy----&#39;</span><span class="p">)</span>
+</span><span id="__span-45-9"><a id="__codelineno-45-9" name="__codelineno-45-9" href="#__codelineno-45-9"></a><span class="n">list_1</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">],[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]]</span>
+</span><span id="__span-45-10"><a id="__codelineno-45-10" name="__codelineno-45-10" href="#__codelineno-45-10"></a><span class="n">list_2</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">list_1</span><span class="p">)</span>
+</span><span id="__span-45-11"><a id="__codelineno-45-11" name="__codelineno-45-11" href="#__codelineno-45-11"></a><span class="n">list_2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</span><span id="__span-45-12"><a id="__codelineno-45-12" name="__codelineno-45-12" href="#__codelineno-45-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">,</span> <span class="n">list_2</span><span class="p">)</span>
+</span></code></pre></div>
 <p>extend:列表中添加列表</p>
-<pre><code class="language-python">print('extend')
-list_1 = [1, 2, 3]
-list_2 = ['a', 'b']
-list_1.extend(list_2)
-print(list_1) # [1, 2, 3, 'a', 'b']
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;extend&#39;</span><span class="p">)</span>
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2" href="#__codelineno-46-2"></a><span class="n">list_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3" href="#__codelineno-46-3"></a><span class="n">list_2</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">]</span>
+</span><span id="__span-46-4"><a id="__codelineno-46-4" name="__codelineno-46-4" href="#__codelineno-46-4"></a><span class="n">list_1</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">list_2</span><span class="p">)</span>
+</span><span id="__span-46-5"><a id="__codelineno-46-5" name="__codelineno-46-5" href="#__codelineno-46-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">)</span> <span class="c1"># [1, 2, 3, &#39;a&#39;, &#39;b&#39;]</span>
+</span></code></pre></div>
 <p>索引：第一个元素是0</p>
 <p>切片：比如字符串的截取，左含右不含</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20201229203107.png" /></p>
 <p>pop():根据索引获删除值</p>
-<pre><code>list_1 = list([1, 2, 3])
-list_1.pop(1)
-print(list_1)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>list_1 = list([1, 2, 3])
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>list_1.pop(1)
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a>print(list_1)
+</span></code></pre></div>
 <p>也可以修改值，不过字符串无法修改</p>
-<pre><code class="language-python">del list_1[0]
-print(list_1)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="k">del</span> <span class="n">list_1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">list_1</span><span class="p">)</span>
+</span></code></pre></div>
 <h3 id="set">set 集合的使用</h3>
 <p>集合的创建</p>
-<pre><code class="language-python">set_1 = {1, 2, 3} # 1
-print(type(set_1)) 
-set_1 = set() # 2 set([2, 3, 3])
-# {}：不可以使用{}创建空的集合
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="n">set_1</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span> <span class="c1"># 1</span>
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">set_1</span><span class="p">))</span> 
+</span><span id="__span-49-3"><a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="n">set_1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> <span class="c1"># 2 set([2, 3, 3])</span>
+</span><span id="__span-49-4"><a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="c1"># {}：不可以使用{}创建空的集合</span>
+</span></code></pre></div>
 <p>add:添加一个元素</p>
 <p>update:添加一个集合，如果元素已经在集合中则忽略该元素</p>
 <p>remove:移除一个元素</p>
 <p>clear:清空集合</p>
-<pre><code class="language-python"># coding:utf-8
-
-set_1 = set((1, 2, 3, 4))
-print(set_1)
-
-set_1.add('helo') # {1, 2, 3, 4, 'helo'}
-print(set_1) #
-
-set_1.update([1, 3, 3, 'matt']) # 如果元素已经在集合中则忽略该元素
-print(set_1) # {1, 2, 3, 4, 'matt', 'helo'}
-
-set_1.remove('matt')
-print('remove', set_1) # remove {1, 2, 3, 4, 'helo'}
-
-
-set_1.clear()
-print(set_1)
-
-# del set_1
-print(set_1)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a>
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="n">set_1</span> <span class="o">=</span> <span class="nb">set</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">set_1</span><span class="p">)</span>
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a>
+</span><span id="__span-50-6"><a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a><span class="n">set_1</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s1">&#39;helo&#39;</span><span class="p">)</span> <span class="c1"># {1, 2, 3, 4, &#39;helo&#39;}</span>
+</span><span id="__span-50-7"><a id="__codelineno-50-7" name="__codelineno-50-7" href="#__codelineno-50-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">set_1</span><span class="p">)</span> <span class="c1">#</span>
+</span><span id="__span-50-8"><a id="__codelineno-50-8" name="__codelineno-50-8" href="#__codelineno-50-8"></a>
+</span><span id="__span-50-9"><a id="__codelineno-50-9" name="__codelineno-50-9" href="#__codelineno-50-9"></a><span class="n">set_1</span><span class="o">.</span><span class="n">update</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;matt&#39;</span><span class="p">])</span> <span class="c1"># 如果元素已经在集合中则忽略该元素</span>
+</span><span id="__span-50-10"><a id="__codelineno-50-10" name="__codelineno-50-10" href="#__codelineno-50-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">set_1</span><span class="p">)</span> <span class="c1"># {1, 2, 3, 4, &#39;matt&#39;, &#39;helo&#39;}</span>
+</span><span id="__span-50-11"><a id="__codelineno-50-11" name="__codelineno-50-11" href="#__codelineno-50-11"></a>
+</span><span id="__span-50-12"><a id="__codelineno-50-12" name="__codelineno-50-12" href="#__codelineno-50-12"></a><span class="n">set_1</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;matt&#39;</span><span class="p">)</span>
+</span><span id="__span-50-13"><a id="__codelineno-50-13" name="__codelineno-50-13" href="#__codelineno-50-13"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;remove&#39;</span><span class="p">,</span> <span class="n">set_1</span><span class="p">)</span> <span class="c1"># remove {1, 2, 3, 4, &#39;helo&#39;}</span>
+</span><span id="__span-50-14"><a id="__codelineno-50-14" name="__codelineno-50-14" href="#__codelineno-50-14"></a>
+</span><span id="__span-50-15"><a id="__codelineno-50-15" name="__codelineno-50-15" href="#__codelineno-50-15"></a>
+</span><span id="__span-50-16"><a id="__codelineno-50-16" name="__codelineno-50-16" href="#__codelineno-50-16"></a><span class="n">set_1</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span><span id="__span-50-17"><a id="__codelineno-50-17" name="__codelineno-50-17" href="#__codelineno-50-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">set_1</span><span class="p">)</span>
+</span><span id="__span-50-18"><a id="__codelineno-50-18" name="__codelineno-50-18" href="#__codelineno-50-18"></a>
+</span><span id="__span-50-19"><a id="__codelineno-50-19" name="__codelineno-50-19" href="#__codelineno-50-19"></a><span class="c1"># del set_1</span>
+</span><span id="__span-50-20"><a id="__codelineno-50-20" name="__codelineno-50-20" href="#__codelineno-50-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">set_1</span><span class="p">)</span>
+</span></code></pre></div>
 <p>difference:差集</p>
 <p>intersection：交集</p>
 <p>union：并集</p>
 <p>isdisjoint：判断俩个集合中是否有交集,没有返回True</p>
-<pre><code class="language-python">
-# coding:utf-8
-
-set_1 = {1, 2, 3, 4}
-set_2 = {1, 2, 'a', 'b'}
-diff = set_1.difference(set_2) # 也可以使用-
-print(diff)
-
-# print(set_1 - set_2)
-
-intersection_res = set_1.intersection(set_2)
-print('交集', intersection_res)
-
-union_res = set_1.union(set_2)
-print('union_res', union_res)
-
-isdisjoint_res = set_1.isdisjoint(set_2) # 判断俩个集合是否包含相同的元素，没有则True
-print(isdisjoint_res)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="n">set_1</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+</span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="n">set_2</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">}</span>
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="n">diff</span> <span class="o">=</span> <span class="n">set_1</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">set_2</span><span class="p">)</span> <span class="c1"># 也可以使用-</span>
+</span><span id="__span-51-6"><a id="__codelineno-51-6" name="__codelineno-51-6" href="#__codelineno-51-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+</span><span id="__span-51-7"><a id="__codelineno-51-7" name="__codelineno-51-7" href="#__codelineno-51-7"></a>
+</span><span id="__span-51-8"><a id="__codelineno-51-8" name="__codelineno-51-8" href="#__codelineno-51-8"></a><span class="c1"># print(set_1 - set_2)</span>
+</span><span id="__span-51-9"><a id="__codelineno-51-9" name="__codelineno-51-9" href="#__codelineno-51-9"></a>
+</span><span id="__span-51-10"><a id="__codelineno-51-10" name="__codelineno-51-10" href="#__codelineno-51-10"></a><span class="n">intersection_res</span> <span class="o">=</span> <span class="n">set_1</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">set_2</span><span class="p">)</span>
+</span><span id="__span-51-11"><a id="__codelineno-51-11" name="__codelineno-51-11" href="#__codelineno-51-11"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;交集&#39;</span><span class="p">,</span> <span class="n">intersection_res</span><span class="p">)</span>
+</span><span id="__span-51-12"><a id="__codelineno-51-12" name="__codelineno-51-12" href="#__codelineno-51-12"></a>
+</span><span id="__span-51-13"><a id="__codelineno-51-13" name="__codelineno-51-13" href="#__codelineno-51-13"></a><span class="n">union_res</span> <span class="o">=</span> <span class="n">set_1</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">set_2</span><span class="p">)</span>
+</span><span id="__span-51-14"><a id="__codelineno-51-14" name="__codelineno-51-14" href="#__codelineno-51-14"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;union_res&#39;</span><span class="p">,</span> <span class="n">union_res</span><span class="p">)</span>
+</span><span id="__span-51-15"><a id="__codelineno-51-15" name="__codelineno-51-15" href="#__codelineno-51-15"></a>
+</span><span id="__span-51-16"><a id="__codelineno-51-16" name="__codelineno-51-16" href="#__codelineno-51-16"></a><span class="n">isdisjoint_res</span> <span class="o">=</span> <span class="n">set_1</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span><span class="n">set_2</span><span class="p">)</span> <span class="c1"># 判断俩个集合是否包含相同的元素，没有则True</span>
+</span><span id="__span-51-17"><a id="__codelineno-51-17" name="__codelineno-51-17" href="#__codelineno-51-17"></a><span class="nb">print</span><span class="p">(</span><span class="n">isdisjoint_res</span><span class="p">)</span>
+</span></code></pre></div>
 <h3 id="_21">字典使用</h3>
 <p>定义</p>
-<pre><code class="language-python">dict_01 = {'name': 'matt', 'age': 12}
-dict_02 = dict({'name': 'mike', 'age': 19})
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="n">dict_01</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;matt&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">}</span>
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="n">dict_02</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;mike&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">19</span><span class="p">})</span>
+</span></code></pre></div>
 <p><a href="当key不存在就会报错而get没有此缺陷"></a> 和 update()</p>
 <p>update()中需要添加一个已经定义好的字典，并会已有的字典进行覆盖除其中俩个字典相同的key会进行覆盖</p>
-<pre><code class="language-python">dict['age'] = 11
-dict_1 = {'name': 'matt'}
-dict.update(dict_1) # {'age': 11, 'name': 'matt'}
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="nb">dict</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">11</span>
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="n">dict_1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;matt&#39;</span><span class="p">}</span>
+</span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3" href="#__codelineno-53-3"></a><span class="nb">dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dict_1</span><span class="p">)</span> <span class="c1"># {&#39;age&#39;: 11, &#39;name&#39;: &#39;matt&#39;}</span>
+</span></code></pre></div>
 <p>setdefault:key不存在才会设置</p>
-<pre><code class="language-python">dict.setdefault('a', 1)
-dict.setdefault('name', 1)
-print(dict)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="nb">dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a><span class="nb">dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+</span></code></pre></div>
 <p>keys 和 values</p>
 <p>keys:获取字典中所有的key                </p>
 <p>values:获取字典中所有的值</p>
 <p>二者返回的都是伪列表，不具有列表的所有功能</p>
-<pre><code class="language-python">print(dict.keys())
-print('values:', dict.values())
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2" href="#__codelineno-55-2"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;values:&#39;</span><span class="p">,</span> <span class="nb">dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+</span></code></pre></div>
 <p><a href="当key不存在就会报错而get没有此缺陷"></a> 和 get</p>
 <p>二者用于字典根据key获取属性的值，</p>
-<pre><code class="language-python">print(dict['a'])
-print(dict.get('v'))
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">])</span>
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;v&#39;</span><span class="p">))</span>
+</span></code></pre></div>
 <p>clear:清空字典</p>
-<pre><code class="language-python">dict.clear()
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="nb">dict</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</span></code></pre></div>
 <p>pop():根据key删除值，若key不存在则报错</p>
-<pre><code class="language-python">dict.pop('a')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="nb">dict</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>del使用</p>
-<pre><code class="language-python">
-del dict['b'] # 删除key魏'b'
-del dict # 在内存中删除字典，在使用则报错
-print(dict)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="k">del</span> <span class="nb">dict</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="c1"># 删除key魏&#39;b&#39;</span>
+</span><span id="__span-59-2"><a id="__codelineno-59-2" name="__codelineno-59-2" href="#__codelineno-59-2"></a><span class="k">del</span> <span class="nb">dict</span> <span class="c1"># 在内存中删除字典，在使用则报错</span>
+</span><span id="__span-59-3"><a id="__codelineno-59-3" name="__codelineno-59-3" href="#__codelineno-59-3"></a><span class="nb">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+</span></code></pre></div>
 <p>copy:字典的复制，内存地址会发生改变</p>
-<pre><code>dict_01 = dict.copy()
-print(id(dict) == id(dict_01))
-print(dict_01 is dict)
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a>dict_01 = dict.copy()
+</span><span id="__span-60-2"><a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>print(id(dict) == id(dict_01))
+</span><span id="__span-60-3"><a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a>print(dict_01 is dict)
+</span></code></pre></div>
 <p>in 和 not in</p>
-<pre><code class="language-python">dict = {'a': 1, 'b': 2}
-print('a' not in dict)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+</span><span id="__span-61-2"><a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="nb">dict</span><span class="p">)</span>
+</span></code></pre></div>
 <p>popitem():删除字典末尾的key-value,字典为空直接报错</p>
-<pre><code class="language-python">res = dict.popitem() # 字典为空直接报错
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-62-1"><a id="__codelineno-62-1" name="__codelineno-62-1" href="#__codelineno-62-1"></a><span class="n">res</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">popitem</span><span class="p">()</span> <span class="c1"># 字典为空直接报错</span>
+</span></code></pre></div>
 <p>​                                                </p>
 <h3 id="_22">流程控制</h3>
 <p>if</p>
-<pre><code class="language-python"># coding:utf-8
-
-i  = 1
-if i &lt; 10:
-    print('个位数')
-elif i &gt;= 10 and i &lt; 100:
-    print('十位数')
-else:
-    print('其他')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>
+</span><span id="__span-63-3"><a id="__codelineno-63-3" name="__codelineno-63-3" href="#__codelineno-63-3"></a><span class="n">i</span>  <span class="o">=</span> <span class="mi">1</span>
+</span><span id="__span-63-4"><a id="__codelineno-63-4" name="__codelineno-63-4" href="#__codelineno-63-4"></a><span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+</span><span id="__span-63-5"><a id="__codelineno-63-5" name="__codelineno-63-5" href="#__codelineno-63-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;个位数&#39;</span><span class="p">)</span>
+</span><span id="__span-63-6"><a id="__codelineno-63-6" name="__codelineno-63-6" href="#__codelineno-63-6"></a><span class="k">elif</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">10</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span>
+</span><span id="__span-63-7"><a id="__codelineno-63-7" name="__codelineno-63-7" href="#__codelineno-63-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;十位数&#39;</span><span class="p">)</span>
+</span><span id="__span-63-8"><a id="__codelineno-63-8" name="__codelineno-63-8" href="#__codelineno-63-8"></a><span class="k">else</span><span class="p">:</span>
+</span><span id="__span-63-9"><a id="__codelineno-63-9" name="__codelineno-63-9" href="#__codelineno-63-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;其他&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>for</p>
-<pre><code class="language-python"># coding:utf-8
-
-list_0 = [1, 2, 3, 4]
-for i in list_0:
-    print(i)
-
-dict_0 = {'name': 'matt', 'age': 10}
-for i in dict_0.values():
-    print(i)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-64-1"><a id="__codelineno-64-1" name="__codelineno-64-1" href="#__codelineno-64-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-64-2"><a id="__codelineno-64-2" name="__codelineno-64-2" href="#__codelineno-64-2"></a>
+</span><span id="__span-64-3"><a id="__codelineno-64-3" name="__codelineno-64-3" href="#__codelineno-64-3"></a><span class="n">list_0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+</span><span id="__span-64-4"><a id="__codelineno-64-4" name="__codelineno-64-4" href="#__codelineno-64-4"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">list_0</span><span class="p">:</span>
+</span><span id="__span-64-5"><a id="__codelineno-64-5" name="__codelineno-64-5" href="#__codelineno-64-5"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-64-6"><a id="__codelineno-64-6" name="__codelineno-64-6" href="#__codelineno-64-6"></a>
+</span><span id="__span-64-7"><a id="__codelineno-64-7" name="__codelineno-64-7" href="#__codelineno-64-7"></a><span class="n">dict_0</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;matt&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">}</span>
+</span><span id="__span-64-8"><a id="__codelineno-64-8" name="__codelineno-64-8" href="#__codelineno-64-8"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">dict_0</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+</span><span id="__span-64-9"><a id="__codelineno-64-9" name="__codelineno-64-9" href="#__codelineno-64-9"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></code></pre></div>
 <p>while</p>
-<pre><code class="language-python"># coding:utf-8
-
-count = 100
-while count &gt; 0:
-    count -= 1
-    print(count)
-print('end')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-65-1"><a id="__codelineno-65-1" name="__codelineno-65-1" href="#__codelineno-65-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-65-2"><a id="__codelineno-65-2" name="__codelineno-65-2" href="#__codelineno-65-2"></a>
+</span><span id="__span-65-3"><a id="__codelineno-65-3" name="__codelineno-65-3" href="#__codelineno-65-3"></a><span class="n">count</span> <span class="o">=</span> <span class="mi">100</span>
+</span><span id="__span-65-4"><a id="__codelineno-65-4" name="__codelineno-65-4" href="#__codelineno-65-4"></a><span class="k">while</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-65-5"><a id="__codelineno-65-5" name="__codelineno-65-5" href="#__codelineno-65-5"></a>    <span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span>
+</span><span id="__span-65-6"><a id="__codelineno-65-6" name="__codelineno-65-6" href="#__codelineno-65-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+</span><span id="__span-65-7"><a id="__codelineno-65-7" name="__codelineno-65-7" href="#__codelineno-65-7"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <h3 id="_23">函数的使用</h3>
-<pre><code class="language-python"># coding:utf-8
-
-​```
-a：必须要传，b有默认值可以不传
-​```
-def incr(a, b = 1): 
-    return a + 1
-
-sum = incr(a = 1)
-print(sum)
-
-# 可变参数，其中args封装为元组，而kwargs封装为字典
-def test(*args, **kwargs):
-    print('hello word')
-    print(args)
-    print(kwargs)
-test(1, 2, 3,name = 'age', age = 17)
-# (1, 2, 3)
-# {'name': 'age', 'age': 17}
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-66-1"><a id="__codelineno-66-1" name="__codelineno-66-1" href="#__codelineno-66-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-66-2"><a id="__codelineno-66-2" name="__codelineno-66-2" href="#__codelineno-66-2"></a>
+</span><span id="__span-66-3"><a id="__codelineno-66-3" name="__codelineno-66-3" href="#__codelineno-66-3"></a><span class="err">​```</span>
+</span><span id="__span-66-4"><a id="__codelineno-66-4" name="__codelineno-66-4" href="#__codelineno-66-4"></a><span class="n">a</span><span class="err">：</span><span class="n">必须要传</span><span class="err">，</span><span class="n">b有默认值可以不传</span>
+</span><span id="__span-66-5"><a id="__codelineno-66-5" name="__codelineno-66-5" href="#__codelineno-66-5"></a><span class="err">​```</span>
+</span><span id="__span-66-6"><a id="__codelineno-66-6" name="__codelineno-66-6" href="#__codelineno-66-6"></a><span class="k">def</span> <span class="nf">incr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span> 
+</span><span id="__span-66-7"><a id="__codelineno-66-7" name="__codelineno-66-7" href="#__codelineno-66-7"></a>    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+</span><span id="__span-66-8"><a id="__codelineno-66-8" name="__codelineno-66-8" href="#__codelineno-66-8"></a>
+</span><span id="__span-66-9"><a id="__codelineno-66-9" name="__codelineno-66-9" href="#__codelineno-66-9"></a><span class="nb">sum</span> <span class="o">=</span> <span class="n">incr</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-66-10"><a id="__codelineno-66-10" name="__codelineno-66-10" href="#__codelineno-66-10"></a><span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+</span><span id="__span-66-11"><a id="__codelineno-66-11" name="__codelineno-66-11" href="#__codelineno-66-11"></a>
+</span><span id="__span-66-12"><a id="__codelineno-66-12" name="__codelineno-66-12" href="#__codelineno-66-12"></a><span class="c1"># 可变参数，其中args封装为元组，而kwargs封装为字典</span>
+</span><span id="__span-66-13"><a id="__codelineno-66-13" name="__codelineno-66-13" href="#__codelineno-66-13"></a><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-66-14"><a id="__codelineno-66-14" name="__codelineno-66-14" href="#__codelineno-66-14"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello word&#39;</span><span class="p">)</span>
+</span><span id="__span-66-15"><a id="__codelineno-66-15" name="__codelineno-66-15" href="#__codelineno-66-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+</span><span id="__span-66-16"><a id="__codelineno-66-16" name="__codelineno-66-16" href="#__codelineno-66-16"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="__span-66-17"><a id="__codelineno-66-17" name="__codelineno-66-17" href="#__codelineno-66-17"></a><span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="n">age</span> <span class="o">=</span> <span class="mi">17</span><span class="p">)</span>
+</span><span id="__span-66-18"><a id="__codelineno-66-18" name="__codelineno-66-18" href="#__codelineno-66-18"></a><span class="c1"># (1, 2, 3)</span>
+</span><span id="__span-66-19"><a id="__codelineno-66-19" name="__codelineno-66-19" href="#__codelineno-66-19"></a><span class="c1"># {&#39;name&#39;: &#39;age&#39;, &#39;age&#39;: 17}</span>
+</span></code></pre></div>
 <p>函数中使用类型</p>
-<pre><code class="language-python"># python不会对参数类型进行验证
-def test(i:int, j:str = 'hello word'):
-    print(i)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-67-1"><a id="__codelineno-67-1" name="__codelineno-67-1" href="#__codelineno-67-1"></a><span class="c1"># python不会对参数类型进行验证</span>
+</span><span id="__span-67-2"><a id="__codelineno-67-2" name="__codelineno-67-2" href="#__codelineno-67-2"></a><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;hello word&#39;</span><span class="p">):</span>
+</span><span id="__span-67-3"><a id="__codelineno-67-3" name="__codelineno-67-3" href="#__codelineno-67-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></code></pre></div>
 <p>lambda使用</p>
-<pre><code class="language-python">f = lambda : print('test lambda')
-f()
-
-t = lambda x, y : x + y
-print(t(1, 2))
-print('hello' + '11')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-68-1"><a id="__codelineno-68-1" name="__codelineno-68-1" href="#__codelineno-68-1"></a><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test lambda&#39;</span><span class="p">)</span>
+</span><span id="__span-68-2"><a id="__codelineno-68-2" name="__codelineno-68-2" href="#__codelineno-68-2"></a><span class="n">f</span><span class="p">()</span>
+</span><span id="__span-68-3"><a id="__codelineno-68-3" name="__codelineno-68-3" href="#__codelineno-68-3"></a>
+</span><span id="__span-68-4"><a id="__codelineno-68-4" name="__codelineno-68-4" href="#__codelineno-68-4"></a><span class="n">t</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</span><span id="__span-68-5"><a id="__codelineno-68-5" name="__codelineno-68-5" href="#__codelineno-68-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</span><span id="__span-68-6"><a id="__codelineno-68-6" name="__codelineno-68-6" href="#__codelineno-68-6"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span> <span class="o">+</span> <span class="s1">&#39;11&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <h3 id="_24">类与对象</h3>
-<pre><code class="language-python"># coding:utf-8
-
-class Person(object):
-    name = 'matt'
-    __sex = '女'
-    # 构造函数，self代表当前对象
-    def __init__(self):
-        print(self)
-        self.age = 17
-
-    def __init__(self, name):
-        print('hello word')
-
-person = Person('11')
-print(person.name)
-# print(person.sex)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-69-1"><a id="__codelineno-69-1" name="__codelineno-69-1" href="#__codelineno-69-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-69-2"><a id="__codelineno-69-2" name="__codelineno-69-2" href="#__codelineno-69-2"></a>
+</span><span id="__span-69-3"><a id="__codelineno-69-3" name="__codelineno-69-3" href="#__codelineno-69-3"></a><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-69-4"><a id="__codelineno-69-4" name="__codelineno-69-4" href="#__codelineno-69-4"></a>    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;matt&#39;</span>
+</span><span id="__span-69-5"><a id="__codelineno-69-5" name="__codelineno-69-5" href="#__codelineno-69-5"></a>    <span class="n">__sex</span> <span class="o">=</span> <span class="s1">&#39;女&#39;</span>
+</span><span id="__span-69-6"><a id="__codelineno-69-6" name="__codelineno-69-6" href="#__codelineno-69-6"></a>    <span class="c1"># 构造函数，self代表当前对象</span>
+</span><span id="__span-69-7"><a id="__codelineno-69-7" name="__codelineno-69-7" href="#__codelineno-69-7"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-69-8"><a id="__codelineno-69-8" name="__codelineno-69-8" href="#__codelineno-69-8"></a>        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span><span id="__span-69-9"><a id="__codelineno-69-9" name="__codelineno-69-9" href="#__codelineno-69-9"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">17</span>
+</span><span id="__span-69-10"><a id="__codelineno-69-10" name="__codelineno-69-10" href="#__codelineno-69-10"></a>
+</span><span id="__span-69-11"><a id="__codelineno-69-11" name="__codelineno-69-11" href="#__codelineno-69-11"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span><span id="__span-69-12"><a id="__codelineno-69-12" name="__codelineno-69-12" href="#__codelineno-69-12"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;hello word&#39;</span><span class="p">)</span>
+</span><span id="__span-69-13"><a id="__codelineno-69-13" name="__codelineno-69-13" href="#__codelineno-69-13"></a>
+</span><span id="__span-69-14"><a id="__codelineno-69-14" name="__codelineno-69-14" href="#__codelineno-69-14"></a><span class="n">person</span> <span class="o">=</span> <span class="n">Person</span><span class="p">(</span><span class="s1">&#39;11&#39;</span><span class="p">)</span>
+</span><span id="__span-69-15"><a id="__codelineno-69-15" name="__codelineno-69-15" href="#__codelineno-69-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span><span id="__span-69-16"><a id="__codelineno-69-16" name="__codelineno-69-16" href="#__codelineno-69-16"></a><span class="c1"># print(person.sex)</span>
+</span></code></pre></div>
 <p>装饰器的使用</p>
-<pre><code class="language-python">def a(f):
-    def inter(*args, **kwargs):
-        return f(*args, **kwargs)
-    return inter
-
-@a
-def test(i):
-    print(i)
-
-test(1)
-</code></pre>
-<pre><code class="language-python">class T(object):
-
-    __name = 'matt'
-
-    # 直接可以使用类调用
-    @classmethod
-    def a(cls, t):
-        print(t)
-    # 直接可以使用类调用，不需要使用cls,self
-    @staticmethod
-    def b():
-        print('staticmethod')
-
-    # 可以使用对象.name
-    @property
-    def name(self):
-        return self.__name
-
-T.a('11')
-T.b()
-
-t = T()
-print(t.name)
-
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-70-1"><a id="__codelineno-70-1" name="__codelineno-70-1" href="#__codelineno-70-1"></a><span class="k">def</span> <span class="nf">a</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+</span><span id="__span-70-2"><a id="__codelineno-70-2" name="__codelineno-70-2" href="#__codelineno-70-2"></a>    <span class="k">def</span> <span class="nf">inter</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-70-3"><a id="__codelineno-70-3" name="__codelineno-70-3" href="#__codelineno-70-3"></a>        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="__span-70-4"><a id="__codelineno-70-4" name="__codelineno-70-4" href="#__codelineno-70-4"></a>    <span class="k">return</span> <span class="n">inter</span>
+</span><span id="__span-70-5"><a id="__codelineno-70-5" name="__codelineno-70-5" href="#__codelineno-70-5"></a>
+</span><span id="__span-70-6"><a id="__codelineno-70-6" name="__codelineno-70-6" href="#__codelineno-70-6"></a><span class="nd">@a</span>
+</span><span id="__span-70-7"><a id="__codelineno-70-7" name="__codelineno-70-7" href="#__codelineno-70-7"></a><span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+</span><span id="__span-70-8"><a id="__codelineno-70-8" name="__codelineno-70-8" href="#__codelineno-70-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-70-9"><a id="__codelineno-70-9" name="__codelineno-70-9" href="#__codelineno-70-9"></a>
+</span><span id="__span-70-10"><a id="__codelineno-70-10" name="__codelineno-70-10" href="#__codelineno-70-10"></a><span class="n">test</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-71-1"><a id="__codelineno-71-1" name="__codelineno-71-1" href="#__codelineno-71-1"></a><span class="k">class</span> <span class="nc">T</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-71-2"><a id="__codelineno-71-2" name="__codelineno-71-2" href="#__codelineno-71-2"></a>
+</span><span id="__span-71-3"><a id="__codelineno-71-3" name="__codelineno-71-3" href="#__codelineno-71-3"></a>    <span class="n">__name</span> <span class="o">=</span> <span class="s1">&#39;matt&#39;</span>
+</span><span id="__span-71-4"><a id="__codelineno-71-4" name="__codelineno-71-4" href="#__codelineno-71-4"></a>
+</span><span id="__span-71-5"><a id="__codelineno-71-5" name="__codelineno-71-5" href="#__codelineno-71-5"></a>    <span class="c1"># 直接可以使用类调用</span>
+</span><span id="__span-71-6"><a id="__codelineno-71-6" name="__codelineno-71-6" href="#__codelineno-71-6"></a>    <span class="nd">@classmethod</span>
+</span><span id="__span-71-7"><a id="__codelineno-71-7" name="__codelineno-71-7" href="#__codelineno-71-7"></a>    <span class="k">def</span> <span class="nf">a</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+</span><span id="__span-71-8"><a id="__codelineno-71-8" name="__codelineno-71-8" href="#__codelineno-71-8"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span><span id="__span-71-9"><a id="__codelineno-71-9" name="__codelineno-71-9" href="#__codelineno-71-9"></a>    <span class="c1"># 直接可以使用类调用，不需要使用cls,self</span>
+</span><span id="__span-71-10"><a id="__codelineno-71-10" name="__codelineno-71-10" href="#__codelineno-71-10"></a>    <span class="nd">@staticmethod</span>
+</span><span id="__span-71-11"><a id="__codelineno-71-11" name="__codelineno-71-11" href="#__codelineno-71-11"></a>    <span class="k">def</span> <span class="nf">b</span><span class="p">():</span>
+</span><span id="__span-71-12"><a id="__codelineno-71-12" name="__codelineno-71-12" href="#__codelineno-71-12"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;staticmethod&#39;</span><span class="p">)</span>
+</span><span id="__span-71-13"><a id="__codelineno-71-13" name="__codelineno-71-13" href="#__codelineno-71-13"></a>
+</span><span id="__span-71-14"><a id="__codelineno-71-14" name="__codelineno-71-14" href="#__codelineno-71-14"></a>    <span class="c1"># 可以使用对象.name</span>
+</span><span id="__span-71-15"><a id="__codelineno-71-15" name="__codelineno-71-15" href="#__codelineno-71-15"></a>    <span class="nd">@property</span>
+</span><span id="__span-71-16"><a id="__codelineno-71-16" name="__codelineno-71-16" href="#__codelineno-71-16"></a>    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-71-17"><a id="__codelineno-71-17" name="__codelineno-71-17" href="#__codelineno-71-17"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__name</span>
+</span><span id="__span-71-18"><a id="__codelineno-71-18" name="__codelineno-71-18" href="#__codelineno-71-18"></a>
+</span><span id="__span-71-19"><a id="__codelineno-71-19" name="__codelineno-71-19" href="#__codelineno-71-19"></a><span class="n">T</span><span class="o">.</span><span class="n">a</span><span class="p">(</span><span class="s1">&#39;11&#39;</span><span class="p">)</span>
+</span><span id="__span-71-20"><a id="__codelineno-71-20" name="__codelineno-71-20" href="#__codelineno-71-20"></a><span class="n">T</span><span class="o">.</span><span class="n">b</span><span class="p">()</span>
+</span><span id="__span-71-21"><a id="__codelineno-71-21" name="__codelineno-71-21" href="#__codelineno-71-21"></a>
+</span><span id="__span-71-22"><a id="__codelineno-71-22" name="__codelineno-71-22" href="#__codelineno-71-22"></a><span class="n">t</span> <span class="o">=</span> <span class="n">T</span><span class="p">()</span>
+</span><span id="__span-71-23"><a id="__codelineno-71-23" name="__codelineno-71-23" href="#__codelineno-71-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</span></code></pre></div>
 <p>多继承</p>
-<pre><code class="language-python"># coding:utf-8
-
-class A(object):
-
-    def info(self):
-        print('a')
-
-
-class B(object):
-
-    def info(self):
-        print('b')
-
-class C(B, A):
-
-    def test(self):
-        super(C, self).info()
-        print('test')
-
-c = C()
-c.test()
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-72-1"><a id="__codelineno-72-1" name="__codelineno-72-1" href="#__codelineno-72-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-72-2"><a id="__codelineno-72-2" name="__codelineno-72-2" href="#__codelineno-72-2"></a>
+</span><span id="__span-72-3"><a id="__codelineno-72-3" name="__codelineno-72-3" href="#__codelineno-72-3"></a><span class="k">class</span> <span class="nc">A</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-72-4"><a id="__codelineno-72-4" name="__codelineno-72-4" href="#__codelineno-72-4"></a>
+</span><span id="__span-72-5"><a id="__codelineno-72-5" name="__codelineno-72-5" href="#__codelineno-72-5"></a>    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-72-6"><a id="__codelineno-72-6" name="__codelineno-72-6" href="#__codelineno-72-6"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</span><span id="__span-72-7"><a id="__codelineno-72-7" name="__codelineno-72-7" href="#__codelineno-72-7"></a>
+</span><span id="__span-72-8"><a id="__codelineno-72-8" name="__codelineno-72-8" href="#__codelineno-72-8"></a>
+</span><span id="__span-72-9"><a id="__codelineno-72-9" name="__codelineno-72-9" href="#__codelineno-72-9"></a><span class="k">class</span> <span class="nc">B</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-72-10"><a id="__codelineno-72-10" name="__codelineno-72-10" href="#__codelineno-72-10"></a>
+</span><span id="__span-72-11"><a id="__codelineno-72-11" name="__codelineno-72-11" href="#__codelineno-72-11"></a>    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-72-12"><a id="__codelineno-72-12" name="__codelineno-72-12" href="#__codelineno-72-12"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">)</span>
+</span><span id="__span-72-13"><a id="__codelineno-72-13" name="__codelineno-72-13" href="#__codelineno-72-13"></a>
+</span><span id="__span-72-14"><a id="__codelineno-72-14" name="__codelineno-72-14" href="#__codelineno-72-14"></a><span class="k">class</span> <span class="nc">C</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="n">A</span><span class="p">):</span>
+</span><span id="__span-72-15"><a id="__codelineno-72-15" name="__codelineno-72-15" href="#__codelineno-72-15"></a>
+</span><span id="__span-72-16"><a id="__codelineno-72-16" name="__codelineno-72-16" href="#__codelineno-72-16"></a>    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-72-17"><a id="__codelineno-72-17" name="__codelineno-72-17" href="#__codelineno-72-17"></a>        <span class="nb">super</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</span><span id="__span-72-18"><a id="__codelineno-72-18" name="__codelineno-72-18" href="#__codelineno-72-18"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+</span><span id="__span-72-19"><a id="__codelineno-72-19" name="__codelineno-72-19" href="#__codelineno-72-19"></a>
+</span><span id="__span-72-20"><a id="__codelineno-72-20" name="__codelineno-72-20" href="#__codelineno-72-20"></a><span class="n">c</span> <span class="o">=</span> <span class="n">C</span><span class="p">()</span>
+</span><span id="__span-72-21"><a id="__codelineno-72-21" name="__codelineno-72-21" href="#__codelineno-72-21"></a><span class="n">c</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+</span></code></pre></div>
 <p>super: super(当前类，self).父类的属性或者方法</p>
-<pre><code class="language-python"># coding:utf-8
-
-class Parent(object):
-
-    def __init__(self, name):
-        self.name = name
-
-    def info(self,name):
-        print(name)
-
-p = Parent('p')
-p.info('aaa')
-
-class Son(Parent):
-
-    def __init__(self):
-        super(Son, self).__init__('aaa')
-
-    def test(self):
-        super(Son, self).info('hello word')
-
-s = Son()
-s.test()
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-73-1"><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-73-2"><a id="__codelineno-73-2" name="__codelineno-73-2" href="#__codelineno-73-2"></a>
+</span><span id="__span-73-3"><a id="__codelineno-73-3" name="__codelineno-73-3" href="#__codelineno-73-3"></a><span class="k">class</span> <span class="nc">Parent</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-73-4"><a id="__codelineno-73-4" name="__codelineno-73-4" href="#__codelineno-73-4"></a>
+</span><span id="__span-73-5"><a id="__codelineno-73-5" name="__codelineno-73-5" href="#__codelineno-73-5"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span><span id="__span-73-6"><a id="__codelineno-73-6" name="__codelineno-73-6" href="#__codelineno-73-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span><span id="__span-73-7"><a id="__codelineno-73-7" name="__codelineno-73-7" href="#__codelineno-73-7"></a>
+</span><span id="__span-73-8"><a id="__codelineno-73-8" name="__codelineno-73-8" href="#__codelineno-73-8"></a>    <span class="k">def</span> <span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">name</span><span class="p">):</span>
+</span><span id="__span-73-9"><a id="__codelineno-73-9" name="__codelineno-73-9" href="#__codelineno-73-9"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span><span id="__span-73-10"><a id="__codelineno-73-10" name="__codelineno-73-10" href="#__codelineno-73-10"></a>
+</span><span id="__span-73-11"><a id="__codelineno-73-11" name="__codelineno-73-11" href="#__codelineno-73-11"></a><span class="n">p</span> <span class="o">=</span> <span class="n">Parent</span><span class="p">(</span><span class="s1">&#39;p&#39;</span><span class="p">)</span>
+</span><span id="__span-73-12"><a id="__codelineno-73-12" name="__codelineno-73-12" href="#__codelineno-73-12"></a><span class="n">p</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span>
+</span><span id="__span-73-13"><a id="__codelineno-73-13" name="__codelineno-73-13" href="#__codelineno-73-13"></a>
+</span><span id="__span-73-14"><a id="__codelineno-73-14" name="__codelineno-73-14" href="#__codelineno-73-14"></a><span class="k">class</span> <span class="nc">Son</span><span class="p">(</span><span class="n">Parent</span><span class="p">):</span>
+</span><span id="__span-73-15"><a id="__codelineno-73-15" name="__codelineno-73-15" href="#__codelineno-73-15"></a>
+</span><span id="__span-73-16"><a id="__codelineno-73-16" name="__codelineno-73-16" href="#__codelineno-73-16"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-73-17"><a id="__codelineno-73-17" name="__codelineno-73-17" href="#__codelineno-73-17"></a>        <span class="nb">super</span><span class="p">(</span><span class="n">Son</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span>
+</span><span id="__span-73-18"><a id="__codelineno-73-18" name="__codelineno-73-18" href="#__codelineno-73-18"></a>
+</span><span id="__span-73-19"><a id="__codelineno-73-19" name="__codelineno-73-19" href="#__codelineno-73-19"></a>    <span class="k">def</span> <span class="nf">test</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-73-20"><a id="__codelineno-73-20" name="__codelineno-73-20" href="#__codelineno-73-20"></a>        <span class="nb">super</span><span class="p">(</span><span class="n">Son</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;hello word&#39;</span><span class="p">)</span>
+</span><span id="__span-73-21"><a id="__codelineno-73-21" name="__codelineno-73-21" href="#__codelineno-73-21"></a>
+</span><span id="__span-73-22"><a id="__codelineno-73-22" name="__codelineno-73-22" href="#__codelineno-73-22"></a><span class="n">s</span> <span class="o">=</span> <span class="n">Son</span><span class="p">()</span>
+</span><span id="__span-73-23"><a id="__codelineno-73-23" name="__codelineno-73-23" href="#__codelineno-73-23"></a><span class="n">s</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+</span></code></pre></div>
 <p>类的高级函数</p>
-<pre><code class="language-python"># coding:utf-8
-
-class Person(object):
-
-    # 类的描述信息,相当于toString()方法
-    def __str__(self):
-        print('this is person')
-        return '1'
-
-    # 在key不存在时会触发这个函数
-    def __getattr__(self, item):
-        print('%s 不存在' % (item))
-
-    # 在属性不存在设置时触发这个函数
-    def __setattr__(self, key, value):
-        if key not in self.__dict__:
-            return
-
-    # 对象(参数)
-    def __call__(self, *args, **kwargs):
-        print(*args)
-
-
-person = Person()
-print(person.a)
-print(person)
-
-person.age = 18
-print(person.age)
-
-person(12222)
-
-print(person.__dict__)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-74-1"><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-74-2"><a id="__codelineno-74-2" name="__codelineno-74-2" href="#__codelineno-74-2"></a>
+</span><span id="__span-74-3"><a id="__codelineno-74-3" name="__codelineno-74-3" href="#__codelineno-74-3"></a><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-74-4"><a id="__codelineno-74-4" name="__codelineno-74-4" href="#__codelineno-74-4"></a>
+</span><span id="__span-74-5"><a id="__codelineno-74-5" name="__codelineno-74-5" href="#__codelineno-74-5"></a>    <span class="c1"># 类的描述信息,相当于toString()方法</span>
+</span><span id="__span-74-6"><a id="__codelineno-74-6" name="__codelineno-74-6" href="#__codelineno-74-6"></a>    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-74-7"><a id="__codelineno-74-7" name="__codelineno-74-7" href="#__codelineno-74-7"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;this is person&#39;</span><span class="p">)</span>
+</span><span id="__span-74-8"><a id="__codelineno-74-8" name="__codelineno-74-8" href="#__codelineno-74-8"></a>        <span class="k">return</span> <span class="s1">&#39;1&#39;</span>
+</span><span id="__span-74-9"><a id="__codelineno-74-9" name="__codelineno-74-9" href="#__codelineno-74-9"></a>
+</span><span id="__span-74-10"><a id="__codelineno-74-10" name="__codelineno-74-10" href="#__codelineno-74-10"></a>    <span class="c1"># 在key不存在时会触发这个函数</span>
+</span><span id="__span-74-11"><a id="__codelineno-74-11" name="__codelineno-74-11" href="#__codelineno-74-11"></a>    <span class="k">def</span> <span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+</span><span id="__span-74-12"><a id="__codelineno-74-12" name="__codelineno-74-12" href="#__codelineno-74-12"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> 不存在&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">item</span><span class="p">))</span>
+</span><span id="__span-74-13"><a id="__codelineno-74-13" name="__codelineno-74-13" href="#__codelineno-74-13"></a>
+</span><span id="__span-74-14"><a id="__codelineno-74-14" name="__codelineno-74-14" href="#__codelineno-74-14"></a>    <span class="c1"># 在属性不存在设置时触发这个函数</span>
+</span><span id="__span-74-15"><a id="__codelineno-74-15" name="__codelineno-74-15" href="#__codelineno-74-15"></a>    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+</span><span id="__span-74-16"><a id="__codelineno-74-16" name="__codelineno-74-16" href="#__codelineno-74-16"></a>        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+</span><span id="__span-74-17"><a id="__codelineno-74-17" name="__codelineno-74-17" href="#__codelineno-74-17"></a>            <span class="k">return</span>
+</span><span id="__span-74-18"><a id="__codelineno-74-18" name="__codelineno-74-18" href="#__codelineno-74-18"></a>
+</span><span id="__span-74-19"><a id="__codelineno-74-19" name="__codelineno-74-19" href="#__codelineno-74-19"></a>    <span class="c1"># 对象(参数)</span>
+</span><span id="__span-74-20"><a id="__codelineno-74-20" name="__codelineno-74-20" href="#__codelineno-74-20"></a>    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-74-21"><a id="__codelineno-74-21" name="__codelineno-74-21" href="#__codelineno-74-21"></a>        <span class="nb">print</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span id="__span-74-22"><a id="__codelineno-74-22" name="__codelineno-74-22" href="#__codelineno-74-22"></a>
+</span><span id="__span-74-23"><a id="__codelineno-74-23" name="__codelineno-74-23" href="#__codelineno-74-23"></a>
+</span><span id="__span-74-24"><a id="__codelineno-74-24" name="__codelineno-74-24" href="#__codelineno-74-24"></a><span class="n">person</span> <span class="o">=</span> <span class="n">Person</span><span class="p">()</span>
+</span><span id="__span-74-25"><a id="__codelineno-74-25" name="__codelineno-74-25" href="#__codelineno-74-25"></a><span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">a</span><span class="p">)</span>
+</span><span id="__span-74-26"><a id="__codelineno-74-26" name="__codelineno-74-26" href="#__codelineno-74-26"></a><span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+</span><span id="__span-74-27"><a id="__codelineno-74-27" name="__codelineno-74-27" href="#__codelineno-74-27"></a>
+</span><span id="__span-74-28"><a id="__codelineno-74-28" name="__codelineno-74-28" href="#__codelineno-74-28"></a><span class="n">person</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">18</span>
+</span><span id="__span-74-29"><a id="__codelineno-74-29" name="__codelineno-74-29" href="#__codelineno-74-29"></a><span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>
+</span><span id="__span-74-30"><a id="__codelineno-74-30" name="__codelineno-74-30" href="#__codelineno-74-30"></a>
+</span><span id="__span-74-31"><a id="__codelineno-74-31" name="__codelineno-74-31" href="#__codelineno-74-31"></a><span class="n">person</span><span class="p">(</span><span class="mi">12222</span><span class="p">)</span>
+</span><span id="__span-74-32"><a id="__codelineno-74-32" name="__codelineno-74-32" href="#__codelineno-74-32"></a>
+</span><span id="__span-74-33"><a id="__codelineno-74-33" name="__codelineno-74-33" href="#__codelineno-74-33"></a><span class="nb">print</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+</span></code></pre></div>
 <h3 id="_25">异常</h3>
 <p>异常的捕获</p>
-<pre><code class="language-python">
-try:
-    i = 10 / 0
-except Exception as e:
-    print(e)
-finally:
-    print('end...')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-75-1"><a id="__codelineno-75-1" name="__codelineno-75-1" href="#__codelineno-75-1"></a><span class="k">try</span><span class="p">:</span>
+</span><span id="__span-75-2"><a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a>    <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">/</span> <span class="mi">0</span>
+</span><span id="__span-75-3"><a id="__codelineno-75-3" name="__codelineno-75-3" href="#__codelineno-75-3"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="__span-75-4"><a id="__codelineno-75-4" name="__codelineno-75-4" href="#__codelineno-75-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span><span id="__span-75-5"><a id="__codelineno-75-5" name="__codelineno-75-5" href="#__codelineno-75-5"></a><span class="k">finally</span><span class="p">:</span>
+</span><span id="__span-75-6"><a id="__codelineno-75-6" name="__codelineno-75-6" href="#__codelineno-75-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;end...&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>捕获多个异常</p>
-<pre><code class="language-python">try:
-    res = 1 / 0
-except ZeroDivisionError as e:
-    print(e)
-except Exception as e:
-    print(e)
-finally:
-    print('end')
-</code></pre>
-<pre><code class="language-python">try:
-    res = 1 / 0
-except (ZeroDivisionError, Exception) as e:
-    print(e)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-76-1"><a id="__codelineno-76-1" name="__codelineno-76-1" href="#__codelineno-76-1"></a><span class="k">try</span><span class="p">:</span>
+</span><span id="__span-76-2"><a id="__codelineno-76-2" name="__codelineno-76-2" href="#__codelineno-76-2"></a>    <span class="n">res</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+</span><span id="__span-76-3"><a id="__codelineno-76-3" name="__codelineno-76-3" href="#__codelineno-76-3"></a><span class="k">except</span> <span class="ne">ZeroDivisionError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="__span-76-4"><a id="__codelineno-76-4" name="__codelineno-76-4" href="#__codelineno-76-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span><span id="__span-76-5"><a id="__codelineno-76-5" name="__codelineno-76-5" href="#__codelineno-76-5"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="__span-76-6"><a id="__codelineno-76-6" name="__codelineno-76-6" href="#__codelineno-76-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span><span id="__span-76-7"><a id="__codelineno-76-7" name="__codelineno-76-7" href="#__codelineno-76-7"></a><span class="k">finally</span><span class="p">:</span>
+</span><span id="__span-76-8"><a id="__codelineno-76-8" name="__codelineno-76-8" href="#__codelineno-76-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;end&#39;</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-77-1"><a id="__codelineno-77-1" name="__codelineno-77-1" href="#__codelineno-77-1"></a><span class="k">try</span><span class="p">:</span>
+</span><span id="__span-77-2"><a id="__codelineno-77-2" name="__codelineno-77-2" href="#__codelineno-77-2"></a>    <span class="n">res</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">0</span>
+</span><span id="__span-77-3"><a id="__codelineno-77-3" name="__codelineno-77-3" href="#__codelineno-77-3"></a><span class="k">except</span> <span class="p">(</span><span class="ne">ZeroDivisionError</span><span class="p">,</span> <span class="ne">Exception</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="__span-77-4"><a id="__codelineno-77-4" name="__codelineno-77-4" href="#__codelineno-77-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</span></code></pre></div>
 <p>自定义抛出异常</p>
-<pre><code class="language-python">i = 100
-if i == 100:
-    raise Exception('i 不可以为100')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-78-1"><a id="__codelineno-78-1" name="__codelineno-78-1" href="#__codelineno-78-1"></a><span class="n">i</span> <span class="o">=</span> <span class="mi">100</span>
+</span><span id="__span-78-2"><a id="__codelineno-78-2" name="__codelineno-78-2" href="#__codelineno-78-2"></a><span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">100</span><span class="p">:</span>
+</span><span id="__span-78-3"><a id="__codelineno-78-3" name="__codelineno-78-3" href="#__codelineno-78-3"></a>    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;i 不可以为100&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>自定义异常</p>
-<pre><code class="language-python"># coding:utf-8
-
-class MyException(Exception):
-    def __init__(self, message):
-        self.message = message
-
-i = 100
-if i == 100:
-    raise MyException('hhhah')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-79-1"><a id="__codelineno-79-1" name="__codelineno-79-1" href="#__codelineno-79-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-79-2"><a id="__codelineno-79-2" name="__codelineno-79-2" href="#__codelineno-79-2"></a>
+</span><span id="__span-79-3"><a id="__codelineno-79-3" name="__codelineno-79-3" href="#__codelineno-79-3"></a><span class="k">class</span> <span class="nc">MyException</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+</span><span id="__span-79-4"><a id="__codelineno-79-4" name="__codelineno-79-4" href="#__codelineno-79-4"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">):</span>
+</span><span id="__span-79-5"><a id="__codelineno-79-5" name="__codelineno-79-5" href="#__codelineno-79-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">message</span> <span class="o">=</span> <span class="n">message</span>
+</span><span id="__span-79-6"><a id="__codelineno-79-6" name="__codelineno-79-6" href="#__codelineno-79-6"></a>
+</span><span id="__span-79-7"><a id="__codelineno-79-7" name="__codelineno-79-7" href="#__codelineno-79-7"></a><span class="n">i</span> <span class="o">=</span> <span class="mi">100</span>
+</span><span id="__span-79-8"><a id="__codelineno-79-8" name="__codelineno-79-8" href="#__codelineno-79-8"></a><span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">100</span><span class="p">:</span>
+</span><span id="__span-79-9"><a id="__codelineno-79-9" name="__codelineno-79-9" href="#__codelineno-79-9"></a>    <span class="k">raise</span> <span class="n">MyException</span><span class="p">(</span><span class="s1">&#39;hhhah&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>常见的异常
 StopIteration：由内置函数 next() 和 iterator 的 <strong>next</strong>() 方法所引发，用来表示该迭
 代器不能产生下一项；</p>
@@ -4090,28 +4086,28 @@ UnicodeWarning：与 Unicode 相关的警告的基类
 BytesWarning：与 bytes 和 bytearray 相关的警告的基类
 ResourceWarning：与资源使用相关的警告的基类</p>
 <h3 id="_26"><strong>包与模块</strong></h3>
-<pre><code>包：一个文件夹，这个文件夹中有__init__.py和其他python文件，其中__init__.py是包的身份证，其他py文件是模块，包中也可以有
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-80-1"><a id="__codelineno-80-1" name="__codelineno-80-1" href="#__codelineno-80-1"></a>包：一个文件夹，这个文件夹中有__init__.py和其他python文件，其中__init__.py是包的身份证，其他py文件是模块，包中也可以有
+</span></code></pre></div>
 <p>导入包</p>
-<pre><code class="language-python">import animal.dog
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-81-1"><a id="__codelineno-81-1" name="__codelineno-81-1" href="#__codelineno-81-1"></a><span class="kn">import</span> <span class="nn">animal.dog</span>
+</span></code></pre></div>
 <p>导入模块</p>
-<pre><code class="language-python">from animal.dog import aciton
-
-action.jump()
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-82-1"><a id="__codelineno-82-1" name="__codelineno-82-1" href="#__codelineno-82-1"></a><span class="kn">from</span> <span class="nn">animal.dog</span> <span class="kn">import</span> <span class="n">aciton</span>
+</span><span id="__span-82-2"><a id="__codelineno-82-2" name="__codelineno-82-2" href="#__codelineno-82-2"></a>
+</span><span id="__span-82-3"><a id="__codelineno-82-3" name="__codelineno-82-3" href="#__codelineno-82-3"></a><span class="n">action</span><span class="o">.</span><span class="n">jump</span><span class="p">()</span>
+</span></code></pre></div>
 <p>导入模块中的函数</p>
-<pre><code class="language-python">from animal.dog.action import run as dog_run # as是起别名
-
-dog_run()
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-83-1"><a id="__codelineno-83-1" name="__codelineno-83-1" href="#__codelineno-83-1"></a><span class="kn">from</span> <span class="nn">animal.dog.action</span> <span class="kn">import</span> <span class="n">run</span> <span class="k">as</span> <span class="n">dog_run</span> <span class="c1"># as是起别名</span>
+</span><span id="__span-83-2"><a id="__codelineno-83-2" name="__codelineno-83-2" href="#__codelineno-83-2"></a>
+</span><span id="__span-83-3"><a id="__codelineno-83-3" name="__codelineno-83-3" href="#__codelineno-83-3"></a><span class="n">dog_run</span><span class="p">()</span>
+</span></code></pre></div>
 <h3 id="pip_1">pip使用</h3>
-<pre><code class="language-python">pip install 包名
-
-pip uninstall 包名
-
-pip -V
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-84-1"><a id="__codelineno-84-1" name="__codelineno-84-1" href="#__codelineno-84-1"></a><span class="n">pip</span> <span class="n">install</span> <span class="n">包名</span>
+</span><span id="__span-84-2"><a id="__codelineno-84-2" name="__codelineno-84-2" href="#__codelineno-84-2"></a>
+</span><span id="__span-84-3"><a id="__codelineno-84-3" name="__codelineno-84-3" href="#__codelineno-84-3"></a><span class="n">pip</span> <span class="n">uninstall</span> <span class="n">包名</span>
+</span><span id="__span-84-4"><a id="__codelineno-84-4" name="__codelineno-84-4" href="#__codelineno-84-4"></a>
+</span><span id="__span-84-5"><a id="__codelineno-84-5" name="__codelineno-84-5" href="#__codelineno-84-5"></a><span class="n">pip</span> <span class="o">-</span><span class="n">V</span>
+</span></code></pre></div>
 <p>pip更改镜像<a href="https://developer.aliyun.com/article/652884">参考</a></p>
 <p>pip国内的一些镜像</p>
 <ul>
@@ -4170,10 +4166,10 @@ pip -V
 <p>pip install django -i http://pypi.douban.com/simple --trusted-host <a href="http://pypi.douban.com/">pypi.douban.com</a></p>
 </blockquote>
 <p>%APPDATA%\pip\pip.ini</p>
-<pre><code>[global]
-
-index-url = https://pypi.tuna.tsinghua.edu.cn/simple
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-85-1"><a id="__codelineno-85-1" name="__codelineno-85-1" href="#__codelineno-85-1"></a>[global]
+</span><span id="__span-85-2"><a id="__codelineno-85-2" name="__codelineno-85-2" href="#__codelineno-85-2"></a>
+</span><span id="__span-85-3"><a id="__codelineno-85-3" name="__codelineno-85-3" href="#__codelineno-85-3"></a>index-url = https://pypi.tuna.tsinghua.edu.cn/simple
+</span></code></pre></div>
 <h3 id="_27">时间</h3>
 <p><em>python 中时间日期格式化符号</em>
 %y：两位数的年份表示（00-99）
@@ -4198,47 +4194,43 @@ index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 <p>%X：本地相应的时间表示
 %Z：当前时区的名称
 %%： %号本身</p>
-<pre><code class="language-python"># coding:utf-8
-
-from datetime import datetime
-from datetime import timedelta
-
-
-res = datetime.now() # 当前时间日期对象
-print(res)
-
-one_day = timedelta(days=1) # 得到时间间隔对象
-
-print(res - one_day) # 使用
-res = datetime.now()
-# 时间日期对象转字符串 以及解析
-print(res.strftime('%Y/%m/%d %H:%M:%S')) # 只有一个参数就不需要名
-
-time_str = res.strftime('%Y/%m/%d %H:%M:%S')
-time_obj = datetime.strptime(time_str, '%Y/%m/%d %H:%M:%S')
-print(time_obj)
-
-
-</code></pre>
-<pre><code class="language-python"># coding:utf-8
-
-import time
-from datetime import datetime
-
-print(time.time()) # 时间戳
-
-print('localtime', time.localtime()) # 获取本地时间
-# time.sleep(10)
-print('this is end')
-# 时间日期对象 和时间戳转换
-timestamp_1 = datetime.timestamp(datetime.now()) # 获取时间戳
-print(timestamp_1)
-
-
-print(datetime.fromtimestamp(timestamp_1))
-
-
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-86-1"><a id="__codelineno-86-1" name="__codelineno-86-1" href="#__codelineno-86-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-86-2"><a id="__codelineno-86-2" name="__codelineno-86-2" href="#__codelineno-86-2"></a>
+</span><span id="__span-86-3"><a id="__codelineno-86-3" name="__codelineno-86-3" href="#__codelineno-86-3"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span><span id="__span-86-4"><a id="__codelineno-86-4" name="__codelineno-86-4" href="#__codelineno-86-4"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+</span><span id="__span-86-5"><a id="__codelineno-86-5" name="__codelineno-86-5" href="#__codelineno-86-5"></a>
+</span><span id="__span-86-6"><a id="__codelineno-86-6" name="__codelineno-86-6" href="#__codelineno-86-6"></a>
+</span><span id="__span-86-7"><a id="__codelineno-86-7" name="__codelineno-86-7" href="#__codelineno-86-7"></a><span class="n">res</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span> <span class="c1"># 当前时间日期对象</span>
+</span><span id="__span-86-8"><a id="__codelineno-86-8" name="__codelineno-86-8" href="#__codelineno-86-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span><span id="__span-86-9"><a id="__codelineno-86-9" name="__codelineno-86-9" href="#__codelineno-86-9"></a>
+</span><span id="__span-86-10"><a id="__codelineno-86-10" name="__codelineno-86-10" href="#__codelineno-86-10"></a><span class="n">one_day</span> <span class="o">=</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">days</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 得到时间间隔对象</span>
+</span><span id="__span-86-11"><a id="__codelineno-86-11" name="__codelineno-86-11" href="#__codelineno-86-11"></a>
+</span><span id="__span-86-12"><a id="__codelineno-86-12" name="__codelineno-86-12" href="#__codelineno-86-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">res</span> <span class="o">-</span> <span class="n">one_day</span><span class="p">)</span> <span class="c1"># 使用</span>
+</span><span id="__span-86-13"><a id="__codelineno-86-13" name="__codelineno-86-13" href="#__codelineno-86-13"></a><span class="n">res</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+</span><span id="__span-86-14"><a id="__codelineno-86-14" name="__codelineno-86-14" href="#__codelineno-86-14"></a><span class="c1"># 时间日期对象转字符串 以及解析</span>
+</span><span id="__span-86-15"><a id="__codelineno-86-15" name="__codelineno-86-15" href="#__codelineno-86-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y/%m/</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">))</span> <span class="c1"># 只有一个参数就不需要名</span>
+</span><span id="__span-86-16"><a id="__codelineno-86-16" name="__codelineno-86-16" href="#__codelineno-86-16"></a>
+</span><span id="__span-86-17"><a id="__codelineno-86-17" name="__codelineno-86-17" href="#__codelineno-86-17"></a><span class="n">time_str</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y/%m/</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+</span><span id="__span-86-18"><a id="__codelineno-86-18" name="__codelineno-86-18" href="#__codelineno-86-18"></a><span class="n">time_obj</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">time_str</span><span class="p">,</span> <span class="s1">&#39;%Y/%m/</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
+</span><span id="__span-86-19"><a id="__codelineno-86-19" name="__codelineno-86-19" href="#__codelineno-86-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">time_obj</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-87-1"><a id="__codelineno-87-1" name="__codelineno-87-1" href="#__codelineno-87-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-87-2"><a id="__codelineno-87-2" name="__codelineno-87-2" href="#__codelineno-87-2"></a>
+</span><span id="__span-87-3"><a id="__codelineno-87-3" name="__codelineno-87-3" href="#__codelineno-87-3"></a><span class="kn">import</span> <span class="nn">time</span>
+</span><span id="__span-87-4"><a id="__codelineno-87-4" name="__codelineno-87-4" href="#__codelineno-87-4"></a><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+</span><span id="__span-87-5"><a id="__codelineno-87-5" name="__codelineno-87-5" href="#__codelineno-87-5"></a>
+</span><span id="__span-87-6"><a id="__codelineno-87-6" name="__codelineno-87-6" href="#__codelineno-87-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())</span> <span class="c1"># 时间戳</span>
+</span><span id="__span-87-7"><a id="__codelineno-87-7" name="__codelineno-87-7" href="#__codelineno-87-7"></a>
+</span><span id="__span-87-8"><a id="__codelineno-87-8" name="__codelineno-87-8" href="#__codelineno-87-8"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;localtime&#39;</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">())</span> <span class="c1"># 获取本地时间</span>
+</span><span id="__span-87-9"><a id="__codelineno-87-9" name="__codelineno-87-9" href="#__codelineno-87-9"></a><span class="c1"># time.sleep(10)</span>
+</span><span id="__span-87-10"><a id="__codelineno-87-10" name="__codelineno-87-10" href="#__codelineno-87-10"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;this is end&#39;</span><span class="p">)</span>
+</span><span id="__span-87-11"><a id="__codelineno-87-11" name="__codelineno-87-11" href="#__codelineno-87-11"></a><span class="c1"># 时间日期对象 和时间戳转换</span>
+</span><span id="__span-87-12"><a id="__codelineno-87-12" name="__codelineno-87-12" href="#__codelineno-87-12"></a><span class="n">timestamp_1</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">())</span> <span class="c1"># 获取时间戳</span>
+</span><span id="__span-87-13"><a id="__codelineno-87-13" name="__codelineno-87-13" href="#__codelineno-87-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">timestamp_1</span><span class="p">)</span>
+</span><span id="__span-87-14"><a id="__codelineno-87-14" name="__codelineno-87-14" href="#__codelineno-87-14"></a>
+</span><span id="__span-87-15"><a id="__codelineno-87-15" name="__codelineno-87-15" href="#__codelineno-87-15"></a>
+</span><span id="__span-87-16"><a id="__codelineno-87-16" name="__codelineno-87-16" href="#__codelineno-87-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">timestamp_1</span><span class="p">))</span>
+</span></code></pre></div>
 <h3 id="_28">文件</h3>
 <p>打开文件的三步：打开-&gt;操作-&gt;关闭
 注意：
@@ -4277,77 +4269,74 @@ rb    rb+   wb  wb+     ab  ab+</p>
 <p>open():打开文件</p>
 <p>write():写入一个字符串到文件中</p>
 <p>writelines():写入一个list</p>
-<pre><code class="language-python"># coding:utf-8
-
-
-try:
-    f = open('D:/var/hello.txt', 'a',encoding='utf-8')
-    # f.write('中古哟人')
-    list_0 = list(['hello word', 'matt'])
-    f.writelines(list_0)
-except Exception as e:
-    print('写文件出错')
-finally:
-    f.close()
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-88-1"><a id="__codelineno-88-1" name="__codelineno-88-1" href="#__codelineno-88-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-88-2"><a id="__codelineno-88-2" name="__codelineno-88-2" href="#__codelineno-88-2"></a>
+</span><span id="__span-88-3"><a id="__codelineno-88-3" name="__codelineno-88-3" href="#__codelineno-88-3"></a>
+</span><span id="__span-88-4"><a id="__codelineno-88-4" name="__codelineno-88-4" href="#__codelineno-88-4"></a><span class="k">try</span><span class="p">:</span>
+</span><span id="__span-88-5"><a id="__codelineno-88-5" name="__codelineno-88-5" href="#__codelineno-88-5"></a>    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;D:/var/hello.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span><span id="__span-88-6"><a id="__codelineno-88-6" name="__codelineno-88-6" href="#__codelineno-88-6"></a>    <span class="c1"># f.write(&#39;中古哟人&#39;)</span>
+</span><span id="__span-88-7"><a id="__codelineno-88-7" name="__codelineno-88-7" href="#__codelineno-88-7"></a>    <span class="n">list_0</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="s1">&#39;hello word&#39;</span><span class="p">,</span> <span class="s1">&#39;matt&#39;</span><span class="p">])</span>
+</span><span id="__span-88-8"><a id="__codelineno-88-8" name="__codelineno-88-8" href="#__codelineno-88-8"></a>    <span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">list_0</span><span class="p">)</span>
+</span><span id="__span-88-9"><a id="__codelineno-88-9" name="__codelineno-88-9" href="#__codelineno-88-9"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="__span-88-10"><a id="__codelineno-88-10" name="__codelineno-88-10" href="#__codelineno-88-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;写文件出错&#39;</span><span class="p">)</span>
+</span><span id="__span-88-11"><a id="__codelineno-88-11" name="__codelineno-88-11" href="#__codelineno-88-11"></a><span class="k">finally</span><span class="p">:</span>
+</span><span id="__span-88-12"><a id="__codelineno-88-12" name="__codelineno-88-12" href="#__codelineno-88-12"></a>    <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></div>
 <p>read():整个文件读取到一个字符串</p>
 <p>readlines():文件读到一个list中</p>
 <p>readline():读取到一行</p>
 <p>closed:判断文件是否关闭,是属性</p>
-<pre><code class="language-python"># coding:utf-8
-
-
-try:
-    f = open(file='D:/var/hello.txt', mode='r', encoding='utf-8')
-    # print(f.read())
-    # print(f.readlines())
-    print(f.readline())
-except Exception as e:
-    print('读取文件出错')
-finally:
-    if f.closed:
-        pass
-    else:
-        f.close()
-
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-89-1"><a id="__codelineno-89-1" name="__codelineno-89-1" href="#__codelineno-89-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-89-2"><a id="__codelineno-89-2" name="__codelineno-89-2" href="#__codelineno-89-2"></a>
+</span><span id="__span-89-3"><a id="__codelineno-89-3" name="__codelineno-89-3" href="#__codelineno-89-3"></a>
+</span><span id="__span-89-4"><a id="__codelineno-89-4" name="__codelineno-89-4" href="#__codelineno-89-4"></a><span class="k">try</span><span class="p">:</span>
+</span><span id="__span-89-5"><a id="__codelineno-89-5" name="__codelineno-89-5" href="#__codelineno-89-5"></a>    <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;D:/var/hello.txt&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span><span id="__span-89-6"><a id="__codelineno-89-6" name="__codelineno-89-6" href="#__codelineno-89-6"></a>    <span class="c1"># print(f.read())</span>
+</span><span id="__span-89-7"><a id="__codelineno-89-7" name="__codelineno-89-7" href="#__codelineno-89-7"></a>    <span class="c1"># print(f.readlines())</span>
+</span><span id="__span-89-8"><a id="__codelineno-89-8" name="__codelineno-89-8" href="#__codelineno-89-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">())</span>
+</span><span id="__span-89-9"><a id="__codelineno-89-9" name="__codelineno-89-9" href="#__codelineno-89-9"></a><span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="__span-89-10"><a id="__codelineno-89-10" name="__codelineno-89-10" href="#__codelineno-89-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;读取文件出错&#39;</span><span class="p">)</span>
+</span><span id="__span-89-11"><a id="__codelineno-89-11" name="__codelineno-89-11" href="#__codelineno-89-11"></a><span class="k">finally</span><span class="p">:</span>
+</span><span id="__span-89-12"><a id="__codelineno-89-12" name="__codelineno-89-12" href="#__codelineno-89-12"></a>    <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">closed</span><span class="p">:</span>
+</span><span id="__span-89-13"><a id="__codelineno-89-13" name="__codelineno-89-13" href="#__codelineno-89-13"></a>        <span class="k">pass</span>
+</span><span id="__span-89-14"><a id="__codelineno-89-14" name="__codelineno-89-14" href="#__codelineno-89-14"></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-89-15"><a id="__codelineno-89-15" name="__codelineno-89-15" href="#__codelineno-89-15"></a>        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></div>
 <p>字典的序列化</p>
 <p>需要导入json</p>
-<pre><code class="language-python"># coding:utf-8
-
-import json
-
-
-user_str = json.dumps({'name': '对某些'})
-
-print(json.loads(user_str))
-f = open(file='D:/var/json.txt',mode='w',encoding='utf-8')
-
-f.writelines(user_str)
-
-
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-90-1"><a id="__codelineno-90-1" name="__codelineno-90-1" href="#__codelineno-90-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-90-2"><a id="__codelineno-90-2" name="__codelineno-90-2" href="#__codelineno-90-2"></a>
+</span><span id="__span-90-3"><a id="__codelineno-90-3" name="__codelineno-90-3" href="#__codelineno-90-3"></a><span class="kn">import</span> <span class="nn">json</span>
+</span><span id="__span-90-4"><a id="__codelineno-90-4" name="__codelineno-90-4" href="#__codelineno-90-4"></a>
+</span><span id="__span-90-5"><a id="__codelineno-90-5" name="__codelineno-90-5" href="#__codelineno-90-5"></a>
+</span><span id="__span-90-6"><a id="__codelineno-90-6" name="__codelineno-90-6" href="#__codelineno-90-6"></a><span class="n">user_str</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;对某些&#39;</span><span class="p">})</span>
+</span><span id="__span-90-7"><a id="__codelineno-90-7" name="__codelineno-90-7" href="#__codelineno-90-7"></a>
+</span><span id="__span-90-8"><a id="__codelineno-90-8" name="__codelineno-90-8" href="#__codelineno-90-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">user_str</span><span class="p">))</span>
+</span><span id="__span-90-9"><a id="__codelineno-90-9" name="__codelineno-90-9" href="#__codelineno-90-9"></a><span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="s1">&#39;D:/var/json.txt&#39;</span><span class="p">,</span><span class="n">mode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span><span class="p">,</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span><span id="__span-90-10"><a id="__codelineno-90-10" name="__codelineno-90-10" href="#__codelineno-90-10"></a>
+</span><span id="__span-90-11"><a id="__codelineno-90-11" name="__codelineno-90-11" href="#__codelineno-90-11"></a><span class="n">f</span><span class="o">.</span><span class="n">writelines</span><span class="p">(</span><span class="n">user_str</span><span class="p">)</span>
+</span></code></pre></div>
 <h3 id="_29">加密</h3>
 <h4 id="hashlib">hashlib:不可逆</h4>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210117214443.png" /></p>
-<pre><code class="language-python">hashobj = hashlib.md5(b’hello’)
-result = hashobj. hexdigest() # 生成16进制字符串
-print(result)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-91-1"><a id="__codelineno-91-1" name="__codelineno-91-1" href="#__codelineno-91-1"></a><span class="n">hashobj</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="n">b</span><span class="err">’</span><span class="n">hello</span><span class="err">’</span><span class="p">)</span>
+</span><span id="__span-91-2"><a id="__codelineno-91-2" name="__codelineno-91-2" href="#__codelineno-91-2"></a><span class="n">result</span> <span class="o">=</span> <span class="n">hashobj</span><span class="o">.</span> <span class="n">hexdigest</span><span class="p">()</span> <span class="c1"># 生成16进制字符串</span>
+</span><span id="__span-91-3"><a id="__codelineno-91-3" name="__codelineno-91-3" href="#__codelineno-91-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</span></code></pre></div>
 <p>base64：可解密，需要自己导入base64模块</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210117214629.png" /></p>
-<pre><code class="language-python"># coding:utf-8
-import hashlib
-import base64
-
-res = hashlib.md5(b'hehllo ')
-print(res.hexdigest()) # 返回16进制字符串的值
-str = '中国人'
-res = str.encode(encoding='utf-8')
-print(res.decode(encoding='utf-8'))
-
-print(base64.encodebytes(str.encode(encoding='utf-8')))
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-92-1"><a id="__codelineno-92-1" name="__codelineno-92-1" href="#__codelineno-92-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-92-2"><a id="__codelineno-92-2" name="__codelineno-92-2" href="#__codelineno-92-2"></a><span class="kn">import</span> <span class="nn">hashlib</span>
+</span><span id="__span-92-3"><a id="__codelineno-92-3" name="__codelineno-92-3" href="#__codelineno-92-3"></a><span class="kn">import</span> <span class="nn">base64</span>
+</span><span id="__span-92-4"><a id="__codelineno-92-4" name="__codelineno-92-4" href="#__codelineno-92-4"></a>
+</span><span id="__span-92-5"><a id="__codelineno-92-5" name="__codelineno-92-5" href="#__codelineno-92-5"></a><span class="n">res</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;hehllo &#39;</span><span class="p">)</span>
+</span><span id="__span-92-6"><a id="__codelineno-92-6" name="__codelineno-92-6" href="#__codelineno-92-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">())</span> <span class="c1"># 返回16进制字符串的值</span>
+</span><span id="__span-92-7"><a id="__codelineno-92-7" name="__codelineno-92-7" href="#__codelineno-92-7"></a><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;中国人&#39;</span>
+</span><span id="__span-92-8"><a id="__codelineno-92-8" name="__codelineno-92-8" href="#__codelineno-92-8"></a><span class="n">res</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</span><span id="__span-92-9"><a id="__codelineno-92-9" name="__codelineno-92-9" href="#__codelineno-92-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+</span><span id="__span-92-10"><a id="__codelineno-92-10" name="__codelineno-92-10" href="#__codelineno-92-10"></a>
+</span><span id="__span-92-11"><a id="__codelineno-92-11" name="__codelineno-92-11" href="#__codelineno-92-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">base64</span><span class="o">.</span><span class="n">encodebytes</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)))</span>
+</span></code></pre></div>
 <h3 id="logging">日志 logging</h3>
 <p>日志的等级</p>
 <p>debug
@@ -4356,21 +4345,20 @@ print(base64.encodebytes(str.encode(encoding='utf-8')))
 error
 critical</p>
 <p>日志的使用</p>
-<pre><code class="language-python">
-# coding:utf-8
-
-import logging
-
-
-logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
-        filename='my.log',
-        filemode='w'
-    )
-
-logging.info('hello word')
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-93-1"><a id="__codelineno-93-1" name="__codelineno-93-1" href="#__codelineno-93-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-93-2"><a id="__codelineno-93-2" name="__codelineno-93-2" href="#__codelineno-93-2"></a>
+</span><span id="__span-93-3"><a id="__codelineno-93-3" name="__codelineno-93-3" href="#__codelineno-93-3"></a><span class="kn">import</span> <span class="nn">logging</span>
+</span><span id="__span-93-4"><a id="__codelineno-93-4" name="__codelineno-93-4" href="#__codelineno-93-4"></a>
+</span><span id="__span-93-5"><a id="__codelineno-93-5" name="__codelineno-93-5" href="#__codelineno-93-5"></a>
+</span><span id="__span-93-6"><a id="__codelineno-93-6" name="__codelineno-93-6" href="#__codelineno-93-6"></a><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+</span><span id="__span-93-7"><a id="__codelineno-93-7" name="__codelineno-93-7" href="#__codelineno-93-7"></a>        <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+</span><span id="__span-93-8"><a id="__codelineno-93-8" name="__codelineno-93-8" href="#__codelineno-93-8"></a>        <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(filename)s</span><span class="s1">[line:</span><span class="si">%(lineno)d</span><span class="s1">] </span><span class="si">%(levelname)s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+</span><span id="__span-93-9"><a id="__codelineno-93-9" name="__codelineno-93-9" href="#__codelineno-93-9"></a>        <span class="n">filename</span><span class="o">=</span><span class="s1">&#39;my.log&#39;</span><span class="p">,</span>
+</span><span id="__span-93-10"><a id="__codelineno-93-10" name="__codelineno-93-10" href="#__codelineno-93-10"></a>        <span class="n">filemode</span><span class="o">=</span><span class="s1">&#39;w&#39;</span>
+</span><span id="__span-93-11"><a id="__codelineno-93-11" name="__codelineno-93-11" href="#__codelineno-93-11"></a>    <span class="p">)</span>
+</span><span id="__span-93-12"><a id="__codelineno-93-12" name="__codelineno-93-12" href="#__codelineno-93-12"></a>
+</span><span id="__span-93-13"><a id="__codelineno-93-13" name="__codelineno-93-13" href="#__codelineno-93-13"></a><span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;hello word&#39;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>​   </p>
 <table>
 <thead>
@@ -4439,151 +4427,147 @@ logging.info('hello word')
 <p>all any type isinstance help var dir hasattr</p>
 <p>input</p>
 <p>enumerate</p>
-<pre><code class="language-python"># coding:utf-8
-
-print(abs(-100)) # 返回正数
-
-print(all([1, 1, 1])) # 判断列表内容是否全是true
-
-class User(object):
-
-    def __init__(self):
-        print('创建User对象')
-
-user = User()
-print(help(user)) # help 打印对象的全部用法
-
-name = input('请输入姓名：')
-print(name)
-
-list_1 = [1, 3, 3]
-for index,i in enumerate(list_1): # 记录索引
-    print(index, i)
-
-print(isinstance(1, int)) # 判断某个变量是否是某个类型
-
-print(type('hello word'))
-user.name = 'hello'
-print(vars(user)) # 返回对象实例化字典信息
-print(dir(user)) # 返回对象的所有属性和方法
-
-print(hasattr('hello', 'aaa')) # 判断对象是否有某个属性
-
-user.__setattr__('age', 10)
-print(user.__getattribute__('age'))
-
-list_1 = [1, 2, 3]
-print(any((None,))) # 判断对象中是否有true值
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-94-1"><a id="__codelineno-94-1" name="__codelineno-94-1" href="#__codelineno-94-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-94-2"><a id="__codelineno-94-2" name="__codelineno-94-2" href="#__codelineno-94-2"></a>
+</span><span id="__span-94-3"><a id="__codelineno-94-3" name="__codelineno-94-3" href="#__codelineno-94-3"></a><span class="nb">print</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">))</span> <span class="c1"># 返回正数</span>
+</span><span id="__span-94-4"><a id="__codelineno-94-4" name="__codelineno-94-4" href="#__codelineno-94-4"></a>
+</span><span id="__span-94-5"><a id="__codelineno-94-5" name="__codelineno-94-5" href="#__codelineno-94-5"></a><span class="nb">print</span><span class="p">(</span><span class="nb">all</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span> <span class="c1"># 判断列表内容是否全是true</span>
+</span><span id="__span-94-6"><a id="__codelineno-94-6" name="__codelineno-94-6" href="#__codelineno-94-6"></a>
+</span><span id="__span-94-7"><a id="__codelineno-94-7" name="__codelineno-94-7" href="#__codelineno-94-7"></a><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+</span><span id="__span-94-8"><a id="__codelineno-94-8" name="__codelineno-94-8" href="#__codelineno-94-8"></a>
+</span><span id="__span-94-9"><a id="__codelineno-94-9" name="__codelineno-94-9" href="#__codelineno-94-9"></a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-94-10"><a id="__codelineno-94-10" name="__codelineno-94-10" href="#__codelineno-94-10"></a>        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;创建User对象&#39;</span><span class="p">)</span>
+</span><span id="__span-94-11"><a id="__codelineno-94-11" name="__codelineno-94-11" href="#__codelineno-94-11"></a>
+</span><span id="__span-94-12"><a id="__codelineno-94-12" name="__codelineno-94-12" href="#__codelineno-94-12"></a><span class="n">user</span> <span class="o">=</span> <span class="n">User</span><span class="p">()</span>
+</span><span id="__span-94-13"><a id="__codelineno-94-13" name="__codelineno-94-13" href="#__codelineno-94-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">help</span><span class="p">(</span><span class="n">user</span><span class="p">))</span> <span class="c1"># help 打印对象的全部用法</span>
+</span><span id="__span-94-14"><a id="__codelineno-94-14" name="__codelineno-94-14" href="#__codelineno-94-14"></a>
+</span><span id="__span-94-15"><a id="__codelineno-94-15" name="__codelineno-94-15" href="#__codelineno-94-15"></a><span class="n">name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;请输入姓名：&#39;</span><span class="p">)</span>
+</span><span id="__span-94-16"><a id="__codelineno-94-16" name="__codelineno-94-16" href="#__codelineno-94-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span><span id="__span-94-17"><a id="__codelineno-94-17" name="__codelineno-94-17" href="#__codelineno-94-17"></a>
+</span><span id="__span-94-18"><a id="__codelineno-94-18" name="__codelineno-94-18" href="#__codelineno-94-18"></a><span class="n">list_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-94-19"><a id="__codelineno-94-19" name="__codelineno-94-19" href="#__codelineno-94-19"></a><span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">i</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">list_1</span><span class="p">):</span> <span class="c1"># 记录索引</span>
+</span><span id="__span-94-20"><a id="__codelineno-94-20" name="__codelineno-94-20" href="#__codelineno-94-20"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</span><span id="__span-94-21"><a id="__codelineno-94-21" name="__codelineno-94-21" href="#__codelineno-94-21"></a>
+</span><span id="__span-94-22"><a id="__codelineno-94-22" name="__codelineno-94-22" href="#__codelineno-94-22"></a><span class="nb">print</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">int</span><span class="p">))</span> <span class="c1"># 判断某个变量是否是某个类型</span>
+</span><span id="__span-94-23"><a id="__codelineno-94-23" name="__codelineno-94-23" href="#__codelineno-94-23"></a>
+</span><span id="__span-94-24"><a id="__codelineno-94-24" name="__codelineno-94-24" href="#__codelineno-94-24"></a><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;hello word&#39;</span><span class="p">))</span>
+</span><span id="__span-94-25"><a id="__codelineno-94-25" name="__codelineno-94-25" href="#__codelineno-94-25"></a><span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;hello&#39;</span>
+</span><span id="__span-94-26"><a id="__codelineno-94-26" name="__codelineno-94-26" href="#__codelineno-94-26"></a><span class="nb">print</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">user</span><span class="p">))</span> <span class="c1"># 返回对象实例化字典信息</span>
+</span><span id="__span-94-27"><a id="__codelineno-94-27" name="__codelineno-94-27" href="#__codelineno-94-27"></a><span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">user</span><span class="p">))</span> <span class="c1"># 返回对象的所有属性和方法</span>
+</span><span id="__span-94-28"><a id="__codelineno-94-28" name="__codelineno-94-28" href="#__codelineno-94-28"></a>
+</span><span id="__span-94-29"><a id="__codelineno-94-29" name="__codelineno-94-29" href="#__codelineno-94-29"></a><span class="nb">print</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">,</span> <span class="s1">&#39;aaa&#39;</span><span class="p">))</span> <span class="c1"># 判断对象是否有某个属性</span>
+</span><span id="__span-94-30"><a id="__codelineno-94-30" name="__codelineno-94-30" href="#__codelineno-94-30"></a>
+</span><span id="__span-94-31"><a id="__codelineno-94-31" name="__codelineno-94-31" href="#__codelineno-94-31"></a><span class="n">user</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-94-32"><a id="__codelineno-94-32" name="__codelineno-94-32" href="#__codelineno-94-32"></a><span class="nb">print</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="fm">__getattribute__</span><span class="p">(</span><span class="s1">&#39;age&#39;</span><span class="p">))</span>
+</span><span id="__span-94-33"><a id="__codelineno-94-33" name="__codelineno-94-33" href="#__codelineno-94-33"></a>
+</span><span id="__span-94-34"><a id="__codelineno-94-34" name="__codelineno-94-34" href="#__codelineno-94-34"></a><span class="n">list_1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-94-35"><a id="__codelineno-94-35" name="__codelineno-94-35" href="#__codelineno-94-35"></a><span class="nb">print</span><span class="p">(</span><span class="nb">any</span><span class="p">((</span><span class="kc">None</span><span class="p">,)))</span> <span class="c1"># 判断对象中是否有true值</span>
+</span></code></pre></div>
 <h3 id="random">random 模块</h3>
-<pre><code class="language-python"># coding:utf-8
-
-import random
-# 右边不可以取到
-def test():
-    for i in range(10000):
-        i = random.random() # 返回0-1的浮点数
-        if i == 1:
-            print(i)
-            return i;
-    print('没有1')
-
-test()
-
-print(random.uniform(1, 2)) # 返回范围的浮点数
-def test_uniform():
-    for i in range(10000):
-        i = random.uniform(1, 2)
-        if i == 1:
-            print(i)
-            return i;
-test_uniform()
-
-print('randint')
-print(random.randint(1, 1000)) # 返回整数
-
-print('choice', random.choice([1, 2, 3, 4, 5])) # 返回list中的一个值
-
-print('sample', random.sample([1, 2, 3, 4, 5],2))# 返回list中的几个值
-
-# 步长
-for i in range(10):
-    print(random.randrange(1, 100, 100)) # 返回指定的一个值，可以指定步长
-
-
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-95-1"><a id="__codelineno-95-1" name="__codelineno-95-1" href="#__codelineno-95-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-95-2"><a id="__codelineno-95-2" name="__codelineno-95-2" href="#__codelineno-95-2"></a>
+</span><span id="__span-95-3"><a id="__codelineno-95-3" name="__codelineno-95-3" href="#__codelineno-95-3"></a><span class="kn">import</span> <span class="nn">random</span>
+</span><span id="__span-95-4"><a id="__codelineno-95-4" name="__codelineno-95-4" href="#__codelineno-95-4"></a><span class="c1"># 右边不可以取到</span>
+</span><span id="__span-95-5"><a id="__codelineno-95-5" name="__codelineno-95-5" href="#__codelineno-95-5"></a><span class="k">def</span> <span class="nf">test</span><span class="p">():</span>
+</span><span id="__span-95-6"><a id="__codelineno-95-6" name="__codelineno-95-6" href="#__codelineno-95-6"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+</span><span id="__span-95-7"><a id="__codelineno-95-7" name="__codelineno-95-7" href="#__codelineno-95-7"></a>        <span class="n">i</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="c1"># 返回0-1的浮点数</span>
+</span><span id="__span-95-8"><a id="__codelineno-95-8" name="__codelineno-95-8" href="#__codelineno-95-8"></a>        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-95-9"><a id="__codelineno-95-9" name="__codelineno-95-9" href="#__codelineno-95-9"></a>            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-95-10"><a id="__codelineno-95-10" name="__codelineno-95-10" href="#__codelineno-95-10"></a>            <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+</span><span id="__span-95-11"><a id="__codelineno-95-11" name="__codelineno-95-11" href="#__codelineno-95-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;没有1&#39;</span><span class="p">)</span>
+</span><span id="__span-95-12"><a id="__codelineno-95-12" name="__codelineno-95-12" href="#__codelineno-95-12"></a>
+</span><span id="__span-95-13"><a id="__codelineno-95-13" name="__codelineno-95-13" href="#__codelineno-95-13"></a><span class="n">test</span><span class="p">()</span>
+</span><span id="__span-95-14"><a id="__codelineno-95-14" name="__codelineno-95-14" href="#__codelineno-95-14"></a>
+</span><span id="__span-95-15"><a id="__codelineno-95-15" name="__codelineno-95-15" href="#__codelineno-95-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span> <span class="c1"># 返回范围的浮点数</span>
+</span><span id="__span-95-16"><a id="__codelineno-95-16" name="__codelineno-95-16" href="#__codelineno-95-16"></a><span class="k">def</span> <span class="nf">test_uniform</span><span class="p">():</span>
+</span><span id="__span-95-17"><a id="__codelineno-95-17" name="__codelineno-95-17" href="#__codelineno-95-17"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
+</span><span id="__span-95-18"><a id="__codelineno-95-18" name="__codelineno-95-18" href="#__codelineno-95-18"></a>        <span class="n">i</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-95-19"><a id="__codelineno-95-19" name="__codelineno-95-19" href="#__codelineno-95-19"></a>        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+</span><span id="__span-95-20"><a id="__codelineno-95-20" name="__codelineno-95-20" href="#__codelineno-95-20"></a>            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-95-21"><a id="__codelineno-95-21" name="__codelineno-95-21" href="#__codelineno-95-21"></a>            <span class="k">return</span> <span class="n">i</span><span class="p">;</span>
+</span><span id="__span-95-22"><a id="__codelineno-95-22" name="__codelineno-95-22" href="#__codelineno-95-22"></a><span class="n">test_uniform</span><span class="p">()</span>
+</span><span id="__span-95-23"><a id="__codelineno-95-23" name="__codelineno-95-23" href="#__codelineno-95-23"></a>
+</span><span id="__span-95-24"><a id="__codelineno-95-24" name="__codelineno-95-24" href="#__codelineno-95-24"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;randint&#39;</span><span class="p">)</span>
+</span><span id="__span-95-25"><a id="__codelineno-95-25" name="__codelineno-95-25" href="#__codelineno-95-25"></a><span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span> <span class="c1"># 返回整数</span>
+</span><span id="__span-95-26"><a id="__codelineno-95-26" name="__codelineno-95-26" href="#__codelineno-95-26"></a>
+</span><span id="__span-95-27"><a id="__codelineno-95-27" name="__codelineno-95-27" href="#__codelineno-95-27"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;choice&#39;</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span> <span class="c1"># 返回list中的一个值</span>
+</span><span id="__span-95-28"><a id="__codelineno-95-28" name="__codelineno-95-28" href="#__codelineno-95-28"></a>
+</span><span id="__span-95-29"><a id="__codelineno-95-29" name="__codelineno-95-29" href="#__codelineno-95-29"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;sample&#39;</span><span class="p">,</span> <span class="n">random</span><span class="o">.</span><span class="n">sample</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span><span class="mi">2</span><span class="p">))</span><span class="c1"># 返回list中的几个值</span>
+</span><span id="__span-95-30"><a id="__codelineno-95-30" name="__codelineno-95-30" href="#__codelineno-95-30"></a>
+</span><span id="__span-95-31"><a id="__codelineno-95-31" name="__codelineno-95-31" href="#__codelineno-95-31"></a><span class="c1"># 步长</span>
+</span><span id="__span-95-32"><a id="__codelineno-95-32" name="__codelineno-95-32" href="#__codelineno-95-32"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+</span><span id="__span-95-33"><a id="__codelineno-95-33" name="__codelineno-95-33" href="#__codelineno-95-33"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span> <span class="c1"># 返回指定的一个值，可以指定步长</span>
+</span></code></pre></div>
 <h3 id="_31">迭代器</h3>
-<pre><code class="language-python">
-# coding:utf-8
-
-iter_obj = iter([1, 2, 3])
-print(iter_obj.__next__())
-
-iter_obj = (i for i in range(10))
-print(iter_obj.__next__())
-
-def get_iter_obj():
-    for i in range(13):
-        yield i
-iter_obj = get_iter_obj()
-print(iter_obj.__next__())
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-96-1"><a id="__codelineno-96-1" name="__codelineno-96-1" href="#__codelineno-96-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-96-2"><a id="__codelineno-96-2" name="__codelineno-96-2" href="#__codelineno-96-2"></a>
+</span><span id="__span-96-3"><a id="__codelineno-96-3" name="__codelineno-96-3" href="#__codelineno-96-3"></a><span class="n">iter_obj</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</span><span id="__span-96-4"><a id="__codelineno-96-4" name="__codelineno-96-4" href="#__codelineno-96-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">iter_obj</span><span class="o">.</span><span class="fm">__next__</span><span class="p">())</span>
+</span><span id="__span-96-5"><a id="__codelineno-96-5" name="__codelineno-96-5" href="#__codelineno-96-5"></a>
+</span><span id="__span-96-6"><a id="__codelineno-96-6" name="__codelineno-96-6" href="#__codelineno-96-6"></a><span class="n">iter_obj</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</span><span id="__span-96-7"><a id="__codelineno-96-7" name="__codelineno-96-7" href="#__codelineno-96-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">iter_obj</span><span class="o">.</span><span class="fm">__next__</span><span class="p">())</span>
+</span><span id="__span-96-8"><a id="__codelineno-96-8" name="__codelineno-96-8" href="#__codelineno-96-8"></a>
+</span><span id="__span-96-9"><a id="__codelineno-96-9" name="__codelineno-96-9" href="#__codelineno-96-9"></a><span class="k">def</span> <span class="nf">get_iter_obj</span><span class="p">():</span>
+</span><span id="__span-96-10"><a id="__codelineno-96-10" name="__codelineno-96-10" href="#__codelineno-96-10"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">):</span>
+</span><span id="__span-96-11"><a id="__codelineno-96-11" name="__codelineno-96-11" href="#__codelineno-96-11"></a>        <span class="k">yield</span> <span class="n">i</span>
+</span><span id="__span-96-12"><a id="__codelineno-96-12" name="__codelineno-96-12" href="#__codelineno-96-12"></a><span class="n">iter_obj</span> <span class="o">=</span> <span class="n">get_iter_obj</span><span class="p">()</span>
+</span><span id="__span-96-13"><a id="__codelineno-96-13" name="__codelineno-96-13" href="#__codelineno-96-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">iter_obj</span><span class="o">.</span><span class="fm">__next__</span><span class="p">())</span>
+</span></code></pre></div>
 <h3 id="_32">高级函数</h3>
-<pre><code class="language-python"># coding:utf-8
-
-from functools import reduce
-
-
-def _filter(x):
-    if x &lt;= 0:
-        return False;
-    return True;
-
-res = list(filter(lambda x: x &gt; 0, [-1, 2, 3]))
-print(res)
-
-res = list(map(_filter, [-1, -2, 100])) # 返回True False list
-print('map', res)
-
-print('----reduce----')
-res = reduce(lambda x, y: x + y, (1, 2, 3)) # 需要导入reduce
-print(res)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-97-1"><a id="__codelineno-97-1" name="__codelineno-97-1" href="#__codelineno-97-1"></a><span class="c1"># coding:utf-8</span>
+</span><span id="__span-97-2"><a id="__codelineno-97-2" name="__codelineno-97-2" href="#__codelineno-97-2"></a>
+</span><span id="__span-97-3"><a id="__codelineno-97-3" name="__codelineno-97-3" href="#__codelineno-97-3"></a><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+</span><span id="__span-97-4"><a id="__codelineno-97-4" name="__codelineno-97-4" href="#__codelineno-97-4"></a>
+</span><span id="__span-97-5"><a id="__codelineno-97-5" name="__codelineno-97-5" href="#__codelineno-97-5"></a>
+</span><span id="__span-97-6"><a id="__codelineno-97-6" name="__codelineno-97-6" href="#__codelineno-97-6"></a><span class="k">def</span> <span class="nf">_filter</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span><span id="__span-97-7"><a id="__codelineno-97-7" name="__codelineno-97-7" href="#__codelineno-97-7"></a>    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-97-8"><a id="__codelineno-97-8" name="__codelineno-97-8" href="#__codelineno-97-8"></a>        <span class="k">return</span> <span class="kc">False</span><span class="p">;</span>
+</span><span id="__span-97-9"><a id="__codelineno-97-9" name="__codelineno-97-9" href="#__codelineno-97-9"></a>    <span class="k">return</span> <span class="kc">True</span><span class="p">;</span>
+</span><span id="__span-97-10"><a id="__codelineno-97-10" name="__codelineno-97-10" href="#__codelineno-97-10"></a>
+</span><span id="__span-97-11"><a id="__codelineno-97-11" name="__codelineno-97-11" href="#__codelineno-97-11"></a><span class="n">res</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]))</span>
+</span><span id="__span-97-12"><a id="__codelineno-97-12" name="__codelineno-97-12" href="#__codelineno-97-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span><span id="__span-97-13"><a id="__codelineno-97-13" name="__codelineno-97-13" href="#__codelineno-97-13"></a>
+</span><span id="__span-97-14"><a id="__codelineno-97-14" name="__codelineno-97-14" href="#__codelineno-97-14"></a><span class="n">res</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">_filter</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">]))</span> <span class="c1"># 返回True False list</span>
+</span><span id="__span-97-15"><a id="__codelineno-97-15" name="__codelineno-97-15" href="#__codelineno-97-15"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;map&#39;</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+</span><span id="__span-97-16"><a id="__codelineno-97-16" name="__codelineno-97-16" href="#__codelineno-97-16"></a>
+</span><span id="__span-97-17"><a id="__codelineno-97-17" name="__codelineno-97-17" href="#__codelineno-97-17"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;----reduce----&#39;</span><span class="p">)</span>
+</span><span id="__span-97-18"><a id="__codelineno-97-18" name="__codelineno-97-18" href="#__codelineno-97-18"></a><span class="n">res</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span> <span class="c1"># 需要导入reduce</span>
+</span><span id="__span-97-19"><a id="__codelineno-97-19" name="__codelineno-97-19" href="#__codelineno-97-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span></code></pre></div>
 <h3 id="_33">正则表达式</h3>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210116002023.png" /></p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210116002110.png" /></p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210116002139.png" /></p>
 <p>几个常用的函数</p>
 <p>使用前首先需要导入re</p>
-<pre><code class="language-python">import re
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-98-1"><a id="__codelineno-98-1" name="__codelineno-98-1" href="#__codelineno-98-1"></a><span class="kn">import</span> <span class="nn">re</span>
+</span></code></pre></div>
 <p>findall:将得到的字符串存储在list中</p>
-<pre><code class="language-python">str = 'my name is hash'
-res = re.findall('\sis*', str) # 返回符合的list [' is']
-print(res)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-99-1"><a id="__codelineno-99-1" name="__codelineno-99-1" href="#__codelineno-99-1"></a><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;my name is hash&#39;</span>
+</span><span id="__span-99-2"><a id="__codelineno-99-2" name="__codelineno-99-2" href="#__codelineno-99-2"></a><span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;\sis*&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># 返回符合的list [&#39; is&#39;]</span>
+</span><span id="__span-99-3"><a id="__codelineno-99-3" name="__codelineno-99-3" href="#__codelineno-99-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span></code></pre></div>
 <p>match:从字符串开始查找</p>
-<pre><code class="language-python">str = 'hedd '
-print(re.match('\w*', str).group()) # 从开始字符开始查找
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-100-1"><a id="__codelineno-100-1" name="__codelineno-100-1" href="#__codelineno-100-1"></a><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;hedd &#39;</span>
+</span><span id="__span-100-2"><a id="__codelineno-100-2" name="__codelineno-100-2" href="#__codelineno-100-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="s1">&#39;\w*&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">group</span><span class="p">())</span> <span class="c1"># 从开始字符开始查找</span>
+</span></code></pre></div>
 <p>split:根据匹配得到的字符串进行分割</p>
-<pre><code class="language-python">str = 'my name is hello word'
-res = re.split('\s+', str) # 找到的就是空格符号
-print(res) # ['my', 'name', 'is', 'hello', 'word']
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-101-1"><a id="__codelineno-101-1" name="__codelineno-101-1" href="#__codelineno-101-1"></a><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;my name is hello word&#39;</span>
+</span><span id="__span-101-2"><a id="__codelineno-101-2" name="__codelineno-101-2" href="#__codelineno-101-2"></a><span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># 找到的就是空格符号</span>
+</span><span id="__span-101-3"><a id="__codelineno-101-3" name="__codelineno-101-3" href="#__codelineno-101-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="c1"># [&#39;my&#39;, &#39;name&#39;, &#39;is&#39;, &#39;hello&#39;, &#39;word&#39;]</span>
+</span></code></pre></div>
 <p>search:只匹配一次</p>
-<pre><code class="language-python">
-str = 'my email is 1718905040@qq.com 171890@qq.com'
-res = re.search('(\d*.qq.com)', str) # 只会查找一次
-print(res.groups())
-print(res.group(1)) # 索引从1开始
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-102-1"><a id="__codelineno-102-1" name="__codelineno-102-1" href="#__codelineno-102-1"></a><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;my email is 1718905040@qq.com 171890@qq.com&#39;</span>
+</span><span id="__span-102-2"><a id="__codelineno-102-2" name="__codelineno-102-2" href="#__codelineno-102-2"></a><span class="n">res</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;(\d*.qq.com)&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="c1"># 只会查找一次</span>
+</span><span id="__span-102-3"><a id="__codelineno-102-3" name="__codelineno-102-3" href="#__codelineno-102-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">groups</span><span class="p">())</span>
+</span><span id="__span-102-4"><a id="__codelineno-102-4" name="__codelineno-102-4" href="#__codelineno-102-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># 索引从1开始</span>
+</span></code></pre></div>
 <p>compile:得到一个可以使用正则对象</p>
-<pre><code class="language-python">str = 'my email is 1718905040@qq.com 1234343@qq.com'
-re_obj = re.compile('\d+.\w{2}.com')
-res = re_obj.findall(str)
-print(res)
-</code></pre>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-103-1"><a id="__codelineno-103-1" name="__codelineno-103-1" href="#__codelineno-103-1"></a><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;my email is 1718905040@qq.com 1234343@qq.com&#39;</span>
+</span><span id="__span-103-2"><a id="__codelineno-103-2" name="__codelineno-103-2" href="#__codelineno-103-2"></a><span class="n">re_obj</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;\d+.\w</span><span class="si">{2}</span><span class="s1">.com&#39;</span><span class="p">)</span>
+</span><span id="__span-103-3"><a id="__codelineno-103-3" name="__codelineno-103-3" href="#__codelineno-103-3"></a><span class="n">res</span> <span class="o">=</span> <span class="n">re_obj</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</span><span id="__span-103-4"><a id="__codelineno-103-4" name="__codelineno-103-4" href="#__codelineno-103-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -4619,7 +4603,10 @@ print(res)
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -4714,7 +4701,7 @@ print(res)
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

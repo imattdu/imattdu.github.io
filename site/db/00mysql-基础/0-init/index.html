@@ -2903,50 +2903,47 @@
 <p>在系统偏好设置里启动或者关闭服务</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202202120154920.png" /></p>
 <h4 id="_12">配置</h4>
-<pre><code class="language-sh">vim .zshrc
-</code></pre>
-<pre><code class="language-sh"># mysql
-
-PATH=$PATH:/usr/local/mysql/bin
-export PATH
-</code></pre>
-<pre><code class="language-sh">mysql -h 主机名 -P 端口号 -u 用户名 -p密码
-</code></pre>
-<pre><code class="language-sh">mysql -h localhost -P 3306 -u root -prootroot
-
-
-mysql -u root -prootroot
-
-
-exit
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>vim .zshrc
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># mysql</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/mysql/bin
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nb">export</span> PATH
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>mysql -h 主机名 -P 端口号 -u 用户名 -p密码
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>mysql -h localhost -P <span class="m">3306</span> -u root -prootroot
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>mysql -u root -prootroot
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nb">exit</span>
+</span></code></pre></div>
 <h5 id="_13">默认的库介绍</h5>
 <p>“information_schema”是 MySQL 系统自带的数据库，主要保存 MySQL 数据库服务器的系统信息，比如数据库的名称、数据表的名称、字段名称、存取权限、数据文件 所在的文件夹和系统使用的文件夹，等等</p>
 <p>“performance_schema”是 MySQL 系统自带的数据库，可以用来监控 MySQL 的各类性能指标。 </p>
 <p>“sys”数据库是 MySQL 系统自带的数据库，主要作用是以一种更容易被理解的方式展示 MySQL 数据库服务器的各类性能指标，帮助系统管理员和开发人员监控 MySQL 的技术性能。</p>
 <p>“mysql”数据库保存了 MySQL 数据库服务器运行时需要的系统信息，比如数据文件夹、当前使用的字符集、约束检查信息，等等</p>
 <h3 id="_14">编码</h3>
-<pre><code class="language-mysql">
- show variables like 'character_%';
-
- show variables like 'collation_%';
-</code></pre>
+<div class="language-mysql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;character_%&#39;</span><span class="p">;</span><span class="w"></span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="k">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;collation_%&#39;</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
 <p>mysql8.0以上默认会采用utf8</p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202204231419559.png" /></p>
 <p>如果不是8.0</p>
 <p>可以参考下面文章进行修改</p>
 <p><a href="https://juejin.cn/post/6877051802447577096">Mac MySql - 查看以及修改编码格式 - 掘金</a></p>
-<pre><code class="language-mysql">登录 - MySQL内部
-mysql -u root -p
-
-MySQL内部 - 查看数据库编码格式 （推荐用这个，我用的这个！）
-show variables like 'character%';
-
-MySQL内部 - 查看数据库编码格式 （这两个都可以查看数据库编码格式）
-show variables like ‘collation%’;
-
-
-</code></pre>
+<div class="language-mysql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">登录</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">MySQL内部</span><span class="w"></span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">mysql</span><span class="w"> </span><span class="o">-</span><span class="n">u</span><span class="w"> </span><span class="n">root</span><span class="w"> </span><span class="o">-</span><span class="n">p</span><span class="w"></span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">MySQL内部</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">查看数据库编码格式</span><span class="w"> </span><span class="n">（推荐用这个，我用的这个！）</span><span class="w"></span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">show</span><span class="w"> </span><span class="k">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;character%&#39;</span><span class="p">;</span><span class="w"></span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="n">MySQL内部</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">查看数据库编码格式</span><span class="w"> </span><span class="n">（这两个都可以查看数据库编码格式）</span><span class="w"></span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="k">show</span><span class="w"> </span><span class="k">variables</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="n">‘collation</span><span class="o">%</span><span class="n">’</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
 <ul>
 <li>
 <p><code>character_set_database</code> 和 <code>character_set_server</code> 是 <code>latin1</code> 的字符集，也就是说 <code>mysql</code> 后续创建的表都是 <code>latin1</code> 字符集的，不是 <code>utf8</code>，会造成一些麻烦。</p>
@@ -2966,19 +2963,18 @@ show variables like ‘collation%’;
 <p>想要修改编码, 就需要修改 <code>mysql</code> 的配置文件 <code>my.cnf</code>。</p>
 <p><strong>重要问题：在修改 <code>my.cnf</code> 之前一定要关闭 <code>mysql</code> 进程，关闭 <code>mysql</code>，不然会遇到 <code>mysql</code> 的 <code>sock</code> 不能连接的问题!</strong></p>
 <p>找到下面路径</p>
-<pre><code>/usr/local/mysql/support-files
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>/usr/local/mysql/support-files
+</span></code></pre></div>
 <p>在文件夹里面找到 <code>my-default.cnf</code> 或者 <code>my-default</code> 的文件。</p>
 <p>将其复制到桌面上，改名为 <code>my.cnf</code>，如果没有，直接桌面新建一个文件，文件改为 <code>my.cnf</code></p>
-<pre><code>[mysqld]
-default-storage-engine=INNODB
-character-set-server=utf8
-port = 3306
-
-[client]
-default-character-set=utf8
-
-</code></pre>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>[mysqld]
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>default-storage-engine=INNODB
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>character-set-server=utf8
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>port = 3306
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>[client]
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>default-character-set=utf8
+</span></code></pre></div>
 <p>保存之后，我们需要找到 <code>/etc</code> 路径, 将 <code>my.cnf</code> 复制贴贴到 <code>/etc</code> 这个目录下。可以直接通过快捷键 <code>command + shift + G</code> 前面文件:</p>
 <p>重启电脑查看mysql编码格式</p>
 <p>command + shift + G：移动文件</p>
@@ -3017,7 +3013,10 @@ default-character-set=utf8
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -3112,7 +3111,7 @@ default-character-set=utf8
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

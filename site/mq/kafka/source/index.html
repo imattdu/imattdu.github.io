@@ -2865,32 +2865,32 @@
 <p>Kafka 0.9 版本之前，consumer 默认将 offset 保存在 Zookeeper 中，从 0.9 版本开始， consumer 默认将 offset 保存在 Kafka 一个内置的 topic 中，该 topic 为__consumer_offsets。</p>
 <p>offset 消费者组 + 主题 + 分区</p>
 <p>consumer.properties</p>
-<pre><code class="language-bash">exclude.internal.topics=false
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>exclude.internal.topics<span class="o">=</span><span class="nb">false</span>
+</span></code></pre></div>
 <h4 id="1zk">1.zk</h4>
-<pre><code class="language-bash">./kafka-console-consumer.sh --topic __consumer_offsets --zookeeper matt05:2181 --formatter &quot;kafka.coordinator.group.GroupMetadataManager\$OffsetsMessageFormatter&quot; --consumer.config ../config/consumer.properties --from-beginning
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./kafka-console-consumer.sh --topic __consumer_offsets --zookeeper matt05:2181 --formatter <span class="s2">&quot;kafka.coordinator.group.GroupMetadataManager\$OffsetsMessageFormatter&quot;</span> --consumer.config ../config/consumer.properties --from-beginning
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20211121172409.png" /></p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20211121173630.png" /></p>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20211121172223.png" /></p>
 <h4 id="2mq">2、mq</h4>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20211121175135.png" /></p>
-<pre><code class="language-bash">[console-consumer-39623,bigdata,0]::[OffsetMetadata[4,NO_METADATA],CommitTime 1637488435475,ExpirationTime 1637574835475]
-[console-consumer-39623,bigdata,1]::[OffsetMetadata[4,NO_METADATA],CommitTime 1637488435475,ExpirationTime 1637574835475]
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>console-consumer-39623,bigdata,0<span class="o">]</span>::<span class="o">[</span>OffsetMetadata<span class="o">[</span><span class="m">4</span>,NO_METADATA<span class="o">]</span>,CommitTime <span class="m">1637488435475</span>,ExpirationTime <span class="m">1637574835475</span><span class="o">]</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="o">[</span>console-consumer-39623,bigdata,1<span class="o">]</span>::<span class="o">[</span>OffsetMetadata<span class="o">[</span><span class="m">4</span>,NO_METADATA<span class="o">]</span>,CommitTime <span class="m">1637488435475</span>,ExpirationTime <span class="m">1637574835475</span><span class="o">]</span>
+</span></code></pre></div>
 <h3 id="_13">验证一个分区只可以被一个消费者消费</h3>
 <p>matt05 matt06</p>
-<pre><code class="language-bash">vi consumer.properties
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>vi consumer.properties
+</span></code></pre></div>
 <p>matt05 matt06</p>
-<pre><code class="language-bash">group.id=matt
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>group.id<span class="o">=</span>matt
+</span></code></pre></div>
 <p>5 6 启动消费者</p>
-<pre><code class="language-bash">./kafka-console-consumer.sh --zookeeper matt05:2181 --topic first --consumer.config ../config/consumer.properties
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./kafka-console-consumer.sh --zookeeper matt05:2181 --topic first --consumer.config ../config/consumer.properties
+</span></code></pre></div>
 <p>7生产者</p>
-<pre><code class="language-bash">./kafka-console-producer.sh --broker-list matt05:9092 --topic first
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>./kafka-console-producer.sh --broker-list matt05:9092 --topic first
+</span></code></pre></div>
 <h2 id="kafka_1">kafka</h2>
 <p>1）顺序写磁盘 Kafka 的 producer 生产数据，要写入到 log 文件中，写的过程是一直追加到文件末端， 为顺序写。官网有数据表明，同样的磁盘，顺序写能到 600M/s，而随机写只有 100K/s。这 与磁盘的机械机构有关，顺序写之所以快，是因为其省去了大量磁头寻址的时间。</p>
 <p>2）零拷贝</p>
@@ -2943,7 +2943,10 @@
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -3002,7 +3005,7 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

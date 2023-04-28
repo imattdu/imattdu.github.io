@@ -3648,23 +3648,23 @@
 <p>多行注释:/<em> 注释文字 </em>/</p>
 <h2 id="_2">基础操作</h2>
 <h3 id="_3">导入</h3>
-<pre><code class="language-mysql">source xxx.sql
-</code></pre>
+<div class="language-mysql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">source</span><span class="w"> </span><span class="n">xxx</span><span class="p">.</span><span class="k">sql</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_4">基础查询</h3>
-<pre><code class="language-sql">SELECT * FROM `user`;
-
-SELECT `name` 
-FROM `user`;
-
-# 别名
-SELECT id, `name` as &quot;姓名&quot;
-FROM user;
-
-
-# 去重
-select DISTINCT id
-from `user`;
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="p">;</span><span class="w"></span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="p">;</span><span class="w"></span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="o">#</span><span class="w"> </span><span class="err">别名</span><span class="w"></span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="ss">&quot;姓名&quot;</span><span class="w"></span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">FROM</span><span class="w"> </span><span class="k">user</span><span class="p">;</span><span class="w"></span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="o">#</span><span class="w"> </span><span class="err">去重</span><span class="w"></span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="k">select</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">id</span><span class="w"></span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_5">去重</h3>
 <p><strong>DISTINCT 其实是对后面所有列名的组合进行去重，你能看到最后的结果是 74 条，因为这 74 个a不同，都有 b 这个属性值。如果你想要看都有哪些不同的a，只需要写 a即可，后面不需要再加其他的列名了。</strong></p>
 <h3 id="null">空值 null</h3>
@@ -3674,12 +3674,12 @@ from `user`;
 <p>我们需要保证表中的字段、表名等没有和保留字、数据库系统或常用方法冲突。如果真的相同，请在</p>
 <p>SQL语句中使用一对``(着重号)引起来。</p>
 <h3 id="_7">常数列</h3>
-<pre><code class="language-sql">SELECT id, `name`, 'matt'
-FROM `user`
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;matt&#39;</span><span class="w"></span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="desc">desc</h3>
-<pre><code class="language-sql">desc user;
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">desc</span><span class="w"> </span><span class="k">user</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202204231614478.png" /></p>
 <ul>
 <li>Field:表示字段名称。</li>
@@ -3691,81 +3691,81 @@ FROM `user`
 </ul>
 <h2 id="_8">运算符</h2>
 <h3 id="_9">算数运算符</h3>
-<pre><code class="language-sql">+ - * / % 
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="o">+</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="o">%</span><span class="w"> </span>
+</span></code></pre></div>
 <p><strong>在Java中，+的左右两边如果有字符串，那么表示字符串的拼接。但是在MySQL中+只表示数 值相加。如果遇到非数值类型，先尝试转成数值，如果转失败，就按0计算。(补充:MySQL 中字符串拼接要使用字符串函数CONCAT()实现)</strong></p>
 <p>一个数除以整数后，不管是否能除尽，结果都为一个浮点数; 一个数除以另一个数，除不尽时，结果为一个浮点数，并保留到小数点后4位;</p>
 <p>在数学运算中，0不能用作除数，在MySQL中，一个数除以0为NULL。</p>
 <h3 id="_10">比较运算符</h3>
-<pre><code class="language-sql">&gt;
-&gt;=
-&lt;
-&lt;=
-!=
-
-=
-
-# 不等于
-&lt;&gt;
-# 安全等于
-&lt;=&gt;
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="o">&gt;</span><span class="w"></span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="o">&gt;=</span><span class="w"></span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="o">&lt;</span><span class="w"></span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="o">&lt;=</span><span class="w"></span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="o">!=</span><span class="w"></span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="o">=</span><span class="w"></span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="o">#</span><span class="w"> </span><span class="err">不等于</span><span class="w"></span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="o">&lt;&gt;</span><span class="w"></span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="o">#</span><span class="w"> </span><span class="err">安全等于</span><span class="w"></span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="o">&lt;=&gt;</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="_11">等号</h4>
 <p>如果等号两边的值、字符串或表达式都为字符串，则MySQL会按照字符串进行比较，其比较的 是每个字符串中字符的ANSI编码是否相等。</p>
 <p>如果等号两边的值都是整数，则MySQL会按照整数来比较两个值的大小。</p>
 <p>如果等号两边的值一个是整数，另一个是字符串，则MySQL会将字符串转化为数字进行比较。 </p>
 <p>如果等号两边的值、字符串或表达式中有一个为NULL，则比较结果为NULL。</p>
 <h4 id="null_1">null</h4>
-<pre><code class="language-sql">SELECT 1 is NULL, 1 is NOT NULL
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="least-greatest">least greatest</h4>
 <p>最小值 最大值</p>
-<pre><code class="language-SQL">SELECT LEAST(1,2), GREATEST(1, 2)
-</code></pre>
+<div class="language-SQL highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">LEAST</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">GREATEST</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 <p>参数是整数或者浮点数时，LEAST将返回其中最小的值;当参数为字符串时，返回字 母表中顺序最靠前的字符;当比较值列表中有NULL时，不能判断大小，返回值为NULL。</p>
 <h4 id="between-and">between and</h4>
-<pre><code class="language-SQL"># 1 &lt;= id &lt;= 3
-SELECT *
-FROM `user`
-WHERE id BETWEEN 1 AND 3
-</code></pre>
+<div class="language-SQL highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="o">#</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="w"></span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="in-not-in">in not in</h4>
 <p>in:在</p>
 <p>not in:不在</p>
-<pre><code class="language-sql">SELECT *
-FROM `user`
-WHERE id in(2, 4)
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="w"></span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">in</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="like">like</h4>
 <p>模糊匹配</p>
-<pre><code class="language-sql">SELECT *
-FROM `user`
-WHERE `name` like '%m%'
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="w"></span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%m%&#39;</span><span class="w"></span>
+</span></code></pre></div>
 <p>“%”:匹配0个或多个字符。</p>
 <p>“_”:只能匹配一个字符。</p>
 <h4 id="escape">ESCAPE</h4>
-<pre><code class="language-sql">SELECT job_id
-FROM jobs
-WHERE job_id LIKE ‘IT\_%‘;
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">job_id</span><span class="w"></span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">jobs</span><span class="w"></span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">job_id</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="err">‘</span><span class="n">IT</span><span class="err">\</span><span class="n">_</span><span class="o">%</span><span class="err">‘</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
 <p>如果使用\表示转义，要省略ESCAPE。如果不是\，则要加上ESCAPE。</p>
-<pre><code class="language-sql">SELECT job_id
-FROM jobs
-WHERE job_id LIKE ‘IT$_%‘ escape ‘$‘;
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">job_id</span><span class="w"></span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">jobs</span><span class="w"></span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">job_id</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="err">‘</span><span class="n">IT$_</span><span class="o">%</span><span class="err">‘</span><span class="w"> </span><span class="k">escape</span><span class="w"> </span><span class="err">‘$‘</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="regexp">REGEXP运算符</h4>
 <p>（1）‘^’匹配以该字符后面的字符开头的字符串。 </p>
 <p>（2）‘$’匹配以该字符前面的字符结尾的字符串。 </p>
 <p>（3）‘.’匹配任何一个单字符。 </p>
 <p>（4）“[...]”匹配在方括号内的任何字符。例如，“[abc]”匹配“a”或“b”或“c”。为了命名字符的范围，使用一 个‘-’。“[a-z]”匹配任何字母，而“[0-9]”匹配任何数字。 </p>
 <p>（5）‘<em>’匹配零个或多个在它前面的字符。例如，“x</em>”匹配任何数量的‘x’字符，“[0-9]<em>”匹配任何数量的数字， 而“</em>”匹配任何数量的任何字符。</p>
-<pre><code class="language-sql"> SELECT 'shkstart' REGEXP '^s', 'shkstart' REGEXP 't$', 'shkstart' REGEXP 'hk';
-</code></pre>
-<pre><code class="language-sql">SELECT *
-FROM `user`
-WHERE `name` REGEXP 'Lo'
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="s1">&#39;shkstart&#39;</span><span class="w"> </span><span class="n">REGEXP</span><span class="w"> </span><span class="s1">&#39;^s&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;shkstart&#39;</span><span class="w"> </span><span class="n">REGEXP</span><span class="w"> </span><span class="s1">&#39;t$&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;shkstart&#39;</span><span class="w"> </span><span class="n">REGEXP</span><span class="w"> </span><span class="s1">&#39;hk&#39;</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="w"></span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="n">REGEXP</span><span class="w"> </span><span class="s1">&#39;Lo&#39;</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_12">逻辑运算符</h3>
 <p>and 与</p>
 <p>or 或</p>
@@ -3808,34 +3808,33 @@ WHERE `name` REGEXP 'Lo'
 </table>
 <h2 id="_14">排序 分页</h2>
 <h3 id="_15">排序</h3>
-<pre><code class="language-sql">select *
-from `user`
-order by id desc, name desc
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="w"></span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">desc</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">desc</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_16">分页</h3>
 <p><strong>LIMIT [位置偏移量,] 行数</strong></p>
 <p>从0开始</p>
 <p>10：10条记录</p>
 <p>0 9</p>
-<pre><code class="language-SQL">select *
-from `user`
-order by id desc, name desc
-LIMIT 0, 10
-
-</code></pre>
+<div class="language-SQL highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="k">from</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="w"></span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="k">desc</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">desc</span><span class="w"></span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_17">多表查询</h2>
 <h3 id="_18">基础</h3>
 <h4 id="_19">等值连接</h4>
-<pre><code class="language-sql">SELECT a.a1, b.b1, b.a1
-FROM ABC a, BCD b
-WHERE a.a1 = b.a1
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">b1</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">a1</span><span class="w"></span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">ABC</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">BCD</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">a1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">a1</span><span class="w"></span>
+</span></code></pre></div>
 <p><strong>多个表中有相同列时，必须在列名之前加上表名前缀。</strong></p>
 <h4 id="_20">非等值连接</h4>
-<pre><code class="language-sql">SELECT a.a1, b.b1, b.a1
-FROM ABC a, BCD b
-WHERE a.a1 &gt; b.a1
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">b1</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">a1</span><span class="w"></span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">ABC</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">BCD</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">a1</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">a1</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="_21">自连接 非自连接</h4>
 <p>一张表</p>
 <p>俩张及以上的表进行连接</p>
@@ -3846,20 +3845,20 @@ WHERE a.a1 &gt; b.a1
 <strong>4.交叉连接就是全都要</strong></p>
 <p>左外连接：左表是主表</p>
 <h3 id="c99">c99</h3>
-<pre><code class="language-sql">SELECT a.*
-FROM A a INNER JOIN B b
-ON a.id = b.id
-INNER JOIN C c
-ON c.id = b.id
-</code></pre>
-<pre><code class="language-sql">SELECT a.*
-FROM A a LEFT OUTER JOIN B b
-ON a.id = b.id
-</code></pre>
-<pre><code class="language-SQL">SELECT a.*
-FROM A a RIGHT OUTER JOIN B b
-ON a.id = b.id
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="o">*</span><span class="w"></span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="k">ON</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">id</span><span class="w"></span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="k">C</span><span class="w"> </span><span class="k">c</span><span class="w"></span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="k">ON</span><span class="w"> </span><span class="k">c</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">id</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="o">*</span><span class="w"></span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">LEFT</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">ON</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">id</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-SQL highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="o">*</span><span class="w"></span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">RIGHT</span><span class="w"> </span><span class="k">OUTER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="k">ON</span><span class="w"> </span><span class="n">a</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">.</span><span class="n">id</span><span class="w"></span>
+</span></code></pre></div>
 <p><strong>需要注意的是，LEFT JOIN 和 RIGHT JOIN 只存在于 SQL99 及以后的标准中，在 SQL92 中不存在， 只能用 (+) 表示。</strong></p>
 <p>满外连接的结果 = 左右表匹配的数据 + 左表没有匹配到的数据 + 右表没有匹配到的数据。 </p>
 <p>SQL99是支持满外连接的。使用FULL JOIN 或 FULL OUTER JOIN来实现。 </p>
@@ -3867,50 +3866,50 @@ ON a.id = b.id
 <h4 id="union">union</h4>
 <p>union:去重 (a, b, ab)</p>
 <p>union all:不去重 (a, b, ab, ab)</p>
-<pre><code class="language-sql">select * from a
-union
-select * from b
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="k">union</span><span class="w"></span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+</span></code></pre></div>
 <p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202204250001072.png" /></p>
 <p>左中图</p>
-<pre><code class="language-sql">#实现A - A∩B
-select 字段列表
-from A表 left join B表
-on 关联条件
-where 从表关联字段 is null and 等其他子句;
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">#</span><span class="err">实现</span><span class="n">A</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A</span><span class="err">∩</span><span class="n">B</span><span class="w"></span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="k">select</span><span class="w"> </span><span class="err">字段列表</span><span class="w"></span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="k">from</span><span class="w"> </span><span class="n">A表</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">B表</span><span class="w"></span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="k">on</span><span class="w"> </span><span class="err">关联条件</span><span class="w"></span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="k">where</span><span class="w"> </span><span class="err">从表关联字段</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="err">等其他子句</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
 <p>右中图</p>
-<pre><code class="language-sql">#实现B - A∩B
-select 字段列表
-from A表 right join B表
-on 关联条件
-where 从表关联字段 is null and 等其他子句;
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="o">#</span><span class="err">实现</span><span class="n">B</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A</span><span class="err">∩</span><span class="n">B</span><span class="w"></span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="k">select</span><span class="w"> </span><span class="err">字段列表</span><span class="w"></span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="k">from</span><span class="w"> </span><span class="n">A表</span><span class="w"> </span><span class="k">right</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">B表</span><span class="w"></span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="k">on</span><span class="w"> </span><span class="err">关联条件</span><span class="w"></span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="k">where</span><span class="w"> </span><span class="err">从表关联字段</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="err">等其他子句</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
 <p>左下图</p>
-<pre><code class="language-sql">实现查询结果是A∪B
-#用左外的A，union 右外的B
-select 字段列表
-from A表 left join B表
-on 关联条件
-where 等其他子句
-union
-select 字段列表
-from A表 right join B表
-on 关联条件
-where 等其他子句;
-</code></pre>
-<pre><code class="language-sql">#实现A∪B - A∩B 或 (A - A∩B) ∪ （B - A∩B）
-#使用左外的 (A - A∩B) union 右外的（B - A∩B）
-select 字段列表
-from A表 left join B表
-on 关联条件
-where 从表关联字段 is null and 等其他子句
-union
-select 字段列表
-from A表 right join B表
-on 关联条件
-where 从表关联字段 is null and 等其他子句
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="err">实现查询结果是</span><span class="n">A</span><span class="err">∪</span><span class="n">B</span><span class="w"></span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="o">#</span><span class="err">用左外的</span><span class="n">A</span><span class="err">，</span><span class="k">union</span><span class="w"> </span><span class="err">右外的</span><span class="n">B</span><span class="w"></span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="k">select</span><span class="w"> </span><span class="err">字段列表</span><span class="w"></span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="k">from</span><span class="w"> </span><span class="n">A表</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">B表</span><span class="w"></span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="k">on</span><span class="w"> </span><span class="err">关联条件</span><span class="w"></span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="k">where</span><span class="w"> </span><span class="err">等其他子句</span><span class="w"></span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="k">union</span><span class="w"></span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="k">select</span><span class="w"> </span><span class="err">字段列表</span><span class="w"></span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="k">from</span><span class="w"> </span><span class="n">A表</span><span class="w"> </span><span class="k">right</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">B表</span><span class="w"></span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="k">on</span><span class="w"> </span><span class="err">关联条件</span><span class="w"></span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="k">where</span><span class="w"> </span><span class="err">等其他子句</span><span class="p">;</span><span class="w"></span>
+</span></code></pre></div>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="o">#</span><span class="err">实现</span><span class="n">A</span><span class="err">∪</span><span class="n">B</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A</span><span class="err">∩</span><span class="n">B</span><span class="w"> </span><span class="err">或</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A</span><span class="err">∩</span><span class="n">B</span><span class="p">)</span><span class="w"> </span><span class="err">∪</span><span class="w"> </span><span class="err">（</span><span class="n">B</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A</span><span class="err">∩</span><span class="n">B</span><span class="err">）</span><span class="w"></span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="o">#</span><span class="err">使用左外的</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A</span><span class="err">∩</span><span class="n">B</span><span class="p">)</span><span class="w"> </span><span class="k">union</span><span class="w"> </span><span class="err">右外的（</span><span class="n">B</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A</span><span class="err">∩</span><span class="n">B</span><span class="err">）</span><span class="w"></span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="k">select</span><span class="w"> </span><span class="err">字段列表</span><span class="w"></span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="k">from</span><span class="w"> </span><span class="n">A表</span><span class="w"> </span><span class="k">left</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">B表</span><span class="w"></span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="k">on</span><span class="w"> </span><span class="err">关联条件</span><span class="w"></span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="k">where</span><span class="w"> </span><span class="err">从表关联字段</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="err">等其他子句</span><span class="w"></span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a><span class="k">union</span><span class="w"></span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a><span class="k">select</span><span class="w"> </span><span class="err">字段列表</span><span class="w"></span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="k">from</span><span class="w"> </span><span class="n">A表</span><span class="w"> </span><span class="k">right</span><span class="w"> </span><span class="k">join</span><span class="w"> </span><span class="n">B表</span><span class="w"></span>
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a><span class="k">on</span><span class="w"> </span><span class="err">关联条件</span><span class="w"></span>
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a><span class="k">where</span><span class="w"> </span><span class="err">从表关联字段</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="err">等其他子句</span><span class="w"></span>
+</span></code></pre></div>
 <h2 id="_23">聚合函数</h2>
 <h3 id="_24">函数介绍</h3>
 <h4 id="avg-sum">AVG SUM</h4>
@@ -3925,26 +3924,26 @@ where 从表关联字段 is null and 等其他子句
 <p>问题：能不能使用count(列名)替换count(*)? *</p>
 <p>不要使用 count(列名)来替代 count(<em>) ， count(</em>) 是 SQL92 定义的标准统计行数的语法，跟数 据库无关，跟 NULL 和非 NULL 无关。 说明：count(*)会统计值为 NULL 的行，而 count(列名)不会统计此列为 NULL 值的行。</p>
 <h3 id="group-by">GROUP BY</h3>
-<pre><code class="language-sql">SELECT id, `name`, SUM(id)
-FROM user
-where age &gt; 18
-GROUP BY id, name
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="k">FROM</span><span class="w"> </span><span class="k">user</span><span class="w"></span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="k">where</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">18</span><span class="w"></span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
+</span></code></pre></div>
 <p><strong>在SELECT列表中所有未包含在组函数中的列都应该包含在 GROUP BY子句中</strong></p>
-<pre><code class="language-sql">SELECT id, `name`, SUM(id)
-FROM user
-where age &gt; 18
-GROUP BY id, name WITH ROLLUP
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="k">SUM</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="k">FROM</span><span class="w"> </span><span class="k">user</span><span class="w"></span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="k">where</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">18</span><span class="w"></span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">ROLLUP</span><span class="w"></span>
+</span></code></pre></div>
 <p>WITH ROLLUP:所有记录求聚合,</p>
 <p>当使用ROLLUP时，不能同时使用ORDER BY子句进行结果排序，即ROLLUP和ORDER BY是互相排斥 的。</p>
 <h3 id="having">HAVING</h3>
 <p>having 需要和group by搭配使用</p>
-<pre><code class="language-sql">SELECT `name` ,max(id)
-FROM `user`
-GROUP BY name
-HAVING max(ID) &gt; 1
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">`</span><span class="n">name</span><span class="o">`</span><span class="w"> </span><span class="p">,</span><span class="k">max</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="k">FROM</span><span class="w"> </span><span class="o">`</span><span class="k">user</span><span class="o">`</span><span class="w"></span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="k">HAVING</span><span class="w"> </span><span class="k">max</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+</span></code></pre></div>
 <p>区别1：WHERE 可以直接使用表中的字段作为筛选条件，但不能使用分组中的计算函数作为筛选</p>
 <p>区别2：如果需要通过连接从关联表中获取需要的数据，WHERE 是先筛选后连接，而 HAVING 是先连接 后筛选。</p>
 <h2 id="_25">子查询</h2>
@@ -3986,45 +3985,45 @@ HAVING max(ID) &gt; 1
 </table>
 <h4 id="_27">案例</h4>
 <h5 id="last_namejob_idsalary">返回公司工资最少的员工的last_name,job_id和salary</h5>
-<pre><code class="language-sql">SELECT last_name, job_ib, salary
-FROM employees
-WHERE salary = (
-    SELECT MIN(salary)
-  FROM employees 
-)
-AND employee_id NOT IN (174, 141)
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">job_ib</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="w"></span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"></span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="p">)</span><span class="w"></span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="k">AND</span><span class="w"> </span><span class="n">employee_id</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="mi">174</span><span class="p">,</span><span class="w"> </span><span class="mi">141</span><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 <h5 id="141174manager_iddepartment_idemployee_id-manager_iddepartment_id">查询与141号或174号员工的manager_id和department_id相同的其他员工的employee_id， manager_id，department_id</h5>
 <p>不成对比较</p>
-<pre><code class="language-sql">SELECT employee_id, manager_id, department_id
-FROM employees
-WHERE manager_id in (
-    SELECT manager_id
-  FROM employees
-  WHERE employee_id IN (174, 141)
-)
-AND department_id IN (
-    SELECT department_id 
-  FROM employees
-  WHERE employee_id IN (174, 141)
-)
-AND employee_id NOT IN (174, 141)
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">employee_id</span><span class="p">,</span><span class="w"> </span><span class="n">manager_id</span><span class="p">,</span><span class="w"> </span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"></span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">manager_id</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">manager_id</span><span class="w"></span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"></span>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">employee_id</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="mi">174</span><span class="p">,</span><span class="w"> </span><span class="mi">141</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="p">)</span><span class="w"></span>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="k">AND</span><span class="w"> </span><span class="n">department_id</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="w"> </span>
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"></span>
+</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">employee_id</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="mi">174</span><span class="p">,</span><span class="w"> </span><span class="mi">141</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-31-12"><a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a><span class="p">)</span><span class="w"></span>
+</span><span id="__span-31-13"><a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a><span class="k">AND</span><span class="w"> </span><span class="n">employee_id</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="mi">174</span><span class="p">,</span><span class="w"> </span><span class="mi">141</span><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="case">case 子查询</h4>
 <p>显式员工的employee_id,last_name和location。其中，若员工department_id与location_id为1800 的department_id相同，则location为’Canada’，其余则为’USA’。</p>
-<pre><code class="language-sql">SELECT employee_id, last_name, (
-    CASE department_id
-  WHEN 
-    (SELECT department_id
-    FROM departments
-    WHERE location_id = 1800)
-    THEN 'Canada' 
-    ELSE 'USA' 
-    END
-  ) 
-) location
-FROM employees
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">employee_id</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">    </span><span class="k">CASE</span><span class="w"> </span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">  </span><span class="k">WHEN</span><span class="w"> </span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">    </span><span class="p">(</span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">departments</span><span class="w"></span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">location_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1800</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="w">    </span><span class="k">THEN</span><span class="w"> </span><span class="s1">&#39;Canada&#39;</span><span class="w"> </span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="w">    </span><span class="k">ELSE</span><span class="w"> </span><span class="s1">&#39;USA&#39;</span><span class="w"> </span>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="w">    </span><span class="k">END</span><span class="w"></span>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="w">  </span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="p">)</span><span class="w"> </span><span class="k">location</span><span class="w"></span>
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="_28">注意事项</h4>
 <p>如果子查询返回空则主查询也没数据</p>
 <p>多行子查询使用单行比较符</p>
@@ -4058,84 +4057,84 @@ FROM employees
 </table>
 <h4 id="_31">案例</h4>
 <h5 id="job_idjob_idit_progjob_id-salary">返回其它job_id中比job_id为'IT_PROG'部门<strong>任一</strong>工资低的员工的员工号、姓名、job_id 以及salary</h5>
-<pre><code class="language-sql">SELECT employee_id, last_name, job_id, salary
-FROM employee
-WHERE salary &lt; ANY (
-    SELECT salary
-  FROM employees
-  WHERE job_id = 'IT_PROG'
-)
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">employee_id</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">job_id</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="w"></span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="w"></span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">ANY</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">salary</span><span class="w"></span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"></span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">job_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;IT_PROG&#39;</span><span class="w"></span>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 <p>返回其它job_id中比job_id为'IT_PROG'部门<strong>所有</strong>工资低的员工的员工号、姓名、job_id 以及salary</p>
-<pre><code class="language-sql">SELECT employee_id, last_name, job_id, salary
-FROM employee
-WHERE salary &lt; ALL (
-    SELECT salary
-  FROM employees
-  WHERE job_id = 'IT_PROG'
-)
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">employee_id</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">job_id</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="w"></span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="w"></span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">salary</span><span class="w"></span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"></span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">job_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;IT_PROG&#39;</span><span class="w"></span>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 <h5 id="id">查询平均工资最低的部门id</h5>
 <p>方式一</p>
-<pre><code class="language-sql">SELECT department_id
-FROM employee
-GROUP BY department_id
-HAVING AVG(salary) = (
-    SELECT MIN(avg_sal)
-  FROM (
-    SELECT department_id, AVG(salary) avg_sal
-    FROM employees
-    GROUP BY department_id
-  ) dept_avg_sal
-)
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="w"></span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="k">HAVING</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">MIN</span><span class="p">(</span><span class="n">avg_sal</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="n">avg_sal</span><span class="w"></span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"></span>
+</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="n">dept_avg_sal</span><span class="w"></span>
+</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 <h5 id="all">方式二 &lt;= ALL</h5>
-<pre><code class="language-sql">SELECT department_id
-FROM employee
-GROUP BY department_id
-HAVING AVG(salary) &lt;= ALL (
-    SELECT avg_sal
-  FROM (
-    SELECT department_id, AVG(salary) avg_sal
-    FROM employees
-    GROUP BY department_id
-  ) dept_avg_sal
-)
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="w"></span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="k">HAVING</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">avg_sal</span><span class="w"></span>
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_id</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="n">avg_sal</span><span class="w"></span>
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"></span>
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a><span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="n">dept_avg_sal</span><span class="w"></span>
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 <h3 id="_32">关联查询</h3>
 <h4 id="definitiondefine">definition/define 定义</h4>
 <p>关联子查询：每执行一次外部查询，子查询需要重新计算一次</p>
 <h4 id="_33">基础案例</h4>
 <h5 id="last_namesalarydepartment_id">查询员工中工资大于本部门平均工资的员工的last_name,salary和其department_id</h5>
 <p>相关子查询</p>
-<pre><code class="language-sql">SELECT last_name, salary, department_id
-FROM employees emp_out
-WHERE salary &gt; (
-    SELECT AVG(salary)
-  FROM employee
-  WHERE department_id = emp_out.deparment_id
-)
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="p">,</span><span class="w"> </span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">emp_out</span><span class="w"></span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">salary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"></span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="w"></span>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">department_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">emp_out</span><span class="p">.</span><span class="n">deparment_id</span><span class="w"></span>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 <p>from子查询</p>
-<pre><code class="language-sql">SELECT e1.last_name, e1.salary, e1.department_id
-FROM employees e1, (
-  SELECT deaparment_id, AVG(salary) avg_sal_dept
-  FROM employeees
-  GROUP BY deparment_id
-) e2
-WHERE e1.department_id = e2.department_id
-AND e1.salary &gt; e2.avg_sal_dept
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">salary</span><span class="p">,</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e1</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">deaparment_id</span><span class="p">,</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">salary</span><span class="p">)</span><span class="w"> </span><span class="n">avg_sal_dept</span><span class="w"></span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">employeees</span><span class="w"></span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="w">  </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">deparment_id</span><span class="w"></span>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="p">)</span><span class="w"> </span><span class="n">e2</span><span class="w"></span>
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">department_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span class="k">AND</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">salary</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">avg_sal_dept</span><span class="w"></span>
+</span></code></pre></div>
 <p>order by 子查询</p>
 <p>查询员工的id,salary,按照department_name 排序</p>
-<pre><code class="language-sql">SELECT employee_id, salary
-FROM employee e
-ORDER BY (
-    SELECT department_name
-  FROM departments d
-  where e.department_id = d.department_id
-)
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">employee_id</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="w"></span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="w"> </span><span class="n">e</span><span class="w"></span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">department_name</span><span class="w"></span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">departments</span><span class="w"> </span><span class="n">d</span><span class="w"></span>
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="w">  </span><span class="k">where</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">department_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">.</span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 <h4 id="exists">exists</h4>
 <h5 id="what">what</h5>
 <p>EXISTS</p>
@@ -4144,15 +4143,14 @@ ORDER BY (
 <p>存在则不继续查找了，并返回TRUE</p>
 <h5 id="how">how</h5>
 <p>查询公司管理者的employee_id，last_name，job_id，department_id信息</p>
-<pre><code class="language-sql">SELECT employee_id, last_name, department_id
-FROM employees e1
-WHERE EXISTS (
-  SELECT *
-  FROM employee e2
-  WHERE e1.manager_id = e2.employee_id
-)
-
-</code></pre>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">employee_id</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">department_id</span><span class="w"></span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">employees</span><span class="w"> </span><span class="n">e1</span><span class="w"></span>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">employee</span><span class="w"> </span><span class="n">e2</span><span class="w"></span>
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">e1</span><span class="p">.</span><span class="n">manager_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">e2</span><span class="p">.</span><span class="n">employee_id</span><span class="w"></span>
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="p">)</span><span class="w"></span>
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -4188,7 +4186,10 @@ WHERE EXISTS (
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -4283,7 +4284,7 @@ WHERE EXISTS (
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>

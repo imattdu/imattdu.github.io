@@ -2805,82 +2805,82 @@
   <h1>Shell</h1>
 
 <h2 id="shell">shell解释器</h2>
-<pre><code class="language-bash">sudo cat /etc/shells
-</code></pre>
-<pre><code class="language-bash">/bin/sh
-/bin/bash
-/usr/bin/sh
-/usr/bin/bash
-/bin/tcsh
-/bin/csh
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo cat /etc/shells
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>/bin/sh
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>/bin/bash
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>/usr/bin/sh
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>/usr/bin/bash
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>/bin/tcsh
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>/bin/csh
+</span></code></pre></div>
 <h3 id="shbash">sh是bash 的软链接</h3>
 <p>/bin</p>
-<pre><code class="language-bash">[matt@matt05 bin]$ ll | grep bash
--rwxr-xr-x. 1 root root     964536 4月   1 2020 bash
-lrwxrwxrwx. 1 root root         10 8月   3 00:12 bashbug -&gt; bashbug-64
--rwxr-xr-x. 1 root root       6964 4月   1 2020 bashbug-64
-lrwxrwxrwx. 1 root root          4 8月   3 00:12 sh -&gt; bas
-[matt@matt05 bin]$ ll /bin | grep bash
-[matt@matt05 bin]$ ll /bin/ | grep bash
--rwxr-xr-x. 1 root root     964536 4月   1 2020 bash
-lrwxrwxrwx. 1 root root         10 8月   3 00:12 bashbug -&gt; bashbug-64
--rwxr-xr-x. 1 root root       6964 4月   1 2020 bashbug-64
-lrwxrwxrwx. 1 root root          4 8月   3 00:12 sh -&gt; bas
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="o">[</span>matt@matt05 bin<span class="o">]</span>$ ll <span class="p">|</span> grep bash
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>-rwxr-xr-x. <span class="m">1</span> root root     <span class="m">964536</span> 4月   <span class="m">1</span> <span class="m">2020</span> bash
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>lrwxrwxrwx. <span class="m">1</span> root root         <span class="m">10</span> 8月   <span class="m">3</span> <span class="m">00</span>:12 bashbug -&gt; bashbug-64
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>-rwxr-xr-x. <span class="m">1</span> root root       <span class="m">6964</span> 4月   <span class="m">1</span> <span class="m">2020</span> bashbug-64
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>lrwxrwxrwx. <span class="m">1</span> root root          <span class="m">4</span> 8月   <span class="m">3</span> <span class="m">00</span>:12 sh -&gt; bas
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="o">[</span>matt@matt05 bin<span class="o">]</span>$ ll /bin <span class="p">|</span> grep bash
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="o">[</span>matt@matt05 bin<span class="o">]</span>$ ll /bin/ <span class="p">|</span> grep bash
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>-rwxr-xr-x. <span class="m">1</span> root root     <span class="m">964536</span> 4月   <span class="m">1</span> <span class="m">2020</span> bash
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>lrwxrwxrwx. <span class="m">1</span> root root         <span class="m">10</span> 8月   <span class="m">3</span> <span class="m">00</span>:12 bashbug -&gt; bashbug-64
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>-rwxr-xr-x. <span class="m">1</span> root root       <span class="m">6964</span> 4月   <span class="m">1</span> <span class="m">2020</span> bashbug-64
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>lrwxrwxrwx. <span class="m">1</span> root root          <span class="m">4</span> 8月   <span class="m">3</span> <span class="m">00</span>:12 sh -&gt; bas
+</span></code></pre></div>
 <h3 id="centosbash">Centos默认的解析器是bash</h3>
 <h2 id="demo">demo</h2>
 <h3 id="hellowordsh">helloword.sh</h3>
 <h4 id="_1">代码</h4>
-<pre><code class="language-bash">#!/bin/bash
-
-# echo 输出
-echo &quot;helloword&quot;
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># echo 输出</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nb">echo</span> <span class="s2">&quot;helloword&quot;</span>
+</span></code></pre></div>
 <h4 id="_2">运行</h4>
 <p>1 </p>
-<pre><code class="language-bash">sh helloword.sh
-</code></pre>
-<pre><code class="language-bash">sh /home/matt/stu/helloword.sh
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sh helloword.sh
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>sh /home/matt/stu/helloword.sh
+</span></code></pre></div>
 <p>2 这种方式需要指定执行权限x</p>
-<pre><code class="language-bash">./helloword.sh
-</code></pre>
-<pre><code class="language-bash">/home/matt/stu/helloword.sh
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>./helloword.sh
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>/home/matt/stu/helloword.sh
+</span></code></pre></div>
 <h3 id="myaddsh">myadd.sh</h3>
-<pre><code class="language-bash">#!/bin/bash
-
-cd /home/matt/stu
-
-touch add.txt
-# 追加
-echo &quot;hello matt&quot; &gt;&gt; add.txt
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="nb">cd</span> /home/matt/stu
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>touch add.txt
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="c1"># 追加</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="nb">echo</span> <span class="s2">&quot;hello matt&quot;</span> &gt;&gt; add.txt
+</span></code></pre></div>
 <h2 id="_3">变量</h2>
 <h3 id="_4">系统变量</h3>
-<pre><code class="language-bash">$HOME $USER $PWD $SHELL
-</code></pre>
-<pre><code class="language-bash">[matt@matt05 stu]$ echo $SHELL
-/bin/bash
-[matt@matt05 stu]$ echo $HOME
-/home/matt
-[matt@matt05 stu]$ echo $USER
-matt
-[matt@matt05 stu]$ echo $PWD
-/home/matt/stu
-[matt@matt05 stu]$ 
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nv">$HOME</span> <span class="nv">$USER</span> <span class="nv">$PWD</span> <span class="nv">$SHELL</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$SHELL</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>/bin/bash
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$HOME</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>/home/matt
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$USER</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>matt
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$PWD</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>/home/matt/stu
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ 
+</span></code></pre></div>
 <h3 id="_5">自定义变量</h3>
-<pre><code class="language-bash"># = 之间不可以有空格
-a=1
-# 撤销声明
-unset a
-# 只读
-readonly a=1
-# 提升为全局变量
-export a
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># = 之间不可以有空格</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nv">a</span><span class="o">=</span><span class="m">1</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="c1"># 撤销声明</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="nb">unset</span> a
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="c1"># 只读</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="nb">readonly</span> <span class="nv">a</span><span class="o">=</span><span class="m">1</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="c1"># 提升为全局变量</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="nb">export</span> a
+</span></code></pre></div>
 <ul>
 <li>命名规范：数字字母下划线，不能以数字开头</li>
 <li>等号俩侧不可以有空格</li>
@@ -2893,13 +2893,13 @@ export a
 <h3 id="0-0">#？ 上一条命令是否执行成功 成功是0 失败非0</h3>
 <h2 id="_8">运算符</h2>
 <h3 id="_9">$[]    $(())</h3>
-<pre><code class="language-bash">echo $[2+3*1]
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nb">echo</span> $<span class="o">[</span><span class="m">2</span>+3*1<span class="o">]</span>
+</span></code></pre></div>
 <h3 id="expr">expr</h3>
-<pre><code class="language-bash"> + , - , \*,  /,  % 
-</code></pre>
-<pre><code class="language-bash">expr 1 + 2
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a> + , - , <span class="se">\*</span>,  /,  % 
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>expr <span class="m">1</span> + <span class="m">2</span>
+</span></code></pre></div>
 <p><strong>注意：expr运算符间要有空格</strong></p>
 <h2 id="_10">条件判断</h2>
 <h3 id="_11">基本语法</h3>
@@ -2907,248 +2907,237 @@ export a
 <p>注意：条件非空即为true，[ atguigu ]返回true，[] 返回false。</p>
 <h3 id="_12">符号</h3>
 <h4 id="_13">比较符号</h4>
-<pre><code class="language-bash">== 字符串比较
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="o">==</span> 字符串比较
+</span></code></pre></div>
 <h4 id="_14">整数</h4>
-<pre><code class="language-bash">// &lt;
--lt 
-// &lt;=
--le
-// &gt;
--gt
-// &gt;=
--ge
-// ==
--eq
-// !=
--ne
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>// &lt;
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>-lt 
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>// &lt;<span class="o">=</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>-le
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>// &gt;
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>-gt
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>// &gt;<span class="o">=</span>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>-ge
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>// <span class="o">==</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>-eq
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>// !<span class="o">=</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>-ne
+</span></code></pre></div>
 <h4 id="_15">文件</h4>
-<pre><code class="language-bash">// 读的权限
--r
-// 写的权限
--w
-// 执行的权限
--x
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>// 读的权限
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>-r
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>// 写的权限
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>-w
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>// 执行的权限
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>-x
+</span></code></pre></div>
 <h4 id="_16">文件类型</h4>
-<pre><code class="language-bash">-f 文件存在并且是一个常规的文件（file）
--e 文件存在（existence）      
--d 文件存在并是一个目录（directory）
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>-f 文件存在并且是一个常规的文件（file）
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>-e 文件存在（existence）      
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>-d 文件存在并是一个目录（directory）
+</span></code></pre></div>
 <h3 id="_17">案例</h3>
-<pre><code class="language-bash">[matt@matt05 stu]$ [ 23 -eq 22 ]
-[matt@matt05 stu]$ echo $?
-1
-[matt@matt05 stu]$ [ 23 -eq 23 ]
-[matt@matt05 stu]$ echo $?
-0
-[matt@matt05 stu]$ 
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ <span class="o">[</span> <span class="m">23</span> -eq <span class="m">22</span> <span class="o">]</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$?</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="m">1</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ <span class="o">[</span> <span class="m">23</span> -eq <span class="m">23</span> <span class="o">]</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ <span class="nb">echo</span> <span class="nv">$?</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="m">0</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ 
+</span></code></pre></div>
 <h3 id="_18">注意</h3>
 <p><strong>多条件判断（&amp;&amp; 表示前一条命令执行成功时，才执行后一条命令，|| 表示上一条命令执行失败后，才执行下一条命令）</strong></p>
-<pre><code class="language-bash">[matt@matt05 stu]$ [ -e a.txt ] || echo 'matt'
-matt
-[matt@matt05 stu]$
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ <span class="o">[</span> -e a.txt <span class="o">]</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;matt&#39;</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>matt
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$
+</span></code></pre></div>
 <h2 id="_19">流程控制</h2>
 <h3 id="if">if</h3>
-<pre><code class="language-bash">#!/bin/bash
-
-# if后面有空格
-# [] 里面各个符号之间的空格
-if [ 121 -eq 1 ]; then
-    echo 'bb'
-elif [ 1 -le 2 ]; then
-    echo 'aaa'
-fi
-
-if [ 'aaaa' == 'aa' ]; then
-    echo '=='
-else
-    echo '!='
-fi
-
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="c1"># if后面有空格</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># [] 里面各个符号之间的空格</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="k">if</span> <span class="o">[</span> <span class="m">121</span> -eq <span class="m">1</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>    <span class="nb">echo</span> <span class="s1">&#39;bb&#39;</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="k">elif</span> <span class="o">[</span> <span class="m">1</span> -le <span class="m">2</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>    <span class="nb">echo</span> <span class="s1">&#39;aaa&#39;</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="k">fi</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="k">if</span> <span class="o">[</span> <span class="s1">&#39;aaaa&#39;</span> <span class="o">==</span> <span class="s1">&#39;aa&#39;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>    <span class="nb">echo</span> <span class="s1">&#39;==&#39;</span>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="k">else</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>    <span class="nb">echo</span> <span class="s1">&#39;!=&#39;</span>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="k">fi</span>
+</span></code></pre></div>
 <h3 id="case">case</h3>
-<pre><code class="language-bash">#!/bin/bash
-
-case $1 in
-&quot;1&quot;)
-    echo &quot;1&quot;
-# ;; 相当于break    
-;;
-&quot;2&quot;)
-    echo &quot;2&quot;
-;;
-# * 相当于default
-*)
-    echo default
-;;
-esac
-
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="k">case</span> <span class="nv">$1</span> <span class="k">in</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="s2">&quot;1&quot;</span><span class="o">)</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>    <span class="nb">echo</span> <span class="s2">&quot;1&quot;</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="c1"># ;; 相当于break    </span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="p">;;</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="s2">&quot;2&quot;</span><span class="o">)</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>    <span class="nb">echo</span> <span class="s2">&quot;2&quot;</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="p">;;</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="c1"># * 相当于default</span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>*<span class="o">)</span>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a>    <span class="nb">echo</span> default
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="p">;;</span>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="k">esac</span>
+</span></code></pre></div>
 <h3 id="for">for</h3>
-<pre><code class="language-bash">#!/bin/bash
-
-sum=0
-for((i=1;i&lt;10;i++)) do
-    sum=$[$sum+$i]
-done
-echo $sum
-
-</code></pre>
-<pre><code class="language-bash">#!/bin/bash
-
-for i in $*
-# do写在下一行
-do
-    echo &quot;134343 $i&quot;
-done
-
-for i in $@
-do
-    echo &quot;@@ $i&quot;
-done
-
-
-for i in &quot;$*&quot;
-do
-    echo &quot;$i&quot;
-
-done
-
-for j in &quot;$@&quot;
-do
-    echo &quot;$j&quot;
-done
-
-</code></pre>
-<pre><code class="language-bash">[matt@matt05 stu]$ sh for2.sh  2 3
-134343 2
-134343 3
-@@ 2
-@@ 3
-2 3
-2
-3
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="nv">sum</span><span class="o">=</span><span class="m">0</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="k">for</span><span class="o">((</span><span class="nv">i</span><span class="o">=</span><span class="m">1</span><span class="p">;</span>i&lt;<span class="m">10</span><span class="p">;</span>i++<span class="o">))</span> <span class="k">do</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>    <span class="nv">sum</span><span class="o">=</span>$<span class="o">[</span><span class="nv">$sum</span>+<span class="nv">$i</span><span class="o">]</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="k">done</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="nb">echo</span> <span class="nv">$sum</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="k">for</span> i <span class="k">in</span> <span class="nv">$*</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="c1"># do写在下一行</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="k">do</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>    <span class="nb">echo</span> <span class="s2">&quot;134343 </span><span class="nv">$i</span><span class="s2">&quot;</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="k">done</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="k">for</span> i <span class="k">in</span> <span class="nv">$@</span>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="k">do</span>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>    <span class="nb">echo</span> <span class="s2">&quot;@@ </span><span class="nv">$i</span><span class="s2">&quot;</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="k">done</span>
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>
+</span><span id="__span-24-14"><a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a>
+</span><span id="__span-24-15"><a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="k">for</span> i <span class="k">in</span> <span class="s2">&quot;</span><span class="nv">$*</span><span class="s2">&quot;</span>
+</span><span id="__span-24-16"><a id="__codelineno-24-16" name="__codelineno-24-16" href="#__codelineno-24-16"></a><span class="k">do</span>
+</span><span id="__span-24-17"><a id="__codelineno-24-17" name="__codelineno-24-17" href="#__codelineno-24-17"></a>    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$i</span><span class="s2">&quot;</span>
+</span><span id="__span-24-18"><a id="__codelineno-24-18" name="__codelineno-24-18" href="#__codelineno-24-18"></a>
+</span><span id="__span-24-19"><a id="__codelineno-24-19" name="__codelineno-24-19" href="#__codelineno-24-19"></a><span class="k">done</span>
+</span><span id="__span-24-20"><a id="__codelineno-24-20" name="__codelineno-24-20" href="#__codelineno-24-20"></a>
+</span><span id="__span-24-21"><a id="__codelineno-24-21" name="__codelineno-24-21" href="#__codelineno-24-21"></a><span class="k">for</span> j <span class="k">in</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+</span><span id="__span-24-22"><a id="__codelineno-24-22" name="__codelineno-24-22" href="#__codelineno-24-22"></a><span class="k">do</span>
+</span><span id="__span-24-23"><a id="__codelineno-24-23" name="__codelineno-24-23" href="#__codelineno-24-23"></a>    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$j</span><span class="s2">&quot;</span>
+</span><span id="__span-24-24"><a id="__codelineno-24-24" name="__codelineno-24-24" href="#__codelineno-24-24"></a><span class="k">done</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ sh for2.sh  <span class="m">2</span> <span class="m">3</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="m">134343</span> <span class="m">2</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="m">134343</span> <span class="m">3</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>@@ <span class="m">2</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>@@ <span class="m">3</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="m">2</span> <span class="m">3</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="m">2</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="m">3</span>
+</span></code></pre></div>
 <p>$*和$@都表示传递给函数或脚本的所有参数，不被双引号“”包含时，都以$1 $2 …$n的形式输出所有参数</p>
 <p>当它们被双引号“”包含时，“$*”会将所有的参数作为一个整体，以“$1 $2 …$n”的形式输出所有参数；“$@”会将各个参数分开，以“$1” “$2”…”$n”的形式输出所有参数。</p>
 <h3 id="while">while</h3>
-<pre><code class="language-bash">#!/bin/bash
-
-
-i=1
-while [ $i -lt 10 ]
-do
-    echo $i
-    i=$[$i+1]
-done
-
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nv">i</span><span class="o">=</span><span class="m">1</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="k">while</span> <span class="o">[</span> <span class="nv">$i</span> -lt <span class="m">10</span> <span class="o">]</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="k">do</span>
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>    <span class="nb">echo</span> <span class="nv">$i</span>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>    <span class="nv">i</span><span class="o">=</span>$<span class="o">[</span><span class="nv">$i</span>+1<span class="o">]</span>
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a><span class="k">done</span>
+</span></code></pre></div>
 <h2 id="read">read</h2>
-<pre><code class="language-bash">#!/bin/bash
-
-# -t 写在前面 3s 没输入就会终止
-read -t 3 -p &quot;3 s内please your name&quot; name
-echo $name
-
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="c1"># -t 写在前面 3s 没输入就会终止</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nb">read</span> -t <span class="m">3</span> -p <span class="s2">&quot;3 s内please your name&quot;</span> name
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="nb">echo</span> <span class="nv">$name</span>
+</span></code></pre></div>
 <h2 id="_20">函数</h2>
 <h3 id="basename">basename</h3>
-<pre><code class="language-bash"># .sh 参数是可选的 他是去除后缀
-basename /home/matt/stu/for2.sh .sh
-
-
-
-for2
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1"># .sh 参数是可选的 他是去除后缀</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>basename /home/matt/stu/for2.sh .sh
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>for2
+</span></code></pre></div>
 <h3 id="dirname">dirname</h3>
-<pre><code class="language-bash">[matt@matt05 stu]$ dirname /home/matt/stu/for2.txt
-/home/matt/stu
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ dirname /home/matt/stu/for2.txt
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>/home/matt/stu
+</span></code></pre></div>
 <h3 id="_21">自定义函数</h3>
-<pre><code class="language-bash">#!/bin/bash
-
-function sum()
-{
-    s=0
-    s=$[$1+$2]
-    echo $s
-    $?
-}
-# 需要指定参数
-sum $1 $2
-if [ 0 -eq 0 ]
-then
-    echo 111
-fi
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="k">function</span> sum<span class="o">()</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="o">{</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>    <span class="nv">s</span><span class="o">=</span><span class="m">0</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>    <span class="nv">s</span><span class="o">=</span>$<span class="o">[</span><span class="nv">$1</span>+<span class="nv">$2</span><span class="o">]</span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>    <span class="nb">echo</span> <span class="nv">$s</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>    <span class="nv">$?</span>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="o">}</span>
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="c1"># 需要指定参数</span>
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>sum <span class="nv">$1</span> <span class="nv">$2</span>
+</span><span id="__span-30-12"><a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a><span class="k">if</span> <span class="o">[</span> <span class="m">0</span> -eq <span class="m">0</span> <span class="o">]</span>
+</span><span id="__span-30-13"><a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a><span class="k">then</span>
+</span><span id="__span-30-14"><a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a>    <span class="nb">echo</span> <span class="m">111</span>
+</span><span id="__span-30-15"><a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a><span class="k">fi</span>
+</span></code></pre></div>
 <p><strong>函数返回值，只能通过$?系统变量获得，可以显示加：return返回，如果不加，将以最后一条命令运行结果，作为返回值。return后跟数值n(0-255)</strong></p>
 <p>空格分开 第一列数据</p>
-<pre><code class="language-bash">cut -d &quot; &quot; -f 1 cut.txt
-
-
-
-cut -d &quot; &quot; -f 2,3 cut.txt 
-</code></pre>
-<pre><code class="language-bash">[matt@matt05 stu]$ sed &quot;2a matt siry&quot; sed.txt 
-dong shen
-guan zhen
-matt siry
-wo  wo
-lai  lai
-
-le  le
-</code></pre>
-<pre><code class="language-bash">[matt@matt05 stu]$ sed &quot;/do/d&quot; sed.txt
-guan zhen
-wo  wo
-lai  lai
-
-le  le
-
-
-</code></pre>
-<pre><code class="language-bash"># /g 全局替换
-[matt@matt05 stu]$ sed &quot;s/wo/ma/g&quot; sed.txt 
-dong shen
-guan zhen
-ma  ma
-lai  lai
-
-le  le
-
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>cut -d <span class="s2">&quot; &quot;</span> -f <span class="m">1</span> cut.txt
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>cut -d <span class="s2">&quot; &quot;</span> -f <span class="m">2</span>,3 cut.txt 
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ sed <span class="s2">&quot;2a matt siry&quot;</span> sed.txt 
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>dong shen
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>guan zhen
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>matt siry
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>wo  wo
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>lai  lai
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>le  le
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ sed <span class="s2">&quot;/do/d&quot;</span> sed.txt
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>guan zhen
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>wo  wo
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>lai  lai
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>le  le
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="c1"># /g 全局替换</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ sed <span class="s2">&quot;s/wo/ma/g&quot;</span> sed.txt 
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>dong shen
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>guan zhen
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>ma  ma
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>lai  lai
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>le  le
+</span></code></pre></div>
 <p>删除第二行</p>
-<pre><code class="language-bash">[matt@matt05 stu]$ sed -e '2d' -e 's/wo/ni/g' sed.txt 
-dong shen
-ni  ni
-lai  lai
-
-le  le
-
-
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="o">[</span>matt@matt05 stu<span class="o">]</span>$ sed -e <span class="s1">&#39;2d&#39;</span> -e <span class="s1">&#39;s/wo/ni/g&#39;</span> sed.txt 
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>dong shen
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>ni  ni
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a>lai  lai
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>le  le
+</span></code></pre></div>
 <p>第7列</p>
-<pre><code class="language-bash">[matt@matt05 awk]$ awk -F ':' '/^root/{print $7}' passwd 
-/bin/bash
-</code></pre>
-<pre><code class="language-bash">[matt@matt05 awk]$ awk -F &quot;:&quot; '/^root/{print $1,$7}' passwd 
-root /bin/bash
-</code></pre>
-<pre><code class="language-sh">awk -F ':' 'BEGIN{print &quot;user,matt&quot;} {print $1&quot;.&quot;$7} END{print &quot;matt&quot;}' passwd
-</code></pre>
-<pre><code class="language-sh">awk -F ':' -v i=1 '{print $3+i}' passwd
-</code></pre>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="o">[</span>matt@matt05 awk<span class="o">]</span>$ awk -F <span class="s1">&#39;:&#39;</span> <span class="s1">&#39;/^root/{print $7}&#39;</span> passwd 
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>/bin/bash
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="o">[</span>matt@matt05 awk<span class="o">]</span>$ awk -F <span class="s2">&quot;:&quot;</span> <span class="s1">&#39;/^root/{print $1,$7}&#39;</span> passwd 
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>root /bin/bash
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>awk -F <span class="s1">&#39;:&#39;</span> <span class="s1">&#39;BEGIN{print &quot;user,matt&quot;} {print $1&quot;.&quot;$7} END{print &quot;matt&quot;}&#39;</span> passwd
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>awk -F <span class="s1">&#39;:&#39;</span> -v <span class="nv">i</span><span class="o">=</span><span class="m">1</span> <span class="s1">&#39;{print $3+i}&#39;</span> passwd
+</span></code></pre></div>
 <p>这三个变量不能在BEGIN中使用</p>
-<pre><code class="language-sh">awk -F ':' '{print FILENAME} {print NR&quot;-&quot;NF}' passwd
-</code></pre>
-<pre><code class="language-sh">ifconfig ens33 | awk -F : '{print $1}'
-</code></pre>
-<pre><code class="language-bash">sort -t : -nrk 3 sort.txt
-</code></pre>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>awk -F <span class="s1">&#39;:&#39;</span> <span class="s1">&#39;{print FILENAME} {print NR&quot;-&quot;NF}&#39;</span> passwd
+</span></code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>ifconfig ens33 <span class="p">|</span> awk -F : <span class="s1">&#39;{print $1}&#39;</span>
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>sort -t : -nrk <span class="m">3</span> sort.txt
+</span></code></pre></div>
 
   <hr>
 <div class="md-source-file">
@@ -3184,7 +3173,10 @@ root /bin/bash
 </script>
 
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true });
+</script>
 
               </article>
             </div>
@@ -3243,7 +3235,7 @@ root /bin/bash
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow", "content.code.annotate", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
