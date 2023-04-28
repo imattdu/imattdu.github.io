@@ -1,0 +1,5081 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="mattのnote">
+      
+      
+        <meta name="author" content="matt">
+      
+      
+        <link rel="canonical" href="https://imatt.top/bigdata/hadoop/quickstart/">
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>quickstart - mattのnote</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.08040f6c.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#what" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="mattのnote" class="md-header__button md-logo" aria-label="mattのnote" data-md-component="logo">
+      
+  <img src="../../../images/matt.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mattのnote
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              quickstart
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/imattdu/imattdu.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    imattdu/imattdu.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        base
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../util/linux/centos%E5%AE%89%E8%A3%85/" class="md-tabs__link">
+        util
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cs.md" class="md-tabs__link">
+        cs
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../algo/base/0%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="md-tabs__link">
+        algo
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/0-init/" class="md-tabs__link">
+        db
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../web/gin/base/" class="md-tabs__link">
+        web
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../ms.md" class="md-tabs__link">
+        microservices
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../mq/kafka/overview/" class="md-tabs__link">
+        mq
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../overview/" class="md-tabs__link md-tabs__link--active">
+        bigdata
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../question/question/" class="md-tabs__link">
+        question
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../en/w/" class="md-tabs__link">
+        en
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="mattのnote" class="md-nav__button md-logo" aria-label="mattのnote" data-md-component="logo">
+      
+  <img src="../../../images/matt.png" alt="logo">
+
+    </a>
+    mattのnote
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/imattdu/imattdu.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    imattdu/imattdu.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2" type="checkbox" id="__nav_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2">
+          go
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="go" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          go
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_1" type="checkbox" id="__nav_1_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_1">
+          base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="base" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/0base/0setup/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/0base/1base/" class="md-nav__link">
+        基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/0base/2data_structure/" class="md-nav__link">
+        常用数据结构
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/0base/3func/" class="md-nav__link">
+        函数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/0base/4struct/" class="md-nav__link">
+        结构体
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/0base/7error/" class="md-nav__link">
+        错误
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_2" type="checkbox" id="__nav_1_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_2">
+          concurrent
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="concurrent" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          concurrent
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/0groutine/" class="md-nav__link">
+        groutine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/1runtime/" class="md-nav__link">
+        runtime
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/2channel/" class="md-nav__link">
+        channel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/3%E5%AE%9A%E6%97%B6%E5%99%A8/" class="md-nav__link">
+        定时器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/4select/" class="md-nav__link">
+        select
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/5lock/" class="md-nav__link">
+        lock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/1concurrent/6sync.md" class="md-nav__link">
+        sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/7atomic/" class="md-nav__link">
+        atomic
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_3" type="checkbox" id="__nav_1_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_3">
+          lib
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="lib" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          lib
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/2lib/0string.md" class="md-nav__link">
+        string
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/2lib/1time.md" class="md-nav__link">
+        time
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/2lib/2flag.md" class="md-nav__link">
+        flag
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/2lib/3log.md" class="md-nav__link">
+        log
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/2lib/4io.md" class="md-nav__link">
+        io
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/2lib/9反射.md" class="md-nav__link">
+        反射
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3" type="checkbox" id="__nav_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_3">
+          cpp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="cpp" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          cpp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/1base.md" class="md-nav__link">
+        基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/2string.md" class="md-nav__link">
+        字符串
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/3array.md" class="md-nav__link">
+        数组
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/4if.md" class="md-nav__link">
+        逻辑
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/5while.md" class="md-nav__link">
+        循环
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/6func.md" class="md-nav__link">
+        函数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/7class.md" class="md-nav__link">
+        类
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3_8" type="checkbox" id="__nav_1_3_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_3_8">
+          stl
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="stl" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_3_8">
+          <span class="md-nav__icon md-icon"></span>
+          stl
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/1stl/0init.md" class="md-nav__link">
+        init
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/1stl/1stl.md" class="md-nav__link">
+        stl
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4">
+          python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="python" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/python/python/" class="md-nav__link">
+        python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/python/flask/" class="md-nav__link">
+        flask
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          util
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="util" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          util
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/linux/centos%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        centos安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/linux/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        常用软件安装
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          mac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="mac" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          mac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/mac/0%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+        基本使用
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/mac/app/" class="md-nav__link">
+        app
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/mac/iterm2/" class="md-nav__link">
+        iterm2
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          dev
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="dev" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          dev
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/dev/git/" class="md-nav__link">
+        git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/dev/jetBrains/" class="md-nav__link">
+        jetBrains
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/dev/jetBrains_%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="md-nav__link">
+        jetBrains_快捷键
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          cs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="cs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          cs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          index
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="index" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          index
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cs.md" class="md-nav__link">
+        index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          algo
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="algo" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          algo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="基础" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algo/base/0%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        基础算法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algo/base/1%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        数据结构
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algo/base/2%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%9B%BE%E8%AE%BA/" class="md-nav__link">
+        搜索与图论
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algo/base/3%E6%95%B0%E5%AD%A6/" class="md-nav__link">
+        数学
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algo/base/4dp/" class="md-nav__link">
+        dp
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          db
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="db" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          db
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          mysql
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="mysql" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          mysql
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/0-init/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/1-%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        1-基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/10-%E5%88%9B%E5%BB%BA%E8%A1%A8%E5%92%8C%E7%AE%A1%E7%90%86%E8%A1%A8/" class="md-nav__link">
+        10-创建表和管理表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/11-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%88%A0%E6%94%B9/" class="md-nav__link">
+        11-数据增删改
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/12-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        12-数据类型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/13-%E7%BA%A6%E6%9D%9F/" class="md-nav__link">
+        13-约束
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/14-%E8%A7%86%E5%9B%BE/" class="md-nav__link">
+        14-视图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/15-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%92%8C%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        15-存储过程和函数
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          web
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="web" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          web
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_1">
+          gin
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="gin" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          gin
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../web/gin/base/" class="md-nav__link">
+        base
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          microservices
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="microservices" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          microservices
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          index
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="index" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          index
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ms.md" class="md-nav__link">
+        index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          mq
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="mq" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          mq
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_1">
+          kafka
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="kafka" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          kafka
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mq/kafka/overview/" class="md-nav__link">
+        overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mq/kafka/install/" class="md-nav__link">
+        install
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mq/kafka/api/" class="md-nav__link">
+        api
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mq/kafka/client/" class="md-nav__link">
+        client
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          bigdata
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="bigdata" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          bigdata
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_1" type="checkbox" id="__nav_9_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9_1">
+          hadoop
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="hadoop" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_1">
+          <span class="md-nav__icon md-icon"></span>
+          hadoop
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          quickstart
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        quickstart
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what" class="md-nav__link">
+    what
+  </a>
+  
+    <nav class="md-nav" aria-label="what">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-hadoop" class="md-nav__link">
+    what hadoop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advantage" class="md-nav__link">
+    advantage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#framework" class="md-nav__link">
+    framework
+  </a>
+  
+    <nav class="md-nav" aria-label="framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hdfs" class="md-nav__link">
+    hdfs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yarn" class="md-nav__link">
+    yarn
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapreduce" class="md-nav__link">
+    mapreduce
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    三者关系
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    install
+  </a>
+  
+    <nav class="md-nav" aria-label="install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-centos" class="md-nav__link">
+    install centos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hadoop" class="md-nav__link">
+    单机安装hadoop
+  </a>
+  
+    <nav class="md-nav" aria-label="单机安装hadoop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    配置
+  </a>
+  
+    <nav class="md-nav" aria-label="配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    编写配置path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path_1" class="md-nav__link">
+    配置path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    配置生效
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    验证
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    目录结构
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hadoop_1" class="md-nav__link">
+    hadoop运行模式
+  </a>
+  
+    <nav class="md-nav" aria-label="hadoop运行模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    三种模式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    本地模式使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    完全分布式安装
+  </a>
+  
+    <nav class="md-nav" aria-label="完全分布式安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    流程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    文件传输
+  </a>
+  
+    <nav class="md-nav" aria-label="文件传输">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scp" class="md-nav__link">
+    scp
+  </a>
+  
+    <nav class="md-nav" aria-label="scp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    概念
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    语法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsync" class="md-nav__link">
+    rsync 远程同步工具
+  </a>
+  
+    <nav class="md-nav" aria-label="rsync 远程同步工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_1" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how" class="md-nav__link">
+    how
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xsync" class="md-nav__link">
+    xsync分发集群脚本
+  </a>
+  
+    <nav class="md-nav" aria-label="xsync分发集群脚本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bin" class="md-nav__link">
+    进入当前家目录的bin目录下
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    编写脚本
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    添加执行权限
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    配置环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bin_1" class="md-nav__link">
+    脚本复制到bin目录下
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    分发脚本环境变量生效
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    ssh
+  </a>
+  
+    <nav class="md-nav" aria-label="ssh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    免密登录
+  </a>
+  
+    <nav class="md-nav" aria-label="免密登录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    生成公钥私钥
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    将公钥拷贝到要免密登录的目标机器上
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh_1" class="md-nav__link">
+    .ssh 目录下的文件解释
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    集群部署
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    配置文件说明
+  </a>
+  
+    <nav class="md-nav" aria-label="配置文件说明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    默认配置文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    自定义配置文件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    配置集群
+  </a>
+  
+    <nav class="md-nav" aria-label="配置集群">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-matt05" class="md-nav__link">
+    1.核心配置文件-matt05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2hdfs-matt05" class="md-nav__link">
+    2.HDFS 配置文件-matt05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3yarn-matt05" class="md-nav__link">
+    3.YARN 配置文件-matt05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4mapreduce-matt05" class="md-nav__link">
+    4.MapReduce 配置文件-matt05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    分发配置文件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    群起
+  </a>
+  
+    <nav class="md-nav" aria-label="群起">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#workers" class="md-nav__link">
+    配置workers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    分发配置文件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    启动集群
+  </a>
+  
+    <nav class="md-nav" aria-label="启动集群">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    格式化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hdfs_1" class="md-nav__link">
+    启动hdfs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yarn_1" class="md-nav__link">
+    启动yarn
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    验证
+  </a>
+  
+    <nav class="md-nav" aria-label="验证">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    web
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    测试配置是否成功
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    配置历史服务器
+  </a>
+  
+    <nav class="md-nav" aria-label="配置历史服务器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    编写配置文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    分发配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matt05" class="md-nav__link">
+    matt05启动历史服务器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    测试
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    日志聚集
+  </a>
+  
+    <nav class="md-nav" aria-label="日志聚集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#matt05_1" class="md-nav__link">
+    编写配置文件matt05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    分发配置文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodemanager-resourcemanager-historyserver" class="md-nav__link">
+    关闭 NodeManager 、ResourceManager 和 HistoryServer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodemanager-resourcemanage-historyserver" class="md-nav__link">
+    启动 NodeManager 、ResourceManage 和 HistoryServer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how_1" class="md-nav__link">
+    how
+  </a>
+  
+    <nav class="md-nav" aria-label="how">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    整体启动
+  </a>
+  
+    <nav class="md-nav" aria-label="整体启动">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hdfs_2" class="md-nav__link">
+    整体启动/停止 HDFS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yarn_2" class="md-nav__link">
+    整体启动/停止 YARN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    各个服务组件逐一启动/停止
+  </a>
+  
+    <nav class="md-nav" aria-label="各个服务组件逐一启动/停止">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hdfs_3" class="md-nav__link">
+    分别启动/停止 HDFS 组件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yarn_3" class="md-nav__link">
+    启动/停止 YARN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    启动脚本
+  </a>
+  
+    <nav class="md-nav" aria-label="启动脚本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    添加权限
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bin_2" class="md-nav__link">
+    脚本复制到bin目录下
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    分发脚本
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    环境变量生效
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jpsall" class="md-nav__link">
+    JPSALL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    常用端口号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    时间同步
+  </a>
+  
+    <nav class="md-nav" aria-label="时间同步">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    需求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    config
+  </a>
+  
+    <nav class="md-nav" aria-label="config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ntpd" class="md-nav__link">
+    查看所有节点 ntpd 服务状态和开机自启动状态
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hadoop102-ntpconf" class="md-nav__link">
+    修改 hadoop102 的 ntp.conf 配置文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-192168960-19216810255" class="md-nav__link">
+    修改 1（授权 192.168.96.0-192.168.10.255 网段上的所有机器可以从这台机器上查
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    修改 2（集群在局域网中，不使用其他互联网上的时间）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    添加 3（当该节点丢失网络连接，依然可以采用本地时间作为时间服务器为集群中
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matt05-etcsysconfigntpd" class="md-nav__link">
+    修改 matt05 的/etc/sysconfig/ntpd 文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    增加内容如下（让硬件时间与系统时间一起同步）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ntpd_1" class="md-nav__link">
+    重新启动 ntpd 服务
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-ntp" class="md-nav__link">
+    其他机器配置root用户下关闭所有节点上 ntp 服务和自启动
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    在其他机器配置 1 分钟与时间服务器同步一次
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    编写定时任务如下：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    测试
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    问题
+  </a>
+  
+    <nav class="md-nav" aria-label="问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    版本不一致
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    其他错误
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hdfs/" class="md-nav__link">
+        hdfs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mapreduce/" class="md-nav__link">
+        mapreduce
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_2" type="checkbox" id="__nav_9_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9_2">
+          flink
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="flink" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_2">
+          <span class="md-nav__icon md-icon"></span>
+          flink
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flink/overview/" class="md-nav__link">
+        overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flink/quickstart/" class="md-nav__link">
+        quickstart
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flink/datastreamAPI/" class="md-nav__link">
+        datastreamAPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../flink/table/" class="md-nav__link">
+        table
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          question
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="question" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          question
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10_1" type="checkbox" id="__nav_10_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10_1">
+          question
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="question" data-md-level="2">
+        <label class="md-nav__title" for="__nav_10_1">
+          <span class="md-nav__icon md-icon"></span>
+          question
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../question/question/" class="md-nav__link">
+        Question
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11">
+          en
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="en" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          en
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/w/" class="md-nav__link">
+        w
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what" class="md-nav__link">
+    what
+  </a>
+  
+    <nav class="md-nav" aria-label="what">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what-hadoop" class="md-nav__link">
+    what hadoop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advantage" class="md-nav__link">
+    advantage
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#framework" class="md-nav__link">
+    framework
+  </a>
+  
+    <nav class="md-nav" aria-label="framework">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hdfs" class="md-nav__link">
+    hdfs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yarn" class="md-nav__link">
+    yarn
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mapreduce" class="md-nav__link">
+    mapreduce
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    三者关系
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    install
+  </a>
+  
+    <nav class="md-nav" aria-label="install">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install-centos" class="md-nav__link">
+    install centos
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hadoop" class="md-nav__link">
+    单机安装hadoop
+  </a>
+  
+    <nav class="md-nav" aria-label="单机安装hadoop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    安装
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    配置
+  </a>
+  
+    <nav class="md-nav" aria-label="配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path" class="md-nav__link">
+    编写配置path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path_1" class="md-nav__link">
+    配置path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    配置生效
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    验证
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    目录结构
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hadoop_1" class="md-nav__link">
+    hadoop运行模式
+  </a>
+  
+    <nav class="md-nav" aria-label="hadoop运行模式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    三种模式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    本地模式使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    完全分布式安装
+  </a>
+  
+    <nav class="md-nav" aria-label="完全分布式安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    流程
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    文件传输
+  </a>
+  
+    <nav class="md-nav" aria-label="文件传输">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scp" class="md-nav__link">
+    scp
+  </a>
+  
+    <nav class="md-nav" aria-label="scp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    概念
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    语法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rsync" class="md-nav__link">
+    rsync 远程同步工具
+  </a>
+  
+    <nav class="md-nav" aria-label="rsync 远程同步工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#what_1" class="md-nav__link">
+    what
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how" class="md-nav__link">
+    how
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xsync" class="md-nav__link">
+    xsync分发集群脚本
+  </a>
+  
+    <nav class="md-nav" aria-label="xsync分发集群脚本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bin" class="md-nav__link">
+    进入当前家目录的bin目录下
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    编写脚本
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    添加执行权限
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    配置环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bin_1" class="md-nav__link">
+    脚本复制到bin目录下
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    分发脚本环境变量生效
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh" class="md-nav__link">
+    ssh
+  </a>
+  
+    <nav class="md-nav" aria-label="ssh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    免密登录
+  </a>
+  
+    <nav class="md-nav" aria-label="免密登录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    生成公钥私钥
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    将公钥拷贝到要免密登录的目标机器上
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ssh_1" class="md-nav__link">
+    .ssh 目录下的文件解释
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    集群部署
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    配置文件说明
+  </a>
+  
+    <nav class="md-nav" aria-label="配置文件说明">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    默认配置文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    自定义配置文件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    配置集群
+  </a>
+  
+    <nav class="md-nav" aria-label="配置集群">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-matt05" class="md-nav__link">
+    1.核心配置文件-matt05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2hdfs-matt05" class="md-nav__link">
+    2.HDFS 配置文件-matt05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3yarn-matt05" class="md-nav__link">
+    3.YARN 配置文件-matt05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4mapreduce-matt05" class="md-nav__link">
+    4.MapReduce 配置文件-matt05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    分发配置文件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    群起
+  </a>
+  
+    <nav class="md-nav" aria-label="群起">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#workers" class="md-nav__link">
+    配置workers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    分发配置文件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    启动集群
+  </a>
+  
+    <nav class="md-nav" aria-label="启动集群">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    格式化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hdfs_1" class="md-nav__link">
+    启动hdfs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yarn_1" class="md-nav__link">
+    启动yarn
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    验证
+  </a>
+  
+    <nav class="md-nav" aria-label="验证">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#web" class="md-nav__link">
+    web
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    测试配置是否成功
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    配置历史服务器
+  </a>
+  
+    <nav class="md-nav" aria-label="配置历史服务器">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    编写配置文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    分发配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matt05" class="md-nav__link">
+    matt05启动历史服务器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    测试
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    日志聚集
+  </a>
+  
+    <nav class="md-nav" aria-label="日志聚集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#matt05_1" class="md-nav__link">
+    编写配置文件matt05
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    分发配置文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodemanager-resourcemanager-historyserver" class="md-nav__link">
+    关闭 NodeManager 、ResourceManager 和 HistoryServer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nodemanager-resourcemanage-historyserver" class="md-nav__link">
+    启动 NodeManager 、ResourceManage 和 HistoryServer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how_1" class="md-nav__link">
+    how
+  </a>
+  
+    <nav class="md-nav" aria-label="how">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    整体启动
+  </a>
+  
+    <nav class="md-nav" aria-label="整体启动">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hdfs_2" class="md-nav__link">
+    整体启动/停止 HDFS
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yarn_2" class="md-nav__link">
+    整体启动/停止 YARN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    各个服务组件逐一启动/停止
+  </a>
+  
+    <nav class="md-nav" aria-label="各个服务组件逐一启动/停止">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hdfs_3" class="md-nav__link">
+    分别启动/停止 HDFS 组件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yarn_3" class="md-nav__link">
+    启动/停止 YARN
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    启动脚本
+  </a>
+  
+    <nav class="md-nav" aria-label="启动脚本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    添加权限
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bin_2" class="md-nav__link">
+    脚本复制到bin目录下
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    分发脚本
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    环境变量生效
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jpsall" class="md-nav__link">
+    JPSALL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    常用端口号
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    时间同步
+  </a>
+  
+    <nav class="md-nav" aria-label="时间同步">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    需求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config" class="md-nav__link">
+    config
+  </a>
+  
+    <nav class="md-nav" aria-label="config">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ntpd" class="md-nav__link">
+    查看所有节点 ntpd 服务状态和开机自启动状态
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hadoop102-ntpconf" class="md-nav__link">
+    修改 hadoop102 的 ntp.conf 配置文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1-192168960-19216810255" class="md-nav__link">
+    修改 1（授权 192.168.96.0-192.168.10.255 网段上的所有机器可以从这台机器上查
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    修改 2（集群在局域网中，不使用其他互联网上的时间）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    添加 3（当该节点丢失网络连接，依然可以采用本地时间作为时间服务器为集群中
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matt05-etcsysconfigntpd" class="md-nav__link">
+    修改 matt05 的/etc/sysconfig/ntpd 文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    增加内容如下（让硬件时间与系统时间一起同步）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ntpd_1" class="md-nav__link">
+    重新启动 ntpd 服务
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#root-ntp" class="md-nav__link">
+    其他机器配置root用户下关闭所有节点上 ntp 服务和自启动
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    在其他机器配置 1 分钟与时间服务器同步一次
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    编写定时任务如下：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    测试
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    问题
+  </a>
+  
+    <nav class="md-nav" aria-label="问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    版本不一致
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    其他错误
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+  <a href="https://github.com/imattdu/imattdu.github.io/edit/master/docs/bigdata/hadoop/quickstart.md" title="编辑此页" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+  </a>
+
+
+  <h1>quickstart</h1>
+
+<h2 id="what">what</h2>
+<h3 id="what-hadoop">what hadoop</h3>
+<p>分布式基础架构</p>
+<p>主要解决，海量数据的存储和海量数据的分析计算问题。</p>
+<p><strong>3.1.3</strong></p>
+<p>http://hadoop.apache.org/</p>
+<h3 id="advantage">advantage</h3>
+<p>1.高可靠性：Hadoop底层维护多个数据副本，所以即使Hadoop某个计算元
+素或存储故障，也不会导致数据的丢失。</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210811145502.png" /></p>
+<p>2.高扩展性：在集群间分配任务数据，可方便的扩展数以千计的节点。</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210811145532.png" /></p>
+<p>3.高效性：在MapReduce的思想下，Hadoop是并行工作的，以加快任务处
+理速度。</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210811145627.png" /></p>
+<p>4.高容错性：能够自动将失败的任务重新分配。</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210811145652.png" /></p>
+<h3 id="framework">framework</h3>
+<p>在 Hadoop1.x 时 代 ，Hadoop中的MapReduce同时处理业务逻辑运算和资源的调度，耦合性较大。在Hadoop2.x时代，增加了Yarn。Yarn只负责资源的调度，MapReduce 只负责运算 。Hadoop3.x在组成上没有变化。</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210811145850.png" /></p>
+<h4 id="hdfs">hdfs</h4>
+<p>分布式文件系统</p>
+<p>1.NameNode（nn）：存储文件的元数据，如文件名，文件目录结构，文件属性（生成时间、副本数、
+文件权限），以及每个文件的块列表和块所在的DataNode等。</p>
+<p>2.DataNode(dn)：在本地文件系统存储文件块数据，以及块数据的校验和。</p>
+<p>3.Secondary NameNode(2nn)：每隔一段时间对NameNode元数据备份。</p>
+<h4 id="yarn">yarn</h4>
+<p>资源管理者</p>
+<p>ResourceManager（RM）：整个集群资源（内存、CPU等）的老大</p>
+<p>NodeManager（NM）：单个节点服务器资源老大</p>
+<p>ApplicationMaster（AM）：单个任务运行的老大</p>
+<p>Container：容器，相当一台独立的服务器，里面封装了任务运行所需要的资源，如内存、CPU、磁盘、网络等。</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210811150925.png" /></p>
+<h4 id="mapreduce">mapreduce</h4>
+<p>MapReduce 将计算过程分为两个阶段：Map 和 Reduce
+1）Map 阶段并行处理输入数据
+2）Reduce 阶段对 Map 结果进行汇总</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210811150619.png" /></p>
+<h4 id="_1">三者关系</h4>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210812003241.png" /></p>
+<h2 id="install">install</h2>
+<h3 id="install-centos">install centos</h3>
+<p>参考安装centos7.5(4g+50g)</p>
+<p>安装centos、设置网络、关闭防火墙设置主机名、安装常见软件包(安装epel-release,jdk,gcc,g++)、设置主机名ip映射、创建matt用户并配置<strong>sudo</strong>，创建软件目录，修改文件所有者，安装jdk,虚拟机克隆等。</p>
+<p>如果是最小化安装则需要安装net-tool,vim</p>
+<pre><code class="language-shell">yum install -y net-tools 
+yum install -y vim
+</code></pre>
+<p>matt05</p>
+<p>matt06</p>
+<p>matt07</p>
+<h3 id="hadoop">单机安装hadoop</h3>
+<h4 id="_2">安装</h4>
+<p>解压</p>
+<p>hadoop-3.1.3.tar.gz</p>
+<pre><code class="language-go">tar -zxvf hadoop-3.1.3.tar.gz -C /opt/module/
+
+hadoop version
+</code></pre>
+<h4 id="_3">配置</h4>
+<h5 id="path">编写配置path</h5>
+<pre><code class="language-go">sudo vim /etc/profile.d/my_env.sh
+</code></pre>
+<h5 id="path_1">配置path</h5>
+<pre><code class="language-go">#HADOOP_HOME
+export HADOOP_HOME=/opt/module/hadoop-3.1.3
+export PATH=$PATH:$HADOOP_HOME/bin
+export PATH=$PATH:$HADOOP_HOME/sbin
+</code></pre>
+<h5 id="_4">配置生效</h5>
+<pre><code class="language-go">source /etc/profile
+</code></pre>
+<h4 id="_5">验证</h4>
+<pre><code class="language-go">hadoop version
+</code></pre>
+<h4 id="_6">目录结构</h4>
+<ul>
+<li>bin 目录:存放对 Hadoop 相关服务(hdfs，yarn，mapred)进行操作的脚本 </li>
+<li>etc 目录:Hadoop 的配置文件目录，存放 Hadoop 的配置文件</li>
+<li>lib 目录:存放 Hadoop 的本地库(对数据进行压缩解压缩功能)</li>
+<li>sbin 目录:存放启动或停止 Hadoop 相关服务的脚本</li>
+<li>share 目录:存放 Hadoop 的依赖 jar 包、文档、和官方案例</li>
+</ul>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210803084344.png" /></p>
+<h3 id="hadoop_1">hadoop运行模式</h3>
+<h4 id="_7">三种模式</h4>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210803221655.png" /></p>
+<p>Hadoop 运行模式包括:本地模式、伪分布式模式以及完全分布式模式。</p>
+<ul>
+<li>本地模式:单机运行，只是用来演示一下官方案例。生产环境不用。</li>
+<li>伪分布式模式:也是单机运行，但是具备Hadoop集群的所有功能，一台服务器模 拟一个分布式的环境。</li>
+<li>完全分布式模式:多台服务器组成分布式环境。生产环境使用。</li>
+</ul>
+<h4 id="_8">本地模式使用</h4>
+<p>在hadoop安装目录下</p>
+<pre><code class="language-go">mkdir wcinput
+
+cd wcinput
+
+vim hello.txt
+</code></pre>
+<pre><code class="language-go">a a
+b c
+a d
+</code></pre>
+<p>输出目录不可以存在</p>
+<pre><code class="language-go">hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount wcinput wcoutput
+</code></pre>
+<p>查看结果</p>
+<pre><code class="language-go">cat wcoutput/part-r-00000
+</code></pre>
+<h3 id="_9">完全分布式安装</h3>
+<h4 id="_10">流程</h4>
+<ol>
+<li>准备 3 台客户机(关闭防火墙、静态 IP、主机名称)</li>
+<li>安装 JDK</li>
+<li>配置环境变量</li>
+<li>安装 Hadoop</li>
+<li>配置环境变量</li>
+<li>配置集群</li>
+<li>单点启动</li>
+<li>配置ssh</li>
+<li>群起并测试集群</li>
+</ol>
+<h4 id="_11">文件传输</h4>
+<h5 id="scp">scp</h5>
+<h6 id="_12">概念</h6>
+<p>scp 可以实现服务器与服务器之间的数据拷贝。</p>
+<h6 id="_13">语法</h6>
+<p>scp -r $pdir/$fname $user@$host:$pdir/$fname</p>
+<p>命令 递归 要拷贝的文件路径/名称 目的地用户@主机:目的地路径/名称</p>
+<p>可以指定目标位置的文件名也可以不指定</p>
+<pre><code class="language-go">scp -r /opt/software/aa.txt matt@123.56.135.43:/matt/opt/software
+</code></pre>
+<pre><code class="language-go">scp -r /opt/module/jdk1.8.0_212 matt@192.168.96.132:/opt/module
+</code></pre>
+<h5 id="rsync">rsync 远程同步工具</h5>
+<h6 id="what_1">what</h6>
+<p>rsync 主要用于备份和镜像。具有速度快、避免复制相同内容和支持符号链接的优点。 rsync 和 scp 区别:用 rsync 做文件的复制要比 scp 的速度快，rsync 只对差异文件做更新。scp 是把所有文件都复制过去。</p>
+<h6 id="how">how</h6>
+<pre><code class="language-go">rsync -av $pdir/$fname $user@$host:$pdir/$fname
+命令 选项参数 要拷贝的文件路径/名称 目的地用户@主机:目的地路径/名称
+</code></pre>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210812191004.png" /></p>
+<pre><code>a --archive  ：归档模式，表示递归传输并保持文件属性。等同于&quot;-rtopgDl&quot;。
+</code></pre>
+<pre><code class="language-go">rsync -av /home/matt/hello.txt matt@192.168.96.135:/home/matt
+</code></pre>
+<h5 id="xsync">xsync分发集群脚本</h5>
+<p>底层使用rxync</p>
+<h6 id="bin">进入当前家目录的bin目录下</h6>
+<pre><code class="language-go">cd ~/bin
+vim xsync
+</code></pre>
+<h6 id="_14">编写脚本</h6>
+<p><strong>记得修改ip</strong></p>
+<pre><code class="language-go">#!/bin/bash
+
+#1. 判断参数个数
+if [ $# -lt 1 ]
+then
+    echo Not Enough Arguement!
+    exit;
+fi
+
+#2. 遍历集群所有机器
+for host in matt05 matt06 matt07
+do
+    echo ==================== $host ====================
+    #3. 遍历所有目录，挨个发送
+    for file in $@
+    do
+        #4. 判断文件是否存在
+        if [ -e $file ]
+            then
+                #5. 获取父目录
+                pdir=$(cd -P $(dirname $file); pwd)
+
+                #6. 获取当前文件的名称
+                fname=$(basename $file)
+                ssh $host &quot;mkdir -p $pdir&quot;
+                rsync -av $pdir/$fname $host:$pdir
+            else
+                echo $file does not exists!
+        fi
+    done
+done
+</code></pre>
+<h6 id="_15">添加执行权限</h6>
+<pre><code class="language-go">chmod u+x xsync
+</code></pre>
+<h6 id="_16">配置环境</h6>
+<pre><code class="language-go">echo $PATH
+</code></pre>
+<pre><code class="language-go">vim /etc/profile.d/my_env.sh
+</code></pre>
+<h6 id="bin_1">脚本复制到bin目录下</h6>
+<p>使用sudo需要使用全路径。不要使用相对路径</p>
+<pre><code class="language-go">sudo cp /home/matt/bin/xsync /bin
+</code></pre>
+<h6 id="_17">分发脚本环境变量生效</h6>
+<pre><code class="language-sh">sudo xsync /home/matt/bin/xsync /bin/xsync /etc/profile.d/my_env.sh
+</code></pre>
+<pre><code class="language-go">source /etc/profile
+</code></pre>
+<h4 id="ssh">ssh</h4>
+<p>ssh 用户名@ip</p>
+<pre><code class="language-go">ssh root@123.56.135.43
+</code></pre>
+<h5 id="_18">免密登录</h5>
+<pre><code class="language-go">cd ~/.ssh
+
+ls -a
+</code></pre>
+<h6 id="_19">生成公钥私钥</h6>
+<pre><code class="language-go">ssh-keygen -t rsa
+</code></pre>
+<p>然后敲(三个回车)，就会生成两个文件 id_rsa(私钥)、id_rsa.pub(公钥)</p>
+<h6 id="_20">将公钥拷贝到要免密登录的目标机器上</h6>
+<pre><code class="language-go">ssh-copy-id -i id_rsa.pub matt@192.168.96.128
+</code></pre>
+<h6 id="ssh_1">.ssh 目录下的文件解释</h6>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210812194239.png" /></p>
+<p><strong>a给b公钥 a就可以免密登录b</strong></p>
+<p>分别配置matt,root用户免密登录其他服务器</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210812195053.png" /></p>
+<h4 id="_21">集群部署</h4>
+<p>集群规划</p>
+<p>NameNode和SecondaryNameNode不要安装在同一台服务器</p>
+<p>ResourceManager也很消耗内存，不要和NameNode、SecondaryNameNode配置在同一台机器上</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210812195403.png" /></p>
+<h4 id="_22">配置文件说明</h4>
+<p>Hadoop 配置文件分两类:默认配置文件和自定义配置文件，只有用户想修改某一默认配置值时，才需要修改自定义配置文件，更改相应属性值。</p>
+<h5 id="_23">默认配置文件</h5>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210812195628.png" /></p>
+<h5 id="_24">自定义配置文件</h5>
+<p><strong>core-site.xml</strong>、<strong>hdfs-site.xml</strong>、<strong>yarn-site.xml</strong>、<strong>mapred-site.xml</strong> 四个配置文件存放在 $HADOOP_HOME/etc/hadoop 这个路径上，用户可以根据项目需求重新进行修改配置。</p>
+<h4 id="_25">配置集群</h4>
+<h5 id="1-matt05">1.核心配置文件-matt05</h5>
+<p>配置 core-site.xml</p>
+<pre><code class="language-cpp">vim core-site.xml
+</code></pre>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;
+&lt;configuration&gt;
+    &lt;!-- 指定 NameNode 的地址 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;fs.defaultFS&lt;/name&gt;
+        &lt;value&gt;hdfs://matt05:8020&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!-- 指定 hadoop 数据的存储目录 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
+        &lt;value&gt;/opt/module/hadoop-3.1.3/data&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!-- 配置 HDFS 网页登录使用的静态用户为 matt --&gt;
+    &lt;property&gt;
+        &lt;name&gt;hadoop.http.staticuser.user&lt;/name&gt;
+        &lt;value&gt;matt&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+<h5 id="2hdfs-matt05">2.HDFS 配置文件-matt05</h5>
+<p>配置 hdfs-site.xml</p>
+<pre><code class="language-go">vim hdfs-site.xml
+</code></pre>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;
+&lt;configuration&gt;
+    &lt;!-- nn web 端访问地址--&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.namenode.http-address&lt;/name&gt;
+        &lt;value&gt;matt05:9870&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!-- 2nn web 端访问地址--&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;
+        &lt;value&gt;matt07:9868&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+<h5 id="3yarn-matt05">3.YARN 配置文件-matt05</h5>
+<pre><code class="language-go">vim yarn-site.xml
+</code></pre>
+<pre><code class="language-xml">&lt;configuration&gt;
+    &lt;!-- 指定 MR 走 shuffle --&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!-- 指定 ResourceManager 的地址--&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;
+        &lt;value&gt;matt06&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!-- 环境变量的继承 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.nodemanager.env-whitelist&lt;/name&gt;         &lt;value&gt;JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+<h5 id="4mapreduce-matt05">4.MapReduce 配置文件-matt05</h5>
+<pre><code class="language-go">vim mapred-site.xml
+</code></pre>
+<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;
+&lt;configuration&gt;
+    &lt;!-- 指定 MapReduce 程序运行在 Yarn 上 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+        &lt;value&gt;yarn&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+<h5 id="_26">分发配置文件</h5>
+<pre><code class="language-go">xsync /opt/module/hadoop-3.1.3/etc/hadoop/
+</code></pre>
+<h4 id="_27">群起</h4>
+<h5 id="workers">配置workers</h5>
+<pre><code class="language-go">vim /opt/module/hadoop-3.1.3/etc/hadoop/workers
+</code></pre>
+<p>添加如下内容</p>
+<pre><code class="language-go">matt05
+matt06
+matt07
+</code></pre>
+<h5 id="_28">分发配置文件</h5>
+<pre><code class="language-go">xsync /opt/module/hadoop-3.1.3/etc
+</code></pre>
+<h4 id="_29">启动集群</h4>
+<h5 id="_30">格式化</h5>
+<p>1.如果集群是第一次启动，需要在 matt05 节点格式化 NameNode(注意:格式化 NameNode，会产生新的集群 id，导致 NameNode 和 DataNode 的集群 id 不一致，集群找 不到已往数据。如果集群在运行过程中报错，需要重新格式化 NameNode 的话，一定要先停 止 namenode 和 datanode 程，并且要删除所有机器的 data 和 logs 目录，然后再进行格式化。)</p>
+<pre><code class="language-go">hdfs namenode -format
+</code></pre>
+<h5 id="hdfs_1">启动hdfs</h5>
+<pre><code class="language-go">sbin/start-dfs.sh
+</code></pre>
+<h5 id="yarn_1">启动yarn</h5>
+<p>在配置了 <strong>ResourceManager</strong> 的节点(<strong>matt06</strong>)启动 YARN</p>
+<p><strong>yarn:必须在matt06开启关闭</strong></p>
+<pre><code class="language-go">sbin/start-yarn.sh
+</code></pre>
+<h5 id="_31">验证</h5>
+<h6 id="web">web</h6>
+<p>Web 端查看 HDFS 的 NameNode</p>
+<p>(a)浏览器中输入:http://matt05:9870</p>
+<p>(b)查看 HDFS 上存储的数据信息 </p>
+<p>Web 端查看 YARN 的 ResourceManager</p>
+<p>(a)浏览器中输入:http://matt06:8088</p>
+<p>(b)查看 YARN 上运行的 Job 信息</p>
+<h6 id="_32">测试配置是否成功</h6>
+<p>创建文件夹并上传</p>
+<pre><code class="language-go">hadoop fs -mkdir /input
+
+hadoop fs -put $HADOOP_HOME/wcinput/word.txt /input
+</code></pre>
+<p>hadoop文件存储路径</p>
+<pre><code class="language-go">/opt/module/hadoop-3.1.3/data/dfs/data/current/BP-1436128598- 192.168.10.102-1610603650062/current/finalized/subdir0/subdir0
+</code></pre>
+<p>下载文件</p>
+<pre><code class="language-go">hadoop fs -get /jdk-8u212-linux- x64.tar.gz ./
+</code></pre>
+<pre><code class="language-go">[matt@matt05 subdir0]$ cat blk_1073741825
+hello word
+hello matt
+tencent 
+[matt@matt05 subdir0]$ pwd
+/opt/module/hadoop-3.1.3/data/dfs/data/current/BP-1324950131-192.168.96.135-1628037446040/current/finalized/subdir0/subdir0
+[matt@matt05 subdir0]$
+</code></pre>
+<pre><code class="language-go">[atguigu@hadoop102 subdir0]$ cat blk_1073741836&gt;&gt;tmp.tar.gz
+[atguigu@hadoop102 subdir0]$ cat blk_1073741837&gt;&gt;tmp.tar.gz
+[atguigu@hadoop102 subdir0]$ tar -zxvf tmp.tar.gz
+</code></pre>
+<p>执行jar包</p>
+<pre><code class="language-go">hadoop jar /opt/module/hadoop-3.1.3/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.1.3.jar wordcount /input /output
+</code></pre>
+<h4 id="_33">配置历史服务器</h4>
+<p>可以查看历史运行情况</p>
+<h5 id="_34">编写配置文件</h5>
+<pre><code class="language-go">vim mapred-site.xml
+</code></pre>
+<pre><code class="language-xml">    &lt;!-- 历史服务器端地址 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;
+        &lt;value&gt;matt05:10020&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!-- 历史服务器 web 端地址 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;
+        &lt;value&gt;matt05:19888&lt;/value&gt;
+    &lt;/property&gt;
+</code></pre>
+<h5 id="_35">分发配置</h5>
+<pre><code class="language-go">xsync $HADOOP_HOME/etc/hadoop/mapred-site.xml
+</code></pre>
+<h5 id="matt05">matt05启动历史服务器</h5>
+<p>$HADOOP_HOME/bin</p>
+<pre><code class="language-go">[matt@matt05 bin]$ mapred --daemon start historyserver
+</code></pre>
+<h5 id="_36">测试</h5>
+<pre><code class="language-go">jps
+</code></pre>
+<h4 id="_37">日志聚集</h4>
+<p>日志聚集概念：应用运行完成以后，将程序运行日志信息上传到 HDFS 系统上。</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210814094318.png" /></p>
+<h5 id="matt05_1">编写配置文件matt05</h5>
+<pre><code class="language-go">vim yarn-site.xml
+</code></pre>
+<pre><code class="language-xml">    &lt;!-- 开启日志聚集功能 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.log-aggregation-enable&lt;/name&gt;
+        &lt;value&gt;true&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!-- 设置日志聚集服务器地址 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.log.server.url&lt;/name&gt;
+        &lt;value&gt;http://matt05:19888/jobhistory/logs&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;!-- 设置日志保留时间为 7 天 --&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.log-aggregation.retain-seconds&lt;/name&gt;
+        &lt;value&gt;604800&lt;/value&gt;
+    &lt;/property&gt;
+</code></pre>
+<h5 id="_38">分发配置文件</h5>
+<pre><code class="language-go">xsync $HADOOP_HOME/etc/hadoop/yarn-site.xml
+</code></pre>
+<h5 id="nodemanager-resourcemanager-historyserver">关闭 NodeManager 、ResourceManager 和 HistoryServer</h5>
+<pre><code class="language-go"># matt06服务器
+sbin/stop-yarn.sh
+# matt05服务器
+mapred --daemon stop historyserver
+</code></pre>
+<h4 id="nodemanager-resourcemanage-historyserver">启动 NodeManager 、ResourceManage 和 HistoryServer</h4>
+<pre><code class="language-go">./start-yarn.sh
+mapred --daemon start historyserver
+</code></pre>
+<h2 id="how_1">how</h2>
+<h3 id="_39">整体启动</h3>
+<h4 id="hdfs_2">整体启动/停止 HDFS</h4>
+<pre><code class="language-go">start-dfs.sh/stop-dfs.sh
+</code></pre>
+<h4 id="yarn_2">整体启动/停止 YARN</h4>
+<pre><code class="language-go">start-yarn.sh/stop-yarn.sh
+</code></pre>
+<h3 id="_40">各个服务组件逐一启动/停止</h3>
+<h4 id="hdfs_3">分别启动/停止 HDFS 组件</h4>
+<pre><code class="language-go">hdfs --daemon start/stop namenode/datanode/secondarynamenode
+</code></pre>
+<h4 id="yarn_3">启动/停止 YARN</h4>
+<pre><code class="language-go">yarn --daemon start/stop resourcemanager/nodemanager
+</code></pre>
+<p>matt用户下启动</p>
+<h3 id="_41">启动脚本</h3>
+<p>myhadoop.sh</p>
+<pre><code class="language-go">cd ~/bin
+
+
+vim myhadoop.sh
+</code></pre>
+<pre><code class="language-go">#!/bin/bash
+if [ $# -lt 1 ]
+then
+    echo &quot;No Args Input...&quot;
+    exit ;
+fi
+
+case $1 in
+&quot;start&quot;)
+    echo &quot; =================== 启动 hadoop 集群 ===================&quot;
+
+    echo &quot; --------------- 启动 hdfs ---------------&quot;
+    ssh matt05 &quot;/opt/module/hadoop-3.1.3/sbin/start-dfs.sh&quot;
+    echo &quot; --------------- 启动 yarn ---------------&quot;
+    ssh matt06 &quot;/opt/module/hadoop-3.1.3/sbin/start-yarn.sh&quot;
+    echo &quot; --------------- 启动 historyserver ---------------&quot;
+    ssh matt05 &quot;/opt/module/hadoop-3.1.3/bin/mapred --daemon start historyserver&quot;
+;;
+&quot;stop&quot;)
+    echo &quot; =================== 关闭 hadoop 集群 ===================&quot;
+
+    echo &quot; --------------- 关闭 historyserver ---------------&quot;
+    ssh matt05 &quot;/opt/module/hadoop-3.1.3/bin/mapred --daemon stop historyserver&quot;
+    echo &quot; --------------- 关闭 yarn ---------------&quot;
+    ssh matt06 &quot;/opt/module/hadoop-3.1.3/sbin/stop-yarn.sh&quot;
+    echo &quot; --------------- 关闭 hdfs ---------------&quot;
+    ssh matt05 &quot;/opt/module/hadoop-3.1.3/sbin/stop-dfs.sh&quot;
+;;
+*)
+    echo &quot;Input Args Error...&quot;
+;;
+esac
+</code></pre>
+<h4 id="_42">添加权限</h4>
+<pre><code class="language-go">chmod 777 myhadoop.sh
+</code></pre>
+<h4 id="bin_2">脚本复制到bin目录下</h4>
+<p>使用sudo需要使用全路径。不要使用相对路径</p>
+<pre><code class="language-go">sudo cp /home/matt/bin/xsync /bin
+</code></pre>
+<h4 id="_43">分发脚本</h4>
+<pre><code class="language-sh">sudo xsync /home/matt/bin/xsync /bin/xsync /etc/profile.d/my_env.sh
+</code></pre>
+<h4 id="_44">环境变量生效</h4>
+<pre><code class="language-go">source /etc/profile
+</code></pre>
+<h3 id="jpsall">JPSALL</h3>
+<pre><code class="language-go">vim jpsall
+</code></pre>
+<pre><code class="language-bash">#!/bin/bash
+
+for host in matt05 matt06 matt07
+do
+    echo =============== $host ===============
+    ssh $host jps
+done
+</code></pre>
+<pre><code class="language-go">chmod 777 jpsall
+</code></pre>
+<h3 id="_45">常用端口号</h3>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210805080820.png" /></p>
+<p>常用配置文件</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210805081001.png" /></p>
+<h3 id="_46">时间同步</h3>
+<h4 id="_47">需求</h4>
+<p>如果服务器在公网环境（能连接外网），可以不采用集群时间同步，因为服务器会定期
+和公网时间进行校准；
+如果服务器在内网环境，必须要配置集群时间同步，否则时间久了，会产生时间偏差，
+导致集群执行任务时间不同步</p>
+<p>找一个机器，作为时间服务器，所有的机器与这台集群时间进行定时的同步，生产环境
+根据任务对时间的准确程度要求周期同步。测试环境为了尽快看到效果，采用 1 分钟同步一
+次。</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210814094540.png" /></p>
+<h4 id="config">config</h4>
+<h5 id="ntpd">查看所有节点 ntpd 服务状态和开机自启动状态</h5>
+<pre><code class="language-go">sudo su root
+
+
+systemctl status ntpd
+
+systemctl start ntpd
+
+
+systemctl is-enabled ntpd
+</code></pre>
+<h5 id="hadoop102-ntpconf">修改 hadoop102 的 ntp.conf 配置文件</h5>
+<pre><code class="language-go">vim /etc/ntp.conf
+</code></pre>
+<h5 id="1-192168960-19216810255">修改 1（授权 192.168.96.0-192.168.10.255 网段上的所有机器可以从这台机器上查</h5>
+<p>询和同步时间）</p>
+<pre><code class="language-go">estrict 192.168.96.0 mask 255.255.255.0 nomodify notrap
+</code></pre>
+<h5 id="2">修改 2（集群在局域网中，不使用其他互联网上的时间）</h5>
+<pre><code class="language-go">#server 0.centos.pool.ntp.org iburst
+#server 1.centos.pool.ntp.org iburst
+#server 2.centos.pool.ntp.org iburst
+#server 3.centos.pool.ntp.org iburst
+</code></pre>
+<h5 id="3">添加 3（当该节点丢失网络连接，依然可以采用本地时间作为时间服务器为集群中</h5>
+<p>的其他节点提供时间同步）</p>
+<pre><code class="language-go">server 127.127.1.0
+fudge 127.127.1.0 stratum 10
+</code></pre>
+<h5 id="matt05-etcsysconfigntpd">修改 matt05 的/etc/sysconfig/ntpd 文件</h5>
+<pre><code class="language-go">vim /etc/sysconfig/ntpd
+</code></pre>
+<h5 id="_48">增加内容如下（让硬件时间与系统时间一起同步）</h5>
+<pre><code class="language-go">SYNC_HWCLOCK=yes
+</code></pre>
+<h5 id="ntpd_1">重新启动 ntpd 服务</h5>
+<pre><code class="language-go">systemctl start ntpd
+
+systemctl enable ntpd
+</code></pre>
+<h5 id="root-ntp"><strong>其他机器配置</strong>root用户下关闭所有节点上 ntp 服务和自启动</h5>
+<pre><code class="language-go">systemctl stop ntpd
+
+
+systemctl disable ntpd
+</code></pre>
+<h5 id="1">在其他机器配置 1 分钟与时间服务器同步一次</h5>
+<pre><code class="language-go">crontab -e
+</code></pre>
+<h5 id="_49">编写定时任务如下：</h5>
+<pre><code class="language-go">*/1 * * * * /usr/sbin/ntpdate matt05
+</code></pre>
+<h5 id="_50">测试</h5>
+<pre><code class="language-go">date -s &quot;2021-9-11 11:11:11&quot;
+
+
+date
+</code></pre>
+<p>文件块大小：128m</p>
+<p>上限是128m 如果是1kb的文件那么剩余的空间还可以为其他文件存储</p>
+<h2 id="_51">问题</h2>
+<h3 id="_52">版本不一致</h3>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210805231056.png" /></p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/20210805231852.png" /></p>
+<p>因为每个datanode节点都有版本号，如果不一致就会启动报错</p>
+<pre><code class="language-go">sbin/stop-dfs.sh
+</code></pre>
+<p>删除每个节点的data logs 即可</p>
+<pre><code class="language-go">rm -rvf data
+rm -rvf logs
+</code></pre>
+<p>格式化</p>
+<pre><code class="language-go">hdfs namenode -format
+</code></pre>
+<p>启动</p>
+<pre><code class="language-go">sbin/start-dfs.sh
+</code></pre>
+<p>http://matt05:9870/</p>
+<h3 id="_53">其他错误</h3>
+<p>1）防火墙没关闭、或者没有启动 YARN </p>
+<p>INFO client.RMProxy: Connecting to ResourceManager at hadoop108/192.168.10.108:8032  </p>
+<p>2）root 用户和 matt05 两个用户启动集群不统一  </p>
+<p>3）不识别主机名称</p>
+<pre><code class="language-java">java.net.UnknownHostException: hadoop102: hadoop102 at java.net.InetAddress.getLocalHost(InetAddress.java:1475) at org.apache.hadoop.mapreduce.JobSubmitter.submitJobInternal(Job Submitter.java:146) at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1290) at org.apache.hadoop.mapreduce.Job$10.run(Job.java:1287) at java.security.AccessController.doPrivileged(Native Method) at javax.security.auth.Subject.doAs(Subject.java:415)
+</code></pre>
+<p>解决办法： </p>
+<p>​   （1）在/etc/hosts 文件中添加 192.168.10.102 hadoop102 </p>
+<p>​   （2）主机名称不要起 hadoop hadoop000 等特殊名称</p>
+<p>4）jps 发现进程已经没有，但是重新启动集群，提示进程已经开启。 原因是在 Linux 的根目录下/tmp 目录中存在启动的进程临时文件，将集群相关进程删 除掉，再重新启动集群。 </p>
+<p>5）jps 不生效 </p>
+<p>原因：全局变量 hadoop java 没有生效。</p>
+<p>解决办法：需要 source /etc/profile 文件。 </p>
+<p>6）8088 端口连接不上</p>
+<p><code>bash
+ cat /etc/hosts</code></p>
+<p>注释掉如下代码</p>
+<pre><code class="language-bash">#127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4
+#::1 matt05
+</code></pre>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-11-25</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+
+<script src="https://giscus.app/client.js"
+        data-repo="imattdu/imattdu.github.io"
+        data-repo-id="R_kgDOHQylZg"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOHQylZs4CO3wc"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      
+        
+        <a href="../overview/" class="md-footer__link md-footer__link--prev" aria-label="上一页: overview" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              overview
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../hdfs/" class="md-footer__link md-footer__link--next" aria-label="下一页: hdfs" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              hdfs
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021 - 2023 mattのnote
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://www.docker.com/" target="_blank" rel="noopener" title="www.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/imattdu" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+    
+  </body>
+</html>

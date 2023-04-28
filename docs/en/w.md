@@ -33,12 +33,28 @@ flowchart TD
 
 
 
-
-```mermaid
-  graph TD;
-      A-->B;
-      A-->C;
-      B-->D;
-      C-->D;
+``` mermaid hl_lines="1"
+graph LR
+  A[Start] --> B{Error?};
+  B -->|Yes| C[Hmm...];
+  C --> D[Debug];
+  D --> B;
+  B ---->|No| E[Yay!];
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

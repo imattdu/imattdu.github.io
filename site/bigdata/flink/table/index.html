@@ -1,0 +1,5569 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="mattのnote">
+      
+      
+        <meta name="author" content="matt">
+      
+      
+        <link rel="canonical" href="https://imatt.top/bigdata/flink/table/">
+      
+      <link rel="icon" href="../../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>table - mattのnote</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.472b142f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.08040f6c.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="mattのnote" class="md-header__button md-logo" aria-label="mattのnote" data-md-component="logo">
+      
+  <img src="../../../images/matt.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            mattのnote
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              table
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/imattdu/imattdu.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    imattdu/imattdu.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        base
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../util/linux/centos%E5%AE%89%E8%A3%85/" class="md-tabs__link">
+        util
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cs.md" class="md-tabs__link">
+        cs
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../algo/base/0%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="md-tabs__link">
+        algo
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/0-init/" class="md-tabs__link">
+        db
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../web/gin/base/" class="md-tabs__link">
+        web
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../ms.md" class="md-tabs__link">
+        microservices
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../mq/kafka/overview/" class="md-tabs__link">
+        mq
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../hadoop/overview/" class="md-tabs__link md-tabs__link--active">
+        bigdata
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../question/question/" class="md-tabs__link">
+        question
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../en/w/" class="md-tabs__link">
+        en
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="mattのnote" class="md-nav__button md-logo" aria-label="mattのnote" data-md-component="logo">
+      
+  <img src="../../../images/matt.png" alt="logo">
+
+    </a>
+    mattのnote
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/imattdu/imattdu.github.io" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    imattdu/imattdu.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="base" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        Getting Started
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2" type="checkbox" id="__nav_1_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2">
+          go
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="go" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_2">
+          <span class="md-nav__icon md-icon"></span>
+          go
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_1" type="checkbox" id="__nav_1_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_1">
+          base
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="base" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          base
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/0base/0setup/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/0base/1base/" class="md-nav__link">
+        基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/0base/2data_structure/" class="md-nav__link">
+        常用数据结构
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/0base/3func/" class="md-nav__link">
+        函数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/0base/4struct/" class="md-nav__link">
+        结构体
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/0base/7error/" class="md-nav__link">
+        错误
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_2" type="checkbox" id="__nav_1_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_2">
+          concurrent
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="concurrent" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          concurrent
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/0groutine/" class="md-nav__link">
+        groutine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/1runtime/" class="md-nav__link">
+        runtime
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/2channel/" class="md-nav__link">
+        channel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/3%E5%AE%9A%E6%97%B6%E5%99%A8/" class="md-nav__link">
+        定时器
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/4select/" class="md-nav__link">
+        select
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/5lock/" class="md-nav__link">
+        lock
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/1concurrent/6sync.md" class="md-nav__link">
+        sync
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/go/1concurrent/7atomic/" class="md-nav__link">
+        atomic
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_2_3" type="checkbox" id="__nav_1_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_2_3">
+          lib
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="lib" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          lib
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/2lib/0string.md" class="md-nav__link">
+        string
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/2lib/1time.md" class="md-nav__link">
+        time
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/2lib/2flag.md" class="md-nav__link">
+        flag
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/2lib/3log.md" class="md-nav__link">
+        log
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/2lib/4io.md" class="md-nav__link">
+        io
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../go/2lib/9反射.md" class="md-nav__link">
+        反射
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3" type="checkbox" id="__nav_1_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_3">
+          cpp
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="cpp" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          cpp
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/1base.md" class="md-nav__link">
+        基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/2string.md" class="md-nav__link">
+        字符串
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/3array.md" class="md-nav__link">
+        数组
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/4if.md" class="md-nav__link">
+        逻辑
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/5while.md" class="md-nav__link">
+        循环
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/6func.md" class="md-nav__link">
+        函数
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/7class.md" class="md-nav__link">
+        类
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_3_8" type="checkbox" id="__nav_1_3_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_3_8">
+          stl
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="stl" data-md-level="3">
+        <label class="md-nav__title" for="__nav_1_3_8">
+          <span class="md-nav__icon md-icon"></span>
+          stl
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/1stl/0init.md" class="md-nav__link">
+        init
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cpp/1stl/1stl.md" class="md-nav__link">
+        stl
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_1_4" type="checkbox" id="__nav_1_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1_4">
+          python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="python" data-md-level="2">
+        <label class="md-nav__title" for="__nav_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/python/python/" class="md-nav__link">
+        python
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../base/python/flask/" class="md-nav__link">
+        flask
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          util
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="util" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          util
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_1" type="checkbox" id="__nav_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_1">
+          linux
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="linux" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          linux
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/linux/centos%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        centos安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/linux/%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85/" class="md-nav__link">
+        常用软件安装
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          mac
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="mac" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          mac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/mac/0%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" class="md-nav__link">
+        基本使用
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/mac/app/" class="md-nav__link">
+        app
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/mac/iterm2/" class="md-nav__link">
+        iterm2
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          dev
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="dev" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          dev
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/dev/git/" class="md-nav__link">
+        git
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/dev/jetBrains/" class="md-nav__link">
+        jetBrains
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../util/dev/jetBrains_%E5%BF%AB%E6%8D%B7%E9%94%AE/" class="md-nav__link">
+        jetBrains_快捷键
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          cs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="cs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          cs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          index
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="index" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          index
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cs.md" class="md-nav__link">
+        index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          algo
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="algo" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          algo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          基础
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="基础" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          基础
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algo/base/0%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" class="md-nav__link">
+        基础算法
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algo/base/1%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        数据结构
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algo/base/2%E6%90%9C%E7%B4%A2%E4%B8%8E%E5%9B%BE%E8%AE%BA/" class="md-nav__link">
+        搜索与图论
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algo/base/3%E6%95%B0%E5%AD%A6/" class="md-nav__link">
+        数学
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../algo/base/4dp/" class="md-nav__link">
+        dp
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          db
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="db" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          db
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          mysql
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="mysql" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          mysql
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/0-init/" class="md-nav__link">
+        安装
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/1-%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        1-基础
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/10-%E5%88%9B%E5%BB%BA%E8%A1%A8%E5%92%8C%E7%AE%A1%E7%90%86%E8%A1%A8/" class="md-nav__link">
+        10-创建表和管理表
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/11-%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%88%A0%E6%94%B9/" class="md-nav__link">
+        11-数据增删改
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/12-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="md-nav__link">
+        12-数据类型
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/13-%E7%BA%A6%E6%9D%9F/" class="md-nav__link">
+        13-约束
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/14-%E8%A7%86%E5%9B%BE/" class="md-nav__link">
+        14-视图
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../db/00mysql-%E5%9F%BA%E7%A1%80/15-%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B%E5%92%8C%E5%87%BD%E6%95%B0/" class="md-nav__link">
+        15-存储过程和函数
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          web
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="web" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          web
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" type="checkbox" id="__nav_6_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_1">
+          gin
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="gin" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_1">
+          <span class="md-nav__icon md-icon"></span>
+          gin
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../web/gin/base/" class="md-nav__link">
+        base
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          microservices
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="microservices" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          microservices
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          index
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="index" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          index
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ms.md" class="md-nav__link">
+        index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          mq
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="mq" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          mq
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8_1" type="checkbox" id="__nav_8_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_8_1">
+          kafka
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="kafka" data-md-level="2">
+        <label class="md-nav__title" for="__nav_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          kafka
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mq/kafka/overview/" class="md-nav__link">
+        overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mq/kafka/install/" class="md-nav__link">
+        install
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mq/kafka/api/" class="md-nav__link">
+        api
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../mq/kafka/client/" class="md-nav__link">
+        client
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          bigdata
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="bigdata" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          bigdata
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_1" type="checkbox" id="__nav_9_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9_1">
+          hadoop
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="hadoop" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_1">
+          <span class="md-nav__icon md-icon"></span>
+          hadoop
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hadoop/overview/" class="md-nav__link">
+        overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hadoop/quickstart/" class="md-nav__link">
+        quickstart
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hadoop/hdfs/" class="md-nav__link">
+        hdfs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hadoop/mapreduce/" class="md-nav__link">
+        mapreduce
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_9_2" type="checkbox" id="__nav_9_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_9_2">
+          flink
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="flink" data-md-level="2">
+        <label class="md-nav__title" for="__nav_9_2">
+          <span class="md-nav__icon md-icon"></span>
+          flink
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        quickstart
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datastreamAPI/" class="md-nav__link">
+        datastreamAPI
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          table
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        table
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quickstart" class="md-nav__link">
+    quickstart
+  </a>
+  
+    <nav class="md-nav" aria-label="quickstart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    引入依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commonapi" class="md-nav__link">
+    commonAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="commonAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    程序架构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    创建表环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    创建表
+  </a>
+  
+    <nav class="md-nav" aria-label="创建表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    连接器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    虚拟表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    表的查询
+  </a>
+  
+    <nav class="md-nav" aria-label="表的查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql" class="md-nav__link">
+    SQL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tableapi" class="md-nav__link">
+    TableAPI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    结合使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    输出表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    表和流的转换
+  </a>
+  
+    <nav class="md-nav" aria-label="表和流的转换">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table2datastream" class="md-nav__link">
+    表转换流 Table2DataStream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    流转换表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    支持的数据类型
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case" class="md-nav__link">
+    case
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    流处理中的表
+  </a>
+  
+    <nav class="md-nav" aria-label="流处理中的表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    动态表和持续查询
+  </a>
+  
+    <nav class="md-nav" aria-label="动态表和持续查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    动态表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    持续查询
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    流转换为动态表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    时间属性和窗口
+  </a>
+  
+    <nav class="md-nav" aria-label="时间属性和窗口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    事件时间
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    处理时间
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    窗口
+  </a>
+  
+    <nav class="md-nav" aria-label="窗口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    分组窗口老版本
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tvt" class="md-nav__link">
+    窗口表值函数 tvt 新版本
+  </a>
+  
+    <nav class="md-nav" aria-label="窗口表值函数 tvt 新版本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tumble" class="md-nav__link">
+    滚动窗口Tumble
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hop" class="md-nav__link">
+    滑动窗口Hop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cumulate" class="md-nav__link">
+    累计窗口CUMULATE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    会话窗口 暂未支持
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    聚合
+  </a>
+  
+    <nav class="md-nav" aria-label="聚合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    分组聚合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    窗口聚合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#over" class="md-nav__link">
+    开窗聚合 over
+  </a>
+  
+    <nav class="md-nav" aria-label="开窗聚合 over">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    分区，排序
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    开窗范围
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    行间隔
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topn-case" class="md-nav__link">
+    TopN case
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#join" class="md-nav__link">
+    Join 连接查询
+  </a>
+  
+    <nav class="md-nav" aria-label="Join 连接查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    常规连接
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    间隔连接
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    函数
+  </a>
+  
+    <nav class="md-nav" aria-label="函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    系统函数
+  </a>
+  
+    <nav class="md-nav" aria-label="系统函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    标量函数
+  </a>
+  
+    <nav class="md-nav" aria-label="标量函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    比较函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    逻辑函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    算术函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    字符串处理函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    时间函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    聚合函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    自定义函数
+  </a>
+  
+    <nav class="md-nav" aria-label="自定义函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    基础流程
+  </a>
+  
+    <nav class="md-nav" aria-label="基础流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1.注册函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2tableapi" class="md-nav__link">
+    2.使用TableAPI调用函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3sql" class="md-nav__link">
+    3.sql中调用函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    标量函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    表函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    聚合函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    表聚合函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql_1" class="md-nav__link">
+    sql客户端
+  </a>
+  
+    <nav class="md-nav" aria-label="sql客户端">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    流程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    连接到外部系统
+  </a>
+  
+    <nav class="md-nav" aria-label="连接到外部系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kafka" class="md-nav__link">
+    kafka
+  </a>
+  
+    <nav class="md-nav" aria-label="kafka">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    配置依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    创建连接表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsert" class="md-nav__link">
+    upsert
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    文件系统
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jdbc" class="md-nav__link">
+    JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    接入流程
+  </a>
+  
+    <nav class="md-nav" aria-label="接入流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    引入依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jdbc_1" class="md-nav__link">
+    创建jdbc表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#es" class="md-nav__link">
+    es
+  </a>
+  
+    <nav class="md-nav" aria-label="es">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    接入流程
+  </a>
+  
+    <nav class="md-nav" aria-label="接入流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_59" class="md-nav__link">
+    引入依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_60" class="md-nav__link">
+    创建表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hbase" class="md-nav__link">
+    hbase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_61" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_62" class="md-nav__link">
+    接入流程
+  </a>
+  
+    <nav class="md-nav" aria-label="接入流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_63" class="md-nav__link">
+    引入依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_64" class="md-nav__link">
+    创建表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hive" class="md-nav__link">
+    hive
+  </a>
+  
+    <nav class="md-nav" aria-label="hive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_65" class="md-nav__link">
+    接入
+  </a>
+  
+    <nav class="md-nav" aria-label="接入">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_66" class="md-nav__link">
+    引入依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hive_1" class="md-nav__link">
+    连接hive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sql_2" class="md-nav__link">
+    设置sql方言
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hive_2" class="md-nav__link">
+    读写hive
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          question
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="question" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          question
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10_1" type="checkbox" id="__nav_10_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10_1">
+          question
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="question" data-md-level="2">
+        <label class="md-nav__title" for="__nav_10_1">
+          <span class="md-nav__icon md-icon"></span>
+          question
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../question/question/" class="md-nav__link">
+        Question
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_11" type="checkbox" id="__nav_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_11">
+          en
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="en" data-md-level="1">
+        <label class="md-nav__title" for="__nav_11">
+          <span class="md-nav__icon md-icon"></span>
+          en
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../en/w/" class="md-nav__link">
+        w
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quickstart" class="md-nav__link">
+    quickstart
+  </a>
+  
+    <nav class="md-nav" aria-label="quickstart">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    引入依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code" class="md-nav__link">
+    code
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#commonapi" class="md-nav__link">
+    commonAPI
+  </a>
+  
+    <nav class="md-nav" aria-label="commonAPI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    程序架构
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    创建表环境
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    创建表
+  </a>
+  
+    <nav class="md-nav" aria-label="创建表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    连接器
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    虚拟表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    表的查询
+  </a>
+  
+    <nav class="md-nav" aria-label="表的查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sql" class="md-nav__link">
+    SQL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tableapi" class="md-nav__link">
+    TableAPI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    结合使用
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    输出表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    表和流的转换
+  </a>
+  
+    <nav class="md-nav" aria-label="表和流的转换">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#table2datastream" class="md-nav__link">
+    表转换流 Table2DataStream
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    流转换表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    支持的数据类型
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#case" class="md-nav__link">
+    case
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    流处理中的表
+  </a>
+  
+    <nav class="md-nav" aria-label="流处理中的表">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    动态表和持续查询
+  </a>
+  
+    <nav class="md-nav" aria-label="动态表和持续查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    动态表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    持续查询
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    流转换为动态表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    时间属性和窗口
+  </a>
+  
+    <nav class="md-nav" aria-label="时间属性和窗口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    事件时间
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    处理时间
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    窗口
+  </a>
+  
+    <nav class="md-nav" aria-label="窗口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    分组窗口老版本
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tvt" class="md-nav__link">
+    窗口表值函数 tvt 新版本
+  </a>
+  
+    <nav class="md-nav" aria-label="窗口表值函数 tvt 新版本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tumble" class="md-nav__link">
+    滚动窗口Tumble
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hop" class="md-nav__link">
+    滑动窗口Hop
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cumulate" class="md-nav__link">
+    累计窗口CUMULATE
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    会话窗口 暂未支持
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    聚合
+  </a>
+  
+    <nav class="md-nav" aria-label="聚合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    分组聚合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    窗口聚合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#over" class="md-nav__link">
+    开窗聚合 over
+  </a>
+  
+    <nav class="md-nav" aria-label="开窗聚合 over">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    分区，排序
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    开窗范围
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    行间隔
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#topn-case" class="md-nav__link">
+    TopN case
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#join" class="md-nav__link">
+    Join 连接查询
+  </a>
+  
+    <nav class="md-nav" aria-label="Join 连接查询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    常规连接
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    间隔连接
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    函数
+  </a>
+  
+    <nav class="md-nav" aria-label="函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    系统函数
+  </a>
+  
+    <nav class="md-nav" aria-label="系统函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    标量函数
+  </a>
+  
+    <nav class="md-nav" aria-label="标量函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    比较函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    逻辑函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    算术函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    字符串处理函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    时间函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    聚合函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    自定义函数
+  </a>
+  
+    <nav class="md-nav" aria-label="自定义函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_46" class="md-nav__link">
+    基础流程
+  </a>
+  
+    <nav class="md-nav" aria-label="基础流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1.注册函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2tableapi" class="md-nav__link">
+    2.使用TableAPI调用函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3sql" class="md-nav__link">
+    3.sql中调用函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_47" class="md-nav__link">
+    标量函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_48" class="md-nav__link">
+    表函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_49" class="md-nav__link">
+    聚合函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_50" class="md-nav__link">
+    表聚合函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sql_1" class="md-nav__link">
+    sql客户端
+  </a>
+  
+    <nav class="md-nav" aria-label="sql客户端">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_51" class="md-nav__link">
+    流程
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_52" class="md-nav__link">
+    连接到外部系统
+  </a>
+  
+    <nav class="md-nav" aria-label="连接到外部系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kafka" class="md-nav__link">
+    kafka
+  </a>
+  
+    <nav class="md-nav" aria-label="kafka">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_53" class="md-nav__link">
+    配置依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_54" class="md-nav__link">
+    创建连接表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#upsert" class="md-nav__link">
+    upsert
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_55" class="md-nav__link">
+    文件系统
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jdbc" class="md-nav__link">
+    JDBC
+  </a>
+  
+    <nav class="md-nav" aria-label="JDBC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_56" class="md-nav__link">
+    接入流程
+  </a>
+  
+    <nav class="md-nav" aria-label="接入流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_57" class="md-nav__link">
+    引入依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jdbc_1" class="md-nav__link">
+    创建jdbc表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#es" class="md-nav__link">
+    es
+  </a>
+  
+    <nav class="md-nav" aria-label="es">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_58" class="md-nav__link">
+    接入流程
+  </a>
+  
+    <nav class="md-nav" aria-label="接入流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_59" class="md-nav__link">
+    引入依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_60" class="md-nav__link">
+    创建表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hbase" class="md-nav__link">
+    hbase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_61" class="md-nav__link">
+    概述
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_62" class="md-nav__link">
+    接入流程
+  </a>
+  
+    <nav class="md-nav" aria-label="接入流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_63" class="md-nav__link">
+    引入依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_64" class="md-nav__link">
+    创建表
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hive" class="md-nav__link">
+    hive
+  </a>
+  
+    <nav class="md-nav" aria-label="hive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_65" class="md-nav__link">
+    接入
+  </a>
+  
+    <nav class="md-nav" aria-label="接入">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_66" class="md-nav__link">
+    引入依赖
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hive_1" class="md-nav__link">
+    连接hive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sql_2" class="md-nav__link">
+    设置sql方言
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hive_2" class="md-nav__link">
+    读写hive
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+  <a href="https://github.com/imattdu/imattdu.github.io/edit/master/docs/bigdata/flink/table.md" title="编辑此页" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4v-2m10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"/></svg>
+  </a>
+
+
+  <h1>table</h1>
+
+<h2 id="_1">概述</h2>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202304070107197.png" /></p>
+<p>ProcessFunction -&gt; DataStream -&gt; Table -&gt; SQL</p>
+<p>ProcessFunction:  事件的时间信息、注册定时器、自定义状态，进行有状态的流处理</p>
+<p>不过在企业实际应用中，往往会面对大量类似的处理逻辑，所以一般会将底层 API 包装 成更加具体的应用级接口，如直接是使用SQL</p>
+<h2 id="quickstart">quickstart</h2>
+<h3 id="_2">引入依赖</h3>
+<pre><code class="language-xml">        &lt;!--flinkTableAPI使用, tableAPI 到DataStream连接支持--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+            &lt;artifactId&gt;flink-table-api-java-bridge_${scala.binary.version}&lt;/artifactId&gt;
+            &lt;version&gt;${flink.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!--如需本地ide运行，还须引入以下依赖--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+            &lt;artifactId&gt;flink-table-planner-blink_${scala.binary.version}&lt;/artifactId&gt;
+            &lt;version&gt;${flink.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+            &lt;artifactId&gt;flink-streaming-scala_${scala.binary.version}&lt;/artifactId&gt;
+            &lt;version&gt;${flink.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+<p>这里主要添加的依赖是一个“计划器”(planner)，它是 Table API 的核心组件，负责提供运行时环境，并生成程序的执行计划。这里我们用到的是新版的blink planner。由于Flink安装包的 lib 目录下会自带 planner，所以在生产集群环境中提交的作业不需要打包这个依赖。</p>
+<p>如果想实现自定义的数据格式来做序列化，可以引入下面的依赖</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+   &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+   &lt;artifactId&gt;flink-table-common&lt;/artifactId&gt;
+   &lt;version&gt;${flink.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h3 id="code">code</h3>
+<pre><code class="language-java">package com.matt.apitest.table;
+
+import com.matt.apitest.beans.Event;
+import com.matt.apitest.source.SourceTest4_UDF;
+import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+import org.apache.flink.types.Row;
+
+import java.time.Duration;
+
+import static org.apache.flink.table.api.Expressions.$;
+
+/**
+ * @author matt
+ * @create 2023-03-24 00:10
+ * @desc xxx
+ */
+public class SimpleTableCase {
+
+    public static void main(String[] args) throws Exception {
+        // 1.create env
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+
+        // 2.build sourceStream
+        SingleOutputStreamOperator&lt;Event&gt; eventStream = env.addSource(new SourceTest4_UDF.ParallelCustomSource())
+                .assignTimestampsAndWatermarks(WatermarkStrategy.&lt;Event&gt;forBoundedOutOfOrderness(Duration.ZERO)
+                        .withTimestampAssigner(new SerializableTimestampAssigner&lt;Event&gt;() {
+                            @Override
+                            public long extractTimestamp(Event event, long l) {
+                                return event.timestamp;
+                            }
+                        }));
+
+        // 3.创建表执行环境
+        StreamTableEnvironment streamTableEnv = StreamTableEnvironment.create(env);
+
+        // 4. createTable
+        Table eTable = streamTableEnv.fromDataStream(eventStream);
+        Table resT = streamTableEnv.sqlQuery(&quot;select user, url, `timestamp` from &quot; + eTable);
+
+        Table resT2 = resT.select($(&quot;user&quot;), $(&quot;url&quot;))
+                .where($(&quot;user&quot;).isEqual(&quot;matt&quot;));
+
+        // 5.table out
+        DataStream&lt;Row&gt; rowDataStream = streamTableEnv.toDataStream(resT);
+        DataStream&lt;Row&gt; res2 = streamTableEnv.toDataStream(resT2);
+        rowDataStream.print(&quot;res1&quot;);
+        res2.print(&quot;res2&quot;);
+        env.execute();
+
+        // 更新流 使用
+        //streamTableEnv.toChangelogStream(&quot;&quot;);
+    }
+}
+</code></pre>
+<h2 id="commonapi">commonAPI</h2>
+<h3 id="_3">程序架构</h3>
+<p>DataStream: 读取数据源Source -&gt; 转换Transform -&gt; 输出数据Sink</p>
+<p>Table: 创建表环境，设置输入输出表 -&gt; 执行SQL对表进行查询转换 -&gt; 写入到输出表</p>
+<h3 id="_4">创建表环境</h3>
+<p>表环境：运行的环境</p>
+<p>功能：</p>
+<ul>
+<li>注册 Catalog 和表;</li>
+<li>执行 SQL 查询;</li>
+<li>注册用户自定义函数(UDF);</li>
+<li>DataStream 和表之间的转换。</li>
+</ul>
+<p>Catalog: 主要用来管理所有数据库(database)和表(table)的元数据(metadata)。默认的 Catalog 就叫作 default_catalog。</p>
+<p>code</p>
+<p><strong>当前表环境的执行模式和计划器(planner)。执行模式有批处理和流处理两种选择，默认是流处理模式;计划器默认使 用 blink planner。</strong></p>
+<pre><code class="language-java">                // 常用
+        //StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        //env.setParallelism(1);
+        //StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+
+        // 1 定义环境配置 创建执行环境
+        EnvironmentSettings settings = EnvironmentSettings.newInstance()
+                .inStreamingMode()
+                .useBlinkPlanner()
+                .build();
+        TableEnvironment tableEnv = TableEnvironment.create(settings);
+
+        /*// 老版本 流处理
+        EnvironmentSettings settings1 = EnvironmentSettings.newInstance()
+                .inStreamingMode()
+                .useOldPlanner()
+                .build();
+        TableEnvironment tableEnv1 = TableEnvironment.create(settings1);
+
+        // 老版本 批处理
+        ExecutionEnvironment batchEnv = ExecutionEnvironment.getExecutionEnvironment();
+        BatchTableEnvironment batchTableEnvironment = BatchTableEnvironment.create(batchEnv);
+                */
+</code></pre>
+<h3 id="_5">创建表</h3>
+<h4 id="_6">概述</h4>
+<p>表在环境中有一个唯一的 ID，由三部分组成:目录(catalog)名，数据库(database)名，以及表名。在默认情况下，目录名为 default_catalog，数据库名为default_database。所以如果我们直接创建一个叫作 MyTable 的表，它的 ID 就是: <strong>default_catalog.default_database.MyTable</strong></p>
+<p>创建表的方式有俩种 连接器connector 和虚拟表virtual tables</p>
+<p>设置cataLog&amp;database</p>
+<pre><code class="language-java">tEnv.useCatalog(&quot;custom_catalog&quot;);
+tEnv.useDatabase(&quot;custom_database&quot;);
+</code></pre>
+<h4 id="_7">连接器</h4>
+<p>定义一个ddl 语句 ，然后执行</p>
+<pre><code class="language-java">                // 创建表
+        String createDDL = &quot;CREATE TABLE clickTable (&quot; +
+                &quot;`user` STRING, &quot; +
+                &quot;ts BIGINT, &quot; +
+                &quot;v STRING&quot; +
+                &quot;) WITH (&quot; +
+                &quot;'connector' = 'filesystem',&quot; +
+                &quot;'path' = '/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt',&quot; +
+                &quot;'format' = 'csv'&quot; +
+                &quot;)&quot;; // , 分割的文本文件
+        tableEnv.executeSql(createDDL);
+
+        String createOutDDL = &quot;CREATE TABLE outTable (&quot; +
+                &quot;`user` STRING, &quot; +
+                &quot;ts BIGINT &quot; +
+                &quot;) WITH (&quot; +
+                &quot;'connector' = 'filesystem',&quot; +
+                &quot;'path' = 'out',&quot; +
+                &quot;'format' = 'csv')&quot;; // , 分割的文本文件
+        tableEnv.executeSql(createOutDDL);
+</code></pre>
+<h4 id="_8">虚拟表</h4>
+<p>查询后得到Table -&gt; 注册虚拟表</p>
+<pre><code class="language-java">                Table clickTable = tableEnv.from(&quot;clickTable&quot;);
+        // 这里不用写反引号
+        Table mattTable = clickTable.where($(&quot;user&quot;).isEqual(&quot;matt&quot;));
+
+        tableEnv.createTemporaryView(&quot;mattTable&quot;,mattTable);
+</code></pre>
+<h3 id="_9">表的查询</h3>
+<p>支持SQL查询和TableAPI</p>
+<h4 id="sql">SQL</h4>
+<pre><code class="language-JAVA">String aggResSQL = &quot;SELECT user, count(ts) from clickTable group by user&quot;;
+String aggResDDL = &quot;CREATE TABLE printOutTable (&quot; +
+                &quot;`user` STRING, &quot; +
+                &quot;cnt BIGINT &quot; +
+                &quot;) WITH (&quot; +
+                &quot;'connector' = 'print')&quot;;
+Table aggResTable = tableEnv.sqlQuery(aggResSQL);
+</code></pre>
+<ul>
+<li>SELECT语句查询，调用sqlQuery</li>
+<li>INSERT语句写入到outTable,调用executeSQL</li>
+</ul>
+<h4 id="tableapi">TableAPI</h4>
+<pre><code>Table maryClickTable = eventTable
+       .where($(&quot;user&quot;).isEqual(&quot;Alice&quot;))
+       .select($(&quot;url&quot;), $(&quot;user&quot;));
+</code></pre>
+<p>$指定表的一个字段</p>
+<h4 id="_10">结合使用</h4>
+<pre><code>Table clickTable = tableEnvironment.sqlQuery(&quot;select url, user from &quot; +
+eventTable);
+</code></pre>
+<p>也可以将eventTable 注册到虚拟表就可以直接使用</p>
+<h3 id="_11">输出表</h3>
+<ul>
+<li>创建输出表</li>
+<li>查询结果写入到输出表</li>
+</ul>
+<pre><code class="language-java"> String createOutDDL = &quot;CREATE TABLE outTable (&quot; +
+                &quot;`user` STRING, &quot; +
+                &quot;ts BIGINT &quot; +
+                &quot;) WITH (&quot; +
+                &quot;'connector' = 'filesystem',&quot; +
+                &quot;'path' = 'out',&quot; +
+                &quot;'format' = 'csv')&quot;; // , 分割的文本文件
+        tableEnv.executeSql(createOutDDL);
+
+Table mattTable2 = tableEnv.sqlQuery(&quot;select user, ts from mattTable&quot;);
+
+mattTable2.executeInsert(&quot;outTable&quot;);
+
+</code></pre>
+<h3 id="_12">表和流的转换</h3>
+<h4 id="table2datastream">表转换流 Table2DataStream</h4>
+<p>toDataStream</p>
+<pre><code class="language-java">tableEnv.toDataStream(aliceVisitTable).print();
+</code></pre>
+<p>toChangelogStream: 表的内容会发生更新</p>
+<pre><code class="language-java">tableEnv.toChangelogStream(urlCountTable).print();
+</code></pre>
+<h4 id="_13">流转换表</h4>
+<p>fromDataStream</p>
+<pre><code class="language-java">Table eventTable2 = tableEnv.fromDataStream(eventStream, $(&quot;timestamp&quot;), 
+$(&quot;url&quot;));
+
+// 将 timestamp 字段重命名为 ts
+Table eventTable2 = tableEnv.fromDataStream(eventStream, $(&quot;timestamp&quot;).as(&quot;ts&quot;), 
+$(&quot;url&quot;));
+</code></pre>
+<p>createTemporaryView</p>
+<pre><code class="language-java">tableEnv.createTemporaryView(&quot;EventTable&quot;, eventStream, 
+$(&quot;timestamp&quot;).as(&quot;ts&quot;),$(&quot;url&quot;));
+</code></pre>
+<p>fromChangelogStream</p>
+<p>表环境还提供了一个方法 fromChangelogStream()，可以将一个更新日志流转换成表。这 个方法要求流中的数据类型只能是 Row，而且每一个数据都需要指定当前行的更新类型 （RowKind）；</p>
+<h4 id="_14">支持的数据类型</h4>
+<p>原子类型</p>
+<p>int,double,string 和通用的数据类型（不可在拆分的数据类型）</p>
+<p>Tuple类型</p>
+<p>如果不做重命名，那么名字就是f0,f1,f2</p>
+<p>pojo类型</p>
+<p>如果不做重命名，字段名就是原来类中字段名称</p>
+<p>Row</p>
+<p>Row 类型还附加了一个属性 RowKind，用来表示当前行在更新操作中的类型。这样， Row 就可以用来表示更新日志流（changelog stream）中的数据</p>
+<pre><code class="language-java">DataStream&lt;Row&gt; dataStream =
+ env.fromElements(
+ Row.ofKind(RowKind.INSERT, &quot;Alice&quot;, 12),
+ Row.ofKind(RowKind.INSERT, &quot;Bob&quot;, 5),
+ Row.ofKind(RowKind.UPDATE_BEFORE, &quot;Alice&quot;, 12),
+ Row.ofKind(RowKind.UPDATE_AFTER, &quot;Alice&quot;, 100));
+// 将更新日志流转换为表
+Table table = tableEnv.fromChangelogStream(dataStream);
+</code></pre>
+<h3 id="case">case</h3>
+<p>统计每个用户点击次数</p>
+<pre><code class="language-java">package com.matt.apitest.table;
+
+import com.matt.apitest.beans.Event;
+import com.matt.apitest.source.SourceTest4_UDF;
+import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+import org.apache.flink.types.Row;
+
+import java.time.Duration;
+
+import static org.apache.flink.table.api.Expressions.$;
+
+/**
+ * @author matt
+ * @create 2023-03-24 00:10
+ * @desc xxx
+ */
+public class SimpleTableCase {
+
+    public static void main(String[] args) throws Exception {
+        // 1.create env
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+
+        // 2.build sourceStream
+        SingleOutputStreamOperator&lt;Event&gt; eventStream = env.addSource(new SourceTest4_UDF.ParallelCustomSource())
+                .assignTimestampsAndWatermarks(WatermarkStrategy.&lt;Event&gt;forBoundedOutOfOrderness(Duration.ZERO)
+                        .withTimestampAssigner(new SerializableTimestampAssigner&lt;Event&gt;() {
+                            @Override
+                            public long extractTimestamp(Event event, long l) {
+                                return event.timestamp;
+                            }
+                        }));
+
+        // 3.创建表执行环境
+        StreamTableEnvironment streamTableEnv = StreamTableEnvironment.create(env);
+
+        // 4. createTable
+        Table eTable = streamTableEnv.fromDataStream(eventStream);
+
+
+        Table userClickCnt = streamTableEnv.sqlQuery(&quot;select user, count(url)  from &quot; + eTable + &quot; group by user&quot;);
+
+        // 5.table out
+        DataStream&lt;Row&gt; userClickCntStream = streamTableEnv.toChangelogStream(userClickCnt);
+        userClickCntStream.print();
+        env.execute();
+
+    }
+}
+
+</code></pre>
+<h2 id="_15">流处理中的表</h2>
+<h3 id="_16">动态表和持续查询</h3>
+<h4 id="_17">动态表</h4>
+<p>如果我们保存了表在某一时刻的快照（snapshot），那么 接下来只要读取更新日志流，就可以得到表之后的变化过程和最终结果了</p>
+<h4 id="_18">持续查询</h4>
+<p>由于数据在不断变化，因此基于它定义 的 SQL 查询也不可能执行一次就得到最终结果。</p>
+<p>随着新数据的到来而继续执行</p>
+<p><img alt="" src="https://raw.githubusercontent.com/imattdu/img/main/img/202304081720302.png" /></p>
+<h3 id="_19">流转换为动态表</h3>
+<p>无更新则使用 fromDataStream</p>
+<p>有更新则使用 fromChangelogStream</p>
+<p>几种流insert</p>
+<p>仅插入流</p>
+<ul>
+<li>新增insert：add 消息</li>
+</ul>
+<p>撤回流retract</p>
+<ul>
+<li>新增insert：add 消息</li>
+<li>删除delete:retract消息</li>
+<li>更新update：retract,add 更新后的消息</li>
+</ul>
+<p>更新插入流upsert</p>
+<ul>
+<li>更新插入：有一个唯一的key, 存在则更新不存在则插入</li>
+<li>删除：删除消息</li>
+</ul>
+<p>在表流转换是没有唯一的key 所以当前使用的是撤回流</p>
+<p>-u 删除</p>
+<p>+u 更新</p>
+<pre><code class="language-sh">3&gt; +I[matt, 1]
+2&gt; +I[sensor_7, 1]
+10&gt; +I[sensor_1, 1]
+5&gt; +I[sensor_6, 1]
+5&gt; -U[sensor_6, 1]
+3&gt; -U[matt, 1]
+5&gt; +U[sensor_6, 2]
+3&gt; +U[matt, 2]
+5&gt; -U[sensor_6, 2]
+5&gt; +U[sensor_6, 3]
+</code></pre>
+<p>sink 不支持更新操作</p>
+<h2 id="_20">时间属性和窗口</h2>
+<h3 id="_21">事件时间</h3>
+<p>1s 的延迟</p>
+<p>函数说明</p>
+<pre><code class="language-txt">TO_TIMESTAMP
+// 带有时区
+TO_TIMESTAMP_LTZ
+
+
+
+timestamp = &quot;2022-04-12 12:00:00&quot;
+TO_TIMESTAMP(timestamp, 'yyyy-MM-dd HH:mm:ss')
+
+timestamp = 1649826000L // 秒级时间戳
+FROM_UNIXTIME(timestamp, 'yyyy-MM-dd HH:mm:ss')
+</code></pre>
+<p>事件时间是ms 级别时间戳</p>
+<pre><code class="language-java"> String createDDL = &quot;CREATE TABLE clickTable (&quot; +
+                &quot;`user` STRING, &quot; +
+                &quot;ts BIGINT, &quot; +
+                &quot;url STRING,&quot; +
+                &quot;et AS TO_TIMESTAMP(FROM_UNIXTIME(ts)),&quot; +
+                &quot;WATERMARK FOR et as et - INTERVAL '1' SECOND&quot; +
+                &quot;) WITH (&quot; +
+                &quot;'connector' = 'filesystem',&quot; +
+                &quot;'path' = '/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt',&quot; +
+                &quot;'format' = 'csv'&quot; +
+                &quot;)&quot;; // , 分割的文本文件
+        tableEnv.executeSql(createDDL);
+
+        // 2.流转换成 指定
+        SingleOutputStreamOperator&lt;Event&gt; clickStream = env.addSource(new SourceTest4_UDF.ParallelCustomSource())
+                .assignTimestampsAndWatermarks(WatermarkStrategy.&lt;Event&gt;forBoundedOutOfOrderness(Duration.ZERO)
+                        .withTimestampAssigner(new SerializableTimestampAssigner&lt;Event&gt;() {
+                            @Override
+                            public long extractTimestamp(Event event, long l) {
+                                return event.timestamp;
+                            }
+                        }));
+
+        Table clickTable = tableEnv.fromDataStream(clickStream, $(&quot;user&quot;), $(&quot;url&quot;), $(&quot;timestamp&quot;).as(&quot;ts&quot;), $(&quot;et&quot;).rowtime());
+        clickTable.printSchema();
+</code></pre>
+<h3 id="_22">处理时间</h3>
+<p>创建表时指定</p>
+<p>ROCTIME()函数来指定当前的处理时间属性，返回的类型是 TIMESTAMP_LTZ</p>
+<pre><code class="language-java">CREATE TABLE EventTable(
+  user STRING,
+  url STRING,
+  ts AS PROCTIME()
+) WITH ( ...
+);
+</code></pre>
+<p>数据流转换时指定</p>
+<pre><code class="language-java">Table table = tEnv.fromDataStream(stream, $(&quot;user&quot;), $(&quot;url&quot;),
+$(&quot;ts&quot;).proctime());
+</code></pre>
+<h3 id="_23">窗口</h3>
+<h4 id="_24">分组窗口老版本</h4>
+<p>10s 的滚动窗口</p>
+<pre><code class="language-java">// 2.分组窗口 （老版本）
+Table aggWinTable = tableEnv.sqlQuery(&quot;select user, count(1), TUMBLE_END(et, INTERVAL '10' SECOND) as entT &quot; +
+                &quot;from clickTable group by user, TUMBLE(et, INTERVAL '10' SECOND)&quot;);
+</code></pre>
+<p>函数有 TUMBLE()、HOP()、SESSION()</p>
+<p>分组窗口的功能比较有限，只支持窗口聚合，所以目前已经处于弃用(deprecated)的状态。</p>
+<h4 id="tvt">窗口表值函数 tvt 新版本</h4>
+<h5 id="_25">概述</h5>
+<p>窗口表值函数是 Flink 定义的多态表函数(PTF)，可以将表进行扩展后返回</p>
+<p>tvf 提供了三个特殊的字段</p>
+<p>“窗口起始点”(window_start)、“窗口结束点”(window_end)、“窗口时间”(window_time)</p>
+<h5 id="tumble">滚动窗口Tumble</h5>
+<pre><code class="language-java">Table tumbleWinResTable = tableEnv.sqlQuery(&quot;select user, count(1) as cnt, &quot;
+                + &quot;window_start as entS &quot;
+                + &quot;from Table( &quot;
+                + &quot;TUMBLE(TABLE clickTable, DESCRIPTOR(et), INTERVAL '10' SECOND)) &quot;
+                + &quot;GROUP BY user, window_start, window_end&quot;);
+</code></pre>
+<pre><code class="language-java">// et 时间字段 10s 的窗口
+TUMBLE(TABLE clickTable, DESCRIPTOR(et), INTERVAL '10' SECOND)
+</code></pre>
+<h5 id="hop">滑动窗口Hop</h5>
+<pre><code class="language-java">// 1hd的滑动窗口 5min滑动一次
+HOP(TABLE EventTable, DESCRIPTOR(ts), INTERVAL '5' MINUTES, INTERVAL '1' HOURS))
+</code></pre>
+<h5 id="cumulate">累计窗口CUMULATE</h5>
+<p>每隔一段时间输出当前窗口状态 但是窗口不滑动 是滚动的</p>
+<pre><code class="language-java">CUMULATE(TABLE EventTable, DESCRIPTOR(ts), INTERVAL '1' HOURS, INTERVAL '1' DAYS))
+</code></pre>
+<h5 id="_26">会话窗口 暂未支持</h5>
+<h2 id="_27">聚合</h2>
+<h3 id="_28">分组聚合</h3>
+<pre><code class="language-java">SELECT user, COUNT(url) as cnt FROM EventTable GROUP BY user
+</code></pre>
+<p>函数有 SUM()、MAX()、MIN()、AVG()以及 COUNT()</p>
+<p>防止状态无限增长耗尽资源，Flink Table API 和 SQL 可以在表 环境中配置状态的生存时间(TTL):</p>
+<p>方式一</p>
+<pre><code class="language-java">// 获取表环境的配置
+TableConfig tableConfig = tableEnv.getConfig();
+// 配置状态保持时间 
+tableConfig.setIdleStateRetention(Duration.ofMinutes(60));
+</code></pre>
+<p>方式二</p>
+<pre><code class="language-java">TableEnvironment tableEnv = ...
+Configuration configuration = tableEnv.getConfig().getConfiguration();
+configuration.setString(&quot;table.exec.state.ttl&quot;, &quot;60 min&quot;);
+</code></pre>
+<h3 id="_29">窗口聚合</h3>
+<pre><code class="language-java">Table result = tableEnv.sqlQuery(
+        &quot;SELECT user, window_end AS endT, COUNT(url) AS cnt &quot; +
+        &quot;FROM TABLE(&quot; +
+        &quot;   TUMBLE(TABLE EventTable, &quot; +
+        &quot;       DESCRIPTOR(ts), &quot; +
+        &quot;       INTERVAL '1' HOUR)) &quot; +
+        &quot;GROUP BY user, window_start, window_end&quot;
+  );
+</code></pre>
+<h3 id="over">开窗聚合 over</h3>
+<p>组内排序</p>
+<pre><code class="language-java">// over 开窗聚合
+Table overResTable = tableEnv.sqlQuery(&quot;SELECT `user`, AVG(ts) OVER( &quot; +
+                                       &quot;PARTITION BY `user` ORDER BY et ROWS BETWEEN 3 PRECEDING AND CURRENT ROW) &quot;
+                                       + &quot;as avg_ts from clickTable&quot;);
+tableEnv.toChangelogStream(overResTable).print(&quot;overResTable&quot;);
+</code></pre>
+<h5 id="_30">分区，排序</h5>
+<h4 id="_31">开窗范围</h4>
+<p>时间</p>
+<p>当前行之前 1 小时的数据:</p>
+<pre><code class="language-java">RANGE BETWEEN INTERVAL '1' HOUR PRECEDING AND CURRENT ROW
+</code></pre>
+<h4 id="_32">行间隔</h4>
+<p>当前行+当前行的前5行</p>
+<pre><code class="language-java">ROWS BETWEEN 5 PRECEDING AND CURRENT ROW
+</code></pre>
+<p>单独定义over</p>
+<pre><code class="language-java">SELECT user, ts,
+  COUNT(url) OVER w AS cnt,
+  MAX(CHAR_LENGTH(url)) OVER w AS max_url
+FROM EventTable
+WINDOW w AS (
+  PARTITION BY user
+  ORDER BY ts
+  ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+)
+</code></pre>
+<h3 id="topn-case">TopN case</h3>
+<pre><code class="language-java">package com.matt.apitest.table;
+
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+
+/**
+ * @author matt
+ * @create 2023-03-29 23:01
+ * @desc xxx
+ */
+public class TopNCase {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+
+        // 1.新建表指定
+        String createDDL = &quot;CREATE TABLE clickTable (&quot; +
+                &quot;`user` STRING, &quot; +
+                &quot;ts BIGINT, &quot; +
+                &quot;url STRING,&quot; +
+                &quot;et AS TO_TIMESTAMP(FROM_UNIXTIME(ts)),&quot; +
+                &quot;WATERMARK FOR et as et - INTERVAL '1' SECOND&quot; +
+                &quot;) WITH (&quot; +
+                &quot;'connector' = 'filesystem',&quot; +
+                &quot;'path' = '/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt',&quot; +
+                &quot;'format' = 'csv'&quot; +
+                &quot;)&quot;; // , 分割的文本文件
+        tableEnv.executeSql(createDDL);
+
+        Table topNUser = tableEnv.sqlQuery(&quot;SELECT user, cnt, row_num &quot; +
+                &quot;FROM ( &quot; +
+                &quot;   SELECT *, ROW_NUMBER() OVER( &quot; +
+                &quot;       ORDER BY cnt DESC&quot; +
+                &quot;   ) AS row_num &quot; +
+                &quot;   FROM (SELECT user, COUNT(url) as cnt FROM clickTable GROUP BY user) &quot; +
+                &quot;)&quot; +
+                &quot;WHERE row_num &lt;= 2&quot;);
+
+        //tableEnv.toChangelogStream(topNUser).print();
+
+        // 窗口topN 一段时间内活跃用户 top2
+        // 每个窗口唯一一个结果
+        Table winTopN = tableEnv.sqlQuery(&quot;SELECT user, cnt, row_num, window_end &quot; +
+                &quot;FROM ( &quot; +
+                &quot;   SELECT *, ROW_NUMBER() OVER( &quot; +
+                &quot;       PARTITION BY window_start, window_end &quot; +
+                &quot;       ORDER BY cnt DESC&quot; +
+                &quot;   ) AS row_num &quot; +
+                &quot;   FROM (&quot; +
+                &quot;       SELECT user, COUNT(url) as cnt, window_start, window_end &quot; +
+                &quot;       FROM Table (&quot; +
+                &quot;           TUMBLE(TABLE clickTable, DESCRIPTOR(et), INTERVAL '10' SECOND) &quot; +
+                &quot;       )&quot; +
+                &quot;       GROUP BY user, window_start, window_end&quot; +
+                &quot;   ) &quot; +
+                &quot;)&quot; +
+                &quot;WHERE row_num &lt;= 2&quot;);
+        tableEnv.toChangelogStream(winTopN).print();
+        env.execute();
+
+    }
+}
+
+</code></pre>
+<p>ROW_NUMBER: 组内排序， 会添加一个排名字段</p>
+<p>PARTITION BY: 分区，不同分区分别计算</p>
+<p>ORDER BY 排序</p>
+<h2 id="join">Join 连接查询</h2>
+<h3 id="_33">常规连接</h3>
+<p>和mysql 是一致的</p>
+<p>内连接</p>
+<pre><code class="language-sql">SELECT *
+FROM Order
+INNER JOIN Product
+ON Order.product_id = Product.id
+</code></pre>
+<p>外连接</p>
+<pre><code class="language-sql">SELECT *
+FROM Order
+LEFT JOIN Product
+ON Order.product_id = Product.id
+
+SELECT *
+FROM Order
+RIGHT JOIN Product
+ON Order.product_id = Product.id
+
+SELECT *
+FROM Order
+FULL OUTER JOIN Product
+ON Order.product_id = Product.id
+</code></pre>
+<h3 id="_34">间隔连接</h3>
+<p>会增加一个时间条件限制， 如下</p>
+<pre><code class="language-sql">ltime = rtime
+
+ltime &gt;= rtime AND ltime &lt; rtime + INTERVAL '10' MINUTE
+
+ltime BETWEEN rtime - INTERVAL '10' SECOND AND rtime + INTERVAL '5' SECOND
+</code></pre>
+<p>案例：下单后4h内发货</p>
+<pre><code class="language-sql">SELECT *
+FROM Order o, Shipment s
+WHERE o.id = s.order_id
+AND o.order_time BETWEEN s.ship_time - INTERVAL '4' HOUR AND s.ship_time
+</code></pre>
+<h2 id="_35">函数</h2>
+<h3 id="_36">系统函数</h3>
+<h4 id="_37">标量函数</h4>
+<p>输入一个数据 输出一个数据</p>
+<h5 id="_38">比较函数</h5>
+<pre><code class="language-sql">value1 = value2 判断两个值相等
+value1 &lt;&gt; value2 判断两个值不相等
+value IS NOT NULL 判断 value 不为空
+</code></pre>
+<h5 id="_39">逻辑函数</h5>
+<p>布尔类型拼接起来, and,or,not</p>
+<pre><code class="language-sql">boolean1 OR boolean2 布尔值 boolean1 与布尔值 boolean2 取逻辑或
+boolean IS FALSE 判断布尔值 boolean 是否为 false
+NOT boolean 布尔值 boolean 取逻辑非
+</code></pre>
+<h5 id="_40">算术函数</h5>
+<p>numeric1 + numeric2 两数相加</p>
+<p>POWER(numeric1, numeric2) 幂运算，取数 numeric1 的 numeric2 次方</p>
+<p>RAND() 返回(0.0, 1.0)区间内的一个 double 类型的伪随机数</p>
+<h5 id="_41">字符串处理函数</h5>
+<p>string1 || string2 两个字符串的连接</p>
+<p>UPPER(string) 将字符串 string 转为全部大写</p>
+<p>CHAR_LENGTH(string) 计算字符串 string 的长度</p>
+<h5 id="_42">时间函数</h5>
+<ul>
+<li>DATE string 按格式"yyyy-MM-dd"解析字符串 string，返回类型为 SQL Date</li>
+<li>TIMESTAMP string 按格式"yyyy-MM-dd HH:mm:ss[.SSS]"解析，返回类型为 SQL timestamp</li>
+<li>CURRENT_TIME 返回本地时区的当前时间，类型为 SQL time(与 LOCALTIME等价)</li>
+<li>INTERVAL string range 返回一个时间间隔。string 表示数值;range 可以是 DAY，MINUTE，DAT TO HOUR 等单位，也可以是 YEAR TO MONTH 这样的复合单位。如“2 年 10 个月”可以写成:INTERVAL '2-10' YEAR TO MONTH</li>
+</ul>
+<h4 id="_43">聚合函数</h4>
+<p>聚合算子有</p>
+<p>count(*)</p>
+<p>SUM([ ALL | DISTINCT ] expression) 对每个字段进行求和操作。默认情况下省略了关键字 ALL，表示对所有行求和;如果指定 DISTINCT，则会对数据进行去 重，每个值只叠加一次。</p>
+<p>RANK() 返回当前值在一组值中的排名</p>
+<p>ROW_NUMBER() 对一组值排序后，返回当前值的行号。与RANK()的 功能相似</p>
+<h3 id="_44">自定义函数</h3>
+<h4 id="_45">概述</h4>
+<p>支持的函数类型</p>
+<ul>
+<li>标量函数：将输入的标量(0,1个或者多个)转换位另一个标量</li>
+<li>表函数：将标量值转换成一个或多个新的行数据</li>
+<li>聚合函数：将多行数据里的标量值转换成一个新的标量值;</li>
+<li>表聚合函数：将多行数据里的标量值转换成一 个或多个新的行数据。</li>
+</ul>
+<h4 id="_46">基础流程</h4>
+<h5 id="1">1.注册函数</h5>
+<pre><code class="language-java">tableEnv.createTemporarySystemFunction(&quot;MyFunction&quot;, MyFunction.class);
+</code></pre>
+<p>createTemporarySystemFunction：系统函数</p>
+<p>createTemporaryFunction:当前目录和数据库</p>
+<h5 id="2tableapi">2.使用TableAPI调用函数</h5>
+<pre><code class="language-java">tableEnv.from(&quot;MyTable&quot;).select(call(&quot;MyFunction&quot;, $(&quot;myField&quot;)));
+</code></pre>
+<p>call: arg1(函数名) arg2(调用时传递的参数)</p>
+<p>不注册函数直接使用</p>
+<pre><code class="language-java">tableEnv.from(&quot;MyTable&quot;).select(call(SubstringFunction.class, $(&quot;myField&quot;)));
+</code></pre>
+<h5 id="3sql">3.sql中调用函数</h5>
+<pre><code class="language-java">tableEnv.sqlQuery(&quot;SELECT MyFunction(myField) FROM MyTable&quot;);
+</code></pre>
+<h4 id="_47">标量函数</h4>
+<ul>
+<li>继承ScalarFunction</li>
+<li>写一个public eval 方法 不是重写该方法</li>
+</ul>
+<pre><code class="language-java">package com.matt.apitest.table;
+
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+import org.apache.flink.table.functions.ScalarFunction;
+
+/**
+ * @author matt
+ * @create 2023-03-31 00:43
+ * @desc xxx
+ */
+public class UDFTest_ScalarFunc {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+
+        // 1.新建表指定
+        String createDDL = &quot;CREATE TABLE clickTable (&quot; +
+                &quot;`user` STRING, &quot; +
+                &quot;ts BIGINT, &quot; +
+                &quot;url STRING,&quot; +
+                &quot;et AS TO_TIMESTAMP(FROM_UNIXTIME(ts)),&quot; +
+                &quot;WATERMARK FOR et as et - INTERVAL '1' SECOND&quot; +
+                &quot;) WITH (&quot; +
+                &quot;'connector' = 'filesystem',&quot; +
+                &quot;'path' = '/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt',&quot; +
+                &quot;'format' = 'csv'&quot; +
+                &quot;)&quot;; // , 分割的文本文件
+        tableEnv.executeSql(createDDL);
+        tableEnv.createTemporarySystemFunction(&quot;MyHash&quot;, MyHashFunction.class);
+
+
+        Table myHashTable = tableEnv.sqlQuery(&quot;SELECT user, MyHash(user) from clickTable&quot;);
+
+        tableEnv.toDataStream(myHashTable).print();
+        env.execute();
+    }
+
+    public static class MyHashFunction extends ScalarFunction {
+
+        public int eval(String str) {
+            return str.hashCode();
+        }
+    }
+
+}
+
+</code></pre>
+<h4 id="_48">表函数</h4>
+<p>表函数的输入参数也可以是 0 个、1 个或多个标量值;不同的是，它可 以返回任意多行数据。</p>
+<p>LATERAL TABLE(MySplit(url)) as T(word, length)</p>
+<p>LATERAL 会生成一个侧向表 然后 和主表进行连接</p>
+<pre><code class="language-java">package com.matt.apitest.table;
+
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+import org.apache.flink.table.functions.TableFunction;
+
+/**
+ * @author matt
+ * @create 2023-03-31 01:08
+ * @desc xxx
+ */
+public class UDFTest_TableFunction {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+
+        // 1.新建表指定
+        String createDDL = &quot;CREATE TABLE clickTable (&quot; +
+                &quot;`user` STRING, &quot; +
+                &quot;ts BIGINT, &quot; +
+                &quot;url STRING,&quot; +
+                &quot;et AS TO_TIMESTAMP(FROM_UNIXTIME(ts)),&quot; +
+                &quot;WATERMARK FOR et as et - INTERVAL '1' SECOND&quot; +
+                &quot;) WITH (&quot; +
+                &quot;'connector' = 'filesystem',&quot; +
+                &quot;'path' = '/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt',&quot; +
+                &quot;'format' = 'csv'&quot; +
+                &quot;)&quot;; // , 分割的文本文件
+        tableEnv.executeSql(createDDL);
+        tableEnv.createTemporarySystemFunction(&quot;MySplit&quot;, MySplit.class);
+
+        Table mySplitT = tableEnv.sqlQuery(&quot;SELECT user, url,word, length &quot; +
+                &quot;from clickTable, LATERAL TABLE(MySplit(url)) as T(word, length)&quot;);
+
+        tableEnv.toDataStream(mySplitT).print();
+        env.execute();
+    }
+
+    // 自定义表函数
+    public static class MySplit extends TableFunction&lt;Tuple2&lt;String, Integer&gt;&gt; {
+
+        public void eval(String str) {
+            String[] words = str.split(&quot;\\?&quot;);
+            for (String w: words) {
+                collect(Tuple2.of(w, w.length()));
+            }
+        }
+    }
+
+}
+
+</code></pre>
+<h4 id="_49">聚合函数</h4>
+<p>会把一行或多行数据 (也就是一个表)聚合成一个标量值。这是一个标准的“多对一”的转换。</p>
+<pre><code class="language-java">package com.matt.apitest.table;
+
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+import org.apache.flink.table.functions.AggregateFunction;
+
+/**
+ * @author matt
+ * @create 2023-03-31 01:25
+ * @desc xxx
+ */
+public class UTFTest_Aggfunction {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+
+        // 1.新建表指定
+        String createDDL = &quot;CREATE TABLE clickTable (&quot; +
+                &quot;`user` STRING, &quot; +
+                &quot;ts BIGINT, &quot; +
+                &quot;url STRING,&quot; +
+                &quot;et AS TO_TIMESTAMP(FROM_UNIXTIME(ts)),&quot; +
+                &quot;WATERMARK FOR et as et - INTERVAL '1' SECOND&quot; +
+                &quot;) WITH (&quot; +
+                &quot;'connector' = 'filesystem',&quot; +
+                &quot;'path' = '/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt',&quot; +
+                &quot;'format' = 'csv'&quot; +
+                &quot;)&quot;; // , 分割的文本文件
+        tableEnv.executeSql(createDDL);
+        tableEnv.createTemporarySystemFunction(&quot;WeightAverage&quot;, WeightAverage.class);
+
+        Table cc = tableEnv.sqlQuery(&quot;SELECT user, WeightAverage(ts, 1) as w_avg &quot; +
+                &quot;from clickTable group by user&quot;);
+
+        tableEnv.toChangelogStream(cc).print();
+        env.execute();
+    }
+
+    public static class WeightAvgAcc {
+        public long sum = 0;
+        public int cnt = 0;
+    }
+
+    // 自定义聚合函数
+    public static class WeightAverage extends AggregateFunction&lt;Long, WeightAvgAcc&gt; {
+
+        @Override
+        public Long getValue(WeightAvgAcc acc) {
+            if (acc.cnt == 0) {
+                return 0L;
+            }
+            return acc.sum / acc.cnt;
+        }
+
+        @Override
+        public WeightAvgAcc createAccumulator() {
+            return new WeightAvgAcc();
+        }
+
+        public void accumulate(WeightAvgAcc acc, Long iV, Integer iWeight) {
+            acc.sum += iV * iWeight;
+            acc.cnt += iWeight;
+        }
+    }
+
+}
+
+</code></pre>
+<p>1.创建累加器</p>
+<p>2.每来一条数据触发一次accumulate</p>
+<p>3.获取返回数据getValue</p>
+<h4 id="_50">表聚合函数</h4>
+<p>用户自定义表聚合函数(UDTAGG)可以把一行或多行数据(也就是一个表)聚合成另 一张表</p>
+<pre><code class="language-java">package com.matt.apitest.table;
+
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.table.api.Table;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
+import org.apache.flink.table.functions.TableAggregateFunction;
+import org.apache.flink.util.Collector;
+
+import static org.apache.flink.table.api.Expressions.$;
+import static org.apache.flink.table.api.Expressions.call;
+
+/**
+ * @author matt
+ * @create 2023-04-06 22:32
+ * @desc xxx
+ */
+public class UDFTest_TableAggFunc {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env);
+
+        // 1.新建表指定
+        String createDDL = &quot;CREATE TABLE clickTable (&quot; +
+                &quot;`user` STRING, &quot; +
+                &quot;ts BIGINT, &quot; +
+                &quot;url STRING,&quot; +
+                &quot;et AS TO_TIMESTAMP(FROM_UNIXTIME(ts)),&quot; +
+                &quot;WATERMARK FOR et as et - INTERVAL '1' SECOND&quot; +
+                &quot;) WITH (&quot; +
+                &quot;'connector' = 'filesystem',&quot; +
+                &quot;'path' = '/Users/matt/workspace/java/stu/stu-flink/src/main/resources/sensor.txt',&quot; +
+                &quot;'format' = 'csv'&quot; +
+                &quot;)&quot;; // , 分割的文本文件
+        tableEnv.executeSql(createDDL);
+        tableEnv.createTemporarySystemFunction(&quot;Top2&quot;, Top2.class);
+
+        Table aggT = tableEnv.sqlQuery(&quot;SELECT user, COUNT(url) as cnt, window_start, window_end &quot; +
+                &quot;FROM Table (&quot; +
+                &quot;   TUMBLE(TABLE clickTable, DESCRIPTOR(et), INTERVAL '10' SECOND) &quot; +
+                &quot;)&quot; +
+                &quot;GROUP BY user, window_start, window_end&quot;);
+        Table top2T = aggT.groupBy($(&quot;window_end&quot;))
+                .flatAggregate(call(&quot;Top2&quot;, $(&quot;cnt&quot;)).as(&quot;v&quot;, &quot;rank&quot;))
+                .select($(&quot;window_end&quot;), $(&quot;v&quot;), $(&quot;rank&quot;));
+        tableEnv.toChangelogStream(top2T).print();
+        env.execute();
+    }
+
+
+    public static class Top2Acc {
+        public Long max = Long.MIN_VALUE;
+        public Long secondMax = Long.MIN_VALUE;
+    }
+
+    public static class Top2 extends TableAggregateFunction&lt;Tuple2&lt;Long, Integer&gt;, Top2Acc&gt; {
+
+        @Override
+        public Top2Acc createAccumulator() {
+            return new Top2Acc();
+        }
+
+        // 标准
+        public void accumulate(Top2Acc acc, Long v) {
+            if (v &gt; acc.max) {
+                acc.secondMax = acc.max;
+                acc.max = v;
+            } else if (v &gt; acc.secondMax) {
+                acc.secondMax = v;
+            }
+        }
+
+        public void emitValue(Top2Acc acc, Collector&lt;Tuple2&lt;Long, Integer&gt;&gt; collector) {
+            if (acc.max != Long.MIN_VALUE) {
+                collector.collect(Tuple2.of(acc.max, 1));
+            }
+            if (acc.secondMax != Long.MIN_VALUE) {
+                collector.collect(Tuple2.of(acc.secondMax, 2));
+            }
+        }
+    }
+}
+
+</code></pre>
+<p>目前 SQL 中没有直接使用表聚合函数的方式，所以需要使用 Table API 的方式来调用</p>
+<p>emitUpdateWithRetract()方法，它可以在结果表发生变化时，以“撤回”(retract)老数 据、发送新数据的方式增量地进行更新。如果同时定义了 emitValue()和 emitUpdateWithRetract() 两个方法，在进行更新操作时会优先调用 emitUpdateWithRetract()。</p>
+<h2 id="sql_1">sql客户端</h2>
+<h3 id="_51">流程</h3>
+<p>1.启动本地集群</p>
+<pre><code class="language-sh">./bin/start-cluster.sh
+</code></pre>
+<p>2.启动flink-sql客户端</p>
+<pre><code>./bin/sql-client.sh
+</code></pre>
+<p>3.设置运行模式</p>
+<p>表环境的运行模式， 有流处理和批处理， 默认是流处理</p>
+<pre><code class="language-sh">SET 'execution.runtime-mode' = 'streaming';
+</code></pre>
+<p>其次是 SQL 客户端的“执行结果模式”，主要有 table、changelog、tableau 三种</p>
+<pre><code class="language-sql">SET 'sql-client.execution.result-mode' = 'table';
+</code></pre>
+<ul>
+<li>table 模式就是最普通的表处理模式，结果会以逗号分隔每个字段;</li>
+<li>changelog 则是更新日 志模式，会在数据前加上“+”(表示插入)或“-”(表示撤回)的前缀;</li>
+<li>tableau 则是经典 的可视化表模式，结果会是一个虚线框的表格。</li>
+</ul>
+<p>4.编写sql 执行sql查询</p>
+<h2 id="_52">连接到外部系统</h2>
+<h3 id="kafka">kafka</h3>
+<h4 id="_53">配置依赖</h4>
+<pre><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+  &lt;artifactId&gt;flink-connector-kafka_${scala.binary.version}&lt;/artifactId&gt;
+  &lt;version&gt;${flink.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>对于 Kafka 而言，CSV、JSON、Avro 等主要格式都是支持的，由于 SQL 客户端中已经内置了 CSV、JSON 的支持，因此使用时无需专门引入;而对于 没有内置支持的格式(比如 Avro)，则仍然要下载相应的 jar 包</p>
+<h4 id="_54">创建连接表</h4>
+<pre><code class="language-sql">CREATE TABLE KafkaTable (
+  `user` STRING,
+  `url` STRING,
+  `ts` TIMESTAMP(3) METADATA FROM 'timestamp'
+) WITH (
+'connector' = 'kafka',
+  'topic' = 'events',
+  'properties.bootstrap.servers' = 'localhost:9092',
+  'properties.group.id' = 'testGroup',
+  'scan.startup.mode' = 'earliest-offset',
+  'format' = 'csv'
+)
+</code></pre>
+<p>METADATA FROM，这是表示一个“元数据列”(metadata column)，它是由Kafka连接器的元数据“timestamp”生成的。这里的 timestamp 其实就是 Kafka 中数据自带的时间戳，我们把 它直接作为元数据提取出来，转换成一个新的字段 ts。</p>
+<h4 id="upsert">upsert</h4>
+<p>Upsert Kafka 连接器处理的是更新日志(changlog)流。如果作为 TableSource， 连接器会将读取到的topic中的数据(key, value)，解释为对当前key的数据值的更新(UPDATE)， </p>
+<p>没有k 对应的行则插入</p>
+<p>存在则更新</p>
+<p>value为空则删除</p>
+<pre><code class="language-sql">CREATE TABLE pageviews_per_region (
+  user_region STRING,
+  pv BIGINT,
+  uv BIGINT,
+  PRIMARY KEY (user_region) NOT ENFORCED
+) WITH (
+  'connector' = 'upsert-kafka',
+  'topic' = 'pageviews_per_region',
+  'properties.bootstrap.servers' = '...',
+'key.format' = 'avro',
+  'value.format' = 'avro'
+);
+CREATE TABLE pageviews (
+  user_id BIGINT,
+  page_id BIGINT,
+  viewtime TIMESTAMP,
+  user_region STRING,
+  WATERMARK FOR viewtime AS viewtime - INTERVAL '2' SECOND
+) WITH (
+  'connector' = 'kafka',
+  'topic' = 'pageviews',
+  'properties.bootstrap.servers' = '...',
+  'format' = 'json'
+);
+-- 计算 pv、uv 并插入到 upsert-kafka 表中
+INSERT INTO pageviews_per_region SELECT
+  user_region,
+  COUNT(*),
+  COUNT(DISTINCT user_id)
+FROM pageviews
+GROUP BY user_region;
+</code></pre>
+<h3 id="_55">文件系统</h3>
+<p>flink 已内置该连接器无需导入依赖</p>
+<pre><code class="language-sql">CREATE TABLE MyTable (
+  column_name1 INT,
+  column_name2 STRING,
+  ...
+  part_name1 INT,
+  part_name2 STRING
+) PARTITIONED BY (part_name1, part_name2) WITH (
+'connector' = 'filesystem', -- 连接器类型
+'path' = '...', -- 文件路径
+'format' = '...' -- 文件格式 )
+</code></pre>
+<h3 id="jdbc">JDBC</h3>
+<p>作为 TableSink 向数据库写入数据时，运行的模式取决于创建表的 DDL 是否定义了主键 (primary key)。</p>
+<p>如果有主键，那么 JDBC 连接器就将以更新插入(Upsert)模式运行，可以向 外部数据库发送按照指定键(key)的更新(UPDATE)和删除(DELETE)操作;</p>
+<p>如果没有 定义主键，那么就将在追加(Append)模式下运行，不支持更新和删除操作。</p>
+<h4 id="_56">接入流程</h4>
+<h5 id="_57">引入依赖</h5>
+<pre><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+&lt;artifactId&gt;flink-connector-jdbc_${scala.binary.version}&lt;/artifactId&gt;
+  &lt;version&gt;${flink.version}&lt;/version&gt;
+&lt;/dependency&gt;
+
+
+&lt;dependency&gt;
+   &lt;groupId&gt;mysql&lt;/groupId&gt;
+   &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;
+   &lt;version&gt;5.1.38&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h5 id="jdbc_1">创建jdbc表</h5>
+<pre><code class="language-sql">-- 创建一张连接到 MySQL 的表 
+CREATE TABLE MyTable (
+  id BIGINT,
+  name STRING,
+  age INT,
+  status BOOLEAN,
+  PRIMARY KEY (id) NOT ENFORCED
+) WITH (
+  'connector' = 'jdbc',
+  'url' = 'jdbc:mysql://localhost:3306/mydatabase',
+    'table-name' = 'users'
+);
+-- 将另一张表 T 的数据写入到 MyTable 表中 
+INSERT INTO MyTable
+SELECT id, name, age, status FROM T;
+</code></pre>
+<h3 id="es">es</h3>
+<h4 id="_58">接入流程</h4>
+<h5 id="_59">引入依赖</h5>
+<p>es 版本不同 导入依赖的版本不一样</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+  &lt;artifactId&gt;flink-connector-elasticsearch6_${scala.binary.version}&lt;/artifactId&gt;
+  &lt;version&gt;${flink.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+  &lt;artifactId&gt;flink-connector-elasticsearch7_${scala.binary.version}&lt;/artifactId&gt;
+  &lt;version&gt;${flink.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h5 id="_60">创建表</h5>
+<pre><code class="language-sql">-- 创建一张连接到 Elasticsearch 的 表 CREATE TABLE MyTable (
+  user_id STRING,
+  user_name STRING
+  uv BIGINT,
+  pv BIGINT,
+PRIMARY KEY (user_id) NOT ENFORCED
+) WITH (
+  'connector' = 'elasticsearch-7',
+  'hosts' = 'http://localhost:9200',
+  'index' = 'users'
+);
+</code></pre>
+<p>这里定义了主键，所以会以更新插入(Upsert)模式向 Elasticsearch 写入数据。</p>
+<h4 id="hbase">hbase</h4>
+<h4 id="_61">概述</h4>
+<p>连接器作为 TableSink 向 HBase 写入数据时，采用的始终是更新插入 (Upsert)模式。也就是说，HBase 要求连接器必须通过定义的主键(primary key)来发送更 新日志(changelog)。所以在创建表的 DDL 中，我们必须要定义行键(rowkey)字段，并将 它声明为主键;如果没有用 PRIMARY KEY 子句声明主键，连接器会默认把 rowkey 作为主键。</p>
+<h4 id="_62">接入流程</h4>
+<h5 id="_63">引入依赖</h5>
+<p>目前仅支持1.4.x 2.2.x</p>
+<p>hbase1.4</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+  &lt;artifactId&gt;flink-connector-hbase-1.4_${scala.binary.version}&lt;/artifactId&gt;
+  &lt;version&gt;${flink.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>hbase1.4</p>
+<pre><code class="language-xml">&lt;dependency&gt;
+  &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+  &lt;artifactId&gt;flink-connector-hbase-2.2_${scala.binary.version}&lt;/artifactId&gt;
+  &lt;version&gt;${flink.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<h5 id="_64">创建表</h5>
+<p>创建出的 HBase 表中，所有的列族(column family)都必须声明为 ROW 类型，在表中占据一 个字段;而每个 family 中的列(column qualifier)则对应着 ROW 里的嵌套字段。我们不需要 将 HBase 中所有的 family 和 qualifier 都在 Flink SQL 的表中声明出来，只要把那些在查询中用 到的声明出来就可以了。</p>
+<p>ROW 类型的字段(对应着 HBase 中的 family)，表中还应有一个原子类型的字 段，它就会被识别为 HBase 的 rowkey。在表中这个字段可以任意取名，不一定非要叫 rowkey</p>
+<pre><code class="language-sql">-- 创建一张连接到 HBase 的 表 CREATE TABLE MyTable (
+ rowkey INT,
+ family1 ROW&lt;q1 INT&gt;,
+ family2 ROW&lt;q2 STRING, q3 BIGINT&gt;,
+ family3 ROW&lt;q4 DOUBLE, q5 BOOLEAN, q6 STRING&gt;,
+ PRIMARY KEY (rowkey) NOT ENFORCED
+) WITH (
+ 'connector' = 'hbase-1.4',
+ 'table-name' = 'mytable',
+ 'zookeeper.quorum' = 'localhost:2181'
+);
+
+-- 假设表 T 的字段结构是 [rowkey, f1q1, f2q2, f2q3, f3q4, f3q5, f3q6]
+INSERT INTO MyTable
+SELECT rowkey, ROW(f1q1), ROW(f2q2, f2q3), ROW(f3q4, f3q5, f3q6) FROM T;
+</code></pre>
+<h3 id="hive">hive</h3>
+<p>flink 与 Hive 的集成比较特别。Flink 提供了“Hive 目录”(HiveCatalog)功能，允许使用 Hive 的“元存储”(Metastore)来管理 Flink 的元数据。这带来的好处体现在两个方面:</p>
+<p>1.Metastore 可以作为一个持久化的目录，因此使用 HiveCatalog 可以跨会话存储 Flink 特定的元数据。这样一来，我们在 HiveCatalog 中执行执行创建 Kafka 表或者 ElasticSearch 表， 就可以把它们的元数据持久化存储在 Hive 的 Metastore 中;对于不同的作业会话就不需要重复创建了，直接在 SQL 查询中重用就可以。</p>
+<p>2.使用 HiveCatalog，Flink 可以作为读写 Hive 表的替代分析引擎。这样一来，在 Hive 中进行批处理会更加高效;与此同时，也有了连续在 Hive 中读写数据、进行流处理的能力， 这也使得“实时数仓”(real-time data warehouse)成为了可能。</p>
+<h4 id="_65">接入</h4>
+<h5 id="_66">引入依赖</h5>
+<p>目前flink 支持的版本有</p>
+<p>Hive 1.x:1.0.0~1.2.2;</p>
+<p>Hive 2.x:2.0.0-2.2.0-2.3.0-2.3.6;</p>
+<p>Hive 3.x:3.0.0~3.1.2;</p>
+<p>需要有hadoop 环境</p>
+<pre><code class="language-xml">&lt;!-- Flink 的 Hive 连接器--&gt; &lt;dependency&gt;
+  &lt;groupId&gt;org.apache.flink&lt;/groupId&gt;
+  &lt;artifactId&gt;flink-connector-hive_${scala.binary.version}&lt;/artifactId&gt;
+  &lt;version&gt;${flink.version}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;!-- Hive 依赖 --&gt; &lt;dependency&gt;
+   &lt;groupId&gt;org.apache.hive&lt;/groupId&gt;
+&lt;artifactId&gt;hive-exec&lt;/artifactId&gt;
+   &lt;version&gt;${hive.version}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p>建议不要把这些依赖打包到结果 jar 文件中，而是在运行时的集群环境中为不同的 Hive 版本添加不同的依赖支持。具体版本对应的依赖关系</p>
+<h5 id="hive_1">连接hive</h5>
+<p>在 Flink 中连接 Hive，是通过在表环境中配置 HiveCatalog 来实现的。需要说明的是，配 置 HiveCatalog 本身并不需要限定使用哪个 planner，不过对 Hive 表的读写操作只有 Blink 的 planner 才支持。所以一般我们需要将表环境的 planner 设置为 Blink。</p>
+<pre><code class="language-java">EnvironmentSettings settings =
+EnvironmentSettings.newInstance().useBlinkPlanner().build();
+TableEnvironment tableEnv = TableEnvironment.create(settings);
+String name = &quot;myhive&quot;;
+String defaultDatabase = &quot;mydatabase&quot;; String hiveConfDir = &quot;/opt/hive-conf&quot;;
+// 创建一个 HiveCatalog，并在表环境中注册
+HiveCatalog hive = new HiveCatalog(name, defaultDatabase, hiveConfDir);
+tableEnv.registerCatalog(&quot;myhive&quot;, hive);
+// 使用 HiveCatalog 作为当前会话的 catalog tableEnv.useCatalog(&quot;myhive&quot;);
+</code></pre>
+<pre><code class="language-sql">Flink SQL&gt; create catalog myhive with ('type' = 'hive', 'hive-conf-dir' =
+'/opt/hive-conf');
+[INFO] Execute statement succeed.
+Flink SQL&gt; use catalog myhive;
+[INFO] Execute statement succeed.
+</code></pre>
+<h5 id="sql_2">设置sql方言</h5>
+<p>Flink 目前支持两种 SQL 方言的配置:default 和 hive。所谓的 default 就是 Flink SQL 默认 的SQL语法了。我们需要先切换到hive方言，然后才能使用Hive SQL的语法。具体设置可 以分为 SQL 和 Table API 两种方式。</p>
+<p>1.sql中设置</p>
+<p>方式一 sql配置</p>
+<pre><code class="language-sql">set table.sql-dialect=hive;
+</code></pre>
+<p>方式二配置文件中修改sql-cli-defaults.yaml</p>
+<pre><code class="language-java">execution:
+  planner: blink
+  type: batch
+  result-mode: table
+configuration:
+  table.sql-dialect: hive
+</code></pre>
+<p>2.tableAPI设置</p>
+<pre><code class="language-java">// 配置 hive 方言 
+tableEnv.getConfig().setSqlDialect(SqlDialect.HIVE); 
+// 配置 default 方言 
+tableEnv.getConfig().setSqlDialect(SqlDialect.DEFAULT);
+</code></pre>
+<h5 id="hive_2">读写hive</h5>
+<pre><code class="language-sql">-- 设置 SQL 方言为 hive，创建 Hive 表 
+SET table.sql-dialect=hive; 
+CREATE TABLE hive_table (
+  user_id STRING,
+  order_amount DOUBLE
+) PARTITIONED BY (dt STRING, hr STRING) STORED AS parquet TBLPROPERTIES (
+
+  'partition.time-extractor.timestamp-pattern'='$dt $hr:00:00',
+  'sink.partition-commit.trigger'='partition-time',
+  'sink.partition-commit.delay'='1 h',
+  'sink.partition-commit.policy.kind'='metastore,success-file'
+);
+-- 设置 SQL 方言为 default，创建 Kafka 表 
+SET table.sql-dialect=default;
+CREATE TABLE kafka_table (
+  user_id STRING,
+  order_amount DOUBLE,
+log_ts TIMESTAMP(3),
+WATERMARK FOR log_ts AS log_ts - INTERVAL '5' SECOND – 定义水位线 ) WITH (...);
+
+
+
+-- 将 Kafka 中读取的数据经转换后写入 Hive
+INSERT INTO TABLE hive_table
+SELECT user_id, order_amount, DATE_FORMAT(log_ts, 'yyyy-MM-dd'), DATE_FORMAT(log_ts, 'HH')
+FROM kafka_table;
+</code></pre>
+
+  <hr>
+<div class="md-source-file">
+  <small>
+    
+      最后更新:
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2023-04-19</span>
+      
+    
+  </small>
+</div>
+
+
+
+
+
+                
+
+<script src="https://giscus.app/client.js"
+        data-repo="imattdu/imattdu.github.io"
+        data-repo-id="R_kgDOHQylZg"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOHQylZs4CO3wc"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-emit-metadata="1"
+        data-input-position="top"
+        data-theme="light"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="65a2431c-4cf4-4299-b59d-2bdde39f5083";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.1.0/dist/arc-f7872e1e.min.js"></script>
+
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            回到页面顶部
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="页脚" >
+      
+        
+        <a href="../datastreamAPI/" class="md-footer__link md-footer__link--prev" aria-label="上一页: datastreamAPI" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              datastreamAPI
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../../question/question/" class="md-footer__link md-footer__link--next" aria-label="下一页: Question" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              Question
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2021 - 2023 mattのnote
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://www.docker.com/" target="_blank" rel="noopener" title="www.docker.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/imattdu" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tabs", "navigation.top", "content.code.annotate", "search.highlight", "search.suggest", "search.share", "navigation.tracking", "toc.follow"], "search": "../../../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\uff0c\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version.title": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.d6c3db9e.min.js"></script>
+      
+    
+  </body>
+</html>
