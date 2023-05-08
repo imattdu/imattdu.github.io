@@ -1341,8 +1341,6 @@ public class UDFTest_TableFunction {
 
 
 
-
-
 ``` java
 package com.matt.apitest.table;
 

@@ -16,7 +16,7 @@
 
 #### 使用场景：
 
-处理时间是我们计算效率的衡量标准，而事件时间会更符合我们的业务计算逻 辑
+处理时间是我们计算效率的衡量标准，而事件时间会更符合我们的业务计算逻辑
 
 
 
@@ -24,23 +24,11 @@
 
 flink1.12默认是事件时间
 
-
-
-
-
-
-
-
-
-
-
 ## 水位线
 
 
 
 ### 概述
-
-
 
 - 水位线是基于数据的时间戳生成的， 向下游传递特殊的数据 ，用来表示当前事件时间的进展
 - 水位线是单调递增
@@ -213,25 +201,17 @@ public static class ClickSourceWithWatermark implements SourceFunction<Event> {
 
 ### 窗口分类
 
-
-
-
-
 #### 按照驱动分
-
-
 
 时间窗口：根据时间驱动来划分窗口
 
-计算窗口：根据数据个数来划分窗口
+计数窗口：根据数据个数来划分窗口
 
 
 
 
 
 #### 按照窗口分配的数据规则
-
-
 
 ##### 滚动窗口
 
@@ -261,7 +241,7 @@ public static class ClickSourceWithWatermark implements SourceFunction<Event> {
 
 
 
-所以每来一个新的数据，都会创建一个新 的会话窗口;然后判断已有窗口之间的距离，如果小于给定的 size，就对它们进行合并(merge) 操作
+所以每来一个新的数据，都会创建一个新的会话窗口;然后判断已有窗口之间的距离，如果小于给定的 size，就对它们进行合并(merge) 操作
 
 
 
@@ -440,73 +420,12 @@ ReduceFunction 和 AggregateFunction。
 中间聚合的状态和输出的结果，都和输入的数据类型是一样的
 
 ``` java
-package com.matt.apitest.window;
-
-import com.matt.apitest.beans.Event;
-import com.matt.apitest.source.SourceTest4_UDF;
-import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
-import org.apache.flink.api.common.eventtime.WatermarkStrategy;
-import org.apache.flink.api.common.functions.AggregateFunction;
-import org.apache.flink.api.java.tuple.Tuple2;
-import org.apache.flink.streaming.api.datastream.DataStream;
-import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.api.windowing.assigners.TumblingEventTimeWindows;
-import org.apache.flink.streaming.api.windowing.time.Time;
-
-import java.sql.Timestamp;
-import java.time.Duration;
-
-public class WinAggregate {
-
-    public static void main(String[] args) throws Exception {
-        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        // >=1.12 不需要设置开启watermark
-        // 100ms 触发一次水位线生成
-        //env.getConfig().setAutoWatermarkInterval(100);
-        DataStream<Event> dataStream = env.addSource(new SourceTest4_UDF.ParallelCustomSource())
-                .setParallelism(1)
-                // 乱序 延迟
-                .assignTimestampsAndWatermarks(WatermarkStrategy.<Event>forBoundedOutOfOrderness(Duration.ZERO)
-                        .withTimestampAssigner(new SerializableTimestampAssigner<Event>() {
-                            @Override
-                            public long extractTimestamp(Event event, long l) {
-                                return event.timestamp;
-                            }
-                        }));
-
-        //
-        dataStream.keyBy(d -> d.user)
-                .window(TumblingEventTimeWindows.of(Time.seconds(10)))
-                .aggregate(new AggregateFunction<Event, Tuple2<Long, Integer>, String>() {
-
+ .reduce(new ReduceFunction<Tuple2<String, Long>>() {
                     @Override
-                    public Tuple2<Long, Integer> createAccumulator() {
-                        return Tuple2.of(0L, 0);
+                    public Tuple2<String, Long> reduce(Tuple2<String, Long> t1, Tuple2<String, Long> t2) throws Exception {
+                        return Tuple2.of(t1.f0, t1.f1 + t2.f1);
                     }
-
-                    // 叠加
-                    @Override
-                    public Tuple2<Long, Integer> add(Event event, Tuple2<Long, Integer> acc) {
-                        return Tuple2.of(acc.f0 + event.timestamp, acc.f1 + 1);
-                    }
-
-                    @Override
-                    public String getResult(Tuple2<Long, Integer> acc) {
-                        Timestamp timestamp = new Timestamp(acc.f0 / acc.f1);
-                        return timestamp.toString();
-                    }
-
-                    // 合并俩个累加器 会话窗口使用
-                    @Override
-                    public Tuple2<Long, Integer> merge(Tuple2<Long, Integer> a, Tuple2<Long, Integer> b) {
-                        return Tuple2.of((a.f0 + b.f0), (a.f1 + b.f1));
-                    }
-                }).print();
-
-        env.execute("matt");
-    }
-}
-
+                })
 ```
 
 
@@ -707,8 +626,6 @@ public class WindowProcessTest1 {
 
 ```
 
-
-
 Event, String, Boolean, TimeWindow
 
 输入数据 输出数据 key 窗口类型
@@ -817,8 +734,6 @@ public class UVCntExample {
 
 
 比如当前水位线真实是 15s 那么生效后的水位线是10s （延迟5s）
-
-
 
 水位线 = eventTime - watermarkDealy - 1
 

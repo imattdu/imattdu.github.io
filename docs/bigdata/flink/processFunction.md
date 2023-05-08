@@ -16,8 +16,6 @@
 
 
 
-之前所有的算子是无法获取事件时间水位线以及使用定时器
-
 处理函数具有上面所有算子的功能另外还可以获取水位线和注册定时器
 
 
@@ -37,8 +35,6 @@ ProcessFunction 继承了 AbstractRichFunction，泛型中第一个参数是输�
 processElement：来一条数据就会调用一次该方法
 
 onTimer():定时器
-
-
 
 #### 方法
 
@@ -306,6 +302,7 @@ public class EventTimeTimerTest1 {
 
 
 
+## processWindowFunction
 
 
 
@@ -313,4 +310,372 @@ public class EventTimeTimerTest1 {
 
 
 
+### 概述
+
+ProcessWindowFunction 继承 AbstractRichFunction
+
+进行keyBy
+
+``` java
+ProcessWindowFunction<Long, UrlCntBO, String, TimeWindow>
+```
+
+in, out, key, winType
+
+
+
+``` java
+process(String s, ProcessWindowFunction<Long, UrlCntBO, String, TimeWindow>.Context ctx, Iterable<Long> iterable, Collector<UrlCntBO> collector
+```
+
+key, ctx, elements, collector
+
+
+
+
+
+
+
+ProcessAllWindowFunction 使用
+
+```java
+stream.windowAll(TumblingEventTimeWindows.of(Time.seconds(10)) )
+       .process(new MyProcessAllWindowFunction())
+```
+
+
+
+
+
+## 案例
+
+### topN
+
+查找top2的用户
+
+
+
+
+
+#### win
+
+UrlCntAgg: 统计每个窗口内url访问次数
+
+UrlCntResult：输出url,开始时间，结束时间，url访问次数
+
+TopNProcessResult： 使用结束时间作为K, 将 inputD -> listState -> 设置定时器 -> 定时器触发从listState 获取top2url
+
+
+
+``` java
+package com.matt.apitest.processfunction;
+
+import com.matt.apitest.beans.Event;
+import com.matt.apitest.model.UrlCntBO;
+import com.matt.apitest.source.SourceTest4_UDF;
+import com.matt.apitest.window.UrlCntCase;
+import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
+import org.apache.flink.api.common.eventtime.WatermarkStrategy;
+import org.apache.flink.api.common.functions.AggregateFunction;
+import org.apache.flink.api.common.functions.RuntimeContext;
+import org.apache.flink.api.common.state.ListState;
+import org.apache.flink.api.common.state.ListStateDescriptor;
+import org.apache.flink.api.common.typeinfo.Types;
+import org.apache.flink.api.java.tuple.Tuple2;
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.KeyedProcessFunction;
+import org.apache.flink.streaming.api.functions.windowing.ProcessAllWindowFunction;
+import org.apache.flink.streaming.api.windowing.assigners.SlidingEventTimeWindows;
+import org.apache.flink.streaming.api.windowing.time.Time;
+import org.apache.flink.streaming.api.windowing.windows.TimeWindow;
+import org.apache.flink.util.Collector;
+
+import java.time.Duration;
+import java.util.*;
+
+/**
+ * @author matt
+ * @create 2023-03-01 00:35
+ * @desc 访问最多的2个用户
+ */
+public class TopNCase {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+
+        SingleOutputStreamOperator<Event> stream = env.addSource(new SourceTest4_UDF.ParallelCustomSource())
+                .assignTimestampsAndWatermarks(WatermarkStrategy.<Event>forBoundedOutOfOrderness(Duration.ZERO)
+                        .withTimestampAssigner(new SerializableTimestampAssigner<Event>() {
+                            @Override
+                            public long extractTimestamp(Event event, long l) {
+                                return event.timestamp;
+                            }
+                        }));
+
+        SingleOutputStreamOperator<UrlCntBO> urlCntStream = stream.keyBy(d -> d.url)
+                .window(SlidingEventTimeWindows.of(Time.seconds(10), Time.seconds(5)))
+                .aggregate(new UrlCntCase.UrlCntAgg(), new UrlCntCase.UrlCntResult());
+
+        urlCntStream.keyBy(d -> d.winEnd)
+                .process(new TopNProcessResult(2))
+                .print();
+
+
+        env.execute();
+    }
+
+  
+
+    public static class TopNProcessResult extends KeyedProcessFunction<Long, UrlCntBO, String> {
+
+        public int n;
+        // 状态
+        private ListState<UrlCntBO> urlCntBOListState;
+
+        public TopNProcessResult(int n) {
+            this.n = n;
+        }
+
+        // 环境中获取状态
+        @Override
+        public void open(Configuration parameters) throws Exception {
+            urlCntBOListState = getRuntimeContext().getListState(
+                    new ListStateDescriptor<UrlCntBO>("url-cnt-list", Types.POJO(UrlCntBO.class))
+            );
+        }
+
+        @Override
+        public void processElement(UrlCntBO v, KeyedProcessFunction<Long, UrlCntBO, String>.Context context, Collector<String> collector) throws Exception {
+            urlCntBOListState.add(v);
+            // 定时器
+            context.timerService().registerProcessingTimeTimer(context.getCurrentKey() + 1);
+        }
+
+        @Override
+        public void onTimer(long timestamp, KeyedProcessFunction<Long, UrlCntBO, String>.OnTimerContext ctx, Collector<String> out) throws Exception {
+            List<Tuple2<String, Long>> tList = new ArrayList<>();
+            for (UrlCntBO u : urlCntBOListState.get()) {
+                tList.add(Tuple2.of(u.url, u.cnt));
+            }
+            tList.sort(new Comparator<Tuple2<String, Long>>() {
+                @Override
+                public int compare(Tuple2<String, Long> o1, Tuple2<String, Long> o2) {
+                    long diff = o2.f1 - o1.f1;
+                    if (diff > 0) {
+                        return 1;
+                    } else if (diff == 0) {
+                        return 0;
+                    } else {
+                        return -1;
+                    }
+                }
+            });
+            String sb = "";
+            if (tList.size() >= 2) {
+                sb = tList.get(0).f0 + tList.get(0).f1 +
+                        tList.get(1).f0 + tList.get(1).f1;
+            }
+
+            out.collect(String.valueOf(sb));
+        }
+    }
+
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+```java
+public static class UrlCntAgg implements AggregateFunction<Event, Long , Long> {
+
+        @Override
+        public Long createAccumulator() {
+            return 0L;
+        }
+
+        @Override
+        public Long add(Event event, Long acc) {
+            return acc + 1;
+        }
+
+        @Override
+        public Long getResult(Long acc) {
+            return acc;
+        }
+
+        @Override
+        public Long merge(Long aLong, Long acc1) {
+            return null;
+        }
+    }
+
+
+    public static class UrlCntResult extends ProcessWindowFunction<Long, UrlCntBO, String, TimeWindow> {
+
+        @Override
+        public void process(String s, ProcessWindowFunction<Long, UrlCntBO, String, TimeWindow>.Context ctx, Iterable<Long> iterable, Collector<UrlCntBO> collector) throws Exception {
+            Long start = ctx.window().getStart();
+            Long end = ctx.window().getEnd();
+            Long uv = iterable.iterator().next();
+            collector.collect(new UrlCntBO(s, uv, start, end));
+        }
+    }
+```
+
+
+
+
+
+#### allwin
+
+
+
+UrlHashMapCountAgg: hashMap累加器 k:url v:urlCnt -> getResult 遍历累加器 将结果写入list<Tuple2<string, cnt>> url,cnt, sort  输出结构
+
+UrlAllWinResult: 获取top2
+
+``` java
+  
+
+ // 方式一： 没有分组
+       /* stream.map(d -> d.user)
+                .windowAll(SlidingEventTimeWindows.of(Time.seconds(10L), Time.seconds(5L)))
+                .aggregate(new UrlHashMapCountAgg(), new UrlAllWinResult())
+                .print();*/
+
+
+
+public static class UrlHashMapCountAgg implements AggregateFunction<String, HashMap<String, Long>, ArrayList<Tuple2<String, Long>>> {
+
+        @Override
+        public HashMap<String, Long> createAccumulator() {
+            return new HashMap<>();
+        }
+
+        @Override
+        public HashMap<String, Long> add(String s, HashMap<String, Long> acc) {
+            if (!acc.containsKey(s)) {
+                acc.put(s, 0L);
+            }
+            acc.put(s, acc.get(s) + 1);
+            return acc;
+        }
+
+        @Override
+        public ArrayList<Tuple2<String, Long>> getResult(HashMap<String, Long> acc) {
+            ArrayList<Tuple2<String, Long>> tList = new ArrayList<>();
+            for (Map.Entry<String, Long> entry : acc.entrySet()) {
+                tList.add(Tuple2.of(entry.getKey(), entry.getValue()));
+            }
+            tList.sort(new Comparator<Tuple2<String, Long>>() {
+                @Override
+                public int compare(Tuple2<String, Long> o1, Tuple2<String, Long> o2) {
+                    long diff = o2.f1 - o1.f1;
+                    if (diff > 0) {
+                        return 1;
+                    } else if (diff == 0) {
+                        return 0;
+                    } else {
+                        return -1;
+                    }
+                }
+            });
+            return tList;
+        }
+
+        @Override
+        public HashMap<String, Long> merge(HashMap<String, Long> stringLongHashMap, HashMap<String, Long> acc1) {
+            return null;
+        }
+    }
+
+
+    public static class UrlAllWinResult extends ProcessAllWindowFunction<ArrayList<Tuple2<String, Long>>, String, TimeWindow> {
+        @Override
+        public void process(ProcessAllWindowFunction<ArrayList<Tuple2<String, Long>>, String, TimeWindow>.Context context, Iterable<ArrayList<Tuple2<String, Long>>> iterable, Collector<String> collector) throws Exception {
+            ArrayList<Tuple2<String, Long>> tList = iterable.iterator().next();
+            StringBuilder res = new StringBuilder();
+            for (int i = 0; i < 2; i++) {
+                res.append(tList.get(i));
+            }
+            collector.collect(String.valueOf(res));
+        }
+    }
+
+```
+
+
+
+
+
+## 侧输出流
+
+
+
+之前的迟到数据写入到侧边输出流 也是基于该方法 
+
+
+
+``` java
+package com.matt.apitest.processfunction;
+
+import com.matt.apitest.beans.SensorReading;
+import org.apache.flink.api.common.state.ValueState;
+import org.apache.flink.api.common.state.ValueStateDescriptor;
+import org.apache.flink.api.java.tuple.Tuple;
+import org.apache.flink.configuration.Configuration;
+import org.apache.flink.streaming.api.datastream.DataStream;
+import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
+import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
+import org.apache.flink.streaming.api.functions.KeyedProcessFunction;
+import org.apache.flink.streaming.api.functions.ProcessFunction;
+import org.apache.flink.util.Collector;
+import org.apache.flink.util.OutputTag;
+
+public class Test3_Sideoutputcase {
+
+    public static void main(String[] args) throws Exception {
+        StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
+        env.setParallelism(1);
+        DataStream<String> inputStream = env.socketTextStream("localhost", 777);
+        // 转换成SensorReading类型
+        DataStream<SensorReading> dataStream = inputStream.map(line -> {
+            String[] fields = line.split(",");
+            return new SensorReading(fields[0], new Long(fields[1]), new Double(fields[2]));
+        });
+        
+        // 匿名
+        OutputTag<SensorReading> outputTag = new OutputTag<SensorReading>("lowTemp"){};
+
+        SingleOutputStreamOperator<SensorReading> highTempStream = dataStream.process(new ProcessFunction<SensorReading, SensorReading>() {
+            @Override
+            public void processElement(SensorReading sensorReading, ProcessFunction<SensorReading, SensorReading>.Context context, Collector<SensorReading> collector) throws Exception {
+                if (sensorReading.getTemperatrue() > 30) {
+                    collector.collect(sensorReading);
+                } else {
+                    // 输出到侧边流
+                    context.output(outputTag, sensorReading);
+                }
+            }
+        });
+
+        highTempStream.print("high");
+        highTempStream.getSideOutput(outputTag).print("lowTem");
+        env.execute("my");
+    }
+}
+
+```
 
