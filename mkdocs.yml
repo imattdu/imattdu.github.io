@@ -187,8 +187,10 @@ nav:
       - overview: bigdata/flink/overview.md
       - quickstart: bigdata/flink/quickstart.md
       - datastreamAPI: bigdata/flink/datastreamAPI.md
-      - 多流操作: bigdata/flink/mulStream.md
-      - 状态: bigdata/flink/state.md
+      - processFunction: bigdata/flink/processFunction.md
+      - timeWin: bigdata/flink/timeWin.md
+      - mulStream: bigdata/flink/mulStream.md
+      - state: bigdata/flink/state.md
       - table: bigdata/flink/table.md
   - question:
     - question: 
