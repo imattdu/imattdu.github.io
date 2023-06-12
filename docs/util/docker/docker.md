@@ -405,6 +405,9 @@ OPTIONS说明（常用）：有些是一个减号，有些是两个减号
 
 ```go
 docker run -it centos /bin/bash
+
+
+docker run -p 9000:9000 -it centos:centos7 /bin/bash
 ```
 
 ![](https://raw.githubusercontent.com/imattdu/img/main/img/20210813001240.png)

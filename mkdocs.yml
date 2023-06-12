@@ -26,6 +26,7 @@ theme:
   features:
     # 实时加载
     - navigation.instant
+    - navigation.path
     # tabs
     - navigation.tabs
     # 自动隐藏
