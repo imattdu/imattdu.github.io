@@ -233,7 +233,6 @@ PartitionId_MinBlockNum_MaxBlockNum_Level
 
 ​     
 
-
 bin文件：数据文件
 mrk文件：标记文件
     标记文件在 idx索引文件 和 bin数据文件 之间起到了桥梁作用。
@@ -271,8 +270,6 @@ UInt16 - [0 : 65535]
 UInt32 - [0 : 4294967295]
 
 UInt64 - [0 : 18446744073709551615]
-
-
 
 
 
@@ -427,7 +424,7 @@ create table t_order_mt(
    sku_id String,
    total_amount Decimal(16,2),
    create_time Datetime
-) engine =MergeTree
+) engine = MergeTree
 partition by toYYYYMMDD(create_time) 
 primary key (id)
 order by (id,sku_id);
@@ -1005,23 +1002,21 @@ create_time='2020-06-01 12:00:00'" --format CSVWithNames>
 <?xml version="1.0"?>
 <yandex>
     <zookeeper-servers>
-       <node index="1">
-<host>hadoop102</host>
-           <port>2181</port>
-       </node>
-       <node index="2">
-           <host>hadoop103</host>
-           <port>2181</port>
-       </node>
-       <node index="3">
-           <host>hadoop104</host>
-           <port>2181</port>
-       </node>
+        <node index="1">
+            <host>hadoop102</host>
+            <port>2181</port>
+        </node>
+        <node index="2">
+            <host>hadoop103</host>
+            <port>2181</port>
+        </node>
+        <node index="3">
+            <host>hadoop104</host>
+            <port>2181</port>
+        </node>
     </zookeeper-servers>
 </yandex>
 ```
-
-
 
 3.metrika.xml 同步到其他机器 h2 h3
 
@@ -1035,8 +1030,6 @@ create_time='2020-06-01 12:00:00'" --format CSVWithNames>
 ```
 
 5.重启h1,h2,h3 ck
-
-
 
 
 
@@ -1087,6 +1080,300 @@ ReplicatedMergeTree 中， 第一个参数是分片的zk_path一般按照:/click
 ## 分片集群
 
 
+
+
+
+副本虽然能够提高数据的可用性，降低丢失风险，但是每台服务器实际上必须容纳全量数据，对数据的横向扩容没有解决。
+
+通过分片把一份完整的数据进行切分，不同的分片分布到不同的节点上，再通过 Distributed 表引擎把数据拼接起来一同使用。
+
+Distributed 表引擎本身不存储数据，通过分布式逻辑表来写入、分发、路由来操作多台节点不同分片的分布式数据。
+
+
+
+
+
+
+
+
+
+### 具体配置
+
+#### 3分片2副本共6个节点集群配置
+
+/etc/clickhouse-server/config.d/metrika.xml
+
+注:也可以不创建外部文件，直接在 config.xml 的<remote_servers>中指定
+
+```xml
+<yandex> 
+  <remote_servers> 
+    <gmall_cluster> <!-- 集群名称-->  
+      <shard> 
+        <!--集群的第一个分片-->  
+        <internal_replication>true</internal_replication>  
+        <!--该分片的第一个副本-->  
+        <replica> 
+          <host>hadoop101</host>  
+          <port>9000</port> 
+        </replica>  
+        <!--该分片的第二个副本-->  
+        <replica> 
+          <host>hadoop102</host>  
+          <port>9000</port> 
+        </replica> 
+      </shard>  
+      <shard> 
+        <!--集群的第二个分片-->  
+        <internal_replication>true</internal_replication>  
+        <replica> 
+          <!--该分片的第一个副本-->  
+          <host>hadoop103</host>  
+          <port>9000</port> 
+        </replica>  
+        <replica> 
+          <!--该分片的第二个副本-->  
+          <host>hadoop104</host>  
+          <port>9000</port> 
+        </replica> 
+      </shard>  
+      <shard> 
+        <!--集群的第三个分片-->  
+        <internal_replication>true</internal_replication>  
+        <replica> 
+          <!--该分片的第一个副本-->  
+          <host>hadoop105</host>  
+          <port>9000</port> 
+        </replica>  
+        <replica> 
+          <!--该分片的第二个副本-->  
+          <host>hadoop106</host>  
+          <port>9000</port> 
+        </replica> 
+      </shard> 
+    </gmall_cluster> 
+  </remote_servers> 
+</yandex>
+
+```
+
+
+
+
+
+#### 3节点集群
+
+##### 集群规划
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202306122243237.png)
+
+
+
+
+
+
+
+​	102
+
+```xml
+<macros>
+    <shard>01</shard>
+    <replica>rep_1_1</replica>
+</macros>
+```
+
+103
+
+```xml
+<macros>
+    <shard>01</shard>
+    <replica>rep_1_2</replica>
+</macros>
+```
+
+104
+
+```xml
+<macros>
+    <shard>02</shard>
+    <replica>rep_2_1</replica>
+</macros>
+```
+
+
+
+##### 详细配置
+
+hadoop102 的/etc/clickhouse-server/config.d 目录下创建 metrika-shard.xml 文件
+
+
+
+```xml
+<?xml version="1.0"?>
+<yandex>
+    <remote_servers>
+        <gmall_cluster>
+            <!-- 集群名称-->
+            <shard>
+                <!--集群的第一个分片-->
+                <internal_replication>true</internal_replication>
+                <replica>
+                    <!--该分片的第一个副本-->
+                    <host>hadoop102</host>
+                    <port>9000</port>
+                </replica>
+                <replica>
+                    <!--该分片的第二个副本-->
+                    <host>hadoop103</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+            <shard>
+                <!--集群的第二个分片-->
+                <internal_replication>true</internal_replication>
+                <replica>
+                    <!--该分片的第一个副本-->
+                    <host>hadoop104</host>
+                    <port>9000</port>
+                </replica>
+            </shard>
+        </gmall_cluster>
+    </remote_servers>
+    <zookeeper-servers>
+        <node index="1">
+            <host>hadoop102</host>
+            <port>2181</port>
+        </node>
+        <node index="2">
+            <host>hadoop103</host>
+            <port>2181</port>
+        </node>
+        <node index="3">
+            <host>hadoop104</host>
+            <port>2181</port>
+        </node>
+    </zookeeper-servers>
+    <macros>
+        <shard>01</shard>
+        <!--不同机器放的分片数不一样-->
+        <replica>rep_1_1</replica>
+        <!--不同机器放的副本数不一样-->
+    </macros>
+</yandex>
+```
+
+
+
+
+
+###### hadoop102 的 metrika-shard.xml 同步到 103 和 104
+
+
+
+###### 修改103,104宏配置
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202306122250486.png)
+
+
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202306122249809.png)
+
+
+
+
+
+###### 修改/etc/clickhouse-server/config.xml 中导入文件 并同步到103,104
+
+
+
+###### 重启三台机器ck
+
+
+
+
+
+##### 使用
+
+###### 在102 创建如下表 
+
+- 会自动同步103,104
+- 集群名字需要和配置文件保持一致
+- 分片和副本名称从配置文件的宏定义中获取
+
+```sql
+create table st_order_mt on cluster gmall_cluster (
+   id UInt32,
+	sku_id String,
+	total_amount Decimal(16,2), create_time Datetime
+ ) engine = ReplicatedMergeTree('/clickhouse/tables/{shard}/st_order_mt','{replica}')
+  partition by toYYYYMMDD(create_time)
+  primary key (id)
+  order by (id,sku_id);
+```
+
+
+
+###### 102创建分布式表
+
+Distributed(集群名称，库名，本地表名，分片键) 分片键必须是整型数字，所以用 hiveHash 函数转换，也可以 rand()
+
+```sql
+create table st_order_mt_all2 on cluster gmall_cluster
+(
+id UInt32,
+  sku_id String,
+total_amount Decimal(16,2), create_time Datetime
+)engine = Distributed(gmall_cluster,default, st_order_mt,hiveHash(sku_id));
+```
+
+
+
+###### 102插入数据
+
+```sql
+insert into st_order_mt_all2 values
+(201,'sku_001',1000.00,'2020-06-01 12:00:00') ,
+(202,'sku_002',2000.00,'2020-06-01 12:00:00'),
+(203,'sku_004',2500.00,'2020-06-01 12:00:00'),
+(204,'sku_002',2000.00,'2020-06-01 12:00:00'),
+(205,'sku_003',600.00,'2020-06-02 12:00:00');
+```
+
+
+
+###### 查询
+
+
+
+
+
+```sql
+SELECT * FROM st_order_mt_all;
+```
+
+
+
+```sql
+select * from st_order_mt;
+```
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202306122300801.png)
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202306122300269.png)
 
 
 

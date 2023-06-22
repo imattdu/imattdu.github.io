@@ -193,6 +193,9 @@ nav:
       - mulStream: bigdata/flink/mulStream.md
       - state: bigdata/flink/state.md
       - table: bigdata/flink/table.md
+    - click house:
+      - quickstart: bigdata/clickhouse/quickstart.md
+      - advanced: bigdata/clickhouse/advanced.md
   - question:
     - question: 
       - question/question.md
