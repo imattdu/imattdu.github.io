@@ -6,11 +6,12 @@
 
 
 
-extra 额外的
+- [ ] promise:承诺
 
-exquisite：精致的 优美的
+- [ ] exquisite：精致的 优美的
+- [ ] assimalte 相似 同化
 
-exact：确切的
+
 
 
 
