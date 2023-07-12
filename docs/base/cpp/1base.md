@@ -1,53 +1,4 @@
-+++
-title = "cpp基础"
-date = 2022-01-20T17:25:20+08:00
-featured = false
-comment = true
-toc = true
-reward = true
-weight = 9
-categories = [
-  "tool"
-]
-tags = [
-]
-series = [
-]
-images = []
-aliases = [
-]
-
-+++
-
-file使用
-
-<!--more-->
-
-
-
-
-
-
-
 ## 基础知识
-
-
-
-### demo
-
-
-
-```cpp
-#include <iostream>
-
-using namespace std;
-
-int main() {
-    // endl 回车
-    cout << "hello word" << endl;
-    return 0;
-}
-```
 
 
 
@@ -164,10 +115,8 @@ int main() {
 
 
 - int：%d
-- gloat: %f, 默认保留6位小数
+- float: %f, 默认保留6位小数
 - double: %lf， 默认保留6位小数
--    
-
 - float, double等输出保留若干位小数时用：%.4f, %3lf
 - %8.3f, 表示这个浮点数的最小宽度为8，保留3位小数，当宽度不足时在前面补空格。
 - %-8.3f，表示最小宽度为8，保留3位小数，当宽度不足时在后面补上空格
@@ -191,12 +140,6 @@ x % y
 
 结果和x正负一直
 
-
-
-
-
-
-
 #### 前加加 后加加 前减减 后减减
 
 
@@ -207,70 +150,6 @@ x % y
 long long int i = 10ll;
 int j = (int)i;
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-pow（double, double） 几次方
-
-sqrt(int) 开 
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-100 50 20 10 5 1
-
-
-
-尽量使用大的，数量用的就少
-
-
-
-string
 
 
 
