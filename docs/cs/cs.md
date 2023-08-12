@@ -41,3 +41,25 @@ sizeof 返回无符号数
 
 
 
+
+```sql
+pip install --global-option=build_ext --global-option="-I$(brew --prefix graphviz)/include/" --global-option="-L$(brew --prefix graphviz)/lib/" pygraphviz
+```
+
+
+
+
+
+
+
+```sh
+apt install graphviz 
+apt install
+
+graphviz-dev
+```
+
+
+
+
+

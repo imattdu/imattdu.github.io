@@ -1,30 +1,3 @@
-+++
-title = "vscode"
-date = 2022-01-20T17:25:20+08:00
-featured = false
-comment = true
-toc = true
-reward = true
-weight = 9
-categories = [
-  "tool"
-]
-tags = [
-]
-series = [
-]
-images = []
-aliases = [
-]
-
-+++
-
-vscode
-
-<!--more-->
-
-
-
 
 
 
@@ -130,3 +103,171 @@ onWindowChange: 当焦点移出VSCode窗口
 
 
 ![](http://raw.githubusercontent.com/imattdu/img/main/img/202110100311819.png)
+
+
+
+
+
+
+
+
+
+
+
+### plugin 插件
+
+vscode 右上角出现运行按钮
+
+#### code runner
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202307151604897.png)
+
+
+
+
+
+
+
+#### go 
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202307151607981.png)
+
+
+
+安装完成后  cmd+shift+p 输入 Go:install/update
+
+安装相关工具
+
+
+
+#### IntelliJ IDEA Keybindings
+
+idea 快捷键
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202307151609197.png)
+
+
+
+
+
+
+
+#### C/C++ Extension Pack
+
+安装这个会自动安装c/c++ ,c/c++ Themes, CMake Tools 作为扩展包安装
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202307151626972.png)
+
+
+
+
+
+
+
+Chinese (Simplified) (简体中文)
+
+
+
+
+
+
+
+
+
+#### Atom One Dark Theme
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202307160204815.png)
+
+
+
+
+
+### 配置语言环境
+
+
+
+#### go
+
+
+
+launch.json
+
+
+
+```json
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Package",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${file}"
+        }
+    ]
+}
+```
+
+
+
+
+
+点击运行按钮接口
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202307151630893.png)
+
+
+
+
+
+会自动创建tasks.json
+
+```json
+{
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: gcc 生成活动文件",
+            "command": "/usr/bin/gcc",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/${fileBasenameNoExtension}"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "调试器生成的任务。"
+        }
+    ],
+    "version": "2.0.0"
+}
+```
+
+
+
+
+
+
+
