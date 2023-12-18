@@ -148,32 +148,6 @@ int main() {
 
 
 
-
-```cpp
-#include <iostream>
-#include <queue>
-#include <vector>
-
-using namespace std;
-
-int main() {
-    
-    struct User {
-        int a;
-        bool operator> (const User& u) const {
-            return a > u.a;
-        }
-    };
-    priority_queue<int, vector<int>, greater<int>> p;
-    p.push({1});
-    p.push({2});
-   cout << p.top();
-    
-    return 0;
-}
-```
-
-
 ```cpp
 #include <iostream>
 #include <algorithm>
@@ -201,8 +175,6 @@ int main () {
     
     // 注意运算符优先级
     cout << (p.top().x);
-        
-    
     return 0;
 }
 ```
