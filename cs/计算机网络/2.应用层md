@@ -1,0 +1,327 @@
+
+
+
+
+
+
+标识：标注自己
+
+寻址：可以找得到自己
+
+
+
+
+
+
+
+tcp 有端口 便于应用层和传输层 传过层接量信息最少
+
+
+
+
+
+
+
+## 应用层协议原理
+
+
+
+
+
+### 网络应用的体系架构
+
+
+
+#### 客户端服务器 cs
+
+
+
+服务端：一直运行
+
+客户端：主动连接服务端，间歇性连接
+
+
+
+#### 对等体p2p
+
+几乎没有服务器一直运行
+
+任何一台机器既是客户端又是服务端
+
+
+
+缺点：机器难以管理
+
+应用：迅雷
+
+
+
+#### c2 p2p 结合体
+
+在线监测 ：cs
+
+​	用户上线时，向服务器注册自己
+
+2 个用户通信、下载文件 p2p
+
+​	
+
+应用：即时通信
+
+
+
+
+
+### 进程通信
+
+
+
+#### 概述
+
+同主机的不同进程：使用进程间的通信机制
+
+不同主机的进程：使用 os 提供的通信服务、根据应用协议交换报文
+
+
+
+#### 问题
+
+分布式进程通信需要解决的问题>
+
+- 进程的标识和寻址（服务用户）
+- 传输层、应用层提供的服务有哪些（服务）
+- 如何使用传输层提供的服务，实现应用进程间的报文交换，实现应用（用户使用服务）
+
+
+
+
+
+
+
+#### 问题 1
+
+主机 ip+端口 port+传输层协议 -》 标识一个进程
+
+
+
+#### 问题 2
+
+应用层&传输层的层接接口
+
+- 应用层需要传输的数据 sdu
+- 谁传的：自己的 ip+port
+- 传给谁：对方的 ip+port
+
+传输层实体：上述的数据 tcp,udp 的封装
+
+
+
+
+
+##### tcp socket
+
+用一个标识标识 应用层&传输层的层接接口携带的数据
+
+TCP socket:源IP,源端口，目标IP，目标端口
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202403100848864.png)
+
+
+
+
+
+
+
+##### udp socket
+
+udp socket
+
+由于无连接：本机 +port
+
+
+
+传输时需要携带对方 ip+port,收到数据是也需要上报对方的 ip+port
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202403100852290.png)
+
+
+
+
+
+#### 问题 3 如何使用传输的服务实现应用
+
+定义应用层协议：报文、解释、时序
+
+编制程序：通过api调用使用网络通信服务 发送报文、解析报文、实现时序
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202403100901963.png)
+
+## http
+
+
+
+
+
+### 概述
+
+- 客户端向服务端建立一个 tpc 连接、服务端接收连接
+- 客户端与服务端交换报文
+- 关闭连接
+
+http 是无状态，服务器不维护客户端的状态信息
+
+
+
+### 持久化、非持久化
+
+
+
+#### 非持久化：
+
+只有一个对象在 tcp 连接上发送
+
+http/1.0 使用非持久化
+
+
+
+缺点：
+
+使用的 tcp 连接较多 耗费资源、tcp 建立需要花费时间响应慢
+
+#### 持久化：
+
+对个对象可以在一个 tcp 连接上传输
+
+http/1.1 默认使用持久化连接
+
+
+
+
+
+#### 非流水线
+
+客户端收到前一个响应才可以发出新的请求
+
+
+
+
+
+#### 流水线
+
+客户端遇到一个引用对象，可立即发送请求
+
+http/1.1 默认方式
+
+
+
+
+
+
+
+### 报文
+
+
+
+#### 请求报文
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202403100918207.png)
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202403100919008.png)
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202403100920180.png)
+
+
+
+
+
+#### 响应报文
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202403100921123.png)
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202403100922621.png)
+
+
+
+
+
+### cookie
+
+
+
+#### 组成部分
+
+- http 请求、响应报文有一个 cookie首部行
+- 用户端系统保存 cookie
+- web 站点后端数据库会存储 cookie
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202403100927368.png)
+
+
+
+
+
+
+
+why?
+
+用户验证、无登录&登录 数据合并
+
+
+
+
+
+### 缓存
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202403100930481.png)
+
+
+
+
+
+
+
+![](https://raw.githubusercontent.com/imattdu/img/main/img/202403100930397.png)
+
+
+
+
+
+Prot://user:psw@www.someSchool.edu/someDept/pic.gif:port
+
+
+
+
+
+
+
+
+
+ftp
+
+控制命令和数据传送 在 2 个 tcp 连接
+
+
+
+
+
+
+
+
+
+imap :创建目录 目录维护
