@@ -218,6 +218,17 @@ sudo xattr -rd com.apple.quarantine /Applications/Paste.app
 
 
 
+emacs 安装
+
+```
+brew install --cask emacs
+
+```
+
+
+
+
+
 
 
 
@@ -290,7 +301,7 @@ pdf编辑阅读 版本2.8.22.1 (2.8.22.1)
 
 一步一步安装即可
 
-
+ 
 
 
 
@@ -299,4 +310,10 @@ pdf编辑阅读 版本2.8.22.1 (2.8.22.1)
 
 
 拖到右侧安装即可
+
+
+
+
+
+
 

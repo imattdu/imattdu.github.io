@@ -613,7 +613,7 @@ fi
 
 
 
-空格分开 第一列数据
+
 
 ```bash
 cut -d " " -f 1 cut.txt
@@ -629,128 +629,9 @@ cut -d " " -f 2,3 cut.txt
 
 
 
-```bash
-[matt@matt05 stu]$ sed "2a matt siry" sed.txt 
-dong shen
-guan zhen
-matt siry
-wo  wo
-lai  lai
 
-le  le
-```
 
 
 
 
-
-
-
-```bash
-[matt@matt05 stu]$ sed "/do/d" sed.txt
-guan zhen
-wo  wo
-lai  lai
-
-le  le
-
-
-```
-
-
-
-
-
-```bash
-# /g 全局替换
-[matt@matt05 stu]$ sed "s/wo/ma/g" sed.txt 
-dong shen
-guan zhen
-ma  ma
-lai  lai
-
-le  le
-
-```
-
-
-
-
-
-删除第二行
-
-```bash
-[matt@matt05 stu]$ sed -e '2d' -e 's/wo/ni/g' sed.txt 
-dong shen
-ni  ni
-lai  lai
-
-le  le
-
-
-```
-
-
-
-
-
-第7列
-
-```bash
-[matt@matt05 awk]$ awk -F ':' '/^root/{print $7}' passwd 
-/bin/bash
-```
-
-
-
-
-
-```bash
-[matt@matt05 awk]$ awk -F ":" '/^root/{print $1,$7}' passwd 
-root /bin/bash
-```
-
-
-
-
-
-```sh
-awk -F ':' 'BEGIN{print "user,matt"} {print $1"."$7} END{print "matt"}' passwd
-```
-
-
-
-
-
-```sh
-awk -F ':' -v i=1 '{print $3+i}' passwd
-```
-
-
-
-这三个变量不能在BEGIN中使用
-
-```sh
-awk -F ':' '{print FILENAME} {print NR"-"NF}' passwd
-```
-
-
-
-
-
-```sh
-ifconfig ens33 | awk -F : '{print $1}'
-```
-
-
-
-
-
-
-
-
-
-```bash
-sort -t : -nrk 3 sort.txt
-```
 
