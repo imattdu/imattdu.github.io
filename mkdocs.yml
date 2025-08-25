@@ -201,6 +201,12 @@ nav:
       - question/question.md
   - en:
     - w: en/w.md
+  - growth:
+      - mindset:
+          沟通力与自我觉察:
+            - 1.由衷的给予: growth/mindset/沟通力与自我觉察/非暴力沟通/1.由衷的给予.md
+            - 2.疏离生命的语言: growth/mindset/沟通力与自我觉察/非暴力沟通/2.疏离生命的语言.md
+            - 3.区分观察与评论: growth/mindset/沟通力与自我觉察/非暴力沟通/3.区分观察与评论.md
 extra_css:
   - stylesheets/extra.css
 
