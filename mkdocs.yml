@@ -120,6 +120,7 @@ nav:
         - log: go/2lib/3log.md
         - io: go/2lib/4io.md
         - 反射: go/2lib/9反射.md
+      - name: lang/go/name.md
     - cpp:
       - 基础: cpp/1base.md
       - 字符串: cpp/2string.md
