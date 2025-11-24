@@ -339,7 +339,98 @@ advertised.listeners=PLAINTEXT://192.168.96.128:9092
 
 
 
+mac 3.5.0
 
+ https://kafka.apache.org/downloads 3.5.0
+
+
+
+### **初始化 Kafka 的元数据（KRaft 必须）**
+
+KRaft 模式需要初始化一个 cluster-id。
+
+
+
+生成 cluster-id：
+
+```
+KAFKA_CLUSTER_ID="$(bin/kafka-storage.sh random-uuid)"
+```
+
+格式化日志目录（存储 metadata）：
+
+``` 
+bin/kafka-storage.sh format \
+  -t $KAFKA_CLUSTER_ID \
+  -c config/kraft/server.properties
+```
+
+
+
+### 启动 kafka
+
+```
+bin/kafka-server-start.sh config/kraft/server.properties
+```
+
+
+
+后台启动
+
+
+
+
+
+```
+nohup bin/kafka-server-start.sh config/kraft/server.properties > kafka.log 2>&1 &
+```
+
+
+
+
+
+
+
+创建测试 topic
+
+```
+cd ~/kafka
+bin/kafka-topics.sh --create \
+  --topic test-topic \
+  --bootstrap-server localhost:9092 \
+  --partitions 1 \
+  --replication-factor 1
+```
+
+
+
+
+
+
+
+```
+bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+```
+
+
+
+
+
+
+
+```
+bin/kafka-console-producer.sh --topic test-topic --bootstrap-server localhost:9092
+```
+
+
+
+
+
+
+
+```
+bin/kafka-console-consumer.sh --topic test-topic --from-beginning --bootstrap-server localhost:9092
+```
 
 
 
